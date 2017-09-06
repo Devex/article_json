@@ -24,7 +24,7 @@ module ArticleJSON
           end
 
           # Check if the node is empty, i.e. not containing any text or nested
-          # nodes of any importance - empty spans as not important ;)
+          # nodes of any importance - empty spans are not important ;)
           # @return [Boolean]
           def empty?
             node.inner_text.strip.empty? &&
