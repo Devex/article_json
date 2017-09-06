@@ -86,6 +86,55 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
     end
   end
 
+  describe '#paragraph?' do
+    subject { node.paragraph? }
+
+    context 'when the node is empty' do
+      let(:xml_fragment) { '<p></p>' }
+      it { should be false }
+    end
+
+    context 'when the node has a nested image tag' do
+      let(:xml_fragment) { '<p><span><img src="foo/bar.jpg" /></span></p>' }
+      it { should be false }
+    end
+
+    context 'when the node contains the text to start a text box' do
+      let(:xml_fragment) { '<p><span>Textbox:</span></p>' }
+      it { should be false }
+    end
+
+    context 'when the node contains the text to start a highlight' do
+      let(:xml_fragment) { '<p><span>Highlight:</span></p>' }
+      it { should be false }
+    end
+
+    context 'when the node contains the text to start a quote' do
+      let(:xml_fragment) { '<p><span>Quote:</span></p>' }
+      it { should be false }
+    end
+
+    context 'when the node is a header tag' do
+      let(:xml_fragment) { '<h1>foo</h1>' }
+      it { should be false }
+    end
+
+    context 'when the node is a <ul> tag' do
+      let(:xml_fragment) { '<ul><li>Foo</li><li>Bar</li></ul>' }
+      it { should be false }
+    end
+
+    context 'when the node is a <ol> tag' do
+      let(:xml_fragment) { '<ol><li>Foo</li><li>Bar</li></ol>' }
+      it { should be false }
+    end
+
+    context 'when the node is a just normal text' do
+      let(:xml_fragment) { '<p><span>Foo</span><span>Bar</span></p>' }
+      it { should be true }
+    end
+  end
+
   describe '#image?' do
     subject { node.image? }
 
@@ -222,7 +271,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
 
     context 'when the node is a just normal text' do
       let(:xml_fragment) { '<p><span>Foo</span><span>Bar</span></p>' }
-      it { should eq :text }
+      it { should eq :paragraph }
+    end
+
+    context 'when the node is something else that we do not support' do
+      let(:xml_fragment) { '<google-drawing>fancy-drawing</google-drawing>' }
+      it { should eq :unknown }
     end
   end
 end
