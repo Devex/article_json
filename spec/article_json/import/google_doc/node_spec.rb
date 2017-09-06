@@ -81,7 +81,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
     end
 
     context 'when the node has a nested image tag' do
-      let(:xml_fragment) { '<p><img src="foo/bar.jpg" /></p>' }
+      let(:xml_fragment) { '<p><span><img src="foo/bar.jpg" /></span></p>' }
       it { should be false }
     end
   end
@@ -90,7 +90,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
     subject { node.image? }
 
     context 'when the node has a nested image tag' do
-      let(:xml_fragment) { '<p><img src="foo/bar.jpg" /></p>' }
+      let(:xml_fragment) { '<p><span><img src="foo/bar.jpg" /></span></p>' }
       it { should be true }
     end
 
@@ -186,7 +186,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
     end
 
     context 'when the node has a nested image tag' do
-      let(:xml_fragment) { '<p><img src="foo/bar.jpg" /></p>' }
+      let(:xml_fragment) { '<p><span><img src="foo/bar.jpg" /></span></p>' }
       it { should eq :image }
     end
 

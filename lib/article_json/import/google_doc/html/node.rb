@@ -23,13 +23,12 @@ module ArticleJSON
             node.inner_text.strip.downcase == text.strip.downcase
           end
 
-          # Check if the node is empty, i.e. not containing any text or nested
-          # nodes of any importance - empty spans are not important ;)
+          # Check if the node is empty, i.e. not containing any text
+          # Given that images are the only nodes without text, we have to make
+          # sure that it's not an image.
           # @return [Boolean]
           def empty?
-            node.inner_text.strip.empty? &&
-              (node.children.empty? ||
-                node.children.all? { |c| %w(span text).include?(c.name) })
+            node.inner_text.strip.empty? && !image?
           end
 
           # Check if the node contains an image
