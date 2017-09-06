@@ -1,5 +1,3 @@
-require 'css_parser'
-
 module ArticleJSON
   module Import
     module GoogleDoc
