@@ -23,6 +23,8 @@ txt
   s.require_path = 'lib'
   s.test_files = s.files.grep(%r{^(spec)/})
 
+  s.add_runtime_dependency 'css_parser', '~> 1.5'
+
   s.add_development_dependency 'bundler', '~> 1.15'
   s.add_development_dependency 'rspec', '~> 3.6'
 end
