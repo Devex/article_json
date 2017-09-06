@@ -2,8 +2,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
   subject(:node) { described_class.new(nokogiri_node) }
   let(:nokogiri_node) { Nokogiri::XML.fragment(xml_fragment).children.first }
 
-  describe '#header?' do
-    subject { node.header? }
+  describe '#heading?' do
+    subject { node.heading? }
 
     %w(h1 h2 h3 h4 h5).each do |header_tag|
       context "when the node is a <#{header_tag}>" do
