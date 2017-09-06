@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'css_parser'
 
 require_relative 'article_json/version'
 
