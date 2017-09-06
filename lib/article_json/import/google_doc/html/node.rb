@@ -33,6 +33,19 @@ module ArticleJSON
             @is_heading = %w(h1 h2 h3 h4 h5).include?(node.name)
           end
 
+          # Check if the node is a normal text paragraph
+          # @return [Boolean]
+          def paragraph?
+            return @is_paragraph if defined? @is_paragraph
+            @is_paragraph =
+              node.name == 'p' &&
+                !empty? &&
+                !image? &&
+                !text_box? &&
+                !highlight? &&
+                !quote?
+          end
+
           # Check if the node contains an ordered or unordered list
           # @return [Boolean]
           def list?
@@ -77,12 +90,13 @@ module ArticleJSON
           def type
             return :empty if empty?
             return :heading if heading?
+            return :paragraph if paragraph?
             return :list if list?
             return :text_box if text_box?
             return :highlight if highlight?
             return :quote if quote?
             return :image if image?
-            :text
+            :unknown
           end
         end
       end
