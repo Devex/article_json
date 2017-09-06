@@ -12,7 +12,7 @@ module ArticleJSON
 
           # Check if the node is a header tag between <h1> and <h5>
           # @return [Boolean]
-          def header?
+          def heading?
             %w(h1 h2 h3 h4 h5).include?(node.name)
           end
 
