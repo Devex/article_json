@@ -1,6 +1,8 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::Node do
   subject(:node) { described_class.new(nokogiri_node) }
-  let(:nokogiri_node) { Nokogiri::XML.fragment(xml_fragment).children.first }
+  let(:nokogiri_node) do
+    Nokogiri::XML.fragment(xml_fragment.strip).children.first
+  end
 
   describe '#heading?' do
     subject { node.heading? }
@@ -88,13 +90,139 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Node do
     subject { node.image? }
 
     context 'when the node has a nested image tag' do
-      let(:xml_fragment) { '<p><span><img src="foo/bar.jpg" /></span></p>' }
+      let(:xml_fragment) { '<p><img src="foo/bar.jpg" /></p>' }
       it { should be true }
     end
 
     context 'when the node does *not* have a nested image tag' do
       let(:xml_fragment) { '<p><span>no image here</span></p>' }
       it { should be false }
+    end
+  end
+
+  describe '#list?' do
+    subject { node.list? }
+
+    context 'when the node is a <ul> tag' do
+      let(:xml_fragment) do
+        # copied from google doc example
+        <<-html
+          <ul class="c5 lst-kix_wco5jbr050qn-0 start">
+            <li class="c3"><span class="c6">Point A</span></li>
+            <li class="c3"><span class="c8">Point B</span></li>
+          </ul>
+        html
+      end
+      it { should be true }
+    end
+
+    context 'when the node is a <ol> tag' do
+      let(:xml_fragment) do
+        # copied from google doc example
+        <<-html
+          <ol class="c5 lst-kix_wco5jbr050qn-0 start">
+            <li class="c3"><span class="c6">Point A</span></li>
+            <li class="c3"><span class="c8">Point B</span></li>
+          </ol>
+        html
+      end
+      it { should be true }
+    end
+
+    context 'when the node is neither a <ol> nor a <ul> tag' do
+      let(:xml_fragment) { '<span class="c6">Point A</span>' }
+      it { should be false }
+    end
+  end
+
+  describe '#text_box?' do
+    subject { node.text_box? }
+
+    context 'when the node contains the text to start a text box' do
+      let(:xml_fragment) { '<p><span>Textbox:</span></p>' }
+      it { should be true }
+    end
+
+    context 'when the node does not contain the text to start a text box' do
+      let(:xml_fragment) { '<p><span>Foo Bar:</span></p>' }
+      it { should be false }
+    end
+  end
+
+  describe '#highlight?' do
+    subject { node.highlight? }
+
+    context 'when the node contains the text to start a highlight' do
+      let(:xml_fragment) { '<p><span>Highlight:</span></p>' }
+      it { should be true }
+    end
+
+    context 'when the node does not contain the text to start a highlight' do
+      let(:xml_fragment) { '<p><span>Foo Bar:</span></p>' }
+      it { should be false }
+    end
+  end
+
+  describe '#quote?' do
+    subject { node.quote? }
+
+    context 'when the node contains the text to start a quote' do
+      let(:xml_fragment) { '<p><span>Quote:</span></p>' }
+      it { should be true }
+    end
+
+    context 'when the node does not contain the text to start a quote' do
+      let(:xml_fragment) { '<p><span>Foo Bar:</span></p>' }
+      it { should be false }
+    end
+  end
+
+  describe '#type' do
+    subject { node.type }
+
+    context 'when the node is empty' do
+      let(:xml_fragment) { '<p></p>' }
+      it { should eq :empty }
+    end
+
+    context 'when the node has a nested image tag' do
+      let(:xml_fragment) { '<p><img src="foo/bar.jpg" /></p>' }
+      it { should eq :image }
+    end
+
+    context 'when the node contains the text to start a text box' do
+      let(:xml_fragment) { '<p><span>Textbox:</span></p>' }
+      it { should eq :text_box }
+    end
+
+    context 'when the node contains the text to start a highlight' do
+      let(:xml_fragment) { '<p><span>Highlight:</span></p>' }
+      it { should eq :highlight }
+    end
+
+    context 'when the node contains the text to start a quote' do
+      let(:xml_fragment) { '<p><span>Quote:</span></p>' }
+      it { should eq :quote }
+    end
+
+    context 'when the node is a header tag' do
+      let(:xml_fragment) { '<h1>foo</h1>' }
+      it { should eq :heading }
+    end
+
+    context 'when the node is a <ul> tag' do
+      let(:xml_fragment) { '<ul><li>Foo</li><li>Bar</li></ul>' }
+      it { should eq :list }
+    end
+
+    context 'when the node is a <ol> tag' do
+      let(:xml_fragment) { '<ol><li>Foo</li><li>Bar</li></ol>' }
+      it { should eq :list }
+    end
+
+    context 'when the node is a just normal text' do
+      let(:xml_fragment) { '<p><span>Foo</span><span>Bar</span></p>' }
+      it { should eq :text }
     end
   end
 end
