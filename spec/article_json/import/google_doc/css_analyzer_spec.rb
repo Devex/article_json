@@ -46,7 +46,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer do
     let(:css) do
       <<-css
         .non-matching-class { font-weight: normal }
-        .matching-class { font-style: italic; }
+        .matching-class { font-style: italic }
       css
     end
     subject { parser.italic?(class_str) }
@@ -56,12 +56,38 @@ describe ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer do
   describe '#right_aligned?' do
     let(:css) do
       <<-css
-        .non-matching-class { text-align: center; }
+        .non-matching-class { text-align: center }
         .matching-class { text-align: right }
       css
     end
     subject { parser.right_aligned?(class_str) }
     it_behaves_like 'a correct CSS class check'
+  end
+
+  describe '#left_aligned?' do
+    subject { parser.left_aligned?(class_str) }
+    let(:css) do
+      <<-css
+        .right { text-align: right }
+        .center { text-align: center }
+        .nowhere { font-style: italic }
+      css
+    end
+
+    context 'when the node has no alignment' do
+      let(:class_str) { 'nowhere' }
+      it { should be true }
+    end
+
+    context 'when the node is centered' do
+      let(:class_str) { 'center' }
+      it { should be false }
+    end
+
+    context 'when the node is right-aligned' do
+      let(:class_str) { 'right' }
+      it { should be false }
+    end
   end
 
   describe '#centered?' do

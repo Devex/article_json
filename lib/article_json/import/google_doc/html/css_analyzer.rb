@@ -34,11 +34,19 @@ module ArticleJSON
           end
 
           # Check if a given class attribute contains at least one class that
-          # sets it's alignment to the right
+          # sets its alignment to the right
           # @param [String] class_str
           # @return [Boolean]
           def right_aligned?(class_str)
             (class_str.split(' ') & right_aligned_classes).any?
+          end
+
+          # Check if a given class attribute contains no class that sets its
+          # alignment to right or center
+          # @param [String] class_str
+          # @return [Boolean]
+          def left_aligned?(class_str)
+            !right_aligned?(class_str) && !centered?(class_str)
           end
 
           # Check if a given class attribute contains at least one class that
