@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class CSSParser
+        class CSSAnalyzer
           attr_reader :css_parser,
                       :bold_classes,
                       :italic_classes,
@@ -21,7 +21,7 @@ module ArticleJSON
           # makes its text bold
           # @param [String] class_str
           # @return [Boolean]
-          def is_bold?(class_str)
+          def bold?(class_str)
             (class_str.split(' ') & bold_classes).any?
           end
 
@@ -29,7 +29,7 @@ module ArticleJSON
           # makes its text italic
           # @param [String] class_str
           # @return [Boolean]
-          def is_italic?(class_str)
+          def italic?(class_str)
             (class_str.split(' ') & italic_classes).any?
           end
 
@@ -37,7 +37,7 @@ module ArticleJSON
           # sets it's alignment to the right
           # @param [String] class_str
           # @return [Boolean]
-          def is_right_aligned?(class_str)
+          def right_aligned?(class_str)
             (class_str.split(' ') & right_aligned_classes).any?
           end
 
@@ -45,7 +45,7 @@ module ArticleJSON
           # centers it
           # @param [String] class_str
           # @return [Boolean]
-          def is_centered?(class_str)
+          def centered?(class_str)
             (class_str.split(' ') & centered_classes).any?
           end
 
