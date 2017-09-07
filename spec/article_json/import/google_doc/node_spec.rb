@@ -1,4 +1,4 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::Node do
+describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
   subject(:node) { described_class.new(nokogiri_node) }
   let(:nokogiri_node) do
     Nokogiri::XML.fragment(xml_fragment.strip).children.first
