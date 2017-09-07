@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class Node
+        class NodeAnalyzer
           attr_reader :node
 
           # @param [Nokogiri::XML::Node] node
