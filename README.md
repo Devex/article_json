@@ -3,6 +3,7 @@ JSON Format for News Articles & Ruby Gem.
 
 ## Status
 [![Build Status](https://travis-ci.org/Devex/article_json.svg)](https://travis-ci.org/Devex/article_json)
+[![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
 
 ## Usage
 First, install the gem with `gem install article_json` or add it to your Gemfile
