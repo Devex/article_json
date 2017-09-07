@@ -12,7 +12,7 @@ module ArticleJSON
 
           # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextElement]]
           def content
-            TextElement.extract(text_node: @node, css_analyzer: @css_analyzer)
+            TextElement.extract(node: @node, css_analyzer: @css_analyzer)
           end
 
           # Hash representation of this paragraph element

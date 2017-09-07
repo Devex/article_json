@@ -1,8 +1,8 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::TextElement do
   subject(:element) do
-    described_class.new(text_node: nokogiri_node, css_analyzer: css_analyzer)
+    described_class.new(node: node, css_analyzer: css_analyzer)
   end
-  let(:nokogiri_node) do
+  let(:node) do
     Nokogiri::XML.fragment(xml_fragment.strip).children.first
   end
   let(:css_analyzer) do
@@ -129,10 +129,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextElement do
   end
 
   describe '.extract' do
-    subject do
-      described_class.extract(text_node: nokogiri_node,
-                              css_analyzer: css_analyzer)
-    end
+    subject { described_class.extract(node: node, css_analyzer: css_analyzer) }
 
     let(:xml_fragment) do
       <<-html
