@@ -1,0 +1,1053 @@
+[
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "The main content of the article starts here.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Headings"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Internal headings need to be in the formatting “Heading x”, just pick it from the toolbar above.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Note that horizontal lines will not show up in the converted article format but are used to terminate certain sections like quotes or text boxes. More one this later on...",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Basic Text and a Link"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Text can include links and basic formatting. By using the toolbar you can define ",
+        "bold": false,
+        "italic": false,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "bold",
+        "bold": true,
+        "italic": false,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": " and ",
+        "bold": false,
+        "italic": false,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "italic",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": " text.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "To create a link just use the button within the toolbar: ",
+        "bold": false,
+        "italic": false,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "Lorem ipsum",
+        "bold": false,
+        "italic": false,
+        "href": "http://en.wikipedia.org/wiki/Lorem_ipsum"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Lists"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "There is support for both ordered and unordered lists, just just the respective button from the toolbar and get started.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "list_type": "unordered",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "This is an unordered list...",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "… with ",
+            "bold": false,
+            "italic": false,
+            "href": null
+          },
+          {
+            "type": "text",
+            "content": "two",
+            "bold": false,
+            "italic": true,
+            "href": null
+          },
+          {
+            "type": "text",
+            "content": " entries",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "list_type": "ordered",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "And here we have a numbered list",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "This time, with ",
+            "bold": false,
+            "italic": false,
+            "href": null
+          },
+          {
+            "type": "text",
+            "content": "three",
+            "bold": true,
+            "italic": false,
+            "href": null
+          },
+          {
+            "type": "text",
+            "content": " ",
+            "bold": false,
+            "italic": false,
+            "href": null
+          },
+          {
+            "type": "text",
+            "content": "entries.",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "Great, isn’t it?!",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Images"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Images can be inserted by using the insert image function of Google Docs. It allows you to upload any image from your computer or specify a URL.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "When an image is smaller than the medium width of the document, it will be displayed as a small image with text floating around it.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source_url": "https://lh6.googleusercontent.com/mddqDcb0cm8wTJCiXyllikOod1Ecsuyy1twC14rWwu41thuwrmQAYBkOmMPlC2a1mxB1ajaSew35FkoR_GOqXyj0lDWNpC45sapPfY1rzf9JihhMRV-G9MuSzMVkneMs4w",
+    "float": "left",
+    "original_width": 294,
+    "caption": [
+      {
+        "type": "text",
+        "content": "The image’s caption resides in the paragraph following the image. So, if all goes well, this paragraph should be the caption...",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "The following paragraph is then normal content again. By aligning small images to the right they will later on be displayed on the right side of the article. Let’s first add some lorem ipsum text to flow around these small images.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source_url": "https://lh3.googleusercontent.com/UIJGUBCt-DzS-Z4nwCKYfNektEGzLBotaBfmQQWYsA9dbgNsWEho3PpZOQRuN4KMpv8xd33OBawKjsIv5aOkd5onT_iq3eYEeBkP6QI-1uvFRKCqkpHm5lAnV-imj71-_Q",
+    "float": "right",
+    "original_width": 336,
+    "caption": [
+      {
+        "type": "text",
+        "content": "The caption will then also be on the right, even if it’s not properly aligned within this document.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Large images that are supposed to take up the full width within the the article format are also big ones within the Google Document.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "image",
+    "source_url": "https://lh4.googleusercontent.com/qos1DH9SdQKqHuLzz9P74aXYyfJMv2VAmDyjsytREUsQzwP4nshEnKitD64fk-1rq7Jo6OcPc4YM6fdMFUdiwnDruquYuhE6K3Fbi07HbymvpD51W2RiWR044suW4ZxKkw",
+    "float": null,
+    "original_width": 588,
+    "caption": [
+      {
+        "type": "text",
+        "content": "And of course, also the big images have captions...",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 1,
+    "content": "Embedded Elements"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Different types of multimedia elements can be embedded in this document. It is enough to provide the URL of the element you want to embed. Embeddings can be tagged as well, just provide a space-separated list of tags in brackets, after the URL - we’ll see some examples further down.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Videos: Vimeo"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Videos are just referenced by the URL. It doesn’t matter if the URL is a hyperlink or just normal text. The important thing is that it has its own paragraph with nothing else in it. The alignment (centered  in this example) doesn’t really matter.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "http://vimeo.com/42315417",
+        "bold": false,
+        "italic": false,
+        "href": "http://vimeo.com/42315417"
+      },
+      {
+        "type": "text",
+        "content": " [devex]",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "The paragraph following the URL is the video’s caption.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Videos: YouTube"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "https://www.youtube.com/watch?v=_ZG8HBuDjgc",
+        "bold": false,
+        "italic": false,
+        "href": "https://www.youtube.com/watch?v=_ZG8HBuDjgc"
+      },
+      {
+        "type": "text",
+        "content": " [comedy]",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Videos: Facebook"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "https://www.facebook.com/Devex/videos/vb.193394557345243/1814600831891266",
+        "bold": false,
+        "italic": true,
+        "href": "https://www.facebook.com/Devex/videos/vb.193394557345243/1814600831891266"
+      },
+      {
+        "type": "text",
+        "content": " [devex]",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Slideshows"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Slideshows are, like videos, referenced by an URL:",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "http://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012",
+        "bold": false,
+        "italic": false,
+        "href": "http://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "The paragraph following the URL is the slideshow’s caption.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Please note that currently only slideshows on slideshare are recognized.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Twitter Tweets"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Individual tweets can be embedded by providing the URL:",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "https://twitter.com/d3v3x/status/554608639030599681",
+        "bold": false,
+        "italic": false,
+        "href": "https://twitter.com/d3v3x/status/554608639030599681"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "A nice caption...",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 2,
+    "content": "Interactive Maps"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "https://storymap.knightlab.com/examples/bosch-garden/",
+        "bold": false,
+        "italic": false,
+        "href": "https://storymap.knightlab.com/examples/bosch-garden/"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "A nice caption...",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 1,
+    "content": "Quotes"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "A subtitle named “Quote:” indicates the start of a quote which continues until the first occurring horizontal line. The last paragraph is formatted to be the quoted source. Quotes can be aligned to the left, right or center. Centered quotes will span the whole width of the article while left- and right-aligned are smaller and have text floating around it.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "float": "left",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "Operator! Give me the number for 911!",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      }
+    ],
+    "caption": [
+      {
+        "type": "text",
+        "content": "Homer Simpson",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "float": null,
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "Marge, don't discourage the boy! Weaseling out of things is important to learn. It's what separates us from the animals! Except the weasel.",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      }
+    ],
+    "caption": [
+      {
+        "type": "text",
+        "content": "Homer Simpson",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "quote",
+    "float": "right",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "Oh, so they have internet on computers now!",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      }
+    ],
+    "caption": [
+      {
+        "type": "text",
+        "content": "Homer Simpson",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "heading",
+    "level": 1,
+    "content": "Text Boxes"
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Text boxes include internal excerpts from the article (Story Highlights) or additional information related to the article and are displayed either on the left or on the right. A subtitle named “Textbox:” indicates the start of a text box which continues until the first occurring horizontal line. Text boxes can contain headers which have to be in the formatting “Heading 2”.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "text_box",
+    "float": "left",
+    "content": [
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "A nice title for our left-aligned text box"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "A first paragraph with some text",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "content": "which continues here in the second paragraph",
+            "bold": false,
+            "italic": false,
+            "href": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "To make the text box appear on the right side of the article just align it’s text to the right.",
+        "bold": false,
+        "italic": false,
+        "href": null
+      }
+    ]
+  },
+  {
+    "type": "text_box",
+    "float": "right",
+    "content": [
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Story Highlights"
+      },
+      {
+        "type": "list",
+        "list_type": "unordered",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "content": "Text boxes really awesome!",
+                "bold": false,
+                "italic": false,
+                "href": null
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "content": "They also support lists!",
+                "bold": false,
+                "italic": false,
+                "href": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "content": [
+      {
+        "type": "text",
+        "content": "Lorem ipsum ",
+        "bold": false,
+        "italic": true,
+        "href": null
+      },
+      {
+        "type": "text",
+        "content": "dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "bold": false,
+        "italic": true,
+        "href": null
+      }
+    ]
+  }
+]
