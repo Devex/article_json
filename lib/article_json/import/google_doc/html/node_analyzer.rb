@@ -23,7 +23,7 @@ module ArticleJSON
           # @return [Boolean]
           def empty?
             return @is_empty if defined? @is_empty
-            @is_empty = node.inner_text.strip.empty? && !image?
+            @is_empty = node.inner_text.strip.empty? && !image? && !hr?
           end
 
           # Check if the node is a header tag between <h1> and <h5>
@@ -31,6 +31,12 @@ module ArticleJSON
           def heading?
             return @is_heading if defined? @is_heading
             @is_heading = %w(h1 h2 h3 h4 h5).include?(node.name)
+          end
+
+          # Check if the node is a horizontal line (i.e. `<hr>`)
+          # @return [Boolean]
+          def hr?
+            node.name == 'hr'
           end
 
           # Check if the node is a normal text paragraph
@@ -89,6 +95,7 @@ module ArticleJSON
           # @return [Symbol]
           def type
             return :empty if empty?
+            return :hr if hr?
             return :heading if heading?
             return :paragraph if paragraph?
             return :list if list?
