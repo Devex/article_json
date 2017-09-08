@@ -120,7 +120,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
       it { should be false }
     end
 
-    context 'when the node contains the text to start a highlight' do
+    context 'when the node contains the text to start a highlight text box' do
       let(:xml_fragment) { '<p><span>Highlight:</span></p>' }
       it { should be false }
     end
@@ -208,21 +208,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
       it { should be true }
     end
 
-    context 'when the node does not contain the text to start a text box' do
-      let(:xml_fragment) { '<p><span>Foo Bar:</span></p>' }
-      it { should be false }
-    end
-  end
-
-  describe '#highlight?' do
-    subject { node.highlight? }
-
     context 'when the node contains the text to start a highlight' do
       let(:xml_fragment) { '<p><span>Highlight:</span></p>' }
       it { should be true }
     end
 
-    context 'when the node does not contain the text to start a highlight' do
+    context 'when the node does not contain the text to start a text box' do
       let(:xml_fragment) { '<p><span>Foo Bar:</span></p>' }
       it { should be false }
     end
@@ -267,7 +258,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
 
     context 'when the node contains the text to start a highlight' do
       let(:xml_fragment) { '<p><span>Highlight:</span></p>' }
-      it { should eq :highlight }
+      it { should eq :text_box }
     end
 
     context 'when the node contains the text to start a quote' do
