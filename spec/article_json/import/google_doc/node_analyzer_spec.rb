@@ -22,6 +22,22 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
     end
   end
 
+  describe '#hr?' do
+    subject { node.hr? }
+
+    context 'when the node is a <hr>' do
+      let(:xml_fragment) { '<hr>' }
+      it { should be true }
+    end
+
+    %w(h1 span strong em a).each do |other_tag|
+      context "when the node is a <#{other_tag}>" do
+        let(:xml_fragment) { "<#{other_tag}>foo</#{other_tag}>" }
+        it { should be false }
+      end
+    end
+  end
+
   describe '#has_text?' do
     subject { node.has_text?('foo bar') }
 
@@ -232,6 +248,11 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
     context 'when the node is empty' do
       let(:xml_fragment) { '<p></p>' }
       it { should eq :empty }
+    end
+
+    context 'when the node is a horizontal line' do
+      let(:xml_fragment) { '<hr>' }
+      it { should eq :hr }
     end
 
     context 'when the node has a nested image tag' do
