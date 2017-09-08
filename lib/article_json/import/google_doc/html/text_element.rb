@@ -65,8 +65,9 @@ module ArticleJSON
             # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
             def extract(node:, css_analyzer:)
               node.children.map do |child_node|
+                next if NodeAnalyzer.new(child_node).empty?
                 new(node: child_node, css_analyzer: css_analyzer)
-              end
+              end.compact
             end
           end
 
