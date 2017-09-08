@@ -133,7 +133,11 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextElement do
 
     let(:xml_fragment) do
       <<-html
-        <p><span class="bold">A </span><span><a href="https://devex.com">link</a></span><span class="italic"> and styling.</span></p>
+        <p>
+          <span class="bold">A </span>
+          <span><a href="https://devex.com">link</a></span>
+          <span class="italic"> and styling.</span>
+        </p>
       html
     end
 
