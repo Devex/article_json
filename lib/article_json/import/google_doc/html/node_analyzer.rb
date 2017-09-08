@@ -48,7 +48,6 @@ module ArticleJSON
                 !empty? &&
                 !image? &&
                 !text_box? &&
-                !highlight? &&
                 !quote?
           end
 
@@ -60,19 +59,11 @@ module ArticleJSON
           end
 
           # Check if the node starts a text box
-          # Text boxes start with a single line saying "Textbox:".
+          # Text boxes start with a single line saying "Textbox:" or "Highlight:".
           # @return [Boolean]
           def text_box?
             return @is_text_box if defined? @is_text_box
-            @is_text_box = has_text?('textbox:')
-          end
-
-          # Check if the node starts a highlight box
-          # Story highlights start with a single line saying "Highlight:".
-          # @return [Boolean]
-          def highlight?
-            return @is_highlight if defined? @is_highlight
-            @is_highlight = has_text?('highlight:')
+            @is_text_box = has_text?('textbox:') || has_text?('highlight:')
           end
 
           # Check if the node starts a quote
@@ -100,7 +91,6 @@ module ArticleJSON
             return :paragraph if paragraph?
             return :list if list?
             return :text_box if text_box?
-            return :highlight if highlight?
             return :quote if quote?
             return :image if image?
             :unknown
