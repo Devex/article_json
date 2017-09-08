@@ -42,7 +42,6 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListElement do
 
     it 'returns a list of text elements' do
       expect(subject).to be_an Array
-      puts subject
       expect(subject.size).to eq 2
 
       expect(subject)
