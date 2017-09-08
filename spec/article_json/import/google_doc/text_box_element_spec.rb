@@ -53,6 +53,27 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
         .to be_a ArticleJSON::Import::GoogleDoc::HTML::ParagraphElement
       expect(subject[2].content.first.content).to eq 'And another one...'
     end
+
+    context 'when the text box contains a list' do
+      let(:html) do
+        <<-html
+          <h2 class="css_class"><span>Text box including a list!</span></h2>
+          <ol><li><span>foo bar</span></li></ol>
+        html
+      end
+
+      it 'returns a heading and a list element' do
+        expect(subject).to be_an Array
+        expect(subject.size).to eq 2
+
+        expect(subject[0])
+          .to be_a ArticleJSON::Import::GoogleDoc::HTML::HeadingElement
+        expect(subject[0].content).to eq 'Text box including a list!'
+
+        expect(subject[1])
+          .to be_a ArticleJSON::Import::GoogleDoc::HTML::ListElement
+      end
+    end
   end
 
   describe '#to_h' do

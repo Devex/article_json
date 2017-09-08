@@ -21,7 +21,7 @@ module ArticleJSON
           end
 
           # Parse the text box's nodes to get a list of sub elements
-          # Supported sub elements are: headings & paragraphs
+          # Supported sub elements are: headings, paragraphs & lists.
           # @return [Array]
           def content
             @nodes.map { |node| parse_sub_node(node) }.compact
@@ -41,10 +41,12 @@ module ArticleJSON
 
           def parse_sub_node(node)
             case NodeAnalyzer.new(node).type
-            when :heading then
+            when :heading
               HeadingElement.new(node: node)
-            when :paragraph then
+            when :paragraph
               ParagraphElement.new(node: node, css_analyzer: @css_analyzer)
+            when :list
+              ListElement.new(node: node, css_analyzer: @css_analyzer)
             end
           end
         end
