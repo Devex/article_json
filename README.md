@@ -3,16 +3,31 @@ JSON Format for News Articles & Ruby Gem.
 
 ## Status
 [![Build Status](https://travis-ci.org/Devex/article_json.svg)](https://travis-ci.org/Devex/article_json)
+[![Code Climate](https://codeclimate.com/github/Devex/article_json/badges/gpa.svg)](https://codeclimate.com/github/Devex/article_json)
 [![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
 
 ## Usage
 First, install the gem with `gem install article_json` or add it to your Gemfile
 via `gem 'article_json'`.
 
+### Ruby
 _TBD_
 
+### CLI
+To load, parse, and pretty print the latest version of the reference document,
+run the following:
+
+```
+$ export DOC_ID=1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8
+$ ./bin/article_json_export_google_doc.rb $DOC_ID \
+    | ./bin/article_json_parse_google_doc.rb \
+    | jq .
+```
+Note: you either need to install the useful `jq` tool or omit the last line...
+
 ## Format
-_TBD_
+A full example of the format can be found in the test fixtures:
+[Parsed Reference Document](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_parsed.json)
 
 ## Google Document Parser
 This [Reference Document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8/edit?usp=sharing)
