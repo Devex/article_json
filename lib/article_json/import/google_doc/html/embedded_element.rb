@@ -97,6 +97,7 @@ module ArticleJSON
             def element_classes
               [
                 EmbeddedVimeoVideoElement,
+                EmbeddedYoutubeVideoElement,
               ]
             end
 
