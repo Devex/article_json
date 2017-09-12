@@ -23,6 +23,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
   let(:caption_node) { Nokogiri::XML.fragment(caption_html.strip) }
   let(:caption_html) { '<p><span>Caption</span></p>' }
 
+  describe '#embed_type' do
+    it 'is not implemented' do
+      expect { element.embed_type }.to raise_error NotImplementedError
+    end
+  end
+
   describe '#.tags' do
     subject { element.tags }
 
@@ -50,6 +56,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
     end
   end
 
+  describe '.url_regexp' do
+    it 'is not implemented' do
+      expect { described_class.url_regexp }.to raise_error NotImplementedError
+    end
+  end
+
   describe '.build' do
     subject do
       described_class.build(
@@ -72,8 +84,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
     end
   end
 
-  describe '.matches?' do
-    subject { described_class.matches?(node) }
+  describe '.supported?' do
+    subject { described_class.supported?(node) }
 
     context 'when the node is an embedded vimeo video' do
       let(:html) { vimeo_video_html }

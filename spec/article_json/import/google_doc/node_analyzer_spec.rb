@@ -167,9 +167,9 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
 
   describe '#embed?' do
     let(:xml_fragment) { '<p><span>some embedding</span></p>' }
-    it 'calls EmbeddedElement.matches?' do
+    it 'calls EmbeddedElement.supported?' do
       expect(ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement)
-        .to receive(:matches?).with(nokogiri_node).and_return(true)
+        .to receive(:supported?).with(nokogiri_node).and_return(true)
       expect(node.embed?).to be true
     end
   end
@@ -297,9 +297,9 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
 
     context 'when the node is a embedding' do
       let(:xml_fragment) { '<p><span>some embedding</span></p>' }
-      it 'calls EmbeddedElement.matches?' do
+      it 'calls EmbeddedElement.supported?' do
         expect(ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement)
-          .to receive(:matches?).with(nokogiri_node).and_return(true)
+          .to receive(:supported?).with(nokogiri_node).and_return(true)
         expect(subject).to eq :embed
       end
     end
