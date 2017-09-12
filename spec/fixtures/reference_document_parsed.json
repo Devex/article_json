@@ -602,20 +602,11 @@
     ]
   },
   {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "https://twitter.com/d3v3x/status/554608639030599681",
-        "bold": false,
-        "italic": false,
-        "href": "https://twitter.com/d3v3x/status/554608639030599681"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
+    "type": "embed",
+    "embed_type": "tweet",
+    "embed_id": "d3v3x/554608639030599681",
+    "tags": [],
+    "caption": [
       {
         "type": "text",
         "content": "A nice caption...",
