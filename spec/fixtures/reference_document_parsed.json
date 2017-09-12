@@ -443,27 +443,13 @@
     "content": "Videos: YouTube"
   },
   {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "https://www.youtube.com/watch?v=_ZG8HBuDjgc",
-        "bold": false,
-        "italic": false,
-        "href": "https://www.youtube.com/watch?v=_ZG8HBuDjgc"
-      },
-      {
-        "type": "text",
-        "content": " [comedy]",
-        "bold": false,
-        "italic": false,
-        "href": null
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
+    "type": "embed",
+    "embed_type": "youtube_video",
+    "embed_id": "_ZG8HBuDjgc",
+    "tags": [
+      "comedy"
+    ],
+    "caption": [
       {
         "type": "text",
         "content": "The paragraph following the URL is the video’s caption.",

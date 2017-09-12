@@ -19,6 +19,18 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
       </p>
     html
   end
+  let(:youtube_video_html) do
+    <<-html
+      <p>
+        <span>
+          <a href="https://www.youtube.com/?v=_ZG8HBuDjgc">
+            https://www.youtube.com/?v=_ZG8HBuDjgc
+          </a>
+          <span>&nbsp;[youtube test]</span>
+        </span>
+      </p>
+    html
+  end
 
   let(:caption_node) { Nokogiri::XML.fragment(caption_html.strip) }
   let(:caption_html) { '<p><span>Caption</span></p>' }
@@ -82,6 +94,14 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
       end
       it { should be_a expected_class }
     end
+
+    context 'when the node is an embedded youtube video' do
+      let(:html) { youtube_video_html }
+      let(:expected_class) do
+        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoElement
+      end
+      it { should be_a expected_class }
+    end
   end
 
   describe '.supported?' do
@@ -89,6 +109,11 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
 
     context 'when the node is an embedded vimeo video' do
       let(:html) { vimeo_video_html }
+      it { should be true }
+    end
+
+    context 'when the node is an embedded youtube video' do
+      let(:html) { youtube_video_html }
       it { should be true }
     end
 

@@ -19,5 +19,6 @@ require_relative 'article_json/import/google_doc/html/quote_element'
 
 require_relative 'article_json/import/google_doc/html/embedded_element'
 require_relative 'article_json/import/google_doc/html/embedded_vimeo_video_element'
+require_relative 'article_json/import/google_doc/html/embedded_youtube_video_element'
 
 require_relative 'article_json/import/google_doc/html/parser'
