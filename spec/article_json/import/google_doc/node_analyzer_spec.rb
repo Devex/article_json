@@ -165,6 +165,15 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
     end
   end
 
+  describe '#embed?' do
+    let(:xml_fragment) { '<p><span>some embedding</span></p>' }
+    it 'calls EmbeddedElement.matches?' do
+      expect(ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement)
+        .to receive(:matches?).with(nokogiri_node).and_return(true)
+      expect(node.embed?).to be true
+    end
+  end
+
   describe '#list?' do
     subject { node.list? }
 
@@ -284,6 +293,15 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
     context 'when the node is a just normal text' do
       let(:xml_fragment) { '<p><span>Foo</span><span>Bar</span></p>' }
       it { should eq :paragraph }
+    end
+
+    context 'when the node is a embedding' do
+      let(:xml_fragment) { '<p><span>some embedding</span></p>' }
+      it 'calls EmbeddedElement.matches?' do
+        expect(ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement)
+          .to receive(:matches?).with(nokogiri_node).and_return(true)
+        expect(subject).to eq :embed
+      end
     end
 
     context 'when the node is something else that we do not support' do
