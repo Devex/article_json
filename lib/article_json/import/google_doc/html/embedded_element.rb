@@ -98,6 +98,7 @@ module ArticleJSON
               [
                 EmbeddedVimeoVideoElement,
                 EmbeddedYoutubeVideoElement,
+                EmbeddedTweetElement,
               ]
             end
 
