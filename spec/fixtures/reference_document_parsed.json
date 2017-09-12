@@ -477,27 +477,13 @@
     "content": "Videos: Facebook"
   },
   {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "https://www.facebook.com/Devex/videos/vb.193394557345243/1814600831891266",
-        "bold": false,
-        "italic": true,
-        "href": "https://www.facebook.com/Devex/videos/vb.193394557345243/1814600831891266"
-      },
-      {
-        "type": "text",
-        "content": " [devex]",
-        "bold": false,
-        "italic": true,
-        "href": null
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
+    "type": "embed",
+    "embed_type": "facebook_video",
+    "embed_id": "1814600831891266",
+    "tags": [
+      "devex"
+    ],
+    "caption": [
       {
         "type": "text",
         "content": "The paragraph following the URL is the video’s caption.",

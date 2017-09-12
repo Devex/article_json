@@ -96,6 +96,7 @@ module ArticleJSON
             # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement]
             def element_classes
               [
+                EmbeddedFacebookVideoElement,
                 EmbeddedVimeoVideoElement,
                 EmbeddedYoutubeVideoElement,
               ]
