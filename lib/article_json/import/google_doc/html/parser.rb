@@ -43,6 +43,7 @@ module ArticleJSON
             when :image then parse_image
             when :text_box then parse_text_box
             when :quote then parse_quote
+            when :embed then parse_embed
             when :hr, :empty, :unknown then nil
             end
           end
@@ -93,6 +94,15 @@ module ArticleJSON
               nodes << @body_enumerator.next
             end
             QuoteElement.new(nodes: nodes, css_analyzer: @css_analyzer)
+          end
+
+          # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement]
+          def parse_embed
+            EmbeddedElement.build(
+              node: @current_node.node,
+              caption_node: @body_enumerator.next,
+              css_analyzer: @css_analyzer
+            )
           end
 
           # @return [Boolean]

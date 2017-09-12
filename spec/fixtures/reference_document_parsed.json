@@ -437,27 +437,13 @@
     ]
   },
   {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "http://vimeo.com/42315417",
-        "bold": false,
-        "italic": false,
-        "href": "http://vimeo.com/42315417"
-      },
-      {
-        "type": "text",
-        "content": " [devex]",
-        "bold": false,
-        "italic": false,
-        "href": null
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
+    "type": "embed",
+    "embed_type": "vimeo_video",
+    "embed_id": "42315417",
+    "tags": [
+      "devex"
+    ],
+    "caption": [
       {
         "type": "text",
         "content": "The paragraph following the URL is the video’s caption.",

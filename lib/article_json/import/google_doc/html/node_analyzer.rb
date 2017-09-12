@@ -48,7 +48,8 @@ module ArticleJSON
                 !empty? &&
                 !image? &&
                 !text_box? &&
-                !quote?
+                !quote? &&
+                !embed?
           end
 
           # Check if the node contains an ordered or unordered list
@@ -81,6 +82,13 @@ module ArticleJSON
             @is_image = node.xpath('.//img').length > 0
           end
 
+          # Check if the node contains an embedded element
+          # @return [Boolean]
+          def embed?
+            return @is_embed if defined? @is_embed
+            @is_embed = EmbeddedElement.matches?(node)
+          end
+
           # Determine the type of this node
           # The type is one of the elements supported by article_json.
           # @return [Symbol]
@@ -93,6 +101,7 @@ module ArticleJSON
             return :text_box if text_box?
             return :quote if quote?
             return :image if image?
+            return :embed if embed?
             :unknown
           end
         end
