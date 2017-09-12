@@ -12,6 +12,20 @@ module ArticleJSON
             @css_analyzer = css_analyzer
           end
 
+          # Extract the video ID from an URL
+          # @return [String]
+          def embed_id
+            match = @node.inner_text.strip.match(self.class.url_regexp)
+            match[1] if match
+          end
+
+          # The type of this embedded element
+          # To be implemented by sub classes!
+          # @return [Symbol]
+          def embed_type
+            raise NotImplementedError
+          end
+
           # Extract any potential tags, specified in brackets after the URL
           # @return [Array[Symbol]]
           def tags
@@ -41,6 +55,20 @@ module ArticleJSON
           end
 
           class << self
+            # Check if a given string is a Youtube embedding
+            # @param [String] text
+            # @return [Boolean]
+            def matches?(text)
+              !!(url_regexp =~ text)
+            end
+
+            # Regular expression to check if node content is embeddable element
+            # Is also used to extract the ID from the URL.
+            # @return [Regexp]
+            def url_regexp
+              raise NotImplementedError
+            end
+
             # Build a embedded element based on the node's content
             # @param [Nokogiri::XML::Node] node
             # @param [Nokogiri::XML::Node] caption_node
@@ -58,7 +86,7 @@ module ArticleJSON
             # Check if a node contains a supported embedded element
             # @param [Nokogiri::XML::Node] node
             # @return [Boolean]
-            def matches?(node)
+            def supported?(node)
               !find_class(node.inner_text).nil?
             end
 
