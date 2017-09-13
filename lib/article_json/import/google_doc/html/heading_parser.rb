@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class HeadingElement
+        class HeadingParser
           # @param [Nokogiri::HTML::Node] node
           def initialize(node:)
             @node = node
@@ -27,14 +27,9 @@ module ArticleJSON
             end
           end
 
-          # Hash representation of this heading element
-          # @return [Hash]
-          def to_h
-            {
-              type: :heading,
-              level: level,
-              content: content
-            }
+          # @return [ArticleJSON::Elements::Heading]
+          def element
+            ArticleJSON::Elements::Heading.new(level: level, content: content)
           end
         end
       end
