@@ -1,6 +1,6 @@
 require_relative 'embedded_element_shared'
 
-describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoParser do
   include_context 'for an embeddable object' do
     let(:expected_embed_type) { :youtube_video }
     let(:expected_embed_id) { '_ZG8HBuDjgc' }
