@@ -27,6 +27,16 @@ shared_context 'for an embeddable object' do
   describe '#embed_id' do
     subject { element.embed_id }
     it { should eq expected_embed_id }
+
+    context 'when passed a lot of different example URLs' do
+      let(:node) { double('nokogiri node') }
+      it 'extracts the id correctly' do
+        url_examples.each do |example_url|
+          allow(node).to receive(:inner_text).and_return(example_url)
+          expect(subject).to eq expected_embed_id
+        end
+      end
+    end
   end
 
   describe 'to_h' do
