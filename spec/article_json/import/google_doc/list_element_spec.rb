@@ -44,8 +44,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListElement do
       expect(subject).to be_an Array
       expect(subject.size).to eq 2
 
-      expect(subject)
-        .to all(be_a ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser)
+      expect(subject).to all be_a ArticleJSON::Elements::Paragraph
 
       expect(subject[0].content.first.content).to eq 'foo'
       expect(subject[1].content.first.content).to eq 'bar'

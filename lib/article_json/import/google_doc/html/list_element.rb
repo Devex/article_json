@@ -26,7 +26,9 @@ module ArticleJSON
               .children
               .select { |node| node.name == 'li' }
               .map do |node|
-                ParagraphParser.new(node: node, css_analyzer: @css_analyzer)
+                ParagraphParser
+                  .new(node: node, css_analyzer: @css_analyzer)
+                  .element
               end
           end
 

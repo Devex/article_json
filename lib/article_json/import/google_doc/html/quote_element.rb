@@ -27,7 +27,9 @@ module ArticleJSON
             @nodes
               .take(@nodes.size - 1)
               .map do |node|
-                ParagraphParser.new(node: node, css_analyzer: @css_analyzer)
+                ParagraphParser
+                  .new(node: node, css_analyzer: @css_analyzer)
+                  .element
               end
           end
 

@@ -44,7 +44,9 @@ module ArticleJSON
             when :heading
               HeadingParser.new(node: node).element
             when :paragraph
-              ParagraphParser.new(node: node, css_analyzer: @css_analyzer)
+              ParagraphParser
+                .new(node: node, css_analyzer: @css_analyzer)
+                .element
             when :list
               ListElement.new(node: node, css_analyzer: @css_analyzer)
             end

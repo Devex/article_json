@@ -55,10 +55,9 @@ module ArticleJSON
 
           # @return [ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser]
           def parse_paragraph
-            ParagraphParser.new(
-              node: @current_node.node,
-              css_analyzer: @css_analyzer
-            )
+            ParagraphParser
+              .new(node: @current_node.node, css_analyzer: @css_analyzer)
+              .element
           end
 
           # @return [ArticleJSON::Import::GoogleDoc::HTML::ListElement]

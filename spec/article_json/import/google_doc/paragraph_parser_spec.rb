@@ -24,14 +24,14 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser do
     end
   end
 
-  describe 'to_h' do
-    subject { element.to_h }
+  describe '#element' do
+    subject { element.element }
 
     it 'returns a proper Hash' do
-      expect(subject).to be_a Hash
-      expect(subject[:type]).to eq :paragraph
-      expect(subject[:content]).to be_an Array
-      expect(subject[:content]).to all(be_a Hash)
+      expect(subject).to be_a ArticleJSON::Elements::Paragraph
+      expect(subject.type).to eq :paragraph
+      expect(subject.content).to be_an Array
+      expect(subject.content).to all be_a ArticleJSON::Elements::Text
     end
   end
 end

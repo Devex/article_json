@@ -9,6 +9,7 @@ require_relative 'article_json/version'
 
 require_relative 'article_json/elements/text'
 require_relative 'article_json/elements/heading'
+require_relative 'article_json/elements/paragraph'
 
 require_relative 'article_json/import/google_doc/html/css_analyzer'
 require_relative 'article_json/import/google_doc/html/node_analyzer'
