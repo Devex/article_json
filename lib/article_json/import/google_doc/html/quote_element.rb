@@ -32,9 +32,9 @@ module ArticleJSON
           end
 
           # Parse the quote's last node to get the caption
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextElement]]
+          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextParser]]
           def caption
-            TextElement.extract(node: @nodes.last, css_analyzer: @css_analyzer)
+            TextParser.extract(node: @nodes.last, css_analyzer: @css_analyzer)
           end
 
           # Hash representation of this quote

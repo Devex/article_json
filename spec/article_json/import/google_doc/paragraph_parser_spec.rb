@@ -18,7 +18,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser do
       expect(subject.size).to eq 2
 
       expect(subject)
-        .to all(be_a ArticleJSON::Import::GoogleDoc::HTML::TextElement)
+        .to all(be_a ArticleJSON::Import::GoogleDoc::HTML::TextParser)
 
       expect(subject[0].content).to eq 'foo'
       expect(subject[1].content).to eq 'bar'

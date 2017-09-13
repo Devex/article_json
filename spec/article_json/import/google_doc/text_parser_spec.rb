@@ -1,4 +1,4 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::TextElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
   subject(:element) do
     described_class.new(node: node, css_analyzer: css_analyzer)
   end

@@ -56,7 +56,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteElement do
       expect(subject.size).to eq 1
 
       expect(subject.first)
-        .to be_a ArticleJSON::Import::GoogleDoc::HTML::TextElement
+        .to be_a ArticleJSON::Import::GoogleDoc::HTML::TextParser
 
       expect(subject.first.content).to eq caption
     end
