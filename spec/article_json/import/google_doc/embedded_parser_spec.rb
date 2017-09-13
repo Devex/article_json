@@ -97,7 +97,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
     context 'when the node is an embedded youtube video' do
       let(:html) { youtube_video_html }
       let(:expected_class) do
-        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoElement
+        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoParser
       end
       it { should be_a expected_class }
     end

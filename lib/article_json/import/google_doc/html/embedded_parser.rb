@@ -98,7 +98,7 @@ module ArticleJSON
               [
                 EmbeddedFacebookVideoParser,
                 EmbeddedVimeoVideoParser,
-                EmbeddedYoutubeVideoElement,
+                EmbeddedYoutubeVideoParser,
                 EmbeddedTweetElement,
                 EmbeddedSlideshareElement,
               ]
