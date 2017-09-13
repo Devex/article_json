@@ -60,9 +60,9 @@ module ArticleJSON
               .element
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::ListElement]
+          # @return [ArticleJSON::Import::GoogleDoc::HTML::ListParser]
           def parse_list
-            ListElement.new(
+            ListParser.new(
               node: @current_node.node,
               css_analyzer: @css_analyzer
             )

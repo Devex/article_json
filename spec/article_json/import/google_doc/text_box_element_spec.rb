@@ -68,7 +68,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
         expect(subject[0].content).to eq 'Text box including a list!'
 
         expect(subject[1])
-          .to be_a ArticleJSON::Import::GoogleDoc::HTML::ListElement
+          .to be_a ArticleJSON::Import::GoogleDoc::HTML::ListParser
       end
     end
   end
