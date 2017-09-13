@@ -7,7 +7,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
     )
   end
 
-  let(:node) { Nokogiri::XML.fragment(html.strip) }
+  let(:node) { Nokogiri::HTML.fragment(html.strip) }
   let(:html) { '' }
   let(:vimeo_video_html) do
     <<-html
@@ -32,7 +32,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
     html
   end
 
-  let(:caption_node) { Nokogiri::XML.fragment(caption_html.strip) }
+  let(:caption_node) { Nokogiri::HTML.fragment(caption_html.strip) }
   let(:caption_html) { '<p><span>Caption</span></p>' }
 
   describe '#embed_type' do

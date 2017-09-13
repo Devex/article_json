@@ -1,6 +1,6 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::HeadingElement do
   subject(:element) { described_class.new(node: node) }
-  let(:node) { Nokogiri::XML.fragment(xml_fragment.strip).first_element_child }
+  let(:node) { Nokogiri::HTML.fragment(xml_fragment.strip).first_element_child }
   let(:xml_fragment) { '<h1>Foo Bar</h1>' }
 
   describe '#content' do

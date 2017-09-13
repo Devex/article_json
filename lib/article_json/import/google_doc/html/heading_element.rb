@@ -3,7 +3,7 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class HeadingElement
-          # @param [Nokogiri::XML::Node] node
+          # @param [Nokogiri::HTML::Node] node
           def initialize(node:)
             @node = node
           end

@@ -3,8 +3,8 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class EmbeddedElement
-          # @param [Nokogiri::XML::Node] node
-          # @param [Nokogiri::XML::Node] caption_node
+          # @param [Nokogiri::HTML::Node] node
+          # @param [Nokogiri::HTML::Node] caption_node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(node:, caption_node:, css_analyzer:)
             @node = node
@@ -70,8 +70,8 @@ module ArticleJSON
             end
 
             # Build a embedded element based on the node's content
-            # @param [Nokogiri::XML::Node] node
-            # @param [Nokogiri::XML::Node] caption_node
+            # @param [Nokogiri::HTML::Node] node
+            # @param [Nokogiri::HTML::Node] caption_node
             # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
             # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement]
             def build(node:, caption_node:, css_analyzer:)
@@ -84,7 +84,7 @@ module ArticleJSON
             end
 
             # Check if a node contains a supported embedded element
-            # @param [Nokogiri::XML::Node] node
+            # @param [Nokogiri::HTML::Node] node
             # @return [Boolean]
             def supported?(node)
               !find_class(node.inner_text).nil?

@@ -3,8 +3,8 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class ImageElement
-          # @param [Nokogiri::XML::Node] node
-          # @param [Nokogiri::XML::Node] caption_node
+          # @param [Nokogiri::HTML::Node] node
+          # @param [Nokogiri::HTML::Node] caption_node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(node:, caption_node:, css_analyzer:)
             @node = node
@@ -19,7 +19,7 @@ module ArticleJSON
           end
 
           # The node of the actual image
-          # @return [Nokogiri::XML::Node]
+          # @return [Nokogiri::HTML::Node]
           def image_node
             @node.xpath('.//img').first
           end

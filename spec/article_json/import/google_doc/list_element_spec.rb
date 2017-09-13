@@ -3,7 +3,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListElement do
     described_class.new(node: node, css_analyzer: css_analyzer)
   end
 
-  let(:node) { Nokogiri::XML.fragment(html.strip).first_element_child }
+  let(:node) { Nokogiri::HTML.fragment(html.strip).first_element_child }
   let(:html) do
     <<-html
       <#{list_tag}>
