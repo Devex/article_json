@@ -13,6 +13,7 @@ require_relative 'article_json/elements/paragraph'
 require_relative 'article_json/elements/list'
 require_relative 'article_json/elements/image'
 require_relative 'article_json/elements/text_box'
+require_relative 'article_json/elements/quote'
 
 require_relative 'article_json/import/google_doc/html/css_analyzer'
 require_relative 'article_json/import/google_doc/html/node_analyzer'

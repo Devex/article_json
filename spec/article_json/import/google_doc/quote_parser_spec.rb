@@ -1,5 +1,5 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
-  subject(:element) do
+  subject(:parser) do
     described_class.new(nodes: node.children, css_analyzer: css_analyzer)
   end
 
@@ -19,7 +19,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
   let(:css) { '' }
 
   describe '#float' do
-    subject { element.float }
+    subject { parser.float }
     context 'when the first node is centered' do
       let(:css) { '.css_class { text-align: center }' }
       it { should be nil }
@@ -36,7 +36,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
   end
 
   describe '#content' do
-    subject { element.content }
+    subject { parser.content }
 
     it 'returns a list of paragraph and heading elements' do
       expect(subject).to be_an Array
@@ -48,7 +48,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
   end
 
   describe '#caption' do
-    subject { element.caption }
+    subject { parser.caption }
 
     it 'returns a list of text elements' do
       expect(subject).to be_an Array
@@ -60,17 +60,17 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
     end
   end
 
-  describe '#to_h' do
-    subject { element.to_h }
+  describe '#element' do
+    subject { parser.element }
 
-    it 'returns a proper Hash' do
-      expect(subject).to be_a Hash
-      expect(subject[:type]).to eq :quote
-      expect(subject[:float]).to be :left
-      expect(subject[:content]).to be_an Array
-      expect(subject[:content]).to all be_a Hash
-      expect(subject[:caption]).to be_an Array
-      expect(subject[:caption]).to all be_a Hash
+    it 'returns a proper quote element' do
+      expect(subject).to be_a ArticleJSON::Elements::Quote
+      expect(subject.type).to eq :quote
+      expect(subject.float).to be :left
+      expect(subject.content).to be_an Array
+      expect(subject.content).to all be_a ArticleJSON::Elements::Paragraph
+      expect(subject.caption).to be_an Array
+      expect(subject.caption).to all be_a ArticleJSON::Elements::Text
     end
   end
 end
