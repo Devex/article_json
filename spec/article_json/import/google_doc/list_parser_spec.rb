@@ -51,16 +51,16 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListParser do
     end
   end
 
-  describe 'to_h' do
-    subject { element.to_h }
+  describe '#element' do
+    subject { element.element }
     let(:list_tag) { 'ol' }
 
-    it 'returns a proper Hash' do
-      expect(subject).to be_a Hash
-      expect(subject[:type]).to eq :list
-      expect(subject[:list_type]).to eq :ordered
-      expect(subject[:content]).to be_an Array
-      expect(subject[:content]).to all(be_a Hash)
+    it 'returns a proper list element' do
+      expect(subject).to be_a ArticleJSON::Elements::List
+      expect(subject.type).to eq :list
+      expect(subject.list_type).to eq :ordered
+      expect(subject.content).to be_an Array
+      expect(subject.content).to all be_a ArticleJSON::Elements::Paragraph
     end
   end
 end

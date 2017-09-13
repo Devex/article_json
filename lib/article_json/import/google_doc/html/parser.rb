@@ -53,19 +53,18 @@ module ArticleJSON
             HeadingParser.new(node: @current_node.node).element
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser]
+          # @return [ArticleJSON::Elements::Paragraph]
           def parse_paragraph
             ParagraphParser
               .new(node: @current_node.node, css_analyzer: @css_analyzer)
               .element
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::ListParser]
+          # @return [ArticleJSON::Elements::List]
           def parse_list
-            ListParser.new(
-              node: @current_node.node,
-              css_analyzer: @css_analyzer
-            )
+            ListParser
+              .new(node: @current_node.node, css_analyzer: @css_analyzer)
+              .element
           end
 
           # @return [ArticleJSON::Import::GoogleDoc::HTML::ImageElement]
