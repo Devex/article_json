@@ -42,7 +42,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
       expect(subject.size).to eq 3
 
       expect(subject[0])
-        .to be_a ArticleJSON::Import::GoogleDoc::HTML::HeadingElement
+        .to be_a ArticleJSON::Elements::Heading
       expect(subject[0].content).to eq 'This is a text box!'
 
       expect(subject[1])
@@ -67,7 +67,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
         expect(subject.size).to eq 2
 
         expect(subject[0])
-          .to be_a ArticleJSON::Import::GoogleDoc::HTML::HeadingElement
+          .to be_a ArticleJSON::Elements::Heading
         expect(subject[0].content).to eq 'Text box including a list!'
 
         expect(subject[1])

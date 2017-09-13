@@ -42,7 +42,7 @@ module ArticleJSON
           def parse_sub_node(node)
             case NodeAnalyzer.new(node).type
             when :heading
-              HeadingElement.new(node: node)
+              HeadingParser.new(node: node).element
             when :paragraph
               ParagraphElement.new(node: node, css_analyzer: @css_analyzer)
             when :list

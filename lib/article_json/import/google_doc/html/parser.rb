@@ -48,9 +48,9 @@ module ArticleJSON
             end
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::HeadingElement]
+          # @return [ArticleJSON::Elements::Heading]
           def parse_heading
-            HeadingElement.new(node: @current_node.node)
+            HeadingParser.new(node: @current_node.node).element
           end
 
           # @return [ArticleJSON::Import::GoogleDoc::HTML::ParagraphElement]
