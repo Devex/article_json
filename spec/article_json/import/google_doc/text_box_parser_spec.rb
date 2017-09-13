@@ -1,4 +1,4 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
   subject(:element) do
     described_class.new(nodes: node.children, css_analyzer: css_analyzer)
   end
