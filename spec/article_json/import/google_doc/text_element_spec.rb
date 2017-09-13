@@ -3,7 +3,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextElement do
     described_class.new(node: node, css_analyzer: css_analyzer)
   end
   let(:node) do
-    Nokogiri::XML.fragment(xml_fragment.strip).children.first
+    Nokogiri::HTML.fragment(xml_fragment.strip).children.first
   end
   let(:css_analyzer) do
     ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer.new(

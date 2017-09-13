@@ -5,7 +5,7 @@ module ArticleJSON
         class NodeAnalyzer
           attr_reader :node
 
-          # @param [Nokogiri::XML::Node] node
+          # @param [Nokogiri::HTML::Node] node
           def initialize(node)
             @node = node
           end

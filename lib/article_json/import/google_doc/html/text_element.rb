@@ -3,7 +3,7 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class TextElement
-          # @param [Nokogiri::XML::Node] node
+          # @param [Nokogiri::HTML::Node] node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(node:, css_analyzer:)
             @node = node
@@ -61,7 +61,7 @@ module ArticleJSON
           class << self
             # Extract multiple text nodes from a wrapping node
             # The wrapping node is usually a paragraph or caption
-            # @param [Nokogiri::XML::Node] node
+            # @param [Nokogiri::HTML::Node] node
             # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
             def extract(node:, css_analyzer:)
               node.children.map do |child_node|

@@ -3,7 +3,7 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class QuoteElement
-          # @param [Array[Nokogiri::XML::Node]] nodes
+          # @param [Array[Nokogiri::HTML::Node]] nodes
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(nodes:, css_analyzer:)
             @nodes = nodes.reject { |node| NodeAnalyzer.new(node).empty? }

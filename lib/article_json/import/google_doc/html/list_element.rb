@@ -3,7 +3,7 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class ListElement
-          # @param [Nokogiri::XML::Node] node
+          # @param [Nokogiri::HTML::Node] node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(node:, css_analyzer:)
             @node = node

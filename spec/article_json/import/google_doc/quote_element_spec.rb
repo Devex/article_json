@@ -3,7 +3,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteElement do
     described_class.new(nodes: node.children, css_analyzer: css_analyzer)
   end
 
-  let(:node) { Nokogiri::XML.fragment(html.strip) }
+  let(:node) { Nokogiri::HTML.fragment(html.strip) }
   let(:html) do
     <<-html
       <p class="css_class"><span>#{quote}</span></p>

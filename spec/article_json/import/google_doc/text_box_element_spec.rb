@@ -3,7 +3,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
     described_class.new(nodes: node.children, css_analyzer: css_analyzer)
   end
 
-  let(:node) { Nokogiri::XML.fragment(html.strip) }
+  let(:node) { Nokogiri::HTML.fragment(html.strip) }
   let(:html) do
     <<-html
       <h2 class="css_class"><span>This is a text box!</span></h2>

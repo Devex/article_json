@@ -7,10 +7,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageElement do
     )
   end
   let(:node) do
-    Nokogiri::XML.fragment(image_fragment.strip).first_element_child
+    Nokogiri::HTML.fragment(image_fragment.strip).first_element_child
   end
   let(:caption_node) do
-    Nokogiri::XML.fragment(caption_fragment.strip).first_element_child
+    Nokogiri::HTML.fragment(caption_fragment.strip).first_element_child
   end
   let(:css_analyzer) do
     ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer.new(css)
