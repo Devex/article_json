@@ -22,7 +22,7 @@ require_relative 'article_json/import/google_doc/html/paragraph_parser'
 require_relative 'article_json/import/google_doc/html/list_parser'
 require_relative 'article_json/import/google_doc/html/image_parser'
 require_relative 'article_json/import/google_doc/html/text_box_parser'
-require_relative 'article_json/import/google_doc/html/quote_element'
+require_relative 'article_json/import/google_doc/html/quote_parser'
 
 require_relative 'article_json/import/google_doc/html/embedded_element'
 require_relative 'article_json/import/google_doc/html/embedded_facebook_video_element'
