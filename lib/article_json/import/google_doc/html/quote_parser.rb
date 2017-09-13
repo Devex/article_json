@@ -22,7 +22,7 @@ module ArticleJSON
 
           # Parse the quote's nodes to get a set of paragraphs
           # The last node is ignored as it contains the quote caption
-          # @return [Array]
+          # @return [Array[ArticleJSON::Elements::Paragraph]]
           def content
             @nodes
               .take(@nodes.size - 1)
@@ -39,15 +39,13 @@ module ArticleJSON
             TextParser.extract(node: @nodes.last, css_analyzer: @css_analyzer)
           end
 
-          # Hash representation of this quote
-          # @return [Hash]
-          def to_h
-            {
-              type: :quote,
-              float: float,
-              content: content.map(&:to_h),
-              caption: caption.map(&:to_h),
-            }
+          # @return [ArticleJSON::Elements::Quote]
+          def element
+            ArticleJSON::Elements::Quote.new(
+              content: content,
+              caption: caption,
+              float: float
+            )
           end
         end
       end
