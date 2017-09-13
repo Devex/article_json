@@ -48,7 +48,7 @@ module ArticleJSON
                 .new(node: node, css_analyzer: @css_analyzer)
                 .element
             when :list
-              ListElement.new(node: node, css_analyzer: @css_analyzer)
+              ListParser.new(node: node, css_analyzer: @css_analyzer)
             end
           end
         end
