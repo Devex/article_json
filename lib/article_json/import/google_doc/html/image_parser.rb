@@ -44,16 +44,13 @@ module ArticleJSON
             )
           end
 
-          # Hash representation of this image element
-          # @return [Hash]
-          def to_h
-            {
-              type: :image,
+          # @return [ArticleJSON::Elements::Image]
+          def element
+            ArticleJSON::Elements::Image.new(
               source_url: source_url,
               float: float,
-              original_width: image_width,
-              caption: caption.map(&:to_h),
-            }
+              caption: caption
+            )
           end
 
           private

@@ -67,13 +67,15 @@ module ArticleJSON
               .element
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::ImageParser]
+          # @return [ArticleJSON::Elements::Image]
           def parse_image
-            ImageParser.new(
-              node: @current_node.node,
-              caption_node: @body_enumerator.next,
-              css_analyzer: @css_analyzer
-            )
+            ImageParser
+              .new(
+                node: @current_node.node,
+                caption_node: @body_enumerator.next,
+                css_analyzer: @css_analyzer
+              )
+              .element
           end
 
           # @return [ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement]
