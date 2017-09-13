@@ -1,4 +1,4 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::ImageElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
   subject(:element) do
     described_class.new(
       node: node,
