@@ -151,15 +151,15 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     end
   end
 
-  describe 'to_h' do
-    subject { element.to_h }
+  describe '#element' do
+    subject { element.element }
 
     it 'returns a proper Hash' do
-      expect(subject).to be_a Hash
-      expect(subject[:type]).to eq :image
-      expect(subject[:source_url]).to eq source_url
-      expect(subject[:float]).to be nil
-      expect(subject[:caption]).to eq element.caption.map(&:to_h)
+      expect(subject).to be_a ArticleJSON::Elements::Image
+      expect(subject.type).to eq :image
+      expect(subject.source_url).to eq source_url
+      expect(subject.float).to be nil
+      expect(subject.caption).to all be_a ArticleJSON::Elements::Text
     end
   end
 end
