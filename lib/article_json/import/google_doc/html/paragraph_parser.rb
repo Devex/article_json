@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class ParagraphElement
+        class ParagraphParser
           # @param [Nokogiri::HTML::Node] node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(node:, css_analyzer:)
