@@ -96,7 +96,7 @@ module ArticleJSON
             # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser]
             def element_classes
               [
-                EmbeddedFacebookVideoElement,
+                EmbeddedFacebookVideoParser,
                 EmbeddedVimeoVideoElement,
                 EmbeddedYoutubeVideoElement,
                 EmbeddedTweetElement,
