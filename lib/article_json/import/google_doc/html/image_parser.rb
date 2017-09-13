@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class ImageElement
+        class ImageParser
           # @param [Nokogiri::HTML::Node] node
           # @param [Nokogiri::HTML::Node] caption_node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
