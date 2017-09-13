@@ -1,6 +1,6 @@
 require_relative 'embedded_element_shared'
 
-describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoParser do
   include_context 'for an embeddable object' do
     let(:expected_embed_type) { :vimeo_video }
     let(:expected_embed_id) { '123' }

@@ -97,7 +97,7 @@ module ArticleJSON
             def element_classes
               [
                 EmbeddedFacebookVideoParser,
-                EmbeddedVimeoVideoElement,
+                EmbeddedVimeoVideoParser,
                 EmbeddedYoutubeVideoElement,
                 EmbeddedTweetElement,
                 EmbeddedSlideshareElement,

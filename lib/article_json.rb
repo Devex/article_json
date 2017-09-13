@@ -27,7 +27,7 @@ require_relative 'article_json/import/google_doc/html/quote_parser'
 
 require_relative 'article_json/import/google_doc/html/embedded_parser'
 require_relative 'article_json/import/google_doc/html/embedded_facebook_video_parser'
-require_relative 'article_json/import/google_doc/html/embedded_vimeo_video_element'
+require_relative 'article_json/import/google_doc/html/embedded_vimeo_video_parser'
 require_relative 'article_json/import/google_doc/html/embedded_youtube_video_element'
 require_relative 'article_json/import/google_doc/html/embedded_slideshare_element'
 require_relative 'article_json/import/google_doc/html/embedded_tweet_element'
