@@ -20,7 +20,7 @@ module ArticleJSON
           end
 
           # Parse the list's sub nodes to get a set of paragraphs
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser]]
+          # @return [Array[ArticleJSON::Elements::Paragraph]]
           def content
             @node
               .children
@@ -32,14 +32,12 @@ module ArticleJSON
               end
           end
 
-          # Hash representation of this list
-          # @return [Hash]
-          def to_h
-            {
-              type: :list,
+          # @return [ArticleJSON::Elements::List]
+          def element
+            ArticleJSON::Elements::List.new(
               list_type: list_type,
-              content: content.map(&:to_h),
-            }
+              content: content
+            )
           end
         end
       end
