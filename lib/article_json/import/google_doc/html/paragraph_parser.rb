@@ -15,13 +15,9 @@ module ArticleJSON
             TextParser.extract(node: @node, css_analyzer: @css_analyzer)
           end
 
-          # Hash representation of this paragraph element
-          # @return [Hash]
-          def to_h
-            {
-              type: :paragraph,
-              content: content.map(&:to_h)
-            }
+          # @return [ArticleJSON::Elements::Paragraph]
+          def element
+            ArticleJSON::Elements::Paragraph.new(content: content)
           end
         end
       end
