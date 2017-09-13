@@ -1,5 +1,5 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
-  subject(:element) do
+describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
+  subject(:parser) do
     described_class.new(
       node: node,
       caption_node: caption_node,
@@ -37,12 +37,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
 
   describe '#embed_type' do
     it 'is not implemented' do
-      expect { element.embed_type }.to raise_error NotImplementedError
+      expect { parser.embed_type }.to raise_error NotImplementedError
     end
   end
 
   describe '#.tags' do
-    subject { element.tags }
+    subject { parser.tags }
 
     context 'when there are tags' do
       let(:html) { vimeo_video_html }
@@ -55,7 +55,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement do
   end
 
   describe '#caption' do
-    subject { element.caption }
+    subject { parser.caption }
 
     it 'returns a list of text elements' do
       expect(subject).to be_an Array
