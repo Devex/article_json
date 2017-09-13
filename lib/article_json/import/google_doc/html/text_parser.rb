@@ -46,16 +46,14 @@ module ArticleJSON
             end
           end
 
-          # Hash representation of this text node
-          # @return [Hash]
-          def to_h
-            {
-              type: :text,
+          # @return [ArticleJSON::Elements::Text]
+          def element
+            ArticleJSON::Elements::Text.new(
               content: content,
               bold: bold?,
               italic: italic?,
-              href: href,
-            }
+              href: href
+            )
           end
 
           class << self
@@ -63,10 +61,11 @@ module ArticleJSON
             # The wrapping node is usually a paragraph or caption
             # @param [Nokogiri::HTML::Node] node
             # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
+            # @return [Array[ArticleJSON::Elements::Text]]
             def extract(node:, css_analyzer:)
               node.children.map do |child_node|
                 next if NodeAnalyzer.new(child_node).empty?
-                new(node: child_node, css_analyzer: css_analyzer)
+                new(node: child_node, css_analyzer: css_analyzer).element
               end.compact
             end
           end

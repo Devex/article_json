@@ -34,7 +34,7 @@ module ArticleJSON
           end
 
           # Parse the embed's caption node
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextParser]]
+          # @return [Array[ArticleJSON::Elements::Text]]
           def caption
             TextParser.extract(
               node: @caption_node,

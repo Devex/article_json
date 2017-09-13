@@ -7,6 +7,7 @@ require 'css_parser'
 
 require_relative 'article_json/version'
 
+require_relative 'article_json/elements/text'
 require_relative 'article_json/elements/heading'
 
 require_relative 'article_json/import/google_doc/html/css_analyzer'

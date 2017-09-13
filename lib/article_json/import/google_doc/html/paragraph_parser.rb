@@ -10,7 +10,7 @@ module ArticleJSON
             @css_analyzer = css_analyzer
           end
 
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextParser]]
+          # @return [Array[ArticleJSON::Elements::Text]]
           def content
             TextParser.extract(node: @node, css_analyzer: @css_analyzer)
           end
