@@ -28,13 +28,9 @@ module ArticleJSON
           end
 
           # Hash representation of this text box
-          # @return [Hash]
-          def to_h
-            {
-              type: :text_box,
-              float: float,
-              content: content.map(&:to_h),
-            }
+          # @return [ArticleJSON::Elements::TextBox]
+          def element
+            ArticleJSON::Elements::TextBox.new(float: float, content: content)
           end
 
           private

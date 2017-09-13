@@ -1,5 +1,5 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
-  subject(:element) do
+  subject(:parser) do
     described_class.new(nodes: node.children, css_analyzer: css_analyzer)
   end
 
@@ -18,7 +18,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
   let(:css) { '' }
 
   describe '#float' do
-    subject { element.float }
+    subject { parser.float }
     context 'when the first node is centered' do
       let(:css) { '.css_class { text-align: center }' }
       it { should be nil }
@@ -35,7 +35,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
   end
 
   describe '#content' do
-    subject { element.content }
+    subject { parser.content }
 
     it 'returns a list of paragraph and heading elements' do
       expect(subject).to be_an Array
@@ -71,15 +71,17 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
     end
   end
 
-  describe '#to_h' do
-    subject { element.to_h }
+  describe '#element' do
+    subject { parser.element }
 
-    it 'returns a proper Hash' do
-      expect(subject).to be_a Hash
-      expect(subject[:type]).to eq :text_box
-      expect(subject[:float]).to eq :left
-      expect(subject[:content]).to be_an Array
-      expect(subject[:content]).to all be_a Hash
+    it 'returns a proper text box element' do
+      expect(subject).to be_a ArticleJSON::Elements::TextBox
+      expect(subject.type).to eq :text_box
+      expect(subject.float).to eq :left
+      expect(subject.content).to be_an Array
+      expect(subject.content[0]).to be_a ArticleJSON::Elements::Heading
+      expect(subject.content[1]).to be_a ArticleJSON::Elements::Paragraph
+      expect(subject.content[2]).to be_a ArticleJSON::Elements::Paragraph
     end
   end
 end
