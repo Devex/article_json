@@ -14,7 +14,12 @@ module ArticleJSON
             # Can also be used to extract the ID from the URL
             # @return [Regexp]
             def url_regexp
-              %r(^\S*vimeo.com/(?:.*#|.*/)?([0-9]+))i
+              %r{
+                ^\S*           # all protocols & sub domains
+                vimeo\.com     # domain
+                .*[\#/]        # optional path
+                (?<id>[\d]+)   # numerical id
+              }xi
             end
           end
         end

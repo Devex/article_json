@@ -13,7 +13,7 @@ module ArticleJSON
           # @return [String]
           def embed_id
             match = @node.inner_text.strip.match(self.class.url_regexp)
-            "#{match[1]}/#{match[2]}" if match
+            "#{match[:handle]}/#{match[:id]}" if match
           end
 
           class << self
@@ -21,7 +21,13 @@ module ArticleJSON
             # Also used to extract the ID from the URL.
             # @return [Regexp]
             def url_regexp
-              %r(^\S*twitter\.com/?([^#/]+)(?:#|/status/|/statuses/)?(\d+))i
+              %r{
+                ^\S*                        # all protocols & sub domains
+                twitter\.com/               # domain
+                (?<handle>[^#/]+)           # twitter handle
+                (?:\#|/status/|/statuses/)  # optional path or hash char
+                (?<id>\d+)                  # numeric tweet id
+              }xi
             end
           end
         end
