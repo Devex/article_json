@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class QuoteElement
+        class QuoteParser
           # @param [Array[Nokogiri::HTML::Node]] nodes
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(nodes:, css_analyzer:)

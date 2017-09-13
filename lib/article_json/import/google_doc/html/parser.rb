@@ -87,13 +87,13 @@ module ArticleJSON
             TextBoxParser.new(nodes: nodes, css_analyzer: @css_analyzer).element
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::QuoteElement]
+          # @return [ArticleJSON::Import::GoogleDoc::HTML::QuoteParser]
           def parse_quote
             nodes = []
             until NodeAnalyzer.new(@body_enumerator.peek).hr?
               nodes << @body_enumerator.next
             end
-            QuoteElement.new(nodes: nodes, css_analyzer: @css_analyzer)
+            QuoteParser.new(nodes: nodes, css_analyzer: @css_analyzer)
           end
 
           # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement]

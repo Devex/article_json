@@ -1,4 +1,4 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::QuoteElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
   subject(:element) do
     described_class.new(nodes: node.children, css_analyzer: css_analyzer)
   end
