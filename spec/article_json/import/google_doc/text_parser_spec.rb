@@ -96,18 +96,18 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
     end
   end
 
-  describe 'to_h' do
-    subject { element.to_h }
+  describe '#element' do
+    subject { element.element }
 
     context 'when having a simple text' do
       let(:xml_fragment) { '<span>foo bar</span>' }
       it 'returns a proper Hash' do
-        expect(subject).to be_a Hash
-        expect(subject[:type]).to eq :text
-        expect(subject[:content]).to eq 'foo bar'
-        expect(subject[:bold]).to be false
-        expect(subject[:italic]).to be false
-        expect(subject[:href]).to be nil
+        expect(subject).to be_a ArticleJSON::Elements::Text
+        expect(subject.type).to eq :text
+        expect(subject.content).to eq 'foo bar'
+        expect(subject.bold).to be false
+        expect(subject.italic).to be false
+        expect(subject.href).to be nil
       end
     end
 
@@ -118,12 +118,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
         html
       end
       it 'returns a proper Hash' do
-        expect(subject).to be_a Hash
-        expect(subject[:type]).to eq :text
-        expect(subject[:content]).to eq 'foo bar'
-        expect(subject[:bold]).to be true
-        expect(subject[:italic]).to be true
-        expect(subject[:href]).to eq 'https://devex.com'
+        expect(subject).to be_a ArticleJSON::Elements::Text
+        expect(subject.type).to eq :text
+        expect(subject.content).to eq 'foo bar'
+        expect(subject.bold).to be true
+        expect(subject.italic).to be true
+        expect(subject.href).to eq 'https://devex.com'
       end
     end
   end
@@ -143,20 +143,21 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
 
     it 'parses all text sub-nodes' do
       expect(subject.size).to eq 3
+      expect(subject).to all be_a ArticleJSON::Elements::Text
 
       expect(subject[0].content).to eq 'A '
-      expect(subject[0].bold?).to be true
-      expect(subject[0].italic?).to be false
+      expect(subject[0].bold).to be true
+      expect(subject[0].italic).to be false
       expect(subject[0].href).to be nil
 
       expect(subject[1].content).to eq 'link'
-      expect(subject[1].bold?).to be false
-      expect(subject[1].italic?).to be false
+      expect(subject[1].bold).to be false
+      expect(subject[1].italic).to be false
       expect(subject[1].href).to eq 'https://devex.com'
 
       expect(subject[2].content).to eq ' and styling.'
-      expect(subject[2].bold?).to be false
-      expect(subject[2].italic?).to be true
+      expect(subject[2].bold).to be false
+      expect(subject[2].italic).to be true
       expect(subject[2].href).to be nil
     end
   end
