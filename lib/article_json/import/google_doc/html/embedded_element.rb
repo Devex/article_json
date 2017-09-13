@@ -100,6 +100,7 @@ module ArticleJSON
                 EmbeddedVimeoVideoElement,
                 EmbeddedYoutubeVideoElement,
                 EmbeddedTweetElement,
+                EmbeddedSlideshareElement,
               ]
             end
 

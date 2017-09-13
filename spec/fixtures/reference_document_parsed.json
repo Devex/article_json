@@ -523,20 +523,11 @@
     ]
   },
   {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "http://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012",
-        "bold": false,
-        "italic": false,
-        "href": "http://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
+    "type": "embed",
+    "embed_type": "slideshare",
+    "embed_id": "Devex/the-best-global-development-quotes-of-2012",
+    "tags": [],
+    "caption": [
       {
         "type": "text",
         "content": "The paragraph following the URL is the slideshow’s caption.",
