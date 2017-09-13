@@ -10,9 +10,9 @@ module ArticleJSON
             @css_analyzer = css_analyzer
           end
 
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextElement]]
+          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextParser]]
           def content
-            TextElement.extract(node: @node, css_analyzer: @css_analyzer)
+            TextParser.extract(node: @node, css_analyzer: @css_analyzer)
           end
 
           # Hash representation of this paragraph element

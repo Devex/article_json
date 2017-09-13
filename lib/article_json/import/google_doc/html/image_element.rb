@@ -36,9 +36,9 @@ module ArticleJSON
             nil
           end
 
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextElement]]
+          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::TextParser]]
           def caption
-            TextElement.extract(
+            TextParser.extract(
               node: @caption_node,
               css_analyzer: @css_analyzer
             )

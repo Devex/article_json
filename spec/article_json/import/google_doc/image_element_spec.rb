@@ -146,7 +146,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageElement do
       expect(subject.size).to eq 1
 
       expect(subject)
-        .to all be_a ArticleJSON::Import::GoogleDoc::HTML::TextElement
+        .to all be_a ArticleJSON::Import::GoogleDoc::HTML::TextParser
 
       expect(subject.first.content).to eq 'foo'
     end
