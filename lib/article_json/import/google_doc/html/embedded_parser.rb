@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class EmbeddedElement
+        class EmbeddedParser
           # @param [Nokogiri::HTML::Node] node
           # @param [Nokogiri::HTML::Node] caption_node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
@@ -73,7 +73,7 @@ module ArticleJSON
             # @param [Nokogiri::HTML::Node] node
             # @param [Nokogiri::HTML::Node] caption_node
             # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
-            # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement]
+            # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser]
             def build(node:, caption_node:, css_analyzer:)
               find_class(node.inner_text)
                 &.new(
@@ -93,7 +93,7 @@ module ArticleJSON
             private
 
             # List of embedded element classes
-            # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedElement]
+            # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser]
             def element_classes
               [
                 EmbeddedFacebookVideoElement,

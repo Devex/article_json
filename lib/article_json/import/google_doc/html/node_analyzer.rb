@@ -86,7 +86,7 @@ module ArticleJSON
           # @return [Boolean]
           def embed?
             return @is_embed if defined? @is_embed
-            @is_embed = EmbeddedElement.supported?(node)
+            @is_embed = EmbeddedParser.supported?(node)
           end
 
           # Determine the type of this node

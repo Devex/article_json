@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class EmbeddedTweetElement < EmbeddedElement
+        class EmbeddedTweetElement < EmbeddedParser
           # The type of this embedded element
           # @return [Symbol]
           def embed_type
