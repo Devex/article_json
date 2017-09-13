@@ -2,7 +2,7 @@ module ArticleJSON
   module Import
     module GoogleDoc
       module HTML
-        class EmbeddedVimeoVideoElement < EmbeddedParser
+        class EmbeddedVimeoVideoParser < EmbeddedParser
           # The type of this embedded element
           # @return [Symbol]
           def embed_type

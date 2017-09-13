@@ -89,7 +89,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
     context 'when the node is an embedded vimeo video' do
       let(:html) { vimeo_video_html }
       let(:expected_class) do
-        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoElement
+        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoParser
       end
       it { should be_a expected_class }
     end
