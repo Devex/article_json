@@ -22,9 +22,10 @@ module ArticleJSON
             # @return [Regexp]
             def url_regexp
               %r{
-                ^\S*slideshare\.net\/
-                (?<handle>[^\/\s]+)\/
-                (?<id>[^\/?&\s\u00A0]+)
+                ^\S*                    # all protocols & sub domains
+                slideshare\.net/        # domain
+                (?<handle>[^/\s]+)/     # username / handle
+                (?<id>[^/?&\s\u00A0]+)  # the id / slug of the slide show
               }xi
             end
           end

@@ -16,7 +16,7 @@ module ArticleJSON
           # @return [String]
           def embed_id
             match = @node.inner_text.strip.match(self.class.url_regexp)
-            match[1] if match
+            match[:id] if match
           end
 
           # The type of this embedded element
@@ -29,8 +29,8 @@ module ArticleJSON
           # Extract any potential tags, specified in brackets after the URL
           # @return [Array[Symbol]]
           def tags
-            match = /(.*?)[\s\u00A0]+\[(.*)\]/.match(@node.inner_text)
-            (match ? match[2] : '').split(' ')
+            match = /(.*?)[\s\u00A0]+\[(?<tags>.*)\]/.match(@node.inner_text)
+            (match ? match[:tags] : '').split(' ')
           end
 
           # Parse the embed's caption node
