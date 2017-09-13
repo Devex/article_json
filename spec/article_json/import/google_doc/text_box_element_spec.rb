@@ -46,11 +46,11 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxElement do
       expect(subject[0].content).to eq 'This is a text box!'
 
       expect(subject[1])
-        .to be_a ArticleJSON::Import::GoogleDoc::HTML::ParagraphElement
+        .to be_a ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser
       expect(subject[1].content.first.content).to eq 'With a paragraph.'
 
       expect(subject[2])
-        .to be_a ArticleJSON::Import::GoogleDoc::HTML::ParagraphElement
+        .to be_a ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser
       expect(subject[2].content.first.content).to eq 'And another one...'
     end
 

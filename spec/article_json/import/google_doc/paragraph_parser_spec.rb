@@ -1,4 +1,4 @@
-describe ArticleJSON::Import::GoogleDoc::HTML::ParagraphElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser do
   subject(:element) do
     described_class.new(node: nokogiri_node, css_analyzer: css_analyzer)
   end

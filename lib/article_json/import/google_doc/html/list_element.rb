@@ -20,13 +20,13 @@ module ArticleJSON
           end
 
           # Parse the list's sub nodes to get a set of paragraphs
-          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::ParagraphElement]]
+          # @return [Array[ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser]]
           def content
             @node
               .children
               .select { |node| node.name == 'li' }
               .map do |node|
-                ParagraphElement.new(node: node, css_analyzer: @css_analyzer)
+                ParagraphParser.new(node: node, css_analyzer: @css_analyzer)
               end
           end
 
