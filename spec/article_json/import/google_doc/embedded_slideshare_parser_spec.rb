@@ -1,6 +1,6 @@
 require_relative 'embedded_element_shared'
 
-describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedSlideshareElement do
+describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedSlideshareParser do
   include_context 'for an embeddable object' do
     let(:slideshare_handle) { 'Devex' }
     let(:slide_id) { 'the-best-global-development-quotes-of-2012' }
