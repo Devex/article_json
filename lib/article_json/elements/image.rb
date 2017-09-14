@@ -1,7 +1,7 @@
 module ArticleJSON
   module Elements
-    class Image
-      attr_reader :type, :source_url, :caption, :float
+    class Image < Base
+      attr_reader :source_url, :caption, :float
 
       # @param [String] source_url
       # @param [Array[ArticleJSON::Elements::Text]] caption
@@ -22,6 +22,18 @@ module ArticleJSON
           float: float,
           caption: caption.map(&:to_h),
         }
+      end
+
+      class << self
+        # Create a image element from Hash
+        # @return [ArticleJSON::Elements::Image]
+        def parse_hash(hash)
+          new(
+            source_url: hash[:source_url],
+            caption: parse_hash_list(hash[:caption]),
+            float: hash[:float]&.to_sym
+          )
+        end
       end
     end
   end

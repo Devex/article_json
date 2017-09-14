@@ -1,7 +1,7 @@
 module ArticleJSON
   module Elements
-    class List
-      attr_reader :type, :content, :list_type
+    class List < Base
+      attr_reader :content, :list_type
 
       # @param [Array[ArticleJSON::Elements::Paragraph]] content
       # @param [Symbol] list_type
@@ -19,6 +19,17 @@ module ArticleJSON
           list_type: list_type,
           content: content.map(&:to_h),
         }
+      end
+
+      class << self
+        # Create a list element from Hash
+        # @return [ArticleJSON::Elements::List]
+        def parse_hash(hash)
+          new(
+            content: parse_hash_list(hash[:content]),
+            list_type: hash[:list_type].to_sym
+          )
+        end
       end
     end
   end

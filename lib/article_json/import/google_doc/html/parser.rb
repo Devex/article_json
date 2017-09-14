@@ -13,7 +13,7 @@ module ArticleJSON
           end
 
           # Parse the body of the document and return the result
-          # @return [Array]
+          # @return [Array[ArticleJSON::Elements::Base]]
           def parsed_content
             @parsed_content ||= parse_body
           end
@@ -21,7 +21,7 @@ module ArticleJSON
           private
 
           # Loop over all body nodes and parse them
-          # @return [Array]
+          # @return [Array[ArticleJSON::Elements::Base]]
           def parse_body
             @parsed_content = []
             while body_has_more_nodes?
@@ -34,7 +34,7 @@ module ArticleJSON
           end
 
           # Parse the current node and return an element, if available
-          # @return [Object]
+          # @return [ArticleJSON::Elements::Base]
           def parse_current_node
             case @current_node.type
             when :heading then parse_heading

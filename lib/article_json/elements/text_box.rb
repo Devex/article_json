@@ -1,7 +1,7 @@
 module ArticleJSON
   module Elements
-    class TextBox
-      attr_reader :type, :content, :float
+    class TextBox < Base
+      attr_reader :content, :float
 
       # @param [Array[Paragraph|Heading|List]] content
       # @param [Symbol] float
@@ -19,6 +19,17 @@ module ArticleJSON
           float: float,
           content: content.map(&:to_h),
         }
+      end
+
+      class << self
+        # Create a text box element from Hash
+        # @return [ArticleJSON::Elements::TextBox]
+        def parse_hash(hash)
+          new(
+            content: parse_hash_list(hash[:content]),
+            float: hash[:float]&.to_sym
+          )
+        end
       end
     end
   end

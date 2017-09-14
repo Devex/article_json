@@ -1,7 +1,7 @@
 module ArticleJSON
   module Elements
-    class Embed
-      attr_reader :type, :embed_type, :embed_id, :caption, :tags
+    class Embed < Base
+      attr_reader :embed_type, :embed_id, :caption, :tags
 
       # @param [Symbol] embed_type
       # @param [String] embed_id
@@ -25,6 +25,19 @@ module ArticleJSON
           tags: tags,
           caption: caption.map(&:to_h),
         }
+      end
+
+      class << self
+        # Create an embedded element from Hash
+        # @return [ArticleJSON::Elements::Embed]
+        def parse_hash(hash)
+          new(
+            embed_type: hash[:embed_type],
+            embed_id: hash[:embed_id],
+            caption: parse_hash_list(hash[:caption]),
+            tags: hash[:tags]
+          )
+        end
       end
     end
   end
