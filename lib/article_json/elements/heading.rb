@@ -1,7 +1,8 @@
 module ArticleJSON
   module Elements
-    class Heading
-      attr_reader :type, :level, :content
+    class Heading < Base
+      attr_reader :level, :content
+
       # @param [String] level
       # @param [String] content
       def initialize(level:, content:)
@@ -18,6 +19,17 @@ module ArticleJSON
           level: level,
           content: content,
         }
+      end
+
+      class << self
+        # Create a heading element from Hash
+        # @return [ArticleJSON::Elements::Heading]
+        def parse_hash(hash)
+          new(
+            level: hash[:level].to_i,
+            content: hash[:content]
+          )
+        end
       end
     end
   end

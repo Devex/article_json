@@ -1,7 +1,7 @@
 module ArticleJSON
   module Elements
-    class Text
-      attr_reader :type, :content, :bold, :italic, :href
+    class Text < Base
+      attr_reader :content, :bold, :italic, :href
 
       # @param [String] content
       # @param [Boolean] bold
@@ -25,6 +25,19 @@ module ArticleJSON
           italic: italic,
           href: href,
         }
+      end
+
+      class << self
+        # Create a text element from Hash
+        # @return [ArticleJSON::Elements::Text]
+        def parse_hash(hash)
+          new(
+            content: hash[:content],
+            bold: hash[:bold],
+            italic: hash[:italic],
+            href: hash[:href]
+          )
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 module ArticleJSON
   module Elements
-    class Quote
-      attr_reader :type, :content, :caption, :float
+    class Quote < Base
+      attr_reader :content, :caption, :float
 
       # @param [Array[ArticleJSON::Elements::Paragraph]] content
       # @param [Array[ArticleJSON::Elements::Text]] caption
@@ -22,6 +22,18 @@ module ArticleJSON
           content: content.map(&:to_h),
           caption: caption.map(&:to_h),
         }
+      end
+
+      class << self
+        # Create a quote element from Hash
+        # @return [ArticleJSON::Elements::Quote]
+        def parse_hash(hash)
+          new(
+            content: parse_hash_list(hash[:content]),
+            caption: parse_hash_list(hash[:caption]),
+            float: hash[:float]&.to_sym
+          )
+        end
       end
     end
   end
