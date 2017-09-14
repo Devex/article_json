@@ -80,20 +80,16 @@ module ArticleJSON
 
           # @return [ArticleJSON::Elements::TextBox]
           def parse_text_box
-            nodes = []
-            until NodeAnalyzer.new(@body_enumerator.peek).hr?
-              nodes << @body_enumerator.next
-            end
-            TextBoxParser.new(nodes: nodes, css_analyzer: @css_analyzer).element
+            TextBoxParser
+              .new(nodes: nodes_until_hr, css_analyzer: @css_analyzer)
+              .element
           end
 
           # @return [ArticleJSON::Elements::Quote]
           def parse_quote
-            nodes = []
-            until NodeAnalyzer.new(@body_enumerator.peek).hr?
-              nodes << @body_enumerator.next
-            end
-            QuoteParser.new(nodes: nodes, css_analyzer: @css_analyzer).element
+            QuoteParser
+              .new(nodes: nodes_until_hr, css_analyzer: @css_analyzer)
+              .element
           end
 
           # @return [ArticleJSON::Elements::Embed]
@@ -103,6 +99,16 @@ module ArticleJSON
               caption_node: @body_enumerator.next,
               css_analyzer: @css_analyzer
             )
+          end
+
+          # Collect all nodes until a horizontal line, advancing the enumerator
+          # @return [Array[Nokogiri::HTML::Node]]
+          def nodes_until_hr
+            nodes = []
+            until NodeAnalyzer.new(@body_enumerator.peek).hr?
+              nodes << @body_enumerator.next
+            end
+            nodes
           end
 
           # @return [Boolean]
