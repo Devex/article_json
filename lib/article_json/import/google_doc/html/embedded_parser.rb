@@ -3,6 +3,8 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class EmbeddedParser
+          include Shared::Caption
+
           # @param [Nokogiri::HTML::Node] node
           # @param [Nokogiri::HTML::Node] caption_node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
@@ -31,15 +33,6 @@ module ArticleJSON
           def tags
             match = /(.*?)[\s\u00A0]+\[(?<tags>.*)\]/.match(@node.inner_text)
             (match ? match[:tags] : '').split(' ')
-          end
-
-          # Parse the embed's caption node
-          # @return [Array[ArticleJSON::Elements::Text]]
-          def caption
-            TextParser.extract(
-              node: @caption_node,
-              css_analyzer: @css_analyzer
-            )
           end
 
           # The embedded element

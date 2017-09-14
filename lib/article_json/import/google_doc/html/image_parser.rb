@@ -3,6 +3,8 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class ImageParser
+          include Shared::Caption
+
           # @param [Nokogiri::HTML::Node] node
           # @param [Nokogiri::HTML::Node] caption_node
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
@@ -34,14 +36,6 @@ module ArticleJSON
             return :left if @css_analyzer.left_aligned?(node_class)
 
             nil
-          end
-
-          # @return [Array[ArticleJSON::Elements::Text]]
-          def caption
-            TextParser.extract(
-              node: @caption_node,
-              css_analyzer: @css_analyzer
-            )
           end
 
           # @return [ArticleJSON::Elements::Image]
