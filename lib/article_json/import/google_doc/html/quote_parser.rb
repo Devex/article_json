@@ -3,10 +3,13 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class QuoteParser
+          include Shared::Caption
+
           # @param [Array[Nokogiri::HTML::Node]] nodes
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(nodes:, css_analyzer:)
             @nodes = nodes.reject { |node| NodeAnalyzer.new(node).empty? }
+            @caption_node = @nodes.last
             @css_analyzer = css_analyzer
           end
 
@@ -31,12 +34,6 @@ module ArticleJSON
                   .new(node: node, css_analyzer: @css_analyzer)
                   .element
               end
-          end
-
-          # Parse the quote's last node to get the caption
-          # @return [Array[ArticleJSON::Elements::Text]]
-          def caption
-            TextParser.extract(node: @nodes.last, css_analyzer: @css_analyzer)
           end
 
           # @return [ArticleJSON::Elements::Quote]
