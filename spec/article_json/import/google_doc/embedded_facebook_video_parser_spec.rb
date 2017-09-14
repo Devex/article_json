@@ -1,7 +1,7 @@
-require_relative 'embedded_element_shared'
+require_relative 'embed_parser_shared'
 
 describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedFacebookVideoParser do
-  include_context 'for an embeddable object' do
+  include_context 'for an embed parser' do
     let(:expected_embed_type) { :facebook_video }
     let(:expected_embed_id) { '1814600831891266' }
     let(:expected_tags) { %w(facebook test) }
