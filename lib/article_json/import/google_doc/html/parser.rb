@@ -96,7 +96,7 @@ module ArticleJSON
             QuoteParser.new(nodes: nodes, css_analyzer: @css_analyzer).element
           end
 
-          # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser]
+          # @return [ArticleJSON::Elements::Embed]
           def parse_embed
             EmbeddedParser.build(
               node: @current_node.node,

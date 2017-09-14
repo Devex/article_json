@@ -42,16 +42,15 @@ module ArticleJSON
             )
           end
 
-          # Hash representation of the embedded element
-          # @return [Hash]
-          def to_h
-            {
-              type: :embed,
+          # The embedded element
+          # @return [ArticleJSON::Elements::Embed]
+          def element
+            ArticleJSON::Elements::Embed.new(
               embed_type: embed_type,
               embed_id: embed_id,
               tags: tags,
-              caption: caption.map(&:to_h),
-            }
+              caption: caption
+            )
           end
 
           class << self
@@ -73,28 +72,29 @@ module ArticleJSON
             # @param [Nokogiri::HTML::Node] node
             # @param [Nokogiri::HTML::Node] caption_node
             # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
-            # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser]
+            # @return [ArticleJSON::Elements::Embed]
             def build(node:, caption_node:, css_analyzer:)
-              find_class(node.inner_text)
+              find_parser(node.inner_text)
                 &.new(
                   node: node,
                   caption_node: caption_node,
                   css_analyzer: css_analyzer
                 )
+                &.element
             end
 
             # Check if a node contains a supported embedded element
             # @param [Nokogiri::HTML::Node] node
             # @return [Boolean]
             def supported?(node)
-              !find_class(node.inner_text).nil?
+              !find_parser(node.inner_text).nil?
             end
 
             private
 
             # List of embedded element classes
             # @return [ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser]
-            def element_classes
+            def parsers
               [
                 EmbeddedFacebookVideoParser,
                 EmbeddedVimeoVideoParser,
@@ -107,10 +107,10 @@ module ArticleJSON
             # Find the first matching class for a given (URL) string
             # @param [String] text
             # @return [Class]
-            def find_class(text)
+            def find_parser(text)
               text = text.strip.downcase
               return nil if text.empty?
-              element_classes.find { |klass| klass.matches?(text) }
+              parsers.find { |klass| klass.matches?(text) }
             end
           end
         end
