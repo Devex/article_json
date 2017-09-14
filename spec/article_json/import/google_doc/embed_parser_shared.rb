@@ -1,5 +1,5 @@
-shared_context 'for an embeddable object' do
-  subject(:element) do
+shared_context 'for an embed parser' do
+  subject(:parser) do
     described_class.new(
       node: Nokogiri::HTML.fragment(html.strip),
       caption_node: Nokogiri::HTML.fragment('<p><span>Caption</span></p>'),
@@ -20,12 +20,12 @@ shared_context 'for an embeddable object' do
   end
 
   describe '#embed_type' do
-    subject { element.embed_type }
+    subject { parser.embed_type }
     it { should eq expected_embed_type }
   end
 
   describe '#embed_id' do
-    subject { element.embed_id }
+    subject { parser.embed_id }
     it { should eq expected_embed_id }
 
     context 'when passed a lot of different example URLs' do
@@ -40,7 +40,7 @@ shared_context 'for an embeddable object' do
   end
 
   describe 'to_h' do
-    subject { element.to_h }
+    subject { parser.to_h }
     it 'returns a proper Hash' do
       expect(subject).to be_a Hash
       expect(subject[:type]).to eq :embed

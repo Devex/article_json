@@ -1,7 +1,7 @@
-require_relative 'embedded_element_shared'
+require_relative 'embed_parser_shared'
 
 describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedTweetParser do
-  include_context 'for an embeddable object' do
+  include_context 'for an embed parser' do
     let(:twitter_handle) { 'd3v3x' }
     let(:tweet_id) { '55460863903059968' }
 
