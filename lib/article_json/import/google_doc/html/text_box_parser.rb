@@ -3,21 +3,16 @@ module ArticleJSON
     module GoogleDoc
       module HTML
         class TextBoxParser
+          include Shared::Float
+
           # @param [Array[Nokogiri::HTML::Node]] nodes
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
           def initialize(nodes:, css_analyzer:)
             @nodes = nodes.reject { |node| NodeAnalyzer.new(node).empty? }
             @css_analyzer = css_analyzer
-          end
 
-          # Check if the text box is floating (left, right or not at all)
-          # The first paragraph of the text box indicates its floating value.
-          # @return [Symbol]
-          def float
-            node_class = @nodes.first.attribute('class')&.value || ''
-            return :right if @css_analyzer.right_aligned?(node_class)
-            return :left if @css_analyzer.left_aligned?(node_class)
-            nil
+            # First node of the text box indicates floating behavior
+            @float_node = @nodes.first
           end
 
           # Parse the text box's nodes to get a list of sub elements

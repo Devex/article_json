@@ -4,6 +4,7 @@ module ArticleJSON
       module HTML
         class ImageParser
           include Shared::Caption
+          include Shared::Float
 
           # @param [Nokogiri::HTML::Node] node
           # @param [Nokogiri::HTML::Node] caption_node
@@ -12,6 +13,9 @@ module ArticleJSON
             @node = node
             @caption_node = caption_node
             @css_analyzer = css_analyzer
+
+            # Main node indicates the floating behavior
+            @float_node = @node
           end
 
           # The value of the image's `src` attribute
@@ -29,13 +33,7 @@ module ArticleJSON
           # Check if the image is floating (left, right or not at all)
           # @return [Symbol]
           def float
-            return unless floatable_size? && @node.has_attribute?('class')
-
-            node_class = @node.attribute('class').value
-            return :right if @css_analyzer.right_aligned?(node_class)
-            return :left if @css_analyzer.left_aligned?(node_class)
-
-            nil
+            super if floatable_size?
           end
 
           # @return [ArticleJSON::Elements::Image]
