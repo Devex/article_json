@@ -9,8 +9,6 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedSlideshareParser do
     let(:expected_embed_id) { "#{slideshare_handle}/#{slide_id}" }
     let(:expected_tags) { %w(slideshare test) }
     let(:invalid_url_example) { 'https://www.devex.com/news/slideshare-123' }
-    let(:invalid_url_example) { 'https://www.devex.com/news/slideshare-123' }
-    let(:invalid_url_example) { 'https://www.devex.com/news/slideshare-123' }
     let(:url_examples) do
       %W(
         slideshare.net/#{slideshare_handle}/#{slide_id}

@@ -8,29 +8,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
   end
 
   let(:node) { Nokogiri::HTML.fragment(html.strip) }
-  let(:html) { '' }
-  let(:vimeo_video_html) do
-    <<-html
-      <p>
-        <span>
-          <a href="https://vimeo.com/123">https://vimeo.com/123</a>
-          <span>&nbsp;[vimeo test]</span>
-        </span>
-      </p>
-    html
-  end
-  let(:youtube_video_html) do
-    <<-html
-      <p>
-        <span>
-          <a href="https://www.youtube.com/?v=_ZG8HBuDjgc">
-            https://www.youtube.com/?v=_ZG8HBuDjgc
-          </a>
-          <span>&nbsp;[youtube test]</span>
-        </span>
-      </p>
-    html
-  end
+  let(:html) { "<p><span><a href=\"#{url}\">#{url}</a></span></p>" }
+  let(:url) { 'https://www.devex.com' }
 
   let(:caption_node) { Nokogiri::HTML.fragment(caption_html.strip) }
   let(:caption_html) { '<p><span>Caption</span></p>' }
@@ -45,8 +24,16 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
     subject { parser.tags }
 
     context 'when there are tags' do
-      let(:html) { vimeo_video_html }
-      it { should match_array %w(vimeo test) }
+      let(:html) do
+        <<-html
+          <p>
+            <span>
+              <a href="foo">foo</a><span>&nbsp;[foo bar]</span>
+            </span>
+          </p>
+        html
+      end
+      it { should match_array %w(foo bar) }
     end
 
     context 'when there are no tags' do
@@ -82,24 +69,33 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
       )
     end
 
-    context 'when the node is not an embedded element' do
-      it { should be nil }
-    end
-
     context 'when the node is an embedded vimeo video' do
-      let(:html) { vimeo_video_html }
-      let(:expected_class) do
-        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoParser
-      end
-      it { should be_a expected_class }
+      let(:url) { 'https://vimeo.com/123' }
+      it { should be_a ArticleJSON::Elements::Embed }
     end
 
     context 'when the node is an embedded youtube video' do
-      let(:html) { youtube_video_html }
-      let(:expected_class) do
-        ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoParser
-      end
-      it { should be_a expected_class }
+      let(:url) { 'https://www.youtube.com/?v=_ZG8HBuDjgc' }
+      it { should be_a ArticleJSON::Elements::Embed }
+    end
+
+    context 'when the node is an embedded facebook video' do
+      let(:url) { 'https://www.facebook.com/Devex/videos/1814600831891266' }
+      it { should be_a ArticleJSON::Elements::Embed }
+    end
+
+    context 'when the node is an embedded slideshare' do
+      let(:url) { 'https://slideshare.net/Foo/bar-baz' }
+      it { should be_a ArticleJSON::Elements::Embed }
+    end
+
+    context 'when the node is an embedded tweet' do
+      let(:url) { 'twitter.com/d3v3x/status/55460863903059968' }
+      it { should be_a ArticleJSON::Elements::Embed }
+    end
+
+    context 'when the node is not an embedded element' do
+      it { should be nil }
     end
   end
 
@@ -107,26 +103,31 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
     subject { described_class.supported?(node) }
 
     context 'when the node is an embedded vimeo video' do
-      let(:html) { vimeo_video_html }
+      let(:url) { 'https://vimeo.com/123' }
       it { should be true }
     end
 
     context 'when the node is an embedded youtube video' do
-      let(:html) { youtube_video_html }
+      let(:url) { 'https://www.youtube.com/?v=_ZG8HBuDjgc' }
+      it { should be true }
+    end
+
+    context 'when the node is an embedded facebook video' do
+      let(:url) { 'https://www.facebook.com/Devex/videos/1814600831891266' }
+      it { should be true }
+    end
+
+    context 'when the node is an embedded slideshare' do
+      let(:url) { 'https://slideshare.net/Foo/bar-baz' }
+      it { should be true }
+    end
+
+    context 'when the node is an embedded tweet' do
+      let(:url) { 'twitter.com/d3v3x/status/55460863903059968' }
       it { should be true }
     end
 
     context 'when the node is not an embedded element' do
-      let(:html) do
-        <<-html
-          <p>
-            <span>
-              <a href="https://www.devex.com">https://www.devex.com</a>
-              <span>&nbsp;[devex]</span>
-            </span>
-          </p>
-        html
-      end
       it { should be false }
     end
   end

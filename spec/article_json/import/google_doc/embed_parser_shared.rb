@@ -39,15 +39,16 @@ shared_context 'for an embed parser' do
     end
   end
 
-  describe 'to_h' do
-    subject { parser.to_h }
-    it 'returns a proper Hash' do
-      expect(subject).to be_a Hash
-      expect(subject[:type]).to eq :embed
-      expect(subject[:embed_type]).to eq expected_embed_type
-      expect(subject[:embed_id]).to eq expected_embed_id
-      expect(subject[:tags]).to match_array expected_tags
-      expect(subject[:caption].first[:content]).to eq 'Caption'
+  describe '#element' do
+    subject { parser.element }
+    it 'returns a proper Element' do
+      expect(subject).to be_a ArticleJSON::Elements::Embed
+      expect(subject.type).to eq :embed
+      expect(subject.embed_type).to eq expected_embed_type
+      expect(subject.embed_id).to eq expected_embed_id
+      expect(subject.tags).to match_array expected_tags
+      expect(subject.caption).to all be_a ArticleJSON::Elements::Text
+      expect(subject.caption.first.content).to eq 'Caption'
     end
   end
 
