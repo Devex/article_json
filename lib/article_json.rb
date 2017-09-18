@@ -35,3 +35,6 @@ require_relative 'article_json/import/google_doc/html/embedded_youtube_video_par
 require_relative 'article_json/import/google_doc/html/embedded_slideshare_parser'
 require_relative 'article_json/import/google_doc/html/embedded_tweet_parser'
 require_relative 'article_json/import/google_doc/html/parser'
+
+require_relative 'article_json/export/html/elements/base'
+require_relative 'article_json/export/html/elements/text'
