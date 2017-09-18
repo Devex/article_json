@@ -4,10 +4,13 @@ describe ArticleJSON::Export::HTML::Elements::Base do
   describe '#build' do
     subject { element.build.to_html(save_with: 0) }
 
+    let(:sample_text) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
+    let(:sample_paragraph) do
+      ArticleJSON::Elements::Paragraph.new(content: [sample_text])
+    end
+
     context 'when the source element is a text' do
-      let(:source_element) do
-        ArticleJSON::Elements::Text.new(content: 'Foo Bar')
-      end
+      let(:source_element) { sample_text }
       it { should eq 'Foo Bar' }
     end
 
@@ -19,21 +22,13 @@ describe ArticleJSON::Export::HTML::Elements::Base do
     end
 
     context 'when the source element is a paragraph' do
-      let(:source_element) do
-        ArticleJSON::Elements::Paragraph.new(
-          content: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
-        )
-      end
+      let(:source_element) { sample_paragraph }
       it { should eq '<p>Foo Bar</p>' }
     end
 
     context 'when the source element is a list' do
       let(:source_element) do
-        ArticleJSON::Elements::List.new(
-          content: [ArticleJSON::Elements::Paragraph.new(
-            content: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
-          )]
-        )
+        ArticleJSON::Elements::List.new(content: [sample_paragraph])
       end
       it { should eq '<ul><li><p>Foo Bar</p></li></ul>' }
     end
@@ -42,7 +37,7 @@ describe ArticleJSON::Export::HTML::Elements::Base do
       let(:source_element) do
         ArticleJSON::Elements::Image.new(
           source_url: '/foo/bar.jpg',
-          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
+          caption: [sample_text]
         )
       end
       let(:expected_html) do
@@ -54,15 +49,19 @@ describe ArticleJSON::Export::HTML::Elements::Base do
 
     context 'when the source element is a text box' do
       let(:source_element) do
-        ArticleJSON::Elements::TextBox.new(
-          content: [
-            ArticleJSON::Elements::Paragraph.new(
-              content: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
-            ),
-          ]
-        )
+        ArticleJSON::Elements::TextBox.new(content: [sample_paragraph])
       end
       it { should eq '<div class="text-box"><p>Foo Bar</p></div>' }
+    end
+
+    context 'when the source element is a quote' do
+      let(:source_element) do
+        ArticleJSON::Elements::Quote.new(
+          content: [sample_paragraph],
+          caption: [ArticleJSON::Elements::Text.new(content: 'Baz')]
+        )
+      end
+      it { should eq '<aside><p>Foo Bar</p><small>Baz</small></aside>' }
     end
   end
 
