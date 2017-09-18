@@ -30,13 +30,14 @@ module ArticleJSON
           class << self
             def element_classes
               {
-                heading: Heading,
-                image: Image,
-                list: List,
-                paragraph: Paragraph,
                 text: Text,
+                paragraph: Paragraph,
+                heading: Heading,
+                list: List,
+                image: Image,
                 text_box: TextBox,
                 quote: Quote,
+                embed: Embed,
               }
             end
           end

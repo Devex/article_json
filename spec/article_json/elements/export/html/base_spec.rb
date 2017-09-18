@@ -63,6 +63,21 @@ describe ArticleJSON::Export::HTML::Elements::Base do
       end
       it { should eq '<aside><p>Foo Bar</p><small>Baz</small></aside>' }
     end
+
+    context 'when the source element is an embedded element' do
+      let(:source_element) do
+        ArticleJSON::Elements::Embed.new(
+          embed_type: :something,
+          embed_id: 666,
+          caption: [sample_text]
+        )
+      end
+      let(:expected_html) do
+        '<figure><div class="embed">Embedded Object: something-666</div>' \
+          '<figcaption>Foo Bar</figcaption></figure>'
+      end
+      it { should eq expected_html }
+    end
   end
 
   describe '#element_classes' do
