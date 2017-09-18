@@ -8,6 +8,15 @@ module ArticleJSON
             @element = element
           end
 
+          # Build a HTML node out of the given element
+          # Dynamically looks up the right export-element-class, instantiates it
+          # and then calls the #build method.
+          # @return [Nokogiri::HTML::Node]
+          def build
+            klass = self.class.element_classes[@element.type]
+            klass.new(@element).build unless klass.nil?
+          end
+
           private
 
           def create_element(tag, *args)
@@ -16,6 +25,18 @@ module ArticleJSON
 
           def create_text_node(text)
             Nokogiri::HTML.fragment(text).children.first
+          end
+
+          class << self
+            def element_classes
+              {
+                heading: Heading,
+                image: Image,
+                list: List,
+                paragraph: Paragraph,
+                text: Text,
+              }
+            end
           end
         end
       end
