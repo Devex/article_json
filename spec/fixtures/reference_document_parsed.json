@@ -604,47 +604,6 @@
   },
   {
     "type": "heading",
-    "level": 2,
-    "content": "Interactive Maps"
-  },
-  {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "https://storymap.knightlab.com/examples/bosch-garden/",
-        "bold": false,
-        "italic": false,
-        "href": "https://storymap.knightlab.com/examples/bosch-garden/"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "A nice caption...",
-        "bold": false,
-        "italic": false,
-        "href": null
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "content": [
-      {
-        "type": "text",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "bold": false,
-        "italic": true,
-        "href": null
-      }
-    ]
-  },
-  {
-    "type": "heading",
     "level": 1,
     "content": "Quotes"
   },
