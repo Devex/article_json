@@ -35,6 +35,7 @@ module ArticleJSON
                 list: List,
                 paragraph: Paragraph,
                 text: Text,
+                text_box: TextBox,
               }
             end
           end

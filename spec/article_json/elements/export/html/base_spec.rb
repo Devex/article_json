@@ -51,6 +51,19 @@ describe ArticleJSON::Export::HTML::Elements::Base do
       end
       it { should eq expected_html }
     end
+
+    context 'when the source element is a text box' do
+      let(:source_element) do
+        ArticleJSON::Elements::TextBox.new(
+          content: [
+            ArticleJSON::Elements::Paragraph.new(
+              content: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
+            ),
+          ]
+        )
+      end
+      it { should eq '<div class="text-box"><p>Foo Bar</p></div>' }
+    end
   end
 
   describe '#element_classes' do
