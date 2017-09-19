@@ -51,6 +51,7 @@ module ArticleJSON
             {
               facebook_video: FacebookVideo,
               vimeo_video: VimeoVideo,
+              youtube_video: YoutubeVideo,
             }[type.to_sym]
           end
         end
