@@ -49,6 +49,7 @@ module ArticleJSON
           # @return [ArticleJSON::Utils::OEmbedResolver::Base]
           def resolver_by_embed_type(type)
             {
+              facebook_video: FacebookVideo,
               vimeo_video: VimeoVideo,
             }[type.to_sym]
           end
