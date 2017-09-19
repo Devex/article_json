@@ -28,7 +28,11 @@ module ArticleJSON
 
         # @return [Hash]
         def http_headers
-          { 'Content-Type' => 'application/json' }
+          headers = { 'Content-Type' => 'application/json' }
+          unless ArticleJSON.configuration.oembed_user_agent.nil?
+            headers['User-Agent'] = ArticleJSON.configuration.oembed_user_agent
+          end
+          headers
         end
 
         class << self
