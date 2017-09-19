@@ -27,6 +27,20 @@ module ArticleJSON
         }
       end
 
+      # Obtain the oembed data for this embed element
+      # @return [Hash]
+      def oembed_data
+        oembed_resolver&.oembed_data
+      end
+
+      private
+
+      # @return [ArticleJSON::Utils::OEmbedResolver::Base]
+      def oembed_resolver
+        @oembed_resolver ||=
+          ArticleJSON::Utils::OEmbedResolver::Base.build(self)
+      end
+
       class << self
         # Create an embedded element from Hash
         # @return [ArticleJSON::Elements::Embed]
@@ -42,4 +56,3 @@ module ArticleJSON
     end
   end
 end
-
