@@ -30,5 +30,6 @@ txt
 
   s.add_development_dependency 'bundler', '~> 1.15'
   s.add_development_dependency 'rspec', '~> 3.6'
+  s.add_development_dependency 'webmock', '~> 3.0'
   s.add_development_dependency 'coveralls', '~> 0.8'
 end
