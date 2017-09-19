@@ -49,6 +49,17 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
       it { should be_a ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
     end
 
+    context 'when the element is a youtube video' do
+      let(:element) do
+        ArticleJSON::Elements::Embed.new(
+          embed_type: :youtube_video,
+          embed_id: '_ZG8HBuDjgc',
+          caption: []
+        )
+      end
+      it { should be_a ArticleJSON::Utils::OEmbedResolver::YoutubeVideo }
+    end
+
     context 'when the element is unknown' do
       let(:element) do
         ArticleJSON::Elements::Embed.new(
@@ -72,6 +83,11 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
     context 'when the element type is vimeo_video' do
       let(:element_type) { :vimeo_video }
       it { should be ArticleJSON::Utils::OEmbedResolver::VimeoVideo }
+    end
+
+    context 'when the element type is youtube_video' do
+      let(:element_type) { :youtube_video }
+      it { should be ArticleJSON::Utils::OEmbedResolver::YoutubeVideo }
     end
 
     context 'when the element type is unknown' do
