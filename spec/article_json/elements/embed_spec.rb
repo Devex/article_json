@@ -17,6 +17,21 @@ describe ArticleJSON::Elements::Embed do
     it { should eq hash }
   end
 
+  describe '#oembed_data' do
+    subject { element.oembed_data }
+
+    let(:oembed_resolver) { double('oembed resolver') }
+    let(:oembed_data) { { foo: :bar } }
+
+    before do
+      allow(oembed_resolver).to receive(:oembed_data).and_return(oembed_data)
+      allow(ArticleJSON::Utils::OEmbedResolver::Base)
+        .to receive(:build).and_return(oembed_resolver)
+    end
+
+    it { should eq oembed_data }
+  end
+
   describe '.parse_hash' do
     subject { described_class.parse_hash(hash) }
     it { should be_a ArticleJSON::Elements::Embed }
