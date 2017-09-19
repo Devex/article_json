@@ -38,6 +38,17 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
       it { should be_a ArticleJSON::Utils::OEmbedResolver::VimeoVideo }
     end
 
+    context 'when the element is a facebook video' do
+      let(:element) do
+        ArticleJSON::Elements::Embed.new(
+          embed_type: :facebook_video,
+          embed_id: 1814600831891266,
+          caption: []
+        )
+      end
+      it { should be_a ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
+    end
+
     context 'when the element is unknown' do
       let(:element) do
         ArticleJSON::Elements::Embed.new(
@@ -52,6 +63,11 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
 
   describe '.resolver_by_embed_type' do
     subject { described_class.resolver_by_embed_type(element_type) }
+
+    context 'when the element type is facebook_video' do
+      let(:element_type) { :facebook_video }
+      it { should be ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
+    end
 
     context 'when the element type is vimeo_video' do
       let(:element_type) { :vimeo_video }
