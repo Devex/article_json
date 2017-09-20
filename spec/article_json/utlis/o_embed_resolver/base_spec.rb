@@ -36,6 +36,12 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
       it { should be_a ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
     end
 
+    context 'when the element is a slideshare' do
+      let(:embed_id) { 'Devex/the-best-global-development-quotes-of-2012' }
+      let(:embed_type) { :slideshare }
+      it { should be_a ArticleJSON::Utils::OEmbedResolver::Slideshare }
+    end
+
     context 'when the element is a tweet' do
       let(:embed_id) { 'd3v3x/554608639030599681' }
       let(:embed_type) { :tweet }
@@ -62,30 +68,35 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
   end
 
   describe '.resolver_by_embed_type' do
-    subject { described_class.resolver_by_embed_type(element_type) }
+    subject { described_class.resolver_by_embed_type(embed_type) }
 
     context 'when the element type is facebook_video' do
-      let(:element_type) { :facebook_video }
+      let(:embed_type) { :facebook_video }
       it { should be ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
     end
 
+    context 'when the element type is slideshare' do
+      let(:embed_type) { :slideshare }
+      it { should be ArticleJSON::Utils::OEmbedResolver::Slideshare }
+    end
+
     context 'when the element type is tweet' do
-      let(:element_type) { :tweet }
+      let(:embed_type) { :tweet }
       it { should be ArticleJSON::Utils::OEmbedResolver::Tweet }
     end
 
     context 'when the element type is vimeo_video' do
-      let(:element_type) { :vimeo_video }
+      let(:embed_type) { :vimeo_video }
       it { should be ArticleJSON::Utils::OEmbedResolver::VimeoVideo }
     end
 
     context 'when the element type is youtube_video' do
-      let(:element_type) { :youtube_video }
+      let(:embed_type) { :youtube_video }
       it { should be ArticleJSON::Utils::OEmbedResolver::YoutubeVideo }
     end
 
     context 'when the element type is unknown' do
-      let(:element_type) { :foo_bar }
+      let(:embed_type) { :foo_bar }
       it { should be nil }
     end
   end
