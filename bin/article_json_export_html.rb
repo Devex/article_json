@@ -11,7 +11,4 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 require_relative '../lib/article_json'
-
-elements = ArticleJSON::Elements::Base.parse_json(ARGF.read)
-exporter = ArticleJSON::Export::HTML::Exporter.new(elements)
-puts exporter.html
+puts ArticleJSON::Article.from_json(ARGF.read).to_html

@@ -11,6 +11,4 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 require_relative '../lib/article_json'
-
-parser = ArticleJSON::Import::GoogleDoc::HTML::Parser.new(ARGF.read)
-puts parser.parsed_content.map(&:to_h).to_json
+puts ArticleJSON::Article.from_google_doc_html((ARGF.read)).to_json

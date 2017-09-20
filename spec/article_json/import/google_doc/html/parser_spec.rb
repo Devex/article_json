@@ -3,11 +3,13 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
   let(:html) { '' }
 
   context 'reference document test' do
+    subject { parser.parsed_content.map(&:to_h).to_json }
+
     let(:html) { File.read('spec/fixtures/reference_document.html') }
     let(:json) { File.read('spec/fixtures/reference_document_parsed.json') }
-    let(:minified_json) { JSON.parse(json).to_json }
-
-    subject { parser.parsed_content.map(&:to_h).to_json }
+    let(:minified_json) do
+      JSON.parse(json, symbolize_names: true)[:content].to_json
+    end
 
     it { should eq minified_json }
   end

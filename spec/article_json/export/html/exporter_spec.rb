@@ -5,7 +5,7 @@ describe ArticleJSON::Export::HTML::Exporter do
     subject { exporter.html }
     let(:html) { File.read('spec/fixtures/reference_document_exported.html') }
     let(:json) { File.read('spec/fixtures/reference_document_parsed.json') }
-    let(:elements) { ArticleJSON::Elements::Base.parse_json(json) }
+    let(:elements) { ArticleJSON::Article.from_json(json).elements }
     it { should eq html.strip }
   end
 end
