@@ -2,6 +2,7 @@
 JSON Format for News Articles & Ruby Gem.
 
 ## Status
+[![Gem Version](https://badge.fury.io/rb/article_json.svg)](https://badge.fury.io/rb/article_json)
 [![Build Status](https://travis-ci.org/Devex/article_json.svg)](https://travis-ci.org/Devex/article_json)
 [![Code Climate](https://codeclimate.com/github/Devex/article_json/badges/gpa.svg)](https://codeclimate.com/github/Devex/article_json)
 [![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
@@ -48,7 +49,7 @@ A full example of the format can be found in the test fixtures:
 ## Import
 ### Google Document Parser
 This [Reference Document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8/edit?usp=sharing)
-lists contains all supported formattings along with some descriptions.
+lists contains all supported formatting along with some descriptions.
 
 ## Export
 ### HTML
