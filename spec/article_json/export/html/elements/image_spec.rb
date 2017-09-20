@@ -11,8 +11,8 @@ describe ArticleJSON::Export::HTML::Elements::Image do
   let(:float) { nil }
   let(:caption) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
 
-  describe '#build' do
-    subject { element.build.to_html(save_with: 0) }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
 
     context 'when the image is not floating' do
       let(:expected_html) do

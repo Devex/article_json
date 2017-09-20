@@ -12,7 +12,7 @@ module ArticleJSON
         def html
           doc = Nokogiri::HTML.fragment('')
           @elements.each do |element|
-            doc.add_child(Elements::Base.new(element).build)
+            doc.add_child(Elements::Base.new(element).export)
           end
           doc.to_html(save_with: 0)
         end

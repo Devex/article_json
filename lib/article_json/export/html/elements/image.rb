@@ -7,7 +7,7 @@ module ArticleJSON
           include Shared::Float
 
           # @return [Nokogiri::HTML::Node]
-          def build
+          def export
             create_element(:figure, node_opts).tap do |figure|
               figure.add_child(image_node)
               figure.add_child(caption_node(:figcaption))

@@ -5,10 +5,10 @@ module ArticleJSON
         class TextBox < Base
           include Shared::Float
 
-          def build
+          def export
             create_element(:div, node_opts).tap do |div|
               @element.content.each do |child_element|
-                div.add_child(Base.new(child_element).build)
+                div.add_child(Base.new(child_element).export)
               end
             end
           end

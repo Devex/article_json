@@ -5,8 +5,8 @@ describe ArticleJSON::Export::HTML::Elements::Heading do
     ArticleJSON::Elements::Heading.new(content: 'Foo Bar', level: level)
   end
 
-  describe '#build' do
-    subject { element.build.to_html }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
 
     (1..6).each do |i|
       context "when the heading level is #{i}" do

@@ -3,10 +3,10 @@ module ArticleJSON
     module HTML
       module Elements
         class Paragraph < Base
-          def build
+          def export
             create_element(:p).tap do |p|
               @element.content.each do |child_element|
-                p.add_child(Text.new(child_element).build)
+                p.add_child(Text.new(child_element).export)
               end
             end
           end

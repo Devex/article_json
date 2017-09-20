@@ -11,8 +11,8 @@ describe ArticleJSON::Export::HTML::Elements::Paragraph do
     ArticleJSON::Elements::Text.new(content: 'Foo Bar', href: '/foo/bar')
   end
 
-  describe '#build' do
-    subject { element.build.to_html(save_with: 0) }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
     let(:expected_html) do
       '<p><strong>Check this out: </strong><a href="/foo/bar">Foo Bar</a></p>'
     end

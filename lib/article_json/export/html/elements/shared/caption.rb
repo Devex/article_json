@@ -10,7 +10,7 @@ module ArticleJSON
             def caption_node(tag_name)
               create_element(tag_name).tap do |caption|
                 @element.caption.each do |child_element|
-                  caption.add_child(Text.new(child_element).build)
+                  caption.add_child(Text.new(child_element).export)
                 end
               end
             end

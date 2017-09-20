@@ -5,7 +5,7 @@ module ArticleJSON
         class Embed < Base
           include Shared::Caption
 
-          def build
+          def export
             create_element(:figure).tap do |figure|
               figure.add_child(embed_node)
               figure.add_child(caption_node(:figcaption))

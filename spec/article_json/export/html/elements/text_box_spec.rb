@@ -12,8 +12,8 @@ describe ArticleJSON::Export::HTML::Elements::TextBox do
     )
   end
 
-  describe '#build' do
-    subject { element.build.to_html(save_with: 0) }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
 
     context 'when the box is not floating' do
       let(:float) { nil }

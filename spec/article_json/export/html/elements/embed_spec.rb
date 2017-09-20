@@ -10,8 +10,8 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
     )
   end
 
-  describe '#build' do
-    subject { element.build.to_html(save_with: 0) }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
     let(:expected_html) do
       '<figure><div class="embed">Embedded Object: something-666</div>' \
         '<figcaption>Foo Bar</figcaption></figure>'

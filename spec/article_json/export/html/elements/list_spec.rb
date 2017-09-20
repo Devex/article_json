@@ -22,8 +22,8 @@ describe ArticleJSON::Export::HTML::Elements::List do
     end
   end
 
-  describe '#build' do
-    subject { element.build.to_html(save_with: 0) }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
 
     context 'when it is an ordered list' do
       let(:list_type) { :ordered }
