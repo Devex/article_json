@@ -3,7 +3,7 @@ module ArticleJSON
     module HTML
       module Elements
         class Heading < Base
-          def build
+          def export
             create_element(tag_name, @element.content)
           end
 

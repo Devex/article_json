@@ -1,8 +1,8 @@
 describe ArticleJSON::Export::HTML::Elements::Base do
   subject(:element) { described_class.new(source_element) }
 
-  describe '#build' do
-    subject { element.build.to_html(save_with: 0) }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
 
     let(:sample_text) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
     let(:sample_paragraph) do
@@ -80,12 +80,98 @@ describe ArticleJSON::Export::HTML::Elements::Base do
     end
   end
 
-  describe '#element_classes' do
-    subject { described_class.element_classes }
-    it { should be_a Hash }
-    it('should have Symbol-keys') { expect(subject.keys).to all be_a Symbol }
-    it('should have sub classes as values') do
-      expect(subject.values.map(&:allocate)).to all be_a described_class
+  describe '.build' do
+    subject { described_class.build(element) }
+
+    context 'when the element type is text' do
+      let(:element) { ArticleJSON::Elements::Text.new(content: '') }
+      it { should be_a ArticleJSON::Export::HTML::Elements::Text }
+    end
+
+    context 'when the element type is heading' do
+      let(:element) { ArticleJSON::Elements::Heading.new(content: 1, level: 1) }
+      it { should be_a ArticleJSON::Export::HTML::Elements::Heading }
+    end
+
+    context 'when the element type is paragraph' do
+      let(:element) { ArticleJSON::Elements::Paragraph.new(content: []) }
+      it { should be_a ArticleJSON::Export::HTML::Elements::Paragraph }
+    end
+
+    context 'when the element type is list' do
+      let(:element) { ArticleJSON::Elements::List.new(content: []) }
+      it { should be_a ArticleJSON::Export::HTML::Elements::List }
+    end
+
+    context 'when the element type is image' do
+      let(:element) do
+        ArticleJSON::Elements::Image.new(source_url: '', caption: [])
+      end
+      it { should be_a ArticleJSON::Export::HTML::Elements::Image }
+    end
+
+    context 'when the element type is text_box' do
+      let(:element) { ArticleJSON::Elements::TextBox.new(content: []) }
+      it { should be_a ArticleJSON::Export::HTML::Elements::TextBox }
+    end
+
+    context 'when the element type is quote' do
+      let(:element) do
+        ArticleJSON::Elements::Quote.new(content: [], caption: [])
+      end
+      it { should be_a ArticleJSON::Export::HTML::Elements::Quote }
+    end
+
+    context 'when the element type is embed' do
+      let(:element) do
+        ArticleJSON::Elements::Embed
+          .new(embed_type: '', embed_id: '', caption: [])
+      end
+      it { should be_a ArticleJSON::Export::HTML::Elements::Embed }
+    end
+  end
+
+  describe '.exporter_by_type' do
+    subject { described_class.exporter_by_type(element_type) }
+
+    context 'when the element type is text' do
+      let(:element_type) { :text }
+      it { should be ArticleJSON::Export::HTML::Elements::Text }
+    end
+
+    context 'when the element type is heading' do
+      let(:element_type) { :heading }
+      it { should be ArticleJSON::Export::HTML::Elements::Heading }
+    end
+
+    context 'when the element type is paragraph' do
+      let(:element_type) { :paragraph }
+      it { should be ArticleJSON::Export::HTML::Elements::Paragraph }
+    end
+
+    context 'when the element type is list' do
+      let(:element_type) { :list }
+      it { should be ArticleJSON::Export::HTML::Elements::List }
+    end
+
+    context 'when the element type is image' do
+      let(:element_type) { :image }
+      it { should be ArticleJSON::Export::HTML::Elements::Image }
+    end
+
+    context 'when the element type is text_box' do
+      let(:element_type) { :text_box }
+      it { should be ArticleJSON::Export::HTML::Elements::TextBox }
+    end
+
+    context 'when the element type is quote' do
+      let(:element_type) { :quote }
+      it { should be ArticleJSON::Export::HTML::Elements::Quote }
+    end
+
+    context 'when the element type is embed' do
+      let(:element_type) { :embed }
+      it { should be ArticleJSON::Export::HTML::Elements::Embed }
     end
   end
 end

@@ -6,10 +6,10 @@ module ArticleJSON
           include Shared::Caption
           include Shared::Float
 
-          def build
+          def export
             create_element(:aside, node_opts).tap do |aside|
               @element.content.each do |child_element|
-                aside.add_child(Base.new(child_element).build)
+                aside.add_child(Base.new(child_element).export)
               end
               aside.add_child(caption_node(:small))
             end

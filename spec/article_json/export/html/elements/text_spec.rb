@@ -13,8 +13,8 @@ describe ArticleJSON::Export::HTML::Elements::Text do
   let(:italic) { false }
   let(:href) { nil }
 
-  describe '#build' do
-    subject { element.build.to_html }
+  describe '#export' do
+    subject { element.export.to_html(save_with: 0) }
 
     context 'when the source element is plain text' do
       it { should eq 'Foo Bar' }

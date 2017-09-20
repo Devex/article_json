@@ -4,7 +4,7 @@ module ArticleJSON
       module Elements
         class Text < Base
           # @return [Nokogiri::HTML::Node]
-          def build
+          def export
             return bold_and_italic_node if @element.bold && @element.italic
             return bold_node if @element.bold
             return italic_node if @element.italic
