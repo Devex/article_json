@@ -51,3 +51,5 @@ require_relative 'article_json/export/html/elements/text_box'
 require_relative 'article_json/export/html/elements/quote'
 require_relative 'article_json/export/html/elements/embed'
 require_relative 'article_json/export/html/exporter'
+
+require_relative 'article_json/article'
