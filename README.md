@@ -15,16 +15,19 @@ via `gem 'article_json'`.
 require 'article_json'
 
 # parse the HTML export of a Google Document
-gdoc_parser = ArticleJSON::Import::GoogleDoc::HTML::Parser.new(google_doc_html)
-elements = gdoc_parser.parsed_content
+article = ArticleJSON::Article.from_google_doc_html(google_doc_html)
 
-# initialize article-json format from storage
-elements = ArticleJSON::Elements::Base.parse_json(json_string)
-elements = ArticleJSON::Elements::Base.parse_hash_list(parsed_json)
+# initialize article-json format from storage (JSON string)
+article = ArticleJSON::Article.from_json(json_string)
 
-# export parsed document as HTML
-html_exporter = ArticleJSON::Export::HTML::Exporter.new(elements)
-puts html_exporter.html
+# initialize article-json format from storage (already parsed JSON)
+article = ArticleJSON::Article.from_hash(parsed_json)
+
+# export article as HTML
+puts article.to_html
+
+# export article as JSON
+puts article.to_json
 ```
 
 ### CLI

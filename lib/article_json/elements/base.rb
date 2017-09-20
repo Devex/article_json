@@ -19,14 +19,6 @@ module ArticleJSON
           hash_list.map { |hash| Base.parse_hash(hash) }.compact
         end
 
-        # Create an element (or a list of them) from a JSON string
-        # @param [String] json
-        # @return [Array[ArticleJSON::Elements::Base]]
-        def parse_json(json)
-          data = JSON.parse(json, symbolize_names: true)
-          data.is_a?(Hash) ? parse_hash(data) : parse_hash_list(data)
-        end
-
         private
 
         def element_classes
