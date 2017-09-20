@@ -50,6 +50,7 @@ module ArticleJSON
           def resolver_by_embed_type(type)
             {
               facebook_video: FacebookVideo,
+              tweet: Tweet,
               vimeo_video: VimeoVideo,
               youtube_video: YoutubeVideo,
             }[type.to_sym]

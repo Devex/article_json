@@ -1,16 +1,19 @@
 describe ArticleJSON::Utils::OEmbedResolver::Base do
   subject(:resolver) { described_class.new(element) }
 
+  let(:element) do
+    ArticleJSON::Elements::Embed.new(
+      embed_type: embed_type,
+      embed_id: embed_id,
+      caption: []
+    )
+  end
+
   describe '#oembed_data' do
     subject { resolver.oembed_data }
 
-    let(:element) do
-      ArticleJSON::Elements::Embed.new(
-        embed_type: :something,
-        embed_id: 0,
-        caption: []
-      )
-    end
+    let(:embed_id) { 'ABC' }
+    let(:embed_type) { :foobar }
     let(:something_resolver) { double('something resolver') }
     let(:oembed_data) { { foo: :bar } }
 
@@ -27,47 +30,33 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
   describe '.build' do
     subject { described_class.build(element) }
 
-    context 'when the element is a vimeo video' do
-      let(:element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :vimeo_video,
-          embed_id: 42315417,
-          caption: []
-        )
-      end
-      it { should be_a ArticleJSON::Utils::OEmbedResolver::VimeoVideo }
-    end
-
     context 'when the element is a facebook video' do
-      let(:element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :facebook_video,
-          embed_id: 1814600831891266,
-          caption: []
-        )
-      end
+      let(:embed_id) { '1814600831891266' }
+      let(:embed_type) { :facebook_video }
       it { should be_a ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
     end
 
+    context 'when the element is a tweet' do
+      let(:embed_id) { 'd3v3x/554608639030599681' }
+      let(:embed_type) { :tweet }
+      it { should be_a ArticleJSON::Utils::OEmbedResolver::Tweet }
+    end
+
+    context 'when the element is a vimeo video' do
+      let(:embed_id) { '42315417' }
+      let(:embed_type) { :vimeo_video }
+      it { should be_a ArticleJSON::Utils::OEmbedResolver::VimeoVideo }
+    end
+
     context 'when the element is a youtube video' do
-      let(:element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :youtube_video,
-          embed_id: '_ZG8HBuDjgc',
-          caption: []
-        )
-      end
+      let(:embed_id) { '_ZG8HBuDjgc' }
+      let(:embed_type) { :youtube_video }
       it { should be_a ArticleJSON::Utils::OEmbedResolver::YoutubeVideo }
     end
 
     context 'when the element is unknown' do
-      let(:element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :foo_bar,
-          embed_id: 0,
-          caption: []
-        )
-      end
+      let(:embed_id) { 'ABC' }
+      let(:embed_type) { :foobar }
       it { should be nil }
     end
   end
@@ -78,6 +67,11 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
     context 'when the element type is facebook_video' do
       let(:element_type) { :facebook_video }
       it { should be ArticleJSON::Utils::OEmbedResolver::FacebookVideo }
+    end
+
+    context 'when the element type is tweet' do
+      let(:element_type) { :tweet }
+      it { should be ArticleJSON::Utils::OEmbedResolver::Tweet }
     end
 
     context 'when the element type is vimeo_video' do
