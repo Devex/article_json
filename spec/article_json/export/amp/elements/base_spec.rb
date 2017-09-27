@@ -5,9 +5,6 @@ describe ArticleJSON::Export::AMP::Elements::Base do
     subject { element.export.to_html(save_with: 0) }
 
     let(:sample_text) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
-    let(:sample_paragraph) do
-      ArticleJSON::Elements::Paragraph.new(content: [sample_text])
-    end
 
     context 'when the source element is a text' do
       let(:source_element) { sample_text }
