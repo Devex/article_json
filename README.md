@@ -42,6 +42,28 @@ $ ./bin/article_json_export_google_doc.rb $DOC_ID \
     | ./bin/article_json_export_html.rb
 ```
 
+### Configuration
+There are some configuration options that allow a more tailored usage of the
+`article_json` gem. The following code snippet gives an example for every
+available setting: 
+
+```ruby
+ArticleJSON.configure do |config|
+  # set a custom user agent used for o-embed API calls
+  config.oembed_user_agent = 'devex oembed (+https://www.devex.com/)'
+
+  # Register additional html exporters, just make sure that it complies with the
+  # interface of other element exporter classes (extend Base, implement #export)
+  config.register_html_element_exporter(
+    :advertisement, ArticleJSON::Export::HTML::Elements::Advertisement
+  )
+  # You can also overwrite existing exporters:
+  config.register_html_element_exporter(
+    :image, ArticleJSON::Export::HTML::Elements::ScaledImage
+  )
+end
+``` 
+
 ## Format
 A full example of the format can be found in the test fixtures:
 [Parsed Reference Document](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_parsed.json)
