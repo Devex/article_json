@@ -54,5 +54,7 @@ require_relative 'article_json/export/html/exporter'
 
 require_relative 'article_json/export/amp/elements/base'
 require_relative 'article_json/export/amp/elements/text'
+require_relative 'article_json/export/amp/elements/paragraph'
+require_relative 'article_json/export/amp/elements/list'
 
 require_relative 'article_json/article'
