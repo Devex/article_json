@@ -70,9 +70,9 @@ See the
 [list of contributors](https://github.com/Devex/article_json/contributors).
 
 ### Tests
-For the whole test suite, run `bundle exec rspec --require spec_helper`.
+For the whole test suite, run `bundle exec rspec`.
 
-For individual tests, run `bundle exec rspec spec/article_json/version_spec.rb --require spec_helper`. 
+For individual tests, run `bundle exec rspec spec/article_json/version_spec.rb`.
 
 ## License
 MIT License, see the [license file](LICENSE).
