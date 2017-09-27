@@ -40,6 +40,17 @@ module ArticleJSON
             # @param [Symbol] type
             # @return [ArticleJSON::Export::HTML::Elements::Base]
             def exporter_by_type(type)
+              key = type.to_sym
+              if ArticleJSON.configuration.html_element_exporter.key?(key)
+                ArticleJSON.configuration.html_element_exporter[key]
+              else
+                default_exporter_mapping[type.to_sym]
+              end
+            end
+
+            private
+
+            def default_exporter_mapping
               {
                 text: Text,
                 paragraph: Paragraph,
@@ -49,7 +60,7 @@ module ArticleJSON
                 text_box: TextBox,
                 quote: Quote,
                 embed: Embed,
-              }[type.to_sym]
+              }
             end
           end
         end

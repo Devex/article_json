@@ -1,6 +1,7 @@
 # Changelog
 
 ## ? - WIP
+- Configurable HTML element exporters
 
 ## 0.1.0 - 2017/09/20
 This is the very first release, with the following functionality:

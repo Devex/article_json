@@ -173,5 +173,15 @@ describe ArticleJSON::Export::HTML::Elements::Base do
       let(:element_type) { :embed }
       it { should be ArticleJSON::Export::HTML::Elements::Embed }
     end
+
+    context 'when the element was additionally registered' do
+      before do
+        ArticleJSON.configure do |c|
+          c.register_html_element_exporter(:foo, Object)
+        end
+      end
+      let(:element_type) { :foo }
+      it { should be Object }
+    end
   end
 end
