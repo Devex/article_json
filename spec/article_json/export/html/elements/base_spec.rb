@@ -76,6 +76,10 @@ describe ArticleJSON::Export::HTML::Elements::Base do
         '<figure><div class="embed">Embedded Object: something-666</div>' \
           '<figcaption>Foo Bar</figcaption></figure>'
       end
+      let(:oembed_data) { { html: 'Embedded Object: something-666' } }
+      before do
+        allow(source_element).to receive(:oembed_data).and_return(oembed_data)
+      end
       it { should eq expected_html }
     end
   end
