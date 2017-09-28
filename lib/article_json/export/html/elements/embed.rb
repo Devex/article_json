@@ -15,11 +15,13 @@ module ArticleJSON
           private
 
           def embed_node
-            create_element(:div, embedded_object, class: 'embed')
+            create_element(:div, class: 'embed').tap do |div|
+              div.add_child(embedded_object)
+            end
           end
 
           def embedded_object
-            "Embedded Object: #{@element.embed_type}-#{@element.embed_id}"
+            Nokogiri::HTML.fragment(@element.oembed_data[:html])
           end
         end
       end
