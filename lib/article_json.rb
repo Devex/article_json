@@ -52,10 +52,13 @@ require_relative 'article_json/export/html/elements/quote'
 require_relative 'article_json/export/html/elements/embed'
 require_relative 'article_json/export/html/exporter'
 
+require_relative 'article_json/export/amp/elements/shared/caption'
+require_relative 'article_json/export/amp/elements/shared/float'
 require_relative 'article_json/export/amp/elements/base'
 require_relative 'article_json/export/amp/elements/text'
 require_relative 'article_json/export/amp/elements/paragraph'
 require_relative 'article_json/export/amp/elements/list'
 require_relative 'article_json/export/amp/elements/heading'
+require_relative 'article_json/export/amp/elements/quote'
 
 require_relative 'article_json/article'

@@ -42,6 +42,10 @@ module ArticleJSON
             def exporter_by_type(type)
               {
                 text: Text,
+                paragraph: Paragraph,
+                heading: Heading,
+                list: List,
+                quote: Quote,
               }[type.to_sym]
             end
           end
