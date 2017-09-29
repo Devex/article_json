@@ -2,7 +2,7 @@ module ArticleJSON
   module Export
     module AMP
       module Elements
-        class List < ::ArticleJSON::Export::HTML::Elements::List
+        class Quote < ::ArticleJSON::Export::HTML::Elements::Quote
         end
       end
     end

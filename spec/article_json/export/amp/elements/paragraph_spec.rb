@@ -1,4 +1,4 @@
-describe ArticleJSON::Export::HTML::Elements::Paragraph do
+describe ArticleJSON::Export::AMP::Elements::Paragraph do
   subject(:element) { described_class.new(source_element) }
 
   let(:source_element) do
