@@ -61,7 +61,10 @@ describe ArticleJSON::Export::HTML::Elements::Base do
           caption: [ArticleJSON::Elements::Text.new(content: 'Baz')]
         )
       end
-      it { should eq '<aside><p>Foo Bar</p><small>Baz</small></aside>' }
+      let(:expected_html) do
+        '<div class="quote"><p>Foo Bar</p><small>Baz</small></div>'
+      end
+      it { should eq expected_html }
     end
 
     context 'when the source element is an embedded element' do
