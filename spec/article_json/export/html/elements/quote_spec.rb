@@ -18,13 +18,16 @@ describe ArticleJSON::Export::HTML::Elements::Quote do
 
     context 'when the quote is not floating' do
       let(:float) { nil }
-      it { should eq '<aside><p>Foo Bar</p><small>Baz</small></aside>' }
+      let(:expected_html) do
+        '<div class="quote"><p>Foo Bar</p><small>Baz</small></div>'
+      end
+      it { should eq expected_html }
     end
 
     context 'when the quote is floating on the left' do
       let(:float) { :left }
       let(:expected_html) do
-        '<aside class="float-left"><p>Foo Bar</p><small>Baz</small></aside>'
+        '<div class="quote float-left"><p>Foo Bar</p><small>Baz</small></div>'
       end
       it { should eq expected_html }
     end
@@ -32,7 +35,7 @@ describe ArticleJSON::Export::HTML::Elements::Quote do
     context 'when the quote is floating on the right' do
       let(:float) { :right }
       let(:expected_html) do
-        '<aside class="float-right"><p>Foo Bar</p><small>Baz</small></aside>'
+        '<div class="quote float-right"><p>Foo Bar</p><small>Baz</small></div>'
       end
       it { should eq expected_html }
     end

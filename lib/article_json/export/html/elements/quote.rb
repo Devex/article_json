@@ -7,11 +7,11 @@ module ArticleJSON
           include Shared::Float
 
           def export
-            create_element(:aside, node_opts).tap do |aside|
+            create_element(:div, node_opts).tap do |div|
               @element.content.each do |child_element|
-                aside.add_child(Base.new(child_element).export)
+                div.add_child(Base.new(child_element).export)
               end
-              aside.add_child(caption_node(:small))
+              div.add_child(caption_node(:small))
             end
           end
 
@@ -19,8 +19,7 @@ module ArticleJSON
 
           # @return [Hash]
           def node_opts
-            return if floating_class.nil?
-            { class: floating_class }
+            { class: ['quote', floating_class].compact.join(' ') }
           end
         end
       end
