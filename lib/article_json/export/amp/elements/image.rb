@@ -18,7 +18,18 @@ module ArticleJSON
 
           # @return [Nokogiri::HTML::Node]
           def image_node
-            create_element('amp-img', src: @element.source_url)
+            create_element('amp-img',
+                           src: @element.source_url,
+                           width: default_width,
+                           height: default_height)
+          end
+
+          def default_width
+            '640'
+          end
+
+          def default_height
+            '480'
           end
 
           # @return [Hash]
