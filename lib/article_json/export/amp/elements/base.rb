@@ -46,6 +46,7 @@ module ArticleJSON
                 heading: Heading,
                 list: List,
                 quote: Quote,
+                image: Image,
               }[type.to_sym]
             end
           end
