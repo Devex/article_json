@@ -62,5 +62,6 @@ require_relative 'article_json/export/amp/elements/heading'
 require_relative 'article_json/export/amp/elements/quote'
 require_relative 'article_json/export/amp/elements/text_box'
 require_relative 'article_json/export/amp/elements/image'
+require_relative 'article_json/export/amp/elements/embed'
 
 require_relative 'article_json/article'
