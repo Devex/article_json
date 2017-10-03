@@ -47,6 +47,7 @@ module ArticleJSON
                 list: List,
                 quote: Quote,
                 image: Image,
+                embed: Embed,
               }[type.to_sym]
             end
           end
