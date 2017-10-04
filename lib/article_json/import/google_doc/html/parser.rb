@@ -72,7 +72,7 @@ module ArticleJSON
             ImageParser
               .new(
                 node: @current_node.node,
-                caption_node: @body_enumerator.next,
+                caption_node: next_node,
                 css_analyzer: @css_analyzer
               )
               .element
@@ -96,7 +96,7 @@ module ArticleJSON
           def parse_embed
             EmbeddedParser.build(
               node: @current_node.node,
-              caption_node: @body_enumerator.next,
+              caption_node: next_node,
               css_analyzer: @css_analyzer
             )
           end
@@ -106,9 +106,16 @@ module ArticleJSON
           def nodes_until_hr
             nodes = []
             until NodeAnalyzer.new(@body_enumerator.peek).hr?
+              break unless body_has_more_nodes?
               nodes << @body_enumerator.next
             end
             nodes
+          end
+
+          # Return the next node if available, and advance the enumerator
+          # @return [Nokogiri::HTML::Node]
+          def next_node
+            body_has_more_nodes? ? @body_enumerator.next : nil
           end
 
           # @return [Boolean]
