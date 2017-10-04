@@ -30,6 +30,8 @@ module ArticleJSON
               facebook_node
             when :tweet
               tweet_node
+            when :slideshare
+              slideshare_node
             end
           end
 
@@ -61,6 +63,15 @@ module ArticleJSON
                            'data-href' => url,
                            width: default_width,
                            height: default_height)
+          end
+
+          def slideshare_node
+            node = Nokogiri::HTML(@element.oembed_data[:html]).xpath('//iframe')
+            create_element('amp-iframe',
+                           src: node.attribute('src').value,
+                           width: node.attribute('width').value,
+                           height: node.attribute('height').value,
+                           frameborder: '0',)
           end
 
           def default_width
