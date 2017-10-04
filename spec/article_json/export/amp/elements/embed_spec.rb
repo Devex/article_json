@@ -74,5 +74,24 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
 
       it { should eq expected_html }
     end
+
+    context 'with a tweet' do
+      let(:source_element) do
+        ArticleJSON::Elements::Embed.new(
+          embed_type: :tweet,
+          embed_id: 666,
+          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
+          tags: %w(test)
+        )
+      end
+      let(:expected_html) do
+        '<figure><div class="embed">' \
+        '<amp-twitter data-tweetid="666" width="560" height="315">' \
+        '</amp-twitter></div>' \
+        '<figcaption>Foo Bar</figcaption></figure>'
+      end
+
+      it { should eq expected_html }
+    end
   end
 end
