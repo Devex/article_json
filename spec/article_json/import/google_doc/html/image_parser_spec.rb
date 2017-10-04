@@ -144,10 +144,18 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     it 'returns a list of text elements' do
       expect(subject).to be_an Array
       expect(subject.size).to eq 1
-
       expect(subject).to all be_a ArticleJSON::Elements::Text
-
       expect(subject.first.content).to eq 'foo'
+    end
+
+    context 'when the caption nil' do
+      let(:caption_node) { nil }
+      it 'returns a list with one empty text element' do
+        expect(subject).to be_an Array
+        expect(subject.size).to eq 1
+        expect(subject).to all be_a ArticleJSON::Elements::Text
+        expect(subject.first.content).to eq '&nbsp;'
+      end
     end
   end
 

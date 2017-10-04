@@ -4,6 +4,7 @@
 - Configurable HTML element exporters
 - Resolve oembed elements in HTML export
 - Export quotes as `<div>` instead of `<aside>`
+- Make Google Parser more fault tolerant
 
 ## 0.1.0 - 2017/09/20
 This is the very first release, with the following functionality:
