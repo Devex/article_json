@@ -35,21 +35,21 @@ module ArticleJSON
 
           def youtube_node
             create_element('amp-youtube',
-                           'data-videoid': @element.embed_id,
+                           'data-videoid' => @element.embed_id,
                            width: default_width,
                            height: default_height)
           end
 
           def vimeo_node
             create_element('amp-vimeo',
-                           'data-videoid': @element.embed_id,
+                           'data-videoid' => @element.embed_id,
                            width: default_width,
                            height: default_height)
           end
 
           def tweet_node
             create_element('amp-twitter',
-                           'data-tweetid': @element.embed_id,
+                           'data-tweetid' => @element.embed_id,
                            width: default_width,
                            height: default_height)
           end
@@ -57,8 +57,8 @@ module ArticleJSON
           def facebook_node
             url = "#{@element.oembed_data[:author_url]}videos/#{@element.embed_id}"
             create_element('amp-facebook',
-                           'data-embedded-as': 'video',
-                           'data-href': url,
+                           'data-embedded-as' => 'video',
+                           'data-href' => url,
                            width: default_width,
                            height: default_height)
           end
