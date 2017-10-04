@@ -20,16 +20,36 @@ module ArticleJSON
             end
           end
 
-          def amp_tag
-            {
-              vimeo_video: 'amp-vimeo',
-              youtube_video: 'amp-youtube',
-            }[@element.embed_type.to_sym]
+          def type_specific_node
+            case @element.embed_type
+            when :youtube_video
+              youtube_node
+            when :vimeo_video
+              vimeo_node
+            when :facebook_video
+              facebook_node
+            end
           end
 
-          def type_specific_node
-            create_element(amp_tag,
+          def youtube_node
+            create_element('amp-youtube',
                            'data-videoid' => @element.embed_id,
+                           width: default_width,
+                           height: default_height)
+          end
+
+          def vimeo_node
+            create_element('amp-vimeo',
+                           'data-videoid' => @element.embed_id,
+                           width: default_width,
+                           height: default_height)
+          end
+
+          def facebook_node
+            url = "#{@element.oembed_data[:author_url]}videos/#{@element.embed_id}"
+            create_element('amp-facebook',
+                           'data-embedded-as' => 'video',
+                           'data-href' => url,
                            width: default_width,
                            height: default_height)
           end
