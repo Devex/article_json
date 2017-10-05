@@ -105,8 +105,8 @@ module ArticleJSON
           # @return [Array[Nokogiri::HTML::Node]]
           def nodes_until_hr
             nodes = []
-            until NodeAnalyzer.new(@body_enumerator.peek).hr?
-              break unless body_has_more_nodes?
+            until !body_has_more_nodes? ||
+                NodeAnalyzer.new(@body_enumerator.peek).hr?
               nodes << @body_enumerator.next
             end
             nodes
