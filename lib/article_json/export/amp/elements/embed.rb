@@ -21,7 +21,7 @@ module ArticleJSON
           end
 
           def type_specific_node
-            case @element.embed_type
+            case @element.embed_type.to_sym
             when :youtube_video
               youtube_node
             when :vimeo_video

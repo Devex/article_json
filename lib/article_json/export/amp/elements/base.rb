@@ -48,6 +48,7 @@ module ArticleJSON
                 quote: Quote,
                 image: Image,
                 embed: Embed,
+                text_box: TextBox,
               }[type.to_sym]
             end
           end
