@@ -18,11 +18,13 @@ module ArticleJSON
           doc.to_html(save_with: 0)
         end
 
+        # Return an array with all the javascript libraries needed for some especial
+        # AMP tags (like amp-facebook or amp-iframe)
+        # @return [Array<String>]
         def amp_libraries
           @elements.each do |element|
             exporter = Elements::Base.build(element)
             next unless exporter.is_a? ArticleJSON::Export::AMP::Elements::Embed
-            exporter.type_specific_node
             @amp_libraries.add exporter.amp_library if exporter.amp_library
           end
           @amp_libraries.to_a

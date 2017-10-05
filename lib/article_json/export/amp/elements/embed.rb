@@ -4,13 +4,25 @@ module ArticleJSON
       module Elements
         class Embed < Base
           include Shared::Caption
-          attr_reader :amp_library
 
           def export
-            @amp_library = nil
             create_element(:figure).tap do |figure|
               figure.add_child(embed_node)
               figure.add_child(caption_node(:figcaption))
+            end
+          end
+
+          def amp_library
+            return @amp_library if defined? @amp_library
+            type_specific_node # the execution will determine needed amp library
+            @amp_library
+          end
+
+          private
+
+          def embed_node
+            create_element(:div, class: 'embed').tap do |div|
+              div.add_child(type_specific_node)
             end
           end
 
@@ -26,14 +38,6 @@ module ArticleJSON
               tweet_node
             when :slideshare
               slideshare_node
-            end
-          end
-
-          private
-
-          def embed_node
-            create_element(:div, class: 'embed').tap do |div|
-              div.add_child(type_specific_node)
             end
           end
 
