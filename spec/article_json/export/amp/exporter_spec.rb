@@ -32,6 +32,6 @@ describe ArticleJSON::Export::AMP::Exporter do
 
     before { stub_oembed_requests }
 
-    it { should eq expected_result }
+    it { should match_array expected_result }
   end
 end
