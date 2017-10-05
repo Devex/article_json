@@ -5,6 +5,7 @@ module ArticleJSON
         # @param [Array[ArticleJSON::Elements::Base]] elements
         def initialize(elements)
           @elements = elements
+          @amp_libraries = Set.new
         end
 
         # Generate a string with the HTML representation of all elements
@@ -15,6 +16,16 @@ module ArticleJSON
             doc.add_child(Elements::Base.new(element).export)
           end
           doc.to_html(save_with: 0)
+        end
+
+        def amp_libraries
+          @elements.each do |element|
+            exporter = Elements::Base.build(element)
+            next unless exporter.is_a? ArticleJSON::Export::AMP::Elements::Embed
+            exporter.type_specific_node
+            @amp_libraries.add exporter.amp_library if exporter.amp_library
+          end
+          @amp_libraries.to_a
         end
       end
     end

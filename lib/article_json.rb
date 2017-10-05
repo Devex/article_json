@@ -1,6 +1,7 @@
 require 'uri'
 require 'cgi'
 require 'json'
+require 'set'
 require 'net/http'
 
 require 'nokogiri'

@@ -17,6 +17,8 @@ module ArticleJSON
             exporter.export unless exporter.nil?
           end
 
+          def amp_library; end
+
           private
 
           def create_element(tag, *args)
@@ -49,7 +51,7 @@ module ArticleJSON
                 image: Image,
                 embed: Embed,
                 text_box: TextBox,
-              }[type.to_sym]
+              }.fetch(type.to_sym)
             end
           end
         end
