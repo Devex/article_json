@@ -15,10 +15,10 @@ module ArticleJSON
             # @return [Regexp]
             def url_regexp
               %r{
-                ^\S*           # all protocols & sub domains
-                vimeo\.com     # domain
-                .*[\#/]        # optional path
-                (?<id>[\d]+)   # numerical id
+                ^\S*                # all protocols & sub domains
+                vimeo\.com          # domain
+                .*[\#/(clip_id=)]   # optional path & param
+                (?<id>[\d]+)        # numerical id
               }xi
             end
           end

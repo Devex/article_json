@@ -14,6 +14,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoParser do
         https://vimeo.com/#{expected_embed_id}?foo=bar
         http://vimeo.com/#{expected_embed_id}?foo=bar
         vimeo.com/#{expected_embed_id}?foo=bar
+        https://vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
+        http://vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
+        vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
+        https://www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
+        http://www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
+        www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
       )
     end
   end
