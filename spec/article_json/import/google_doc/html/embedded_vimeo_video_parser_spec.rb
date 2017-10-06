@@ -19,7 +19,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedVimeoVideoParser do
         vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
         https://www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
         http://www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
-        www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=bar
+        www.vimeo.com/moogaloop.swf?clip_id=#{expected_embed_id}&foo=012
       )
     end
   end

@@ -17,7 +17,7 @@ module ArticleJSON
               %r{
                 ^\S*                # all protocols & sub domains
                 vimeo\.com          # domain
-                .*[\#/(clip_id=)]   # optional path & param
+                .*([\#/]|clip_id=)  # optional path & param
                 (?<id>[\d]+)        # numerical id
               }xi
             end
