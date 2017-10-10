@@ -9,7 +9,7 @@ module OembedRequestStubs
 
   def stub_oembed_facebook_request(additional_headers = {})
     stub_oembed_request(
-      'https://www.facebook.com/plugins/video/oembed.json?url=facebook.com/facebook/videos/1814600831891266',
+      'https://www.facebook.com/plugins/video/oembed.json?url=https://www.facebook.com/facebook/videos/1814600831891266',
       'facebook_video_oembed',
       additional_headers
     )

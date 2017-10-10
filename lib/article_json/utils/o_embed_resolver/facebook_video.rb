@@ -13,7 +13,7 @@ module ArticleJSON
         # The video URL of the element
         # @return [String]
         def video_url
-          "facebook.com/facebook/videos/#{@element.embed_id}"
+          "https://www.facebook.com/facebook/videos/#{@element.embed_id}"
         end
       end
     end
