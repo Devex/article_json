@@ -11,7 +11,7 @@ describe ArticleJSON::Utils::OEmbedResolver::Slideshare do
     end
     let(:expected_oembed_url) do
       'https://www.slideshare.net/api/oembed/2?format=json&url='\
-        'www.slideshare.net/Devex/the-best-global-development-quotes-of-2012'
+        'https://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012'
     end
     let(:oembed_response) { File.read('spec/fixtures/slideshare_oembed.json') }
   end

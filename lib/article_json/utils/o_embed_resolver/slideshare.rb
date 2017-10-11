@@ -14,7 +14,7 @@ module ArticleJSON
         # @return [String]
         def slide_url
           handle, slug = @element.embed_id.split('/', 2)
-          "www.slideshare.net/#{handle}/#{slug}"
+          "https://www.slideshare.net/#{handle}/#{slug}"
         end
       end
     end
