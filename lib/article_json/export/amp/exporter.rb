@@ -5,29 +5,37 @@ module ArticleJSON
         # @param [Array[ArticleJSON::Elements::Base]] elements
         def initialize(elements)
           @elements = elements
-          @amp_libraries = Set.new
         end
 
         # Generate a string with the HTML representation of all elements
         # @return [String]
         def html
           doc = Nokogiri::HTML.fragment('')
-          @elements.each do |element|
-            doc.add_child(Elements::Base.new(element).export)
+          amp_elements.each do |exported_element|
+            doc.add_child(exported_element.export)
           end
           doc.to_html(save_with: 0)
         end
 
-        # Return an array with all the javascript libraries needed for some especial
-        # AMP tags (like amp-facebook or amp-iframe)
+        def custom_element_tags
+          return @custom_element_tags if defined? @custom_element_tags
+          @custom_element_tags =
+            amp_elements.flat_map { |element| element.custom_element_tags }.uniq
+        end
+
+        # Return an array with all the javascript libraries needed for some
+        # special AMP tags (like amp-facebook or amp-iframe)
         # @return [Array<String>]
         def amp_libraries
-          @elements.each do |element|
-            exporter = Elements::Base.build(element)
-            next unless exporter.is_a? ArticleJSON::Export::AMP::Elements::Embed
-            @amp_libraries.add exporter.amp_library if exporter.amp_library
-          end
-          @amp_libraries.to_a
+          return @amp_libraries if defined? @amp_libraries
+          @amp_libraries =
+            CustomElementLibraryResolver.new(custom_element_tags).script_tags
+        end
+
+        private
+
+        def amp_elements
+          @amp_elements ||= @elements.map { |e| Elements::Base.build(e) }
         end
       end
     end
