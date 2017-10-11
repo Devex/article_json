@@ -25,7 +25,7 @@ module OembedRequestStubs
 
   def stub_oembed_youtube_request(additional_headers = {})
     stub_oembed_request(
-      'http://www.youtube.com/oembed?format=json&url=youtube.com/watch?v=_ZG8HBuDjgc',
+      'http://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=_ZG8HBuDjgc',
       'youtube_video_oembed',
       additional_headers
     )

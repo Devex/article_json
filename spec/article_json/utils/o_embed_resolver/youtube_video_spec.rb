@@ -11,7 +11,7 @@ describe ArticleJSON::Utils::OEmbedResolver::YoutubeVideo do
     end
     let(:expected_oembed_url) do
       'http://www.youtube.com/oembed?format=json&url=' \
-        'youtube.com/watch?v=_ZG8HBuDjgc'
+        'https://www.youtube.com/watch?v=_ZG8HBuDjgc'
     end
     let(:oembed_response) do
       File.read('spec/fixtures/youtube_video_oembed.json')
