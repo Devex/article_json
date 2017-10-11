@@ -1,18 +1,20 @@
 describe ArticleJSON::Export::AMP::Elements::Embed do
   subject(:element) { described_class.new(source_element) }
+  let(:source_element_embed_type) { :youtube_video }
+  let(:source_element) do
+    ArticleJSON::Elements::Embed.new(
+      embed_type: source_element_embed_type,
+      embed_id: 666,
+      caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
+      tags: %w(test)
+    )
+  end
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
 
     context 'with a youtube video' do
-      let(:source_element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :youtube_video,
-          embed_id: 666,
-          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
-          tags: %w(test)
-        )
-      end
+      let(:source_element_embed_type) { :youtube_video }
       let(:expected_html) do
         '<figure><div class="embed">' \
         '<amp-youtube data-videoid="666" width="560" height="315">' \
@@ -24,14 +26,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     end
 
     context 'with a vimeo video' do
-      let(:source_element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :vimeo_video,
-          embed_id: 666,
-          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
-          tags: %w(test)
-        )
-      end
+      let(:source_element_embed_type) { :vimeo_video }
       let(:expected_html) do
         '<figure><div class="embed">' \
         '<amp-vimeo data-videoid="666" width="560" height="315">' \
@@ -44,14 +39,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
 
     context 'with a facebook video' do
       let(:url) { 'facebook.com/facebook/videos/666' }
-      let(:source_element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :facebook_video,
-          embed_id: 666,
-          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
-          tags: %w(test)
-        )
-      end
+      let(:source_element_embed_type) { :facebook_video }
       let(:expected_html) do
         '<figure><div class="embed">' \
         '<amp-facebook ' \
@@ -76,14 +64,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     end
 
     context 'with a tweet' do
-      let(:source_element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :tweet,
-          embed_id: 666,
-          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
-          tags: %w(test)
-        )
-      end
+      let(:source_element_embed_type) { :tweet }
       let(:expected_html) do
         '<figure><div class="embed">' \
         '<amp-twitter data-tweetid="666" width="560" height="315">' \
@@ -95,14 +76,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     end
 
     context 'with a slideshare presentation' do
-      let(:source_element) do
-        ArticleJSON::Elements::Embed.new(
-          embed_type: :slideshare,
-          embed_id: 666,
-          caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
-          tags: %w(test)
-        )
-      end
+      let(:source_element_embed_type) { :slideshare }
       let(:expected_html) do
         '<figure><div class="embed">' \
         '<amp-iframe ' \
@@ -122,6 +96,35 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
         allow(source_element).to receive(:oembed_data).and_return(oembed_data)
       end
       it { should eq expected_html }
+    end
+  end
+
+  describe '#custom_element_tags' do
+    subject { element.custom_element_tags }
+
+    context 'with a youtube video' do
+      let(:source_element_embed_type) { :youtube_video }
+      it { should eq [:'amp-youtube'] }
+    end
+
+    context 'with a vimeo video' do
+      let(:source_element_embed_type) { :vimeo_video }
+      it { should eq [:'amp-vimeo'] }
+    end
+
+    context 'with a facebook video' do
+      let(:source_element_embed_type) { :facebook_video }
+      it { should eq [:'amp-facebook'] }
+    end
+
+    context 'with a tweet' do
+      let(:source_element_embed_type) { :tweet }
+      it { should eq [:'amp-twitter'] }
+    end
+
+    context 'with a slideshare presentation' do
+      let(:source_element_embed_type) { :slideshare }
+      it { should eq [:'amp-iframe'] }
     end
   end
 end

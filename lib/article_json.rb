@@ -1,7 +1,6 @@
 require 'uri'
 require 'cgi'
 require 'json'
-require 'set'
 require 'net/http'
 
 require 'nokogiri'
@@ -64,6 +63,7 @@ require_relative 'article_json/export/amp/elements/quote'
 require_relative 'article_json/export/amp/elements/text_box'
 require_relative 'article_json/export/amp/elements/image'
 require_relative 'article_json/export/amp/elements/embed'
+require_relative 'article_json/export/amp/custom_element_library_resolver'
 require_relative 'article_json/export/amp/exporter'
 
 require_relative 'article_json/article'

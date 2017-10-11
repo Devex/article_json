@@ -6,6 +6,8 @@
 - Export quotes as `<div>` instead of `<aside>`
 - Make Google Parser more fault tolerant
 - Support Vimeo videos with old flash player URLs
+- Export AMP
+- Return required libraries for AMP rendering
 
 ## 0.1.0 - 2017/09/20
 This is the very first release, with the following functionality:
