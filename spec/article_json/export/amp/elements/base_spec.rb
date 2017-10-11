@@ -34,5 +34,20 @@ describe ArticleJSON::Export::AMP::Elements::Base do
       let(:element_type) { :text }
       it { should be ArticleJSON::Export::AMP::Elements::Text }
     end
+
+    context 'when the element was additionally registered' do
+      let(:custom_element_type) { :advertisement }
+      let(:custom_element_class) { FalseClass }
+      before do
+        ArticleJSON.configure do |c|
+          c.register_element_exporters_for(
+            :amp,
+            custom_element_type => custom_element_class
+          )
+        end
+      end
+      let(:element_type) { custom_element_type }
+      it { should eq custom_element_class }
+    end
   end
 end

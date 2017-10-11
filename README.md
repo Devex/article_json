@@ -71,6 +71,12 @@ ArticleJSON.configure do |config|
     advertisement: ArticleJSON::Export::HTML::Elements::Advertisement,
     image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
+  
+  # It works the same way for custom AMP exporters:
+  config.register_element_exporters_for(
+    :amp,
+    image: ArticleJSON::Export::AMP::Elements::ScaledImage
+  ) 
 end
 ``` 
 

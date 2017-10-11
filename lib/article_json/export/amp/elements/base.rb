@@ -44,8 +44,16 @@ module ArticleJSON
 
             # Look up the correct exporter class based on the element type
             # @param [Symbol] type
-            # @return [ArticleJSON::Export::HTML::Elements::Base]
+            # @return [ArticleJSON::Export::AMP::Elements::Base]
             def exporter_by_type(type)
+              key = type.to_sym
+              ArticleJSON.configuration.exporter_for(:amp, key) ||
+                default_exporter_mapping[key]
+            end
+
+            private
+
+            def default_exporter_mapping
               {
                 text: Text,
                 paragraph: Paragraph,
@@ -55,7 +63,7 @@ module ArticleJSON
                 image: Image,
                 embed: Embed,
                 text_box: TextBox,
-              }.fetch(type.to_sym)
+              }
             end
           end
         end

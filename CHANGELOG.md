@@ -1,7 +1,7 @@
 # Changelog
 
 ## ? - WIP
-- Configurable HTML element exporters
+- Configurable HTML and AMP element exporters
 - Resolve oembed elements in HTML export
 - Export quotes as `<div>` instead of `<aside>`
 - Make Google Parser more fault tolerant
