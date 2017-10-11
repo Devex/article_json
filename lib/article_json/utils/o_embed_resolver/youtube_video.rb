@@ -13,7 +13,7 @@ module ArticleJSON
         # The video URL of the element
         # @return [String]
         def video_url
-          "youtube.com/watch?v=#{@element.embed_id}"
+          "https://www.youtube.com/watch?v=#{@element.embed_id}"
         end
       end
     end
