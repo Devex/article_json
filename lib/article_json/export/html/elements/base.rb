@@ -41,11 +41,8 @@ module ArticleJSON
             # @return [ArticleJSON::Export::HTML::Elements::Base]
             def exporter_by_type(type)
               key = type.to_sym
-              if ArticleJSON.configuration.html_element_exporter.key?(key)
-                ArticleJSON.configuration.html_element_exporter[key]
-              else
-                default_exporter_mapping[type.to_sym]
-              end
+              ArticleJSON.configuration.exporter_for(:html, key) ||
+                default_exporter_mapping[key]
             end
 
             private
