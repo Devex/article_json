@@ -22,10 +22,16 @@ module ArticleJSON
       to_h.to_json
     end
 
+    # Exporter instance for HTML
+    # @return [ArticleJSON::Export::HTML::Exporter]
+    def html_exporter
+      @html_exporter = ArticleJSON::Export::HTML::Exporter.new(@elements)
+    end
+
     # HTML export of the article
     # @return [String]
     def to_html
-      ArticleJSON::Export::HTML::Exporter.new(@elements).html
+      html_exporter.html
     end
 
     class << self

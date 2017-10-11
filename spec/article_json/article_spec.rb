@@ -31,6 +31,11 @@ describe ArticleJSON::Article do
     end
   end
 
+  describe '#html_exporter' do
+    subject { article.html_exporter }
+    it { should be_a ArticleJSON::Export::HTML::Exporter }
+  end
+
   describe '#to_html' do
     subject { article.to_html }
     it { should be_a String }
