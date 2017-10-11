@@ -59,12 +59,22 @@ ArticleJSON.configure do |config|
 
   # Register additional html exporters, just make sure that it complies with the
   # interface of other element exporter classes (extend Base, implement #export)
-  config.register_html_element_exporter(
-    :advertisement, ArticleJSON::Export::HTML::Elements::Advertisement
+  config.register_element_exporters_for(
+    :html,
+    advertisement: ArticleJSON::Export::HTML::Elements::Advertisement
   )
+  
   # You can also overwrite existing exporters:
-  config.register_html_element_exporter(
-    :image, ArticleJSON::Export::HTML::Elements::ScaledImage
+  config.register_element_exporters_for(
+    :html,
+    image: ArticleJSON::Export::HTML::Elements::ScaledImage
+  )
+  
+  # And you can define multiple custom exporters:
+  config.register_element_exporters_for(
+    :html,
+    advertisement: ArticleJSON::Export::HTML::Elements::Advertisement,
+    image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
 end
 ``` 
