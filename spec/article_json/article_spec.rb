@@ -42,6 +42,17 @@ describe ArticleJSON::Article do
     it { should eq '<p>Foo Bar</p>' }
   end
 
+  describe '#amp_exporter' do
+    subject { article.amp_exporter }
+    it { should be_a ArticleJSON::Export::AMP::Exporter }
+  end
+
+  describe '#to_amp' do
+    subject { article.to_amp }
+    it { should be_a String }
+    it { should eq '<p>Foo Bar</p>' }
+  end
+
   shared_context 'for a correctly parsed Hash' do
     let(:example_hash) do
       {
