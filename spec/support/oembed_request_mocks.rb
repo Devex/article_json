@@ -33,7 +33,7 @@ module OembedRequestStubs
 
   def stub_oembed_slideshare_request(additional_headers = {})
     stub_oembed_request(
-      'https://www.slideshare.net/api/oembed/2?format=json&url=www.slideshare.net/Devex/the-best-global-development-quotes-of-2012',
+      'https://www.slideshare.net/api/oembed/2?format=json&url=https://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012',
       'slideshare_oembed',
       additional_headers
     )
