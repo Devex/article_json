@@ -17,7 +17,11 @@ module ArticleJSON
             exporter.export unless exporter.nil?
           end
 
-          def amp_library; end
+          # List of custom element tags used by this element
+          # @return [Array[Symbol]]
+          def custom_element_tags
+            []
+          end
 
           private
 

@@ -1,5 +1,6 @@
 describe ArticleJSON::Export::AMP::Elements::Base do
   subject(:element) { described_class.new(source_element) }
+  let(:source_element) { ArticleJSON::Elements::Text.new(content: 'Test') }
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
@@ -10,6 +11,11 @@ describe ArticleJSON::Export::AMP::Elements::Base do
       let(:source_element) { sample_text }
       it { should eq 'Foo Bar' }
     end
+  end
+
+  describe '#custom_element_tags' do
+    subject { element.custom_element_tags }
+    it { should eq [] }
   end
 
   describe '.build' do
