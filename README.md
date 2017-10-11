@@ -27,6 +27,11 @@ article = ArticleJSON::Article.from_hash(parsed_json)
 # export article as HTML
 puts article.to_html
 
+# export article as AMP
+puts article.to_amp
+# get javascript libraries needed for the AMP article
+puts article.amp_exporter.amp_libraries
+
 # export article as JSON
 puts article.to_json
 ```
@@ -78,6 +83,16 @@ lists contains all supported formatting along with some descriptions.
 The HTML exporter generates a HTML string for a list of elements. An example of
 the HTML export for the parsed reference document can be found 
 [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
+
+### AMP
+The AMP exporter generates an AMP HTML representation of the elements. 
+
+AMP uses [custom HTML tags](https://www.ampproject.org/docs/reference/components), some of which require additional Javascript libraries.
+If you have an `article` (see code example in _Usage_ section), you can get a list of the custom tags required by this article by calling `article.amp_exporter.custom_element_tags` and by calling `article.amp_exporter.amp_libraries` you get a list of `<script>` tags that can directly be included on your page to render the AMP article. 
+
+An example of
+the AMP HTML export for the parsed reference document can be found 
+[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
 
 ## Contributing
 - Fork this repository
