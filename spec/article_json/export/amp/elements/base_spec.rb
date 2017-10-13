@@ -40,7 +40,7 @@ describe ArticleJSON::Export::AMP::Elements::Base do
       let(:custom_element_class) { FalseClass }
       before do
         ArticleJSON.configure do |c|
-          c.register_element_exporters_for(
+          c.register_element_exporters(
             :amp,
             custom_element_type => custom_element_class
           )

@@ -27,7 +27,7 @@ describe ArticleJSON::Configuration do
     context 'when there is no exporter registered' do
       it 'registers an additional exporter' do
         expect { subject }.to(
-          change { ArticleJSON.configuration.html_element_exporter }
+          change { ArticleJSON.configuration.html_element_exporters }
             .from({})
             .to({ foo: Object })
         )
@@ -35,10 +35,10 @@ describe ArticleJSON::Configuration do
     end
 
     context 'when there is already an exporter registered' do
-      before { configuration.html_element_exporter = { foo: Object } }
+      before { configuration.html_element_exporters = { foo: Object } }
       it 'registers an additional exporter' do
         expect { subject }
-          .to_not change { ArticleJSON.configuration.html_element_exporter }
+          .to_not change { ArticleJSON.configuration.html_element_exporters }
       end
     end
   end
@@ -46,7 +46,7 @@ describe ArticleJSON::Configuration do
   describe '#register_element_exporters_for' do
     subject do
       ArticleJSON.configure do |c|
-        c.register_element_exporters_for(exporter, mapping)
+        c.register_element_exporters(exporter, mapping)
       end
     end
     let(:exporter) { :html }
@@ -95,8 +95,8 @@ describe ArticleJSON::Configuration do
 
       it 'registers the correct additional exporters' do
         expect { subject }
-          .to change { config.exporter_for(:html, :image) }.from(nil).to(Object)
-          .and change { config.exporter_for(:html, :text) }.from(nil).to(String)
+          .to change { config.element_exporter_for(:html, :image) }.from(nil).to(Object)
+          .and change { config.element_exporter_for(:html, :text) }.from(nil).to(String)
       end
     end
   end
@@ -114,15 +114,15 @@ describe ArticleJSON::Configuration do
     end
   end
 
-  describe '#html_element_exporter' do
-    subject { configuration.html_element_exporter }
+  describe '#html_element_exporters' do
+    subject { configuration.html_element_exporters }
 
     context 'when not initialized' do
       it { should eq({}) }
     end
 
     context 'when it has a value' do
-      before { configuration.html_element_exporter = { foo: 'bar' } }
+      before { configuration.html_element_exporters = { foo: 'bar' } }
       it { should eq({ foo: 'bar' }) }
     end
   end
