@@ -2,7 +2,7 @@ module ArticleJSON
   class Article
     attr_reader :elements
 
-    # @param [Arra[ArticleJSON::Elements::Base]] elements
+    # @param [Array[ArticleJSON::Elements::Base]] elements
     def initialize(elements)
       @elements = elements
     end
@@ -44,6 +44,17 @@ module ArticleJSON
     # @return [String]
     def to_amp
       amp_exporter.html
+    end
+
+    # Distribute passed elements evenly throughout the article. All passed
+    # elements need to have an exporter to be represented in the rendered
+    # article.
+    # @param [Object] additional_elements
+    def place_additional_elements(additional_elements)
+      @elements =
+        ArticleJSON::Utils::AdditionalElementPlacer
+          .new(self, additional_elements)
+          .merge_elements
     end
 
     class << self

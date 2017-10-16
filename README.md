@@ -94,6 +94,97 @@ A full example of the format can be found in the test fixtures:
 This [Reference Document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8/edit?usp=sharing)
 lists contains all supported formatting along with some descriptions.
 
+## Add custom elements
+Sometimes you might want to place additional elements into the article, like e.g. advertisements. 
+`article_json` supports this via `article.place_additional_elements` which accepts an array of elements that you can define in your own code. 
+Each element that is added this way will directly get placed in between paragraphs of the article.
+The method ensures that an additional element is never added before or after any node other than paragraphs (e.g. an image).
+The elements are added in the order you pass them into the method.
+If the article should not have enough spaces to place all the provided elements, they will be placed after the last element in the article.
+
+You can pass any type of element into this method. 
+If the objects you pass in are instances of elements defined within this gem (e.g. `ArticleJSON::Elements::Image`), you won't have to do anything else to get them rendered.
+If you pass in an instance of a custom class (e.g. `MyAdvertisement`), make sure to register an exporter for this type (check the _Configuration_ section for more details).
+
+Example using only existing elements:
+```ruby
+# Create your article instance as you normally do
+article = ArticleJSON::Article.from_hash(parsed_json)
+
+# Within your code, create additional elements you would like to add
+image_advertisement = 
+  ArticleJSON::Elements::Image.new(source_url: 'https://robohash.org/great-ad', 
+                                   caption: ArticleJSON::Elements::Text.new(
+                                    content: 'Buy more robots!',
+                                    href: '/robot-sale'
+                                   ))
+text_box_similar_articles = 
+  ArticleJSON::Elements::TextBox.new(content: [
+    ArticleJSON::Elements::Heading.new(level: 3, content: 'Read more...'),  
+    ArticleJSON::Elements::List.new(content: [
+      ArticleJSON::Elements::Paragraph(content: [
+        ArticleJSON::Elements::Text.new(content: 'Very similar article', 
+                                        href: '/news/123'),
+      ]),
+      ArticleJSON::Elements::Paragraph(content: [
+        ArticleJSON::Elements::Text.new(content: 'Great article!', 
+                                        href: '/news/42'),
+      ]),
+    ]),  
+  ])
+
+# Add these elements to the article
+article.place_additional_elements([image_advertisement, 
+                                   text_box_similar_articles])
+               
+# Export the article to the different formats as you would normally do                    
+article.to_html # this will now include the custom elements
+``` 
+
+Example with custom advertisement elements:
+```ruby
+# Define your custom element class
+class MyAdvertisement
+  attr_reader :url
+  
+  def initialize(url:)
+    @url = url
+  end
+  
+  def type
+    :my_advertisement
+  end
+end
+
+# Define an exporter for your class, we only use HTML in this example but this
+# would work similarly for AMP or other formats
+class MyAdvertisementExporter < 
+  ArticleJSON::Export::HTML::Elements::Base 
+  
+  # Needs to implement the `#export` method
+  def export
+    create_element(:iframe, src: @element.url)
+  end
+end
+
+# Register your custom exporter for your element type
+config.register_element_exporters(
+  :html,
+  my_advertisement: MyAdvertisementExporter
+)
+
+# Create the elements you want to add
+ad_1 = MyAdvertisement.new(url: '/my_first_ad')
+ad_2 = MyAdvertisement.new(url: '/my_second_ad')
+ad_3 = MyAdvertisement.new(url: '/my_last_ad')
+
+# Add them to the article
+article.place_additional_elements([ad_1, ad_2, ad_3])
+
+# And again, export the article as you would normally do it
+article.to_html
+```
+
 ## Export
 ### HTML
 The HTML exporter generates a HTML string for a list of elements. An example of

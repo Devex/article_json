@@ -53,6 +53,25 @@ describe ArticleJSON::Article do
     it { should eq '<p>Foo Bar</p>' }
   end
 
+  describe '#place_additional_elements' do
+    subject { article.place_additional_elements(additional_elements) }
+    let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: 'text') }
+
+    let(:article_elements) { [paragraph, paragraph] }
+    let(:article) { ArticleJSON::Article.new(article_elements) }
+    let(:additional_element) do
+      double('additional_element', type: :additional_element)
+    end
+    let(:additional_elements) { [additional_element] }
+
+    it 'should place the elements in the right position' do
+      expect { subject }
+        .to change { article.elements.map(&:type) }
+              .from(%i(paragraph paragraph))
+              .to([:paragraph, additional_element.type, :paragraph])
+    end
+  end
+
   shared_context 'for a correctly parsed Hash' do
     let(:example_hash) do
       {
