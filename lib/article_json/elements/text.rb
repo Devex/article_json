@@ -27,6 +27,12 @@ module ArticleJSON
         }
       end
 
+      # Returns `true` if `content` has a length of zero or is `nil`
+      # @return [Boolean]
+      def empty?
+        !content || content.empty?
+      end
+
       class << self
         # Create a text element from Hash
         # @return [ArticleJSON::Elements::Text]
