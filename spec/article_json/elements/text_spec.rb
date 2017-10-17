@@ -34,6 +34,30 @@ describe ArticleJSON::Elements::Text do
     end
   end
 
+  describe '#blank?' do
+    subject { element.blank? }
+
+    context 'when `content` contains text' do
+      let(:content) { 'Some real content' }
+      it { should be false }
+    end
+
+    context 'when `content` only contains a whitespaces' do
+      let(:content) { " \t    " }
+      it { should be true }
+    end
+
+    context 'when `content` is an empty String' do
+      let(:content) { '' }
+      it { should be true }
+    end
+
+    context 'when `content` is `nil`' do
+      let(:content) { nil }
+      it { should be true }
+    end
+  end
+
   describe '.parse_hash' do
     subject { described_class.parse_hash(hash) }
     it { should be_a ArticleJSON::Elements::Text }
