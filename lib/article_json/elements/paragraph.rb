@@ -24,6 +24,14 @@ module ArticleJSON
         !content || content.empty?
       end
 
+      # Return `true` if the paragraph is empty or if all elements are blank
+      # @return [Boolean]
+      def blank?
+        empty? || content.all? do |element|
+          element.respond_to?(:blank?) && element.blank?
+        end
+      end
+
       class << self
         # Create a paragraph element from Hash
         # @return [ArticleJSON::Elements::Paragraph]
