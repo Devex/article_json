@@ -53,11 +53,13 @@ module ArticleJSON
             HeadingParser.new(node: @current_node.node).element
           end
 
-          # @return [ArticleJSON::Elements::Paragraph]
+          # @return [ArticleJSON::Elements::Paragraph|nil]
           def parse_paragraph
-            ParagraphParser
-              .new(node: @current_node.node, css_analyzer: @css_analyzer)
-              .element
+            paragraph =
+              ParagraphParser
+                .new(node: @current_node.node, css_analyzer: @css_analyzer)
+                .element
+            paragraph unless paragraph.blank?
           end
 
           # @return [ArticleJSON::Elements::List]
