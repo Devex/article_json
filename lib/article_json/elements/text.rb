@@ -33,6 +33,13 @@ module ArticleJSON
         !content || content.empty?
       end
 
+      # Returns `true` if `content` is empty (see `#empty?`) or only contains
+      # whitespace (including non-breaking whitespace) characters
+      # @return [Boolean]
+      def blank?
+        empty? || content.gsub(/[\s\u00A0]/, '').empty?
+      end
+
       class << self
         # Create a text element from Hash
         # @return [ArticleJSON::Elements::Text]
