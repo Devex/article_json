@@ -18,6 +18,12 @@ module ArticleJSON
         }
       end
 
+      # Return `true` if the paragraph has no elements
+      # @return [Boolean]
+      def empty?
+        !content || content.empty?
+      end
+
       class << self
         # Create a paragraph element from Hash
         # @return [ArticleJSON::Elements::Paragraph]
