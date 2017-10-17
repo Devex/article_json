@@ -49,6 +49,45 @@ describe ArticleJSON::Elements::Paragraph do
     end
   end
 
+  describe '#blank?' do
+    subject { element.blank? }
+
+    context 'when `content` contains only text elements' do
+      context 'when some text elements contain actual text' do
+        let(:content) do
+          [
+            ArticleJSON::Elements::Text.new(content: ''),
+            ArticleJSON::Elements::Text.new(content: 'Lorem ipsum?'),
+            ArticleJSON::Elements::Text.new(content: ' '),
+          ]
+        end
+        it { should be false }
+      end
+
+      context 'when all text elements are blank' do
+        let(:content) do
+          [
+            ArticleJSON::Elements::Text.new(content: ''),
+            ArticleJSON::Elements::Text.new(content: ' '),
+          ]
+        end
+        it { should be true }
+      end
+    end
+
+    context 'when `content` contains other elements' do
+      let(:content) do
+        [ArticleJSON::Elements::Image.new(source_url: 'foo.jpg', caption: [])]
+      end
+      it { should be false }
+    end
+
+    context 'when `content` is `nil`' do
+      let(:content) { nil }
+      it { should be true }
+    end
+  end
+
   describe '.parse_hash' do
     subject { described_class.parse_hash(hash) }
     it { should be_a ArticleJSON::Elements::Paragraph }
