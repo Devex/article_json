@@ -21,7 +21,8 @@ module ArticleJSON
             create_element('amp-img',
                            src: @element.source_url,
                            width: default_width,
-                           height: default_height)
+                           height: default_height,
+                           layout: :responsive)
           end
 
           def default_width
