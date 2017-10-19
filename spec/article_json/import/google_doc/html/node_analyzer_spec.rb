@@ -9,8 +9,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
 
     %w(h1 h2 h3 h4 h5).each do |header_tag|
       context "when the node is a <#{header_tag}>" do
-        let(:xml_fragment) { "<#{header_tag}>foo</#{header_tag}>" }
-        it { should be true }
+        context 'and it is neither a `Quote:` nor a `Textbox:` tag' do
+          let(:xml_fragment) { "<#{header_tag}>foo</#{header_tag}>" }
+          it { should be true }
+        end
+
+        context 'but it is a `Quote:` tag' do
+          let(:xml_fragment) { "<#{header_tag}>Quote:</#{header_tag}>" }
+          it { should be false }
+        end
+
+        context 'but it is a `Textbox:` tag' do
+          let(:xml_fragment) { "<#{header_tag}>Textbox:</#{header_tag}>" }
+          it { should be false }
+        end
       end
     end
 

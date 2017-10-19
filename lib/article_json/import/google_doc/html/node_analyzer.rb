@@ -30,7 +30,8 @@ module ArticleJSON
           # @return [Boolean]
           def heading?
             return @is_heading if defined? @is_heading
-            @is_heading = %w(h1 h2 h3 h4 h5).include?(node.name)
+            @is_heading =
+              !quote? && !text_box? && %w(h1 h2 h3 h4 h5).include?(node.name)
           end
 
           # Check if the node is a horizontal line (i.e. `<hr>`)
