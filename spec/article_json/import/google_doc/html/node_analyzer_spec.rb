@@ -84,8 +84,15 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
     end
 
     context 'when the node has only whitespaces' do
-      let(:xml_fragment) { '<p> </p>' }
-      it { should be true }
+      context 'and no line breaks' do
+        let(:xml_fragment) { '<p> </p>' }
+        it { should be true }
+      end
+
+      context 'including line breaks' do
+        let(:xml_fragment) { '<p> <br></p>' }
+        it { should be false }
+      end
     end
 
     context 'when the node has nested spans that are empty' do
@@ -251,6 +258,32 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
     context 'when the node does not contain the text to start a quote' do
       let(:xml_fragment) { '<p><span>Foo Bar:</span></p>' }
       it { should be false }
+    end
+  end
+
+  describe '#br?' do
+    subject { node.br? }
+
+    context 'when the node is a <br> itself' do
+      let(:xml_fragment) { '<br>' }
+      it { should be true }
+    end
+
+    context 'when the node is a span' do
+      context 'and contains text' do
+        let(:xml_fragment) { '<span>Foo Bar:<br></p>' }
+        it { should be false }
+      end
+
+      context 'and only contains a linebreak' do
+        let(:xml_fragment) { '<span><br></p>' }
+        it { should be true }
+      end
+
+      context 'and only contains linebreaks and spaces' do
+        let(:xml_fragment) { '<span><br>  <br> </p>' }
+        it { should be true }
+      end
     end
   end
 
