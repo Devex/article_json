@@ -17,8 +17,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
 
   describe '#content' do
     subject { element.content }
-    let(:xml_fragment) { '<span>foo bar</span>' }
-    it { should eq 'foo bar' }
+    context 'when it only includes text' do
+      let(:xml_fragment) { '<span>foo bar</span>' }
+      it { should eq 'foo bar' }
+    end
+
+    context 'when it includes a line break' do
+      let(:xml_fragment) { '<span>foo<br>bar</span>' }
+      it { should eq "foo\nbar" }
+    end
+
+    context 'when it includes multiple consecutive line breaks' do
+      let(:xml_fragment) { '<span>foo  <br> <br>  <br>bar</span>' }
+      it { should eq "foo\nbar" }
+    end
   end
 
   describe '#bold?' do
@@ -136,13 +148,15 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
         <p>
           <span class="bold">A </span>
           <span><a href="https://devex.com">link</a></span>
-          <span class="italic"> and styling.</span>
+          <span class="italic"> and styling</span>
+          <span> with some <br>line breaks</span>
+          <span><br></span>
         </p>
       html
     end
 
     it 'parses all text sub-nodes' do
-      expect(subject.size).to eq 3
+      expect(subject.size).to eq 5
       expect(subject).to all be_a ArticleJSON::Elements::Text
 
       expect(subject[0].content).to eq 'A '
@@ -155,10 +169,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
       expect(subject[1].italic).to be false
       expect(subject[1].href).to eq 'https://devex.com'
 
-      expect(subject[2].content).to eq ' and styling.'
+      expect(subject[2].content).to eq ' and styling'
       expect(subject[2].bold).to be false
       expect(subject[2].italic).to be true
       expect(subject[2].href).to be nil
+
+      expect(subject[3].content).to eq " with some\nline breaks"
+      expect(subject[3].bold).to be false
+      expect(subject[3].italic).to be false
+      expect(subject[3].href).to be nil
+
+      expect(subject[4].content).to eq "\n"
+      expect(subject[4].bold).to be false
+      expect(subject[4].italic).to be false
+      expect(subject[4].href).to be nil
     end
   end
 end

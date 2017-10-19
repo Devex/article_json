@@ -13,7 +13,10 @@ module ArticleJSON
           # The content of the text node, w/o any markup
           # @return [String]
           def content
-            @node.inner_text
+            @node.children
+              .map { |child| child.name == 'br' ? "\n" : child.inner_text }
+              .join('')
+              .gsub(/\s*\n\s*/, "\n") # Only keep a single consecutive linebreak
           end
 
           # Check if the text node is styled as bold
