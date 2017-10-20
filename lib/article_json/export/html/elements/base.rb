@@ -44,13 +44,7 @@ module ArticleJSON
             end
           end
 
-          # @param [String] text
-          # @return [Nokogiri::XML::NodeSet]
-          def create_text_node(text)
-            Nokogiri::HTML.fragment(text).children
-          end
-
-            class << self
+          class << self
             # Instantiate the correct sub class for a given element
             # @param [ArticleJSON::Elements::Base] element
             # @return [ArticleJSON::Export::HTML::Elements::Base]

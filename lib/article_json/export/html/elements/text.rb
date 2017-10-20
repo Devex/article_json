@@ -36,8 +36,17 @@ module ArticleJSON
 
           # @return [Nokogiri::XML::NodeSet]
           def content_node
-            return create_text_node(@element.content) if @element.href.nil?
-            create_element(:a, @element.content, href: @element.href)
+            return create_text_nodes(@element.content) if @element.href.nil?
+            create_element(:a, href: @element.href) do |a|
+              a.add_child(create_text_nodes(@element.content))
+            end
+          end
+
+          # @param [Nokogiri::HTML::NodeSet] text
+          def create_text_nodes(text)
+            Nokogiri::HTML
+              .fragment(text.gsub(/\n/, '<br>'))
+              .children
           end
         end
       end
