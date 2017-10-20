@@ -6,7 +6,7 @@ module ArticleJSON
           include Shared::Float
 
           # Generate a `<div>` node containing all text box elements
-          # @return [Nokogiri::XML::Element]
+          # @return [Nokogiri::XML::NodeSet]
           def export
             create_element(:div, node_opts) do |div|
               @element.content.each do |child_element|

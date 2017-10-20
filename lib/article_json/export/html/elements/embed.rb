@@ -6,7 +6,7 @@ module ArticleJSON
           include Shared::Caption
 
           # Generate the embedded element node
-          # @return [Nokogiri::XML::Element]
+          # @return [Nokogiri::XML::NodeSet]
           def export
             create_element(:figure) do |figure|
               figure.add_child(embed_node)

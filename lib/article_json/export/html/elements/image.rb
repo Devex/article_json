@@ -17,7 +17,7 @@ module ArticleJSON
 
           private
 
-          # @return [Nokogiri::XML::Element]
+          # @return [Nokogiri::XML::NodeSet]
           def image_node
             create_element(:img, src: @element.source_url)
           end

@@ -7,7 +7,7 @@ module ArticleJSON
           include Shared::Float
 
           # Generate the quote node with all its containing text elements
-          # @return [Nokogiri::XML::Element]
+          # @return [Nokogiri::XML::NodeSet]
           def export
             create_element(:div, node_opts) do |div|
               @element.content.each do |child_element|
