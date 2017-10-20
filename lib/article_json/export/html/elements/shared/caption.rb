@@ -6,7 +6,7 @@ module ArticleJSON
           module Caption
             # Generate the caption node
             # @param [String] tag_name
-            # @return [Nokogiri::XML::Element]
+            # @return [Nokogiri::XML::NodeSet]
             def caption_node(tag_name)
               create_element(tag_name) do |caption|
                 @element.caption.each do |child_element|

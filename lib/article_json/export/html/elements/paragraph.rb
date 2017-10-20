@@ -4,7 +4,7 @@ module ArticleJSON
       module Elements
         class Paragraph < Base
           # Generate the paragraph node with its containing text elements
-          # @return [Nokogiri::XML::Element]
+          # @return [Nokogiri::XML::NodeSet]
           def export
             create_element(:p) do |p|
               @element.content.each do |child_element|
