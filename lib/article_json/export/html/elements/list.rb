@@ -3,8 +3,10 @@ module ArticleJSON
     module HTML
       module Elements
         class List < Base
+          # Generate the list node with its list elements
+          # @return [Nokogiri::XML::Element]
           def export
-            create_element(tag_name).tap do |list|
+            create_element(tag_name) do |list|
               @element.content.each do |child_element|
                 item = create_element(:li)
                 item.add_child(Paragraph.new(child_element).export)

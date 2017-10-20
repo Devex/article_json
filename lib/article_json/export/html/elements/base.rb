@@ -11,7 +11,7 @@ module ArticleJSON
           # Export a HTML node out of the given element
           # Dynamically looks up the right export-element-class, instantiates it
           # and then calls the #build method.
-          # @return [Nokogiri::HTML::Node]
+          # @return [Nokogiri::XML::Element]
           def export
             exporter = self.class == Base ? self.class.build(@element) : self
             exporter.export unless exporter.nil?
@@ -19,8 +19,23 @@ module ArticleJSON
 
           private
 
+          # Create a Nokogiri Node with the given `tag`
+          # @param [Symbol] tag - type of the created element
+          # @param [*Object] args - additional arguments for the element
+          # @yield [Nokogiri::XML::Element] Optional block can be passed, will
+          #                                 be executed with the generated
+          #                                 element as a parameter. Return
+          #                                 value of this method will remain the
+          #                                 main element.
+          # @return [Nokogiri::XML::Element]
           def create_element(tag, *args)
-            Nokogiri::HTML.fragment('').document.create_element(tag.to_s, *args)
+            Nokogiri::HTML
+              .fragment('')
+              .document
+              .create_element(tag.to_s, *args)
+              .tap do |element|
+                yield(element) if block_given?
+              end
           end
 
           def create_text_node(text)
