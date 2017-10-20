@@ -3,7 +3,9 @@ module ArticleJSON
     module HTML
       module Elements
         class Text < Base
-          # @return [Nokogiri::HTML::Node]
+          # Generate a Nokogiri node or simple text node, depending on the text
+          # options
+          # @return [Nokogiri::XML::Element|Nokogiri::XML::Text]
           def export
             return bold_and_italic_node if @element.bold && @element.italic
             return bold_node if @element.bold
@@ -13,26 +15,26 @@ module ArticleJSON
 
           private
 
-          # @return [Nokogiri::HTML::Node]
+          # @return [Nokogiri::XML::Element]
           def italic_node
-            create_element(:em).tap { |em| em.add_child(content_node) }
+            create_element(:em) { |em| em.add_child(content_node) }
           end
 
-          # @return [Nokogiri::HTML::Node]
+          # @return [Nokogiri::XML::Element]
           def bold_node
-            create_element(:strong).tap do |strong|
+            create_element(:strong) do |strong|
               strong.add_child(content_node)
             end
           end
 
-          # @return [Nokogiri::HTML::Node]
+          # @return [Nokogiri::XML::Element]
           def bold_and_italic_node
-            create_element(:strong).tap do |strong|
+            create_element(:strong) do |strong|
               strong.add_child(italic_node)
             end
           end
 
-          # @return [Nokogiri::HTML::Node]
+          # @return [Nokogiri::XML::Element|Nokogiri::XML::Text]
           def content_node
             return create_text_node(@element.content) if @element.href.nil?
             create_element(:a, @element.content, href: @element.href)
