@@ -3,12 +3,13 @@ describe ArticleJSON::Export::HTML::Elements::Text do
 
   let(:source_element) do
     ArticleJSON::Elements::Text.new(
-      content: 'Foo Bar',
+      content: content,
       bold: bold,
       italic: italic,
       href: href
     )
   end
+  let(:content) { 'Foo Bar' }
   let(:bold) { false }
   let(:italic) { false }
   let(:href) { nil }
@@ -18,6 +19,11 @@ describe ArticleJSON::Export::HTML::Elements::Text do
 
     context 'when the source element is plain text' do
       it { should eq 'Foo Bar' }
+    end
+
+    context 'when the source element contains a newline character' do
+      let(:content) { "Foo\nBar" }
+      it { should eq 'Foo<br>Bar' }
     end
 
     context 'when the source element is bold text' do
