@@ -6,9 +6,10 @@ module ArticleJSON
           include Shared::Caption
           include Shared::Float
 
-          # @return [Nokogiri::HTML::Node]
+          # Generate the `<figure>` node containing the image and caption
+          # @return [Nokogiri::HTML::NodeSet]
           def export
-            create_element(:figure, node_opts).tap do |figure|
+            create_element(:figure, node_opts) do |figure|
               figure.add_child(image_node)
               figure.add_child(caption_node(:figcaption))
             end
@@ -16,7 +17,7 @@ module ArticleJSON
 
           private
 
-          # @return [Nokogiri::HTML::Node]
+          # @return [Nokogiri::HTML::NodeSet]
           def image_node
             create_element('amp-img',
                            src: @element.source_url,

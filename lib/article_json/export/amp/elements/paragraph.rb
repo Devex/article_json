@@ -3,8 +3,10 @@ module ArticleJSON
     module AMP
       module Elements
         class Paragraph < Base
+          # Generate the paragraph node with its containing elements
+          # @return [Nokogiri::XML::NodeSet]
           def export
-            create_element(:p).tap do |p|
+            create_element(:p) do |p|
               @element.content.each do |child_element|
                 p.add_child(Text.new(child_element).export)
               end
