@@ -2,19 +2,14 @@ module ArticleJSON
   module Export
     module HTML
       class Exporter
-        # @param [Array[ArticleJSON::Elements::Base]] elements
-        def initialize(elements)
-          @elements = elements
-        end
+        include ArticleJSON::Export::Common::HTML::Exporter
 
-        # Generate a string with the HTML representation of all elements
-        # @return [String]
-        def html
-          doc = Nokogiri::HTML.fragment('')
-          @elements.each do |element|
-            doc.add_child(Elements::Base.new(element).export)
+        class << self
+          # Return the module namespace this class is nested in
+          # @return [Module]
+          def namespace
+            ArticleJSON::Export::HTML
           end
-          doc.to_html(save_with: 0)
         end
       end
     end
