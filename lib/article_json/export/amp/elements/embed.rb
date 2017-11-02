@@ -3,16 +3,7 @@ module ArticleJSON
     module AMP
       module Elements
         class Embed < Base
-          include ArticleJSON::Export::Common::HTML::Elements::Shared::Caption
-
-          # Generate the embedded element node
-          # @return [Nokogiri::XML::NodeSet]
-          def export
-            create_element(:figure) do |figure|
-              figure.add_child(embed_node)
-              figure.add_child(caption_node(:figcaption))
-            end
-          end
+          include ArticleJSON::Export::Common::HTML::Elements::Embed
 
           # Custom element tags required for this embedded element
           # @return [Array[Symbol]]
@@ -29,15 +20,9 @@ module ArticleJSON
 
           private
 
-          # @return [Nokogiri::XML::Element]
-          def embed_node
-            create_element(:div, class: 'embed') do |div|
-              div.add_child(type_specific_node)
-            end
-          end
-
+          # Type specific object that should be embedded
           # @return [Nokogiri::XML::Element|nil]
-          def type_specific_node
+          def embedded_object
             case @element.embed_type.to_sym
             when :youtube_video
               youtube_node
