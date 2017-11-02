@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version = ArticleJSON::VERSION
   s.platform = Gem::Platform::RUBY
 
-  s.authors = %w(@dsager)
+  s.authors = ['Daniel Sager', 'Manu Campos', 'Nicolas Fricke']
   s.email = 'info@devex.com'
   s.homepage = 'https://github.com/Devex/article_json'
   s.license = 'MIT'

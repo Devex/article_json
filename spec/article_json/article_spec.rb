@@ -75,7 +75,7 @@ describe ArticleJSON::Article do
   shared_context 'for a correctly parsed Hash' do
     let(:example_hash) do
       {
-        article_json_version: '0.1.0',
+        article_json_version: '0.2.0',
         content: [
           {
             type: :paragraph,
