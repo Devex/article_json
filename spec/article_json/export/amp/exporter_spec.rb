@@ -42,4 +42,10 @@ describe ArticleJSON::Export::AMP::Exporter do
 
     it { should match_array expected_result }
   end
+
+  describe '.namespace' do
+    subject { described_class.namespace }
+    it { should be_a Module }
+    it { should eq ArticleJSON::Export::AMP }
+  end
 end
