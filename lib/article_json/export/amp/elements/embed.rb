@@ -3,7 +3,7 @@ module ArticleJSON
     module AMP
       module Elements
         class Embed < Base
-          include Shared::Caption
+          include ArticleJSON::Export::Common::HTML::Elements::Shared::Caption
 
           # Generate the embedded element node
           # @return [Nokogiri::XML::NodeSet]
