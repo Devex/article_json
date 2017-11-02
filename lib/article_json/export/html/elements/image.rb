@@ -3,8 +3,8 @@ module ArticleJSON
     module HTML
       module Elements
         class Image < Base
-          include Shared::Caption
-          include Shared::Float
+          include ArticleJSON::Export::Common::HTML::Elements::Shared::Caption
+          include ArticleJSON::Export::Common::HTML::Elements::Shared::Float
 
           # Generate the `<figure>` node containing the image and caption
           # @return [Nokogiri::XML::Element]

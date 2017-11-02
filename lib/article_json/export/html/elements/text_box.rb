@@ -3,7 +3,7 @@ module ArticleJSON
     module HTML
       module Elements
         class TextBox < Base
-          include Shared::Float
+          include ArticleJSON::Export::Common::HTML::Elements::Shared::Float
 
           # Generate a `<div>` node containing all text box elements
           # @return [Nokogiri::XML::NodeSet]

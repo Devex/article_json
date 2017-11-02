@@ -3,8 +3,8 @@ module ArticleJSON
     module HTML
       module Elements
         class Quote < Base
-          include Shared::Caption
-          include Shared::Float
+          include ArticleJSON::Export::Common::HTML::Elements::Shared::Caption
+          include ArticleJSON::Export::Common::HTML::Elements::Shared::Float
 
           # Generate the quote node with all its containing text elements
           # @return [Nokogiri::XML::NodeSet]
