@@ -56,6 +56,12 @@ module ArticleJSON
                 self.class.base_class? ? self.class.build(@element) : self
             end
 
+            # Return the base class for the current element instance
+            # @return [ArticleJSON::Export::Common::HTML::Elements::Base]
+            def base_class
+              self.class.namespace::Base
+            end
+
             module ClassMethods
               # Instantiate the correct sub class for a given element
               # @param [ArticleJSON::Elements::Base] element
