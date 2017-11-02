@@ -41,7 +41,9 @@ require_relative 'article_json/import/google_doc/html/parser'
 
 require_relative 'article_json/export/common/html/elements/base'
 require_relative 'article_json/export/common/html/elements/text'
+require_relative 'article_json/export/common/html/elements/heading'
 require_relative 'article_json/export/common/html/elements/paragraph'
+
 require_relative 'article_json/export/html/elements/shared/caption'
 require_relative 'article_json/export/html/elements/shared/float'
 require_relative 'article_json/export/html/elements/base'
