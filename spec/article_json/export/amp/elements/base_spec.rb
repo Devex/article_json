@@ -50,4 +50,10 @@ describe ArticleJSON::Export::AMP::Elements::Base do
       it { should eq custom_element_class }
     end
   end
+
+  describe '.namespace' do
+    subject { described_class.namespace }
+    it { should be_a Module }
+    it { should eq ArticleJSON::Export::AMP::Elements }
+  end
 end

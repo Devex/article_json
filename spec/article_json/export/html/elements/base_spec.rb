@@ -191,4 +191,10 @@ describe ArticleJSON::Export::HTML::Elements::Base do
       it { should be Object }
     end
   end
+
+  describe '.namespace' do
+    subject { described_class.namespace }
+    it { should be_a Module }
+    it { should eq ArticleJSON::Export::HTML::Elements }
+  end
 end
