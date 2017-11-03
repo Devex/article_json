@@ -52,9 +52,10 @@ module ArticleJSON
     # @param [Symbol] exporter
     # @param [Hash[Symbol => Class]] type_class_mapping
     def register_element_exporters(exporter, type_class_mapping)
-      unless %i(html amp).include?(exporter)
-        raise ArgumentError, '`exporter` needs to be either `:html` or `:amp` '\
-                             "but is `#{exporter.inspect}`"
+      valid_exporters = %i(html amp facebook_instant_article)
+      unless valid_exporters.include?(exporter)
+        raise ArgumentError, '`exporter` needs to be one of ' \
+                             "#{valid_exporters} but is `#{exporter.inspect}`"
       end
       if !type_class_mapping.is_a?(Hash) ||
           type_class_mapping.keys.any? { |key| !key.is_a? Symbol } ||
