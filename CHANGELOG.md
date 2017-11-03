@@ -1,5 +1,8 @@
 # Changelog
 
+## WIP
+- Start work on Facebook Instant Article exporter
+
 ## 0.2.1 - 2017/11/08
 **Fix**: Handle non-successful OEmbed responses by rendering message
 
