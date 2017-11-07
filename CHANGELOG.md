@@ -1,5 +1,8 @@
 # Changelog
 
+## WIP
+- Handle non-successful OEmbed responses
+
 ## 0.2.0 - 2017/11/03
 In this second release we **added support** to:
 - Export AMP along with required libraries for AMP rendering

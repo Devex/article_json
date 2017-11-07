@@ -19,13 +19,21 @@ module ArticleJSON
 
             def embed_node
               create_element(:div, class: 'embed') do |div|
-                div.add_child(embedded_object) if embedded_object
+                div.add_child(embedded_object)
               end
             end
 
             def embedded_object
-              return unless @element.oembed_data
+              return unavailable_node unless @element.oembed_data
               Nokogiri::HTML.fragment(@element.oembed_data[:html])
+            end
+
+            def unavailable_node
+              create_element(:span, class: 'unavailable-embed') do |span|
+                @element.oembed_unavailable_message.each do |element|
+                  span.add_child(base_class.build(element).export)
+                end
+              end
             end
           end
         end

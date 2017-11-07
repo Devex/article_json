@@ -13,5 +13,6 @@ describe ArticleJSON::Utils::OEmbedResolver::VimeoVideo do
       'https://vimeo.com/api/oembed.json?url=https://vimeo.com/42315417'
     end
     let(:oembed_response) { File.read('spec/fixtures/vimeo_video_oembed.json') }
+    let(:expected_name) { 'Vimeo video' }
   end
 end

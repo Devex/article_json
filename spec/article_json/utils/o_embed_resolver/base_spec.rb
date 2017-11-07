@@ -1,6 +1,8 @@
 describe ArticleJSON::Utils::OEmbedResolver::Base do
   subject(:resolver) { described_class.new(element) }
 
+  let(:embed_id) { 'ABC' }
+  let(:embed_type) { :foobar }
   let(:element) do
     ArticleJSON::Elements::Embed.new(
       embed_type: embed_type,
@@ -12,8 +14,6 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
   describe '#oembed_data' do
     subject { resolver.oembed_data }
 
-    let(:embed_id) { 'ABC' }
-    let(:embed_type) { :foobar }
     let(:something_resolver) { double('something resolver') }
     let(:oembed_data) { { foo: :bar } }
 
@@ -25,6 +25,39 @@ describe ArticleJSON::Utils::OEmbedResolver::Base do
     end
 
     it { should eq oembed_data }
+  end
+
+  describe '#unavailable_message' do
+    subject { resolver.unavailable_message }
+    let(:name) { 'Embed type' }
+    let(:source_url) { 'https://example.com' }
+    before do
+      allow(resolver).to receive(:name).and_return(name)
+      allow(resolver).to receive(:source_url).and_return(source_url)
+    end
+    it { should_not be_nil }
+
+    it 'should return an Array of Text elements' do
+      is_expected.to be_an Array
+      is_expected.to all be_a ArticleJSON::Elements::Text
+      expect(subject.size).to eq 3
+      expect(subject[0].content).to include name
+      expect(subject[1].content).to eq source_url
+      expect(subject[1].href).to eq source_url
+      expect(subject[2].content).to include 'not available'
+    end
+  end
+
+  describe '#name' do
+    it 'should raise a NotImplementedError' do
+      expect { resolver.name }.to raise_error NotImplementedError
+    end
+  end
+
+  describe '#source_url' do
+    it 'should raise a NotImplementedError' do
+      expect { resolver.source_url }.to raise_error NotImplementedError
+    end
   end
 
   describe '.build' do

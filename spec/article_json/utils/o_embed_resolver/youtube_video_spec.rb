@@ -16,5 +16,6 @@ describe ArticleJSON::Utils::OEmbedResolver::YoutubeVideo do
     let(:oembed_response) do
       File.read('spec/fixtures/youtube_video_oembed.json')
     end
+    let(:expected_name) { 'Youtube video' }
   end
 end

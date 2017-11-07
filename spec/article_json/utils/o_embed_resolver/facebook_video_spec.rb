@@ -16,5 +16,6 @@ describe ArticleJSON::Utils::OEmbedResolver::FacebookVideo do
     let(:oembed_response) do
       File.read('spec/fixtures/facebook_video_oembed.json')
     end
+    let(:expected_name) { 'Facebook video' }
   end
 end
