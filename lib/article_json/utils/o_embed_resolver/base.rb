@@ -7,22 +7,31 @@ module ArticleJSON
           @element = embed_element
         end
 
-        # @return [Hash]
+        # Requests the OEmbed endpoint of the respective service and returns its
+        # data as a Hash. If the endpoint returns an error, `nil` will be
+        # returned.
+        # @return [Hash|nil]
         def oembed_data
           resolver = self.class == Base ? self.class.build(@element) : self
           resolver.parsed_api_response
         end
 
+
         protected
 
-        # @return [Hash]
+        # @return [Hash|nil]
         def parsed_api_response
-          @api_response ||= begin
+          return @api_response if defined? @api_response
+          @api_response = begin
             uri = URI.parse(oembed_url)
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = (uri.scheme == 'https')
             response = http.request(Net::HTTP::Get.new(uri, http_headers))
-            JSON.parse(response.body, symbolize_names: true)
+            if response.kind_of? Net::HTTPSuccess
+              JSON.parse(response.body, symbolize_names: true)
+            end
+          rescue Net::ProtocolError, JSON::ParserError
+            nil
           end
         end
 

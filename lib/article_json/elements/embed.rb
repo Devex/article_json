@@ -28,7 +28,7 @@ module ArticleJSON
       end
 
       # Obtain the oembed data for this embed element
-      # @return [Hash]
+      # @return [Hash|nil]
       def oembed_data
         oembed_resolver&.oembed_data
       end

@@ -11,18 +11,30 @@ shared_context 'for a successful oembed resolution' do
 
     let(:expected_response) { JSON.parse(oembed_response, symbolize_names: 1) }
 
-    before { stub_oembed_requests }
+    context 'when the source responds successfully' do
+      before { stub_oembed_requests }
 
-    context 'with no additional headers' do
-      it { should eq expected_response }
+      context 'with no additional headers' do
+        it { should eq expected_response }
+      end
+
+      context 'with additional headers' do
+        before do
+          ArticleJSON.configure { |c| c.oembed_user_agent = 'foobar' }
+          stub_oembed_requests('User-Agent' => 'foobar')
+        end
+        it { should eq expected_response }
+      end
     end
 
-    context 'with additional headers' do
-      before do
-        ArticleJSON.configure { |c| c.oembed_user_agent = 'foobar' }
-        stub_oembed_requests('User-Agent' => 'foobar')
-      end
-      it { should eq expected_response }
+    context 'when the source returns no body' do
+      before { stub_oembed_requests(custom_body: '') }
+      it { should eq nil }
+    end
+
+    context 'when the source returns an error code' do
+      before { stub_oembed_requests(error: true) }
+      it { should eq nil }
     end
   end
 end

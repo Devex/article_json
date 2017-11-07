@@ -19,11 +19,12 @@ module ArticleJSON
 
             def embed_node
               create_element(:div, class: 'embed') do |div|
-                div.add_child(embedded_object)
+                div.add_child(embedded_object) if embedded_object
               end
             end
 
             def embedded_object
+              return unless @element.oembed_data
               Nokogiri::HTML.fragment(@element.oembed_data[:html])
             end
           end
