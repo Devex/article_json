@@ -33,6 +33,11 @@ module ArticleJSON
         oembed_resolver&.oembed_data
       end
 
+      # @return [Array[ArticleJSON::Elements::Text]|nil]
+      def oembed_unavailable_message
+        oembed_resolver&.unavailable_message
+      end
+
       private
 
       # @return [ArticleJSON::Utils::OEmbedResolver::Base]

@@ -1,6 +1,12 @@
 shared_context 'for a successful oembed resolution' do
   subject(:resolver) { described_class.new(element) }
 
+  describe '#name' do
+    subject { resolver.name }
+    it { should be_a String }
+    it { should eq expected_name }
+  end
+
   describe '#oembed_url' do
     subject { resolver.oembed_url }
     it { should eq expected_oembed_url }
@@ -36,5 +42,11 @@ shared_context 'for a successful oembed resolution' do
       before { stub_oembed_requests(error: true) }
       it { should eq nil }
     end
+  end
+
+  describe '#source_url' do
+    subject { resolver.source_url }
+    it { should be_a String }
+    it { should start_with 'http' }
   end
 end

@@ -16,6 +16,28 @@ module ArticleJSON
           resolver.parsed_api_response
         end
 
+        # In case that there was an error with requesting the OEmbed data from
+        # the endpoint (e.g. because the URL is unavailable), this message can
+        # be rendered to let the user know about the issue
+        # @return [Array[ArticleJSON::Elements::Text]|nil]
+        def unavailable_message
+          [
+            ArticleJSON::Elements::Text.new(content: "The #{name} "),
+            ArticleJSON::Elements::Text.new(content: source_url,
+                                            href: source_url),
+            ArticleJSON::Elements::Text.new(content: ' is not available.'),
+          ]
+        end
+
+        def name
+          raise NotImplementedError,
+                '`#name` needs to be implemented by the subclass'
+        end
+
+        def source_url
+          raise NotImplementedError,
+                '`#source_url` needs to be implemented by the subclass'
+        end
 
         protected
 

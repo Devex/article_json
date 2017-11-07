@@ -14,5 +14,6 @@ describe ArticleJSON::Utils::OEmbedResolver::Slideshare do
         'https://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012'
     end
     let(:oembed_response) { File.read('spec/fixtures/slideshare_oembed.json') }
+    let(:expected_name) { 'Slideshare deck' }
   end
 end

@@ -16,5 +16,6 @@ describe ArticleJSON::Utils::OEmbedResolver::Tweet do
     let(:oembed_response) do
       File.read('spec/fixtures/tweet_oembed.json')
     end
+    let(:expected_name) { 'Tweet' }
   end
 end
