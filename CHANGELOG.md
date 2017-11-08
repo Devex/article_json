@@ -1,7 +1,7 @@
 # Changelog
 
-## WIP
-- Handle non-successful OEmbed responses
+## 0.2.1 - 2017/11/08
+**Fix**: Handle non-successful OEmbed responses by rendering message
 
 ## 0.2.0 - 2017/11/03
 In this second release we **added support** to:
