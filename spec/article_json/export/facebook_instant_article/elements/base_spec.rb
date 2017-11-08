@@ -62,7 +62,7 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Base do
         )
       end
       let(:expected_html) do
-        '<div class="quote"><p>Foo Bar</p><small>Baz</small></div>'
+        '<aside><p>Foo Bar</p><cite>Baz</cite></aside>'
       end
       it { should eq expected_html }
     end
