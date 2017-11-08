@@ -19,7 +19,7 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Quote do
     context 'when the quote is not floating' do
       let(:float) { nil }
       let(:expected_html) do
-        '<div class="quote"><p>Foo Bar</p><small>Baz</small></div>'
+        '<aside><p>Foo Bar</p><cite>Baz</cite></aside>'
       end
       it { should eq expected_html }
     end
@@ -27,7 +27,7 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Quote do
     context 'when the quote is floating on the left' do
       let(:float) { :left }
       let(:expected_html) do
-        '<div class="quote float-left"><p>Foo Bar</p><small>Baz</small></div>'
+        '<aside><p>Foo Bar</p><cite>Baz</cite></aside>'
       end
       it { should eq expected_html }
     end
@@ -35,7 +35,7 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Quote do
     context 'when the quote is floating on the right' do
       let(:float) { :right }
       let(:expected_html) do
-        '<div class="quote float-right"><p>Foo Bar</p><small>Baz</small></div>'
+        '<aside><p>Foo Bar</p><cite>Baz</cite></aside>'
       end
       it { should eq expected_html }
     end
