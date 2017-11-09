@@ -51,7 +51,14 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Base do
       let(:source_element) do
         ArticleJSON::Elements::TextBox.new(content: [sample_paragraph])
       end
-      it { should eq '<div class="text-box"><p>Foo Bar</p></div>' }
+      let(:expected_html) do
+        '<div class="text-box">' \
+          '<p>────────</p>'\
+          '<p>Foo Bar</p>'\
+          '<p>────────</p>'\
+        '</div>'
+      end
+      it { should eq expected_html }
     end
 
     context 'when the source element is a quote' do
