@@ -15,19 +15,31 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::TextBox do
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
 
+    shared_examples 'for an ASCII-art text box' do
+      it 'should render an ASCII-art formatted text box' do
+        is_expected.to be_a String
+        is_expected
+          .to eq '<div class="text-box">' \
+                   '<p>────────</p>'\
+                   '<p>Foo Bar</p>'\
+                   '<p>────────</p>'\
+                 '</div>'
+      end
+    end
+
     context 'when the box is not floating' do
       let(:float) { nil }
-      it { should eq '<div class="text-box"><p>Foo Bar</p></div>' }
+      include_examples 'for an ASCII-art text box'
     end
 
     context 'when the box is floating left' do
       let(:float) { :left }
-      it { should eq '<div class="text-box float-left"><p>Foo Bar</p></div>' }
+      include_examples 'for an ASCII-art text box'
     end
 
     context 'when the box is floating right' do
       let(:float) { :right }
-      it { should eq '<div class="text-box float-right"><p>Foo Bar</p></div>' }
+      include_examples 'for an ASCII-art text box'
     end
   end
 end
