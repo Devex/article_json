@@ -14,7 +14,9 @@ module ArticleJSON
                 @element.content.each do |child_element|
                   div.add_child(base_class.new(child_element).export)
                 end
-                div.add_child(caption_node(caption_tag))
+                if @element.caption&.any?
+                  div.add_child(caption_node(caption_tag))
+                end
               end
             end
 

@@ -12,7 +12,9 @@ module ArticleJSON
             def export
               create_element(:figure, node_opts) do |figure|
                 figure.add_child(image_node)
-                figure.add_child(caption_node(:figcaption))
+                if @element.caption&.any?
+                  figure.add_child(caption_node(:figcaption))
+                end
               end
             end
 

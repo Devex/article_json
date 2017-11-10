@@ -6,24 +6,36 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
     ArticleJSON::Elements::Embed.new(
       embed_type: embed_type,
       embed_id: 666,
-      caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
+      caption: caption,
       tags: %w(test)
     )
   end
+  let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Foo Bar')] }
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
+    let(:oembed_data) { { html: 'Embedded Object: something-666' } }
+    before do
+      allow(source_element).to receive(:oembed_data).and_return(oembed_data)
+    end
 
     context 'when the endpoint successfully returns OEmbed data' do
-      let(:expected_html) do
-        '<figure><div class="embed">Embedded Object: something-666</div>' \
+      context 'with a proper caption' do
+        let(:expected_html) do
+          '<figure><div class="embed">Embedded Object: something-666</div>' \
           '<figcaption>Foo Bar</figcaption></figure>'
+        end
+        it { should eq expected_html }
       end
-      let(:oembed_data) { { html: 'Embedded Object: something-666' } }
-      before do
-        allow(source_element).to receive(:oembed_data).and_return(oembed_data)
+
+      context 'without a proper caption' do
+        let(:caption) { [] }
+        let(:expected_html) do
+          '<figure><div class="embed">Embedded Object: something-666</div>' \
+          '</figure>'
+        end
+        it { should eq expected_html }
       end
-      it { should eq expected_html }
     end
 
     context 'when the endpoint does not return OEmbed data' do
@@ -34,10 +46,7 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
         'https://www.youtube.com/watch?v=666</a> is not available.</span>'\
         '</div><figcaption>Foo Bar</figcaption></figure>'
       end
-      let(:oembed_data) { { html: 'Embedded Object: something-666' } }
-      before do
-        allow(source_element).to receive(:oembed_data).and_return(nil)
-      end
+      let(:oembed_data) { nil }
       it { should eq expected_html }
     end
   end

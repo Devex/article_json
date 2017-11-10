@@ -5,10 +5,11 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     ArticleJSON::Elements::Embed.new(
       embed_type: source_element_embed_type,
       embed_id: 666,
-      caption: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')],
+      caption: caption,
       tags: %w(test)
     )
   end
+  let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Foo Bar')] }
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
@@ -95,6 +96,18 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       before do
         allow(source_element).to receive(:oembed_data).and_return(oembed_data)
       end
+      it { should eq expected_html }
+    end
+
+    context 'with no caption' do
+      let(:source_element_embed_type) { :youtube_video }
+      let(:caption) { [] }
+      let(:expected_html) do
+        '<figure><div class="embed">' \
+        '<amp-youtube data-videoid="666" width="560" height="315">' \
+        '</amp-youtube></div></figure>'
+      end
+
       it { should eq expected_html }
     end
   end

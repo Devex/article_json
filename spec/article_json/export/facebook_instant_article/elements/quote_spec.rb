@@ -8,10 +8,12 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Quote do
           content: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
         ),
       ],
-      caption: [ArticleJSON::Elements::Text.new(content: 'Baz')],
+      caption: caption,
       float: float
     )
   end
+  let(:float) { nil }
+  let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Baz')] }
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
@@ -38,6 +40,11 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Quote do
         '<aside><p>Foo Bar</p><cite>Baz</cite></aside>'
       end
       it { should eq expected_html }
+    end
+
+    context 'when no caption is present' do
+      let(:caption) { [] }
+      it { should eq '<aside><p>Foo Bar</p></aside>' }
     end
   end
 end

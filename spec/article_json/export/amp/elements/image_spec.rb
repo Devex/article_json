@@ -4,12 +4,12 @@ describe ArticleJSON::Export::AMP::Elements::Image do
   let(:source_element) do
     ArticleJSON::Elements::Image.new(
       source_url: '/foo/bar.jpg',
-      caption: [caption],
+      caption: caption,
       float: float
     )
   end
   let(:float) { nil }
-  let(:caption) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
+  let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Foo Bar')] }
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
@@ -39,6 +39,15 @@ describe ArticleJSON::Export::AMP::Elements::Image do
         '<figure class="float-right"><amp-img src="/foo/bar.jpg" ' \
         'width="640" height="480" layout="responsive">' \
         '</amp-img><figcaption>Foo Bar</figcaption></figure>'
+      end
+      it { should eq expected_html }
+    end
+
+    context 'when no caption is provided' do
+      let(:caption) { [] }
+      let(:expected_html) do
+        '<figure><amp-img src="/foo/bar.jpg" width="640" height="480" '\
+        'layout="responsive"></amp-img></figure>'
       end
       it { should eq expected_html }
     end
