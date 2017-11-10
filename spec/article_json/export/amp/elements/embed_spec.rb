@@ -1,10 +1,11 @@
 describe ArticleJSON::Export::AMP::Elements::Embed do
   subject(:element) { described_class.new(source_element) }
   let(:source_element_embed_type) { :youtube_video }
+  let(:source_element_embed_id) { '666' }
   let(:source_element) do
     ArticleJSON::Elements::Embed.new(
       embed_type: source_element_embed_type,
-      embed_id: 666,
+      embed_id: source_element_embed_id,
       caption: caption,
       tags: %w(test)
     )
@@ -66,9 +67,10 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
 
     context 'with a tweet' do
       let(:source_element_embed_type) { :tweet }
+      let(:source_element_embed_id) { 'myTwitterAccount/1234' }
       let(:expected_html) do
         '<figure><div class="embed">' \
-        '<amp-twitter data-tweetid="666" width="560" height="315">' \
+        '<amp-twitter data-tweetid="1234" width="560" height="315">' \
         '</amp-twitter></div>' \
         '<figcaption>Foo Bar</figcaption></figure>'
       end

@@ -4,6 +4,7 @@
 - Start work on Facebook Instant Article exporter
 - Add support to exporters for `caption` elements that are an empty array
 - GDoc Importer: Support `[no-caption]` text, returns empty caption for element
+- Fix AMP export of Twitter tweets
 
 ## 0.2.1 - 2017/11/08
 **Fix**: Handle non-successful OEmbed responses by rendering message
