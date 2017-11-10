@@ -18,7 +18,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
   let(:css) { '' }
   let(:source_url) { 'foo/bar.jpg' }
   let(:image_fragment) { "<p><span><img src=\"#{source_url}\"></span></p>" }
-  let(:caption_fragment) { '<p><span>foo</span></p>' }
+  let(:caption_text) { 'foo' }
+  let(:caption_fragment) { "<p><span>#{caption_text}</span></p>" }
 
   describe '#source_url' do
     subject { element.source_url }
@@ -150,7 +151,15 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the caption nil' do
       let(:caption_node) { nil }
-      it 'returns a list with one empty text element' do
+      it 'returns an empty list' do
+        expect(subject).to be_an Array
+        expect(subject).to be_empty
+      end
+    end
+
+    context 'when the caption is `[no-caption]`' do
+      let(:caption_text) { '[no-caption]' }
+      it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty
       end

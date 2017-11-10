@@ -50,13 +50,23 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
   describe '#caption' do
     subject { parser.caption }
 
-    it 'returns a list of text elements' do
-      expect(subject).to be_an Array
-      expect(subject.size).to eq 1
+    context 'if there is a proper caption defined' do
+      it 'returns a list of text elements' do
+        expect(subject).to be_an Array
+        expect(subject.size).to eq 1
 
-      expect(subject).to all be_a ArticleJSON::Elements::Text
+        expect(subject).to all be_a ArticleJSON::Elements::Text
 
-      expect(subject.first.content).to eq caption
+        expect(subject.first.content).to eq caption
+      end
+    end
+
+    context 'if the caption is `[no-caption]`' do
+      let(:caption) { '[no-caption]' }
+      it 'returns an empty list' do
+        expect(subject).to be_an Array
+        expect(subject).to be_empty
+      end
     end
   end
 

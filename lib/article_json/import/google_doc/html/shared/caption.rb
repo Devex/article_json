@@ -7,7 +7,7 @@ module ArticleJSON
             # Parse the caption node
             # @return [Array[ArticleJSON::Elements::Text]]
             def caption
-              return empty_caption if @caption_node.nil?
+              return [] if no_caption?
               ArticleJSON::Import::GoogleDoc::HTML::TextParser.extract(
                 node: @caption_node,
                 css_analyzer: @css_analyzer
@@ -16,8 +16,9 @@ module ArticleJSON
 
             private
 
-            def empty_caption
-              [ArticleJSON::Elements::Text.new(content: '&nbsp;')]
+            def no_caption?
+              @caption_node.nil? ||
+                @caption_node.inner_text.strip == '[no-caption]'
             end
           end
         end
