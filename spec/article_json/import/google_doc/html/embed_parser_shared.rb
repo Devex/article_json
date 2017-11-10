@@ -2,11 +2,13 @@ shared_context 'for an embed parser' do
   subject(:parser) do
     described_class.new(
       node: Nokogiri::HTML.fragment(html.strip),
-      caption_node: Nokogiri::HTML.fragment('<p><span>Caption</span></p>'),
+      caption_node:
+        Nokogiri::HTML.fragment("<p><span>#{caption_text}</span></p>"),
       css_analyzer: ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer.new
     )
   end
 
+  let(:caption_text) { 'Caption' }
   let(:url) { url_examples.sample }
   let(:html) do
     <<-html
@@ -47,8 +49,24 @@ shared_context 'for an embed parser' do
       expect(subject.embed_type).to eq expected_embed_type
       expect(subject.embed_id).to eq expected_embed_id
       expect(subject.tags).to match_array expected_tags
-      expect(subject.caption).to all be_a ArticleJSON::Elements::Text
-      expect(subject.caption.first.content).to eq 'Caption'
+      expect(subject.caption).to be_an Array
+    end
+
+    context 'when a caption is provided' do
+      it 'should have the right caption defined' do
+        expect(subject.caption).to be_an Array
+        expect(subject.caption).to all be_a ArticleJSON::Elements::Text
+        expect(subject.caption.first.content).to eq caption_text
+      end
+    end
+
+    context 'when the caption is `[no-caption]`' do
+      let(:caption_text) { '[no-caption]' }
+
+      it 'should have an empty list as caption' do
+        expect(subject.caption).to be_an Array
+        expect(subject.caption).to be_empty
+      end
     end
   end
 
