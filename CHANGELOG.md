@@ -2,6 +2,7 @@
 
 ## WIP
 - Start work on Facebook Instant Article exporter
+- Add support to exporters for `caption` elements that are an empty array
 
 ## 0.2.1 - 2017/11/08
 **Fix**: Handle non-successful OEmbed responses by rendering message

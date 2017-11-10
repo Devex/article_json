@@ -11,7 +11,9 @@ module ArticleJSON
             def export
               create_element(:figure) do |figure|
                 figure.add_child(embed_node)
-                figure.add_child(caption_node(:figcaption))
+                if @element.caption&.any?
+                  figure.add_child(caption_node(:figcaption))
+                end
               end
             end
 
