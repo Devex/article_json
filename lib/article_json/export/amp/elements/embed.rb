@@ -55,8 +55,11 @@ module ArticleJSON
 
           # @return [Nokogiri::XML::Element]
           def tweet_node
+            # The embed_id of a tweet is stored as "<handle>/<tweet_id>" but
+            # the `amp-twitter` tag only takes the `tweet_id` part
+            tweet_id = @element.embed_id.split('/').last
             create_element('amp-twitter',
-                           'data-tweetid' => @element.embed_id,
+                           'data-tweetid': tweet_id,
                            width: default_width,
                            height: default_height)
           end
