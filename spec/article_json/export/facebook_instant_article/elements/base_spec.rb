@@ -83,7 +83,7 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Base do
         )
       end
       let(:expected_html) do
-        '<figure><div class="embed">Embedded Object: something-666</div>' \
+        '<figure class="op-interactive">Embedded Object: something-666' \
           '<figcaption>Foo Bar</figcaption></figure>'
       end
       let(:oembed_data) { { html: 'Embedded Object: something-666' } }
