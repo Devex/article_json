@@ -201,6 +201,22 @@ An example of
 the AMP HTML export for the parsed reference document can be found 
 [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
 
+### Plain Text
+As the name suggests, this exporter generates a plain text version of the article.
+Rich text elements like images, embeds or even text boxes are not being rendered.
+
+The reference document rendered as plain text can be found
+[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.txt).
+
+Usage:
+```ruby
+# Create your article instance as you normally do
+article = ArticleJSON::Article.from_hash(parsed_json)
+
+# Then simply call `#to_plain_text` on it
+article.to_plain_text 
+```
+
 ## Contributing
 - Fork this repository
 - Implement your feature or fix including Tests

@@ -39,6 +39,19 @@ require_relative 'article_json/import/google_doc/html/embedded_slideshare_parser
 require_relative 'article_json/import/google_doc/html/embedded_tweet_parser'
 require_relative 'article_json/import/google_doc/html/parser'
 
+require_relative 'article_json/export/common/elements/base'
+
+require_relative 'article_json/export/plain_text/elements/base'
+require_relative 'article_json/export/plain_text/elements/text'
+require_relative 'article_json/export/plain_text/elements/heading'
+require_relative 'article_json/export/plain_text/elements/paragraph'
+require_relative 'article_json/export/plain_text/elements/list'
+require_relative 'article_json/export/plain_text/elements/image'
+require_relative 'article_json/export/plain_text/elements/text_box'
+require_relative 'article_json/export/plain_text/elements/quote'
+require_relative 'article_json/export/plain_text/elements/embed'
+require_relative 'article_json/export/plain_text/exporter'
+
 require_relative 'article_json/export/common/html/elements/shared/caption'
 require_relative 'article_json/export/common/html/elements/shared/float'
 require_relative 'article_json/export/common/html/elements/base'

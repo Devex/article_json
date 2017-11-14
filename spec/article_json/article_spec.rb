@@ -53,6 +53,17 @@ describe ArticleJSON::Article do
     it { should eq '<p>Foo Bar</p>' }
   end
 
+  describe '#plain_text_exporter' do
+    subject { article.plain_text_exporter }
+    it { should be_a ArticleJSON::Export::PlainText::Exporter }
+  end
+
+  describe '#to_plain_text' do
+    subject { article.to_plain_text }
+    it { should be_a String }
+    it { should eq 'Foo Bar' }
+  end
+
   describe '#place_additional_elements' do
     subject { article.place_additional_elements(additional_elements) }
     let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: 'text') }
