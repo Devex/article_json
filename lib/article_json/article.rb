@@ -46,6 +46,18 @@ module ArticleJSON
       amp_exporter.html
     end
 
+    # Exporter instance for plain text
+    # @return [ArticleJSON::Export::PlainText::Exporter]
+    def plain_text_exporter
+      ArticleJSON::Export::PlainText::Exporter.new(@elements)
+    end
+
+    # Plain text export of the article
+    # @return [String]
+    def to_plain_text
+      plain_text_exporter.text
+    end
+
     # Distribute passed elements evenly throughout the article. All passed
     # elements need to have an exporter to be represented in the rendered
     # article.
