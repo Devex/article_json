@@ -18,7 +18,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     context 'with a youtube video' do
       let(:source_element_embed_type) { :youtube_video }
       let(:expected_html) do
-        '<figure><div class="embed">' \
+        '<figure><div class="embed youtube_video">' \
         '<amp-youtube data-videoid="666" width="560" height="315">' \
         '</amp-youtube></div>' \
         '<figcaption>Foo Bar</figcaption></figure>'
@@ -30,7 +30,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     context 'with a vimeo video' do
       let(:source_element_embed_type) { :vimeo_video }
       let(:expected_html) do
-        '<figure><div class="embed">' \
+        '<figure><div class="embed vimeo_video">' \
         '<amp-vimeo data-videoid="666" width="560" height="315">' \
         '</amp-vimeo></div>' \
         '<figcaption>Foo Bar</figcaption></figure>'
@@ -43,7 +43,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       let(:url) { 'facebook.com/facebook/videos/666' }
       let(:source_element_embed_type) { :facebook_video }
       let(:expected_html) do
-        '<figure><div class="embed">' \
+        '<figure><div class="embed facebook_video">' \
         '<amp-facebook ' \
         'data-embedded-as="video" ' \
         'data-href="https://www.facebook.com/Devex/videos/666" ' \
@@ -69,7 +69,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       let(:source_element_embed_type) { :tweet }
       let(:source_element_embed_id) { 'myTwitterAccount/1234' }
       let(:expected_html) do
-        '<figure><div class="embed">' \
+        '<figure><div class="embed tweet">' \
         '<amp-twitter data-tweetid="1234" width="560" height="315">' \
         '</amp-twitter></div>' \
         '<figcaption>Foo Bar</figcaption></figure>'
@@ -81,7 +81,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
     context 'with a slideshare presentation' do
       let(:source_element_embed_type) { :slideshare }
       let(:expected_html) do
-        '<figure><div class="embed">' \
+        '<figure><div class="embed slideshare">' \
         '<amp-iframe ' \
         'src="https://www.slideshare.net/slideshow/embed_code/key/fAYvedL9rNCr9k"' \
         ' width="427" height="356" frameborder="0">' \
@@ -105,7 +105,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       let(:source_element_embed_type) { :youtube_video }
       let(:caption) { [] }
       let(:expected_html) do
-        '<figure><div class="embed">' \
+        '<figure><div class="embed youtube_video">' \
         '<amp-youtube data-videoid="666" width="560" height="315">' \
         '</amp-youtube></div></figure>'
       end
