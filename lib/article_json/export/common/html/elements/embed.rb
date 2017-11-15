@@ -20,7 +20,8 @@ module ArticleJSON
             private
 
             def embed_node
-              create_element(:div, class: 'embed') do |div|
+              type = @element.embed_type || :type
+              create_element(:div, class: "embed #{type}") do |div|
                 div.add_child(embedded_object)
               end
             end

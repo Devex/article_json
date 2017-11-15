@@ -22,7 +22,8 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
     context 'when the endpoint successfully returns OEmbed data' do
       context 'with a proper caption' do
         let(:expected_html) do
-          '<figure><div class="embed">Embedded Object: something-666</div>' \
+          '<figure><div class="embed something">' \
+          'Embedded Object: something-666</div>' \
           '<figcaption>Foo Bar</figcaption></figure>'
         end
         it { should eq expected_html }
@@ -31,7 +32,30 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
       context 'without a proper caption' do
         let(:caption) { [] }
         let(:expected_html) do
-          '<figure><div class="embed">Embedded Object: something-666</div>' \
+          '<figure><div class="embed something">' \
+          'Embedded Object: something-666</div>' \
+          '</figure>'
+        end
+        it { should eq expected_html }
+      end
+
+      context 'when it is a facebook video' do
+        let(:embed_type) { :facebook_video }
+        let(:caption) { [] }
+        let(:expected_html) do
+          '<figure><div class="embed facebook_video">' \
+          'Embedded Object: something-666</div>' \
+          '</figure>'
+        end
+        it { should eq expected_html }
+      end
+
+      context 'when it is a vimeo video' do
+        let(:embed_type) { :vimeo_video }
+        let(:caption) { [] }
+        let(:expected_html) do
+          '<figure><div class="embed vimeo_video">' \
+          'Embedded Object: something-666</div>' \
           '</figure>'
         end
         it { should eq expected_html }
@@ -41,7 +65,8 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
     context 'when the endpoint does not return OEmbed data' do
       let(:embed_type) { :youtube_video }
       let(:expected_html) do
-        '<figure><div class="embed"><span class="unavailable-embed">'\
+        '<figure><div class="embed youtube_video">' \
+        '<span class="unavailable-embed">'\
         'The Youtube video <a href="https://www.youtube.com/watch?v=666">'\
         'https://www.youtube.com/watch?v=666</a> is not available.</span>'\
         '</div><figcaption>Foo Bar</figcaption></figure>'
