@@ -64,9 +64,37 @@ describe ArticleJSON::Article do
     it { should eq 'Foo Bar' }
   end
 
+  describe '#elements' do
+    subject { article.elements }
+
+    let(:article_elements) { [paragraph, paragraph] }
+    let(:article) { ArticleJSON::Article.new(article_elements) }
+
+    context 'when additional elements have been added' do
+      before { article.place_additional_elements(additional_elements) }
+      let(:additional_element) do
+        double('additional_element', type: :additional_element)
+      end
+      let(:additional_elements) { [additional_element] }
+
+      it 'should return the merged elements' do
+        expect(subject).to be_an Array
+        expect(subject.map(&:type)).to eq [:paragraph,
+                                           additional_element.type,
+                                           :paragraph]
+      end
+    end
+
+    context 'when no additional elements have been added' do
+      it 'should return the original elements' do
+        expect(subject).to be_an Array
+        expect(subject).to eq article_elements
+      end
+    end
+  end
+
   describe '#place_additional_elements' do
     subject { article.place_additional_elements(additional_elements) }
-    let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: 'text') }
 
     let(:article_elements) { [paragraph, paragraph] }
     let(:article) { ArticleJSON::Article.new(article_elements) }
@@ -75,11 +103,28 @@ describe ArticleJSON::Article do
     end
     let(:additional_elements) { [additional_element] }
 
-    it 'should place the elements in the right position' do
+    it 'should reset the `#elements` memoization' do
+      article.elements
       expect { subject }
-        .to change { article.elements.map(&:type) }
-              .from(%i(paragraph paragraph))
-              .to([:paragraph, additional_element.type, :paragraph])
+        .to change { article.instance_variable_get(:@elements) }.to(nil)
+    end
+
+    it 'should register the additional elements' do
+      expect { subject }.to change { article.additional_elements }
+                              .from([])
+                              .to(additional_elements)
+    end
+
+    context 'when there are already additional elements defined' do
+      let(:old_additional_element) { double('old_element', type: :old_element) }
+      before { article.place_additional_elements([old_additional_element]) }
+
+      it 'should add new additional to the end' do
+        expect { subject }.to change { article.additional_elements }
+                                .from([old_additional_element])
+                                .to([old_additional_element,
+                                     additional_element])
+      end
     end
   end
 

@@ -1,10 +1,26 @@
 module ArticleJSON
   class Article
-    attr_reader :elements
+    attr_reader :article_elements, :additional_elements
 
     # @param [Array[ArticleJSON::Elements::Base]] elements
     def initialize(elements)
-      @elements = elements
+      @article_elements = elements
+      @additional_elements = []
+    end
+
+    # All elements of this article with optional additional elements placed in
+    # between
+    # @return [Array[ArticleJSON::Elements::Base]]
+    def elements
+      @elements ||= begin
+        if @additional_elements.any?
+          ArticleJSON::Utils::AdditionalElementPlacer
+            .new(@article_elements, @additional_elements)
+            .merge_elements
+        else
+          @article_elements
+        end
+      end
     end
 
     # Hash representation of the article
@@ -12,7 +28,7 @@ module ArticleJSON
     def to_h
       {
         article_json_version: VERSION,
-        content: @elements.map(&:to_h),
+        content: elements.map(&:to_h),
       }
     end
 
@@ -25,7 +41,7 @@ module ArticleJSON
     # Exporter instance for HTML
     # @return [ArticleJSON::Export::HTML::Exporter]
     def html_exporter
-      @html_exporter = ArticleJSON::Export::HTML::Exporter.new(@elements)
+      ArticleJSON::Export::HTML::Exporter.new(elements)
     end
 
     # HTML export of the article
@@ -37,7 +53,7 @@ module ArticleJSON
     # Exporter instance for AMP
     # @return [ArticleJSON::Export::AMP::Exporter]
     def amp_exporter
-      ArticleJSON::Export::AMP::Exporter.new(@elements)
+      ArticleJSON::Export::AMP::Exporter.new(elements)
     end
 
     # AMP export of the article
@@ -49,7 +65,7 @@ module ArticleJSON
     # Exporter instance for plain text
     # @return [ArticleJSON::Export::PlainText::Exporter]
     def plain_text_exporter
-      ArticleJSON::Export::PlainText::Exporter.new(@elements)
+      ArticleJSON::Export::PlainText::Exporter.new(elements)
     end
 
     # Plain text export of the article
@@ -60,13 +76,13 @@ module ArticleJSON
 
     # Distribute passed elements evenly throughout the article. All passed
     # elements need to have an exporter to be represented in the rendered
-    # article.
+    # article. If the method is called multiple times, the order of additional
+    # elements is maintained.
     # @param [Object] additional_elements
     def place_additional_elements(additional_elements)
-      @elements =
-        ArticleJSON::Utils::AdditionalElementPlacer
-          .new(self, additional_elements)
-          .merge_elements
+      # Reset the `#elements` method memoization
+      @elements = nil
+      @additional_elements.concat(additional_elements)
     end
 
     class << self

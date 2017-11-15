@@ -1,18 +1,21 @@
 describe ArticleJSON::Utils::AdditionalElementPlacer do
   describe '#merge_elements' do
-    subject { described_class.new(article, additional_elements).merge_elements }
-    let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: 'text') }
+    subject do
+      described_class.new(article_elements, additional_elements).merge_elements
+    end
+    let(:text) { ArticleJSON::Elements::Text.new(content: 'Lorem Ipsum ') }
+    let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: [text]) }
     let(:image) do
-      ArticleJSON::Elements::Image.new(source_url: 'url', caption: 'caption')
+      ArticleJSON::Elements::Image.new(source_url: 'url', caption: [text])
     end
     let(:quote) do
-      ArticleJSON::Elements::Quote.new(content: 'uh la la', caption: 'caption')
+      ArticleJSON::Elements::Quote.new(content: [paragraph], caption: [text])
     end
-    let(:list) { ArticleJSON::Elements::List.new(content: '1 2 3') }
+    let(:list) { ArticleJSON::Elements::List.new(content: [paragraph]) }
     let(:embed) do
       ArticleJSON::Elements::Embed.new(embed_type: 'youtube',
                                        embed_id: 'qwe123',
-                                       caption: 'oh so funny')
+                                       caption: [text])
     end
 
     let(:article_elements) do
@@ -39,7 +42,6 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
         embed,
       ]
     end
-    let(:article) { ArticleJSON::Article.new(article_elements) }
 
     shared_examples 'for properly added additional elements' do
       it 'should place the elements in the right position' do

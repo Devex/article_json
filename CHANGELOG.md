@@ -6,6 +6,7 @@
 - GDoc Importer: Support `[no-caption]` text, returns empty caption for element
 - Fix AMP export of Twitter tweets
 - Add a plain text exporter
+- Improve behavior of multiple calls to `Article#place_additional_elements`
 
 ## 0.2.1 - 2017/11/08
 **Fix**: Handle non-successful OEmbed responses by rendering message
