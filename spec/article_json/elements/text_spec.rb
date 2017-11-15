@@ -58,6 +58,25 @@ describe ArticleJSON::Elements::Text do
     end
   end
 
+  describe '#length' do
+    subject { element.length }
+
+    context 'when `content` contains text' do
+      let(:content) { 'Three little words' }
+      it { should eq 18 }
+    end
+
+    context 'when `content` is an empty String' do
+      let(:content) { '' }
+      it { should eq 0 }
+    end
+
+    context 'when `content` is `nil`' do
+      let(:content) { nil }
+      it { should eq 0 }
+    end
+  end
+
   describe '.parse_hash' do
     subject { described_class.parse_hash(hash) }
     it { should be_a ArticleJSON::Elements::Text }

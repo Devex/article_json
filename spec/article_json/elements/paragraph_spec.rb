@@ -88,6 +88,49 @@ describe ArticleJSON::Elements::Paragraph do
     end
   end
 
+  describe '#length' do
+    subject { element.length }
+
+    context 'when `content` contains only text elements' do
+      context 'when some text elements contain actual text' do
+        let(:content) do
+          [
+            ArticleJSON::Elements::Text.new(content: ''),
+            ArticleJSON::Elements::Text.new(content: 'Lorem ipsum'),
+            ArticleJSON::Elements::Text.new(content: ' sit dol'),
+            ArticleJSON::Elements::Text.new(content: 'or'),
+          ]
+        end
+        it { should eq 21 }
+      end
+
+      context 'when all text elements are blank' do
+        let(:content) do
+          [
+            ArticleJSON::Elements::Text.new(content: ''),
+            ArticleJSON::Elements::Text.new(content: ' '),
+          ]
+        end
+        it { should eq 0 }
+      end
+    end
+
+    context 'when `content` contains other elements' do
+      let(:content) do
+        [
+          ArticleJSON::Elements::Image.new(source_url: 'foo.jpg', caption: []),
+          ArticleJSON::Elements::Text.new(content: 'Lorem ipsum'),
+        ]
+      end
+      it { should eq 11}
+    end
+
+    context 'when `content` is `nil`' do
+      let(:content) { nil }
+      it { should eq 0 }
+    end
+  end
+
   describe '.parse_hash' do
     subject { described_class.parse_hash(hash) }
     it { should be_a ArticleJSON::Elements::Paragraph }

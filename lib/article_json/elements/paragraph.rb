@@ -32,6 +32,16 @@ module ArticleJSON
         end
       end
 
+      # Return the sum of all characters within the content's text elements
+      # @return [Integer]
+      def length
+        return 0 if empty?
+        @content.reduce(0) do |sum, element|
+          sum + (element.respond_to?(:length) ? element.length : 0)
+        end
+      end
+      alias size length
+
       class << self
         # Create a paragraph element from Hash
         # @return [ArticleJSON::Elements::Paragraph]
