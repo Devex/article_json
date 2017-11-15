@@ -40,6 +40,14 @@ module ArticleJSON
         empty? || content.gsub(/[\s\u00A0]/, '').empty?
       end
 
+      # Get the number of characters contained by this text element
+      # @return [Integer]
+      def length
+        return 0 if blank?
+        content.length
+      end
+      alias size length
+
       class << self
         # Create a text element from Hash
         # @return [ArticleJSON::Elements::Text]
