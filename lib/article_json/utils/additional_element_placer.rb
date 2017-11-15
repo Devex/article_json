@@ -6,10 +6,10 @@ module ArticleJSON
     # there are not enough spaces, the remaining additional elements will be
     # appended to the existing article elements.
     class AdditionalElementPlacer
-      # @param [ArticleJSON::Article] article
+      # @param [Array[ArticleJSON::Article::Elements::Base]] elements
       # @param [Array[Object]] additional_elements
-      def initialize(article, additional_elements)
-        @elements = article.elements.dup
+      def initialize(elements, additional_elements)
+        @elements = elements.dup
         @additional_elements = additional_elements
       end
 
