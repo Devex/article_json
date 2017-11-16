@@ -20,7 +20,7 @@ module ArticleJSON
             private
 
             def embed_node
-              type = @element.embed_type || :type
+              type = @element.embed_type.to_s.tr('_','-')
               create_element(:div, class: "embed #{type}") do |div|
                 div.add_child(embedded_object)
               end
