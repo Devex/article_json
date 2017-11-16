@@ -43,7 +43,7 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
         let(:embed_type) { :facebook_video }
         let(:caption) { [] }
         let(:expected_html) do
-          '<figure><div class="embed facebook_video">' \
+          '<figure><div class="embed facebook-video">' \
           'Embedded Object: something-666</div>' \
           '</figure>'
         end
@@ -54,7 +54,7 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
         let(:embed_type) { :vimeo_video }
         let(:caption) { [] }
         let(:expected_html) do
-          '<figure><div class="embed vimeo_video">' \
+          '<figure><div class="embed vimeo-video">' \
           'Embedded Object: something-666</div>' \
           '</figure>'
         end
@@ -65,7 +65,7 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
     context 'when the endpoint does not return OEmbed data' do
       let(:embed_type) { :youtube_video }
       let(:expected_html) do
-        '<figure><div class="embed youtube_video">' \
+        '<figure><div class="embed youtube-video">' \
         '<span class="unavailable-embed">'\
         'The Youtube video <a href="https://www.youtube.com/watch?v=666">'\
         'https://www.youtube.com/watch?v=666</a> is not available.</span>'\
