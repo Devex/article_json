@@ -49,40 +49,6 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       end
     end
 
-    context 'if the article has enough possible positions' do
-      let(:element_1) { double('additional_element_1', type: :element_1) }
-      let(:element_2) { double('additional_element_2', type: :element_2) }
-      let(:element_3) { double('additional_element_3', type: :element_3) }
-      let(:additional_elements) { [element_1, element_2, element_3] }
-
-      include_examples 'for properly added additional elements' do
-        let(:expected_article_elements) do
-          [
-            paragraph,
-            image,
-            image,
-            paragraph,
-            # Possible additional element position
-            paragraph,
-            element_1, # inserted element
-            paragraph,
-            # Possible additional element position
-            paragraph,
-            element_2, # inserted element
-            paragraph,
-            # Possible additional element position
-            paragraph,
-            quote,
-            quote,
-            paragraph,
-            element_3, # inserted element
-            paragraph,
-            embed,
-          ]
-        end
-      end
-    end
-
     context 'if the article has more possible positions' do
       let(:element_1) { double('additional_element_1', type: :element_1) }
       let(:element_2) { double('additional_element_2', type: :element_2) }
@@ -117,6 +83,38 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       end
     end
 
+    context 'if only one element is inserted' do
+      let(:element_1) { double('additional_element_1', type: :element_1) }
+      let(:additional_elements) { [element_1] }
+
+      include_examples 'for properly added additional elements' do
+        let(:expected_article_elements) do
+          [
+            paragraph,
+            image,
+            image,
+            paragraph,
+            # Possible additional element position
+            paragraph,
+            # Possible additional element position
+            paragraph,
+            # Possible additional element position
+            paragraph,
+            element_1, # inserted element
+            paragraph,
+            # Possible additional element position
+            paragraph,
+            quote,
+            quote,
+            paragraph,
+            # Possible additional element position
+            paragraph,
+            embed,
+          ]
+        end
+      end
+    end
+
     context 'if the article has just enough possible positions' do
       let(:element_1) { double('additional_element_1', type: :element_1) }
       let(:element_2) { double('additional_element_2', type: :element_2) }
@@ -137,20 +135,21 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
             paragraph,
             element_1, # inserted element
             paragraph,
+            # TODO: Leaving this empty is a known issue with the algorithm
+            paragraph,
             element_2, # inserted element
             paragraph,
             element_3, # inserted element
             paragraph,
             element_4, # inserted element
             paragraph,
+            quote,
+            quote,
+            paragraph,
             element_5, # inserted element
             paragraph,
-            quote,
-            quote,
-            paragraph,
-            element_6, # inserted element
-            paragraph,
             embed,
+            element_6, # inserted element
           ]
         end
       end

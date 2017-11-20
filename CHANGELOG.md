@@ -8,6 +8,7 @@
 - Add a plain text exporter
 - Improve behavior of multiple calls to `Article#place_additional_elements`
 - Remove deprecated `#register_html_element_exporter`, use `#register_element_exporters` instead
+- Rework algorithm to place additional elements to support better placement
 
 ## 0.2.1 - 2017/11/08
 **Fix**: Handle non-successful OEmbed responses by rendering message
