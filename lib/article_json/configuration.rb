@@ -21,34 +21,12 @@ module ArticleJSON
       @custom_element_exporters = {}
     end
 
-    # Register a new HTML element exporter or overwrite existing ones.
-    # @param [Symbol] type
-    # @param [Class] klass
-    # @deprecated Use `#register_element_exporters_for(:html, ...)` instead
-    def register_html_element_exporter(type, klass)
-      register_element_exporters(:html, type => klass)
-    end
-
-    # Return custom HTML exporters
-    # @return [Hash[Symbol => Class]]
-    # @deprecated use `#exporter_for` instead
-    def html_element_exporters
-      @custom_element_exporters[:html] || {}
-    end
-
-    # Set custom HTML exporters
-    # @param [Hash[Symbol => Class]] value
-    # @deprecated use `#register_element_exporters(:html, ...)` instead
-    def html_element_exporters=(value)
-      @custom_element_exporters[:html] = value
-    end
-
     # Register new element exporters or overwrite existing ones for a given
     # exporter type.
     # Usage example:
     #  register_element_exporters(:html,
-    #                                 image: MyImageExporter,
-    #                                 advertisement: MyAdExporter)
+    #                             image: MyImageExporter,
+    #                             advertisement: MyAdExporter)
     # @param [Symbol] exporter
     # @param [Hash[Symbol => Class]] type_class_mapping
     def register_element_exporters(exporter, type_class_mapping)

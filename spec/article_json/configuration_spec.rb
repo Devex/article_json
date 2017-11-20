@@ -17,33 +17,7 @@ describe ArticleJSON::Configuration do
     end
   end
 
-  describe '#register_html_element_exporter' do
-    subject do
-      ArticleJSON.configure do |c|
-        c.register_html_element_exporter(:foo, Object)
-      end
-    end
-
-    context 'when there is no exporter registered' do
-      it 'registers an additional exporter' do
-        expect { subject }.to(
-          change { ArticleJSON.configuration.html_element_exporters }
-            .from({})
-            .to({ foo: Object })
-        )
-      end
-    end
-
-    context 'when there is already an exporter registered' do
-      before { configuration.html_element_exporters = { foo: Object } }
-      it 'registers an additional exporter' do
-        expect { subject }
-          .to_not change { ArticleJSON.configuration.html_element_exporters }
-      end
-    end
-  end
-
-  describe '#register_element_exporters_for' do
+  describe '#register_element_exporters' do
     subject do
       ArticleJSON.configure do |c|
         c.register_element_exporters(exporter, mapping)
@@ -114,16 +88,40 @@ describe ArticleJSON::Configuration do
     end
   end
 
-  describe '#html_element_exporters' do
-    subject { configuration.html_element_exporters }
+  describe '#element_exporter_for' do
+    subject { configuration.element_exporter_for(exporter_type, element_type) }
+    let(:exporter_type) { :my_exporter }
+    let(:element_type) { :my_element }
+    let(:custom_exporters) { {} }
 
-    context 'when not initialized' do
-      it { should eq({}) }
+    before do
+      configuration.instance_variable_set(:@custom_element_exporters,
+                                          custom_exporters)
+    end
+
+    context 'when the exporter type is not initialized' do
+      it { should be nil }
+    end
+
+    context 'when the exporter type is initialized' do
+      let(:custom_exporters_for_type) { {} }
+      let(:custom_exporters) { { exporter_type => custom_exporters_for_type } }
+
+      context 'but there is no exporter for the element type' do
+        it { should be nil }
+      end
+
+      context 'and there is an exporter for the element type' do
+        let(:custom_exporter_for_element) { double('custom_exporter') }
+        let(:custom_exporters_for_type) do
+          { element_type => custom_exporter_for_element }
+        end
+        it { should eq custom_exporter_for_element }
+      end
     end
 
     context 'when it has a value' do
-      before { configuration.html_element_exporters = { foo: 'bar' } }
-      it { should eq({ foo: 'bar' }) }
+
     end
   end
 end
