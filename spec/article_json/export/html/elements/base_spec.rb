@@ -184,7 +184,7 @@ describe ArticleJSON::Export::HTML::Elements::Base do
     context 'when the element was additionally registered' do
       before do
         ArticleJSON.configure do |c|
-          c.register_html_element_exporter(:foo, Object)
+          c.register_element_exporters(:html, foo: Object)
         end
       end
       let(:element_type) { :foo }
