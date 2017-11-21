@@ -32,6 +32,12 @@ puts article.to_amp
 # get javascript libraries needed for the AMP article
 puts article.amp_exporter.amp_libraries
 
+# export article as Facebook Instant Article HTML
+puts article.to_facebook_instant_article
+
+# export article as plain text
+puts article.to_plain_text
+
 # export article as JSON
 puts article.to_json
 ```
@@ -77,9 +83,10 @@ ArticleJSON.configure do |config|
     image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
   
-  # It works the same way for custom AMP exporters:
+  # It works the same way for custom AMP, FacebookInstantArticle, or 
+  # PlainText exporters:
   config.register_element_exporters(
-    :amp,
+    :amp, # Or change this for `:facebook_instant_article` or `:plain_text`
     image: ArticleJSON::Export::AMP::Elements::ScaledImage
   ) 
 end
@@ -200,6 +207,15 @@ If you have an `article` (see code example in _Usage_ section), you can get a li
 An example of
 the AMP HTML export for the parsed reference document can be found 
 [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
+
+### Facebook Instant Articles
+The `FacebookInstantArticle` exporter generates a custom HTML string for a list
+of elements. An example of the Facebook Instant Article export for the parsed
+reference document can be found 
+[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
+
+To learn more about the Facebook Instant Article HTML format see have a look at
+the [Facebook Developer Documentation](https://developers.facebook.com/docs/instant-articles/guides/format-overview).
 
 ### Plain Text
 As the name suggests, this exporter generates a plain text version of the article.
