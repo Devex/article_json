@@ -1,14 +1,21 @@
 # Changelog
 
-## WIP
-- Add an exporter for Facebook Instant Articles
-- Add support to exporters for `caption` elements that are an empty array
-- GDoc Importer: Support `[no-caption]` text, returns empty caption for element
-- Fix AMP export of Twitter tweets
-- Add a plain text exporter
+## 0.3.0 - 2017/11/21
+In this third bigger release we **added support**:
+- For exporting articles in the Facebook Instant Article format
+- For exporting articles in a plain text format
+- To all exporters for `caption` elements that are an empty array
+- For `[no-caption]` text in _Google Documents_ below elements (like images or embed URLs), this now returns empty caption for element
+
+**Improvements** were done regarding additional element placement:
+- Rework algorithm to place additional elements to better support placing a single element
 - Improve behavior of multiple calls to `Article#place_additional_elements`
+
+One potentially **breaking change** was added:
 - Remove deprecated `#register_html_element_exporter`, use `#register_element_exporters` instead
-- Rework algorithm to place additional elements to support better placement
+
+**Fixes**:
+- Fix AMP export of Twitter tweets
 
 ## 0.2.1 - 2017/11/08
 **Fix**: Handle non-successful OEmbed responses by rendering message
