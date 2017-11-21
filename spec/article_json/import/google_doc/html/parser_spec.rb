@@ -18,7 +18,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
       let(:json) do
         <<-json
           {
-            "article_json_version": "0.1.0",
+            "article_json_version": "0.3.0",
             "content": [
               {
                 "type": "text_box",
@@ -55,7 +55,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
       let(:json) do
         <<-json
           {
-            "article_json_version": "0.1.0",
+            "article_json_version": "0.3.0",
             "content": [
               {
                 "type": "paragraph",
