@@ -31,6 +31,11 @@ describe ArticleJSON::Article do
     end
   end
 
+  shared_examples_for 'an exporter that properly handles empty articles' do
+    let(:article) { described_class.new([]) }
+    it { should eq '' }
+  end
+
   describe '#html_exporter' do
     subject { article.html_exporter }
     it { should be_a ArticleJSON::Export::HTML::Exporter }
@@ -40,6 +45,7 @@ describe ArticleJSON::Article do
     subject { article.to_html }
     it { should be_a String }
     it { should eq '<p>Foo Bar</p>' }
+    it_behaves_like 'an exporter that properly handles empty articles'
   end
 
   describe '#amp_exporter' do
@@ -51,6 +57,7 @@ describe ArticleJSON::Article do
     subject { article.to_amp }
     it { should be_a String }
     it { should eq '<p>Foo Bar</p>' }
+    it_behaves_like 'an exporter that properly handles empty articles'
   end
 
   describe '#facebook_instant_article_exporter' do
@@ -62,6 +69,7 @@ describe ArticleJSON::Article do
     subject { article.to_facebook_instant_article }
     it { should be_a String }
     it { should eq '<p>Foo Bar</p>' }
+    it_behaves_like 'an exporter that properly handles empty articles'
   end
 
   describe '#plain_text_exporter' do
@@ -139,7 +147,7 @@ describe ArticleJSON::Article do
     end
   end
 
-  shared_context 'for a correctly parsed Hash' do
+  shared_examples_for 'a correctly parsed Hash' do
     let(:example_hash) do
       {
         article_json_version: '0.3.0',
@@ -166,19 +174,29 @@ describe ArticleJSON::Article do
     it('is reversible') { expect(subject.to_h).to eq example_hash }
   end
 
+  shared_examples_for 'a correctly parsed empty Hash' do
+    let(:example_hash) { { article_json_version: '0.3.0', content: [] } }
+    it { should be_a described_class }
+    it('contains the right content') { expect(subject.elements).to be_empty }
+    it('is reversible') { expect(subject.to_h).to eq example_hash }
+  end
+
   describe '.from_hash' do
     subject { described_class.from_hash(example_hash) }
-    include_context 'for a correctly parsed Hash'
+    it_behaves_like 'a correctly parsed Hash'
 
     context 'when passed a list of elements instead of a hash' do
       subject { described_class.from_hash(example_hash[:content]) }
-      include_context 'for a correctly parsed Hash'
+      it_behaves_like 'a correctly parsed Hash'
     end
+
+    it_behaves_like 'a correctly parsed empty Hash'
   end
 
   describe '.from_json' do
     subject { described_class.from_json(example_hash.to_json) }
-    include_context 'for a correctly parsed Hash'
+    it_behaves_like 'a correctly parsed Hash'
+    it_behaves_like 'a correctly parsed empty Hash'
   end
 
   describe '.from_google_doc_html' do
