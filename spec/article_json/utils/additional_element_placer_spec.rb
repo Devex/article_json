@@ -200,5 +200,31 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
         end
       end
     end
+
+    context 'when the original article only contains one element' do
+      let(:text) { ArticleJSON::Elements::Text.new(content: 'Lorem Ipsum ') }
+      let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: [text]) }
+      let(:article_elements) { [paragraph] }
+      let(:element_1) { double('additional_element_1', type: :element_1) }
+      let(:element_2) { double('additional_element_2', type: :element_2) }
+      let(:additional_elements) { [element_1, element_2] }
+      it { should eq [*article_elements, *additional_elements] }
+    end
+
+    context 'when the original article is empty' do
+      let(:article_elements) { [] }
+      let(:element_1) { double('additional_element_1', type: :element_1) }
+      let(:element_2) { double('additional_element_2', type: :element_2) }
+      let(:additional_elements) { [element_1, element_2] }
+      it { should eq additional_elements }
+    end
+
+    context 'when the original article elements are `nil`' do
+      let(:article_elements) { nil }
+      let(:element_1) { double('additional_element_1', type: :element_1) }
+      let(:element_2) { double('additional_element_2', type: :element_2) }
+      let(:additional_elements) { [element_1, element_2] }
+      it { should eq additional_elements }
+    end
   end
 end
