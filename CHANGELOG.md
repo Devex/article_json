@@ -1,7 +1,7 @@
 # Changelog
 
-## WIP
-- Fix additional element placement on empty articles
+## 0.3.1 - 2017/11/29
+- **Fix:** prevent `nil` elements when placing additional element on empty articles
 
 ## 0.3.0 - 2017/11/21
 In this third bigger release we **added support**:
