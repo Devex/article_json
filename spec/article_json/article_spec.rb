@@ -150,7 +150,7 @@ describe ArticleJSON::Article do
   shared_examples_for 'a correctly parsed Hash' do
     let(:example_hash) do
       {
-        article_json_version: '0.3.0',
+        article_json_version: ArticleJSON::VERSION,
         content: [
           {
             type: :paragraph,
@@ -175,7 +175,9 @@ describe ArticleJSON::Article do
   end
 
   shared_examples_for 'a correctly parsed empty Hash' do
-    let(:example_hash) { { article_json_version: '0.3.0', content: [] } }
+    let(:example_hash) do
+      { article_json_version: ArticleJSON::VERSION, content: [] }
+    end
     it { should be_a described_class }
     it('contains the right content') { expect(subject.elements).to be_empty }
     it('is reversible') { expect(subject.to_h).to eq example_hash }

@@ -16,9 +16,9 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
     context 'when a text box is not closed' do
       let(:html) { File.read('spec/fixtures/google_doc_unclosed_textbox.html') }
       let(:json) do
-        <<-json
+        <<~JSON
           {
-            "article_json_version": "0.3.0",
+            "article_json_version": "#{ArticleJSON::VERSION}",
             "content": [
               {
                 "type": "text_box",
@@ -45,7 +45,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
               }
             ]
           }
-        json
+        JSON
       end
       it { should eq minified_json }
     end
@@ -53,9 +53,9 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
     context 'when paragraphs contain no text' do
       let(:html) { File.read('spec/fixtures/google_doc_empty_paragraphs.html') }
       let(:json) do
-        <<-json
+        <<~JSON
           {
-            "article_json_version": "0.3.0",
+            "article_json_version": "#{ArticleJSON::VERSION}",
             "content": [
               {
                 "type": "paragraph",
@@ -71,7 +71,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
               }
             ]
           }
-        json
+        JSON
       end
       it { should eq minified_json }
     end
