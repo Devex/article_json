@@ -10,7 +10,7 @@ module ArticleJSON
       # @param [Array[ArticleJSON::Article::Elements::Base]] elements
       # @param [Array[Object]] additional_elements
       def initialize(elements, additional_elements)
-        @elements = elements.dup
+        @elements = elements&.dup
         @additional_elements = additional_elements
       end
 
@@ -39,6 +39,7 @@ module ArticleJSON
       #
       # @return [Array[ArticleJSON::Elements::Base|Object]]
       def merge_elements
+        return @additional_elements if @elements.nil? || @elements.empty?
         remaining_elements = @additional_elements.dup
         next_in = insert_next_element_in(0, remaining_elements)
         characters_passed = 0

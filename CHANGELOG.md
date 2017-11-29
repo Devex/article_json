@@ -1,5 +1,8 @@
 # Changelog
 
+## WIP
+- Fix additional element placement on empty articles
+
 ## 0.3.0 - 2017/11/21
 In this third bigger release we **added support**:
 - For exporting articles in the Facebook Instant Article format
