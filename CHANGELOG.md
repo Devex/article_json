@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.2 - 2017/12/06
+- Another **fix** to prevent `nil` elements when placing additional elements on articles that end with empty paragraphs
+
 ## 0.3.1 - 2017/11/29
 - **Fix:** prevent `nil` elements when placing additional element on empty articles
 
