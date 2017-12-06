@@ -201,6 +201,27 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       end
     end
 
+    context 'if the article ends with empty elements' do
+      let(:additional_elements) { [] }
+      let(:empty) { ArticleJSON::Elements::Paragraph.new(content: ['']) }
+
+      include_examples 'for properly added additional elements' do
+        let(:article_elements) do
+          [
+            paragraph,
+            empty,
+          ]
+        end
+        let(:expected_article_elements) do
+          [
+            paragraph,
+            empty,
+          ]
+        end
+      end
+    end
+
+
     context 'when the original article only contains one element' do
       let(:text) { ArticleJSON::Elements::Text.new(content: 'Lorem Ipsum ') }
       let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: [text]) }

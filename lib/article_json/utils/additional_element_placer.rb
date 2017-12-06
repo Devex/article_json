@@ -47,6 +47,7 @@ module ArticleJSON
           .each_cons(2)
           .each_with_object([]) do |(element, next_element), result|
             result << element
+            next if remaining_elements.empty?
             characters_passed += element.length if element.respond_to?(:length)
             next_in -= element.length if element.respond_to?(:length)
             if insert_here?(next_in, element, next_element)
