@@ -48,8 +48,10 @@ module ArticleJSON
           .each_with_object([]) do |(element, next_element), result|
             result << element
             next if remaining_elements.empty?
-            characters_passed += element.length if element.respond_to?(:length)
-            next_in -= element.length if element.respond_to?(:length)
+            if element.respond_to?(:length)
+              characters_passed += element.length
+              next_in -= element.length
+            end
             if insert_here?(next_in, element, next_element)
               result << remaining_elements.shift
               next_in = insert_next_element_in(characters_passed,
