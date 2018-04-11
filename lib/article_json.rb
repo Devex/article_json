@@ -37,6 +37,7 @@ require_relative 'article_json/import/google_doc/html/embedded_vimeo_video_parse
 require_relative 'article_json/import/google_doc/html/embedded_youtube_video_parser'
 require_relative 'article_json/import/google_doc/html/embedded_slideshare_parser'
 require_relative 'article_json/import/google_doc/html/embedded_tweet_parser'
+require_relative 'article_json/import/google_doc/html/embedded_soundcloud_parser'
 require_relative 'article_json/import/google_doc/html/parser'
 
 require_relative 'article_json/export/common/elements/base'

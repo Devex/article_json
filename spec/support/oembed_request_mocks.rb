@@ -16,6 +16,9 @@ module OembedRequestStubs
     stub_oembed_tweet_request(additional_headers,
                               custom_body: custom_body,
                               error: error)
+    stub_oembed_soundcloud_request(additional_headers,
+                              custom_body: custom_body,
+                              error: error)
   end
 
   def stub_oembed_facebook_request(additional_headers = {}, custom_body: nil,
@@ -63,6 +66,16 @@ module OembedRequestStubs
     stub_oembed_request(
       'https://api.twitter.com/1/statuses/oembed.json?align=center&url=https://twitter.com/d3v3x/status/554608639030599681',
       custom_body || File.read('spec/fixtures/tweet_oembed.json'),
+      additional_headers,
+      error: error
+    )
+  end
+
+  def stub_oembed_soundcloud_request(additional_headers = {}, custom_body: nil,
+                                error: false)
+    stub_oembed_request(
+      'http://soundcloud.com/oembed?url=https://soundcloud.com/rich-the-kid/plug-walk-1&format=json',
+      custom_body || File.read('spec/fixtures/soundcloud_oembed.json'),
       additional_headers,
       error: error
     )
