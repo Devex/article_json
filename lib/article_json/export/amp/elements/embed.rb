@@ -14,6 +14,7 @@ module ArticleJSON
             when :facebook_video then %i(amp-facebook)
             when :tweet then %i(amp-twitter)
             when :slideshare then %i(amp-iframe)
+            when :soundcloud then %i(amp-iframe)
             else []
             end
           end
@@ -33,7 +34,9 @@ module ArticleJSON
             when :tweet
               tweet_node
             when :slideshare
-              slideshare_node
+              iframe_node
+            when :soundcloud
+              iframe_node
             end
           end
 
@@ -75,7 +78,7 @@ module ArticleJSON
           end
 
           # @return [Nokogiri::XML::Element]
-          def slideshare_node
+          def iframe_node
             node = Nokogiri::HTML(@element.oembed_data[:html]).xpath('//iframe')
             create_element('amp-iframe',
                            src: node.attribute('src').value,
