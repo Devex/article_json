@@ -4,7 +4,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedSoundcloudParser do
   include_context 'for an embed parser' do
     let(:expected_embed_type) { :soundcloud }
     let(:expected_embed_id) { 'rich-the-kid/plug-walk-1' }
-    let(:expected_tags) { %w(vimeo test) }
+    let(:expected_tags) { %w(test soundcloud) }
     let(:invalid_url_example) { 'https://soundcloud.xxx/' }
     let(:url_examples) do
       %W(
