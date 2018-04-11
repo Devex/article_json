@@ -101,6 +101,28 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       it { should eq expected_html }
     end
 
+    context 'with soundcloud' do
+      let(:source_element_embed_type) { :slideshare }
+      let(:expected_html) do
+        '<figure><div class="embed slideshare">' \
+        '<amp-iframe src="https://w.soundcloud.com/player/?visual=true&amp;url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F392732244&amp;show_artwork=true" ' \
+        'width="100%" height="400" frameborder="0"></amp-iframe></div>' \
+        '<figcaption>Foo Bar</figcaption></figure>'
+      end
+
+      let(:oembed_data) do
+        JSON.parse(
+          File.read('spec/fixtures/soundcloud_oembed.json'),
+          symbolize_names: 1
+        )
+      end
+
+      before do
+        allow(source_element).to receive(:oembed_data).and_return(oembed_data)
+      end
+      it { should eq expected_html }
+    end
+
     context 'with no caption' do
       let(:source_element_embed_type) { :youtube_video }
       let(:caption) { [] }
@@ -139,6 +161,11 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
 
     context 'with a slideshare presentation' do
       let(:source_element_embed_type) { :slideshare }
+      it { should eq [:'amp-iframe'] }
+    end
+
+    context 'with a soundcloud' do
+      let(:source_element_embed_type) { :soundcloud }
       it { should eq [:'amp-iframe'] }
     end
 
