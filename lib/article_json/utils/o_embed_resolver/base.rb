@@ -85,6 +85,7 @@ module ArticleJSON
               tweet: Tweet,
               vimeo_video: VimeoVideo,
               youtube_video: YoutubeVideo,
+              soundcloud: Soundcloud,
             }[type.to_sym]
           end
         end

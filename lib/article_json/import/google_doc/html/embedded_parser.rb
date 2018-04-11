@@ -94,6 +94,7 @@ module ArticleJSON
                 EmbeddedYoutubeVideoParser,
                 EmbeddedTweetParser,
                 EmbeddedSlideshareParser,
+                EmbeddedSoundcloudParser,
               ]
             end
 
