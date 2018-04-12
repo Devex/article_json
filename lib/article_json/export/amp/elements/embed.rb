@@ -80,9 +80,11 @@ module ArticleJSON
           # @return [Nokogiri::XML::Element]
           def iframe_node
             node = Nokogiri::HTML(@element.oembed_data[:html]).xpath('//iframe')
+            width = node.attribute('width').value
+            width = default_width if width.include? '%'
             create_element('amp-iframe',
                            src: node.attribute('src').value,
-                           width: node.attribute('width').value,
+                           width: width,
                            height: node.attribute('height').value,
                            frameborder: '0',)
           end

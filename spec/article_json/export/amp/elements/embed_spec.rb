@@ -106,7 +106,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       let(:expected_html) do
         '<figure><div class="embed slideshare">' \
         '<amp-iframe src="https://w.soundcloud.com/player/?visual=true&amp;url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F392732244&amp;show_artwork=true" ' \
-        'width="100%" height="400" frameborder="0"></amp-iframe></div>' \
+        'width="560" height="400" frameborder="0"></amp-iframe></div>' \
         '<figcaption>Foo Bar</figcaption></figure>'
       end
 
