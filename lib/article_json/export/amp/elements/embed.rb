@@ -14,7 +14,7 @@ module ArticleJSON
             when :facebook_video then %i(amp-facebook)
             when :tweet then %i(amp-twitter)
             when :slideshare then %i(amp-iframe)
-            when :soundcloud then %i(amp-iframe)
+            when :soundcloud then %i(amp-soundcloud)
             else []
             end
           end
@@ -36,7 +36,7 @@ module ArticleJSON
             when :slideshare
               iframe_node
             when :soundcloud
-              iframe_node
+              soundcloud_node
             end
           end
 
@@ -77,14 +77,24 @@ module ArticleJSON
                            height: default_height)
           end
 
+          def soundcloud_node
+            src = Nokogiri::HTML(@element.oembed_data[:html])
+              .xpath('//iframe/@src').first.value
+            track_id = src.match(/tracks%2F(\d+)/)[1]
+            create_element('amp-soundcloud',
+                           layout: 'fixed-height',
+                           'data-trackid': track_id,
+                           'data-visual': true,
+                           width: 'auto',
+                           height: default_height)
+          end
+
           # @return [Nokogiri::XML::Element]
           def iframe_node
             node = Nokogiri::HTML(@element.oembed_data[:html]).xpath('//iframe')
-            width = node.attribute('width').value
-            width = default_width if width.include? '%'
             create_element('amp-iframe',
                            src: node.attribute('src').value,
-                           width: width,
+                           width: node.attribute('width').value,
                            height: node.attribute('height').value,
                            frameborder: '0',)
           end
