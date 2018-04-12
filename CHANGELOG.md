@@ -1,5 +1,5 @@
 # Changelog
-## 0.3.3 2018/4/12
+## 0.3.3 - 2018/4/12
 - Support embedding SoundCloud
 
 ## 0.3.2 - 2017/12/06
