@@ -27,6 +27,7 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
            amp-youtube
            amp-vimeo
            amp-facebook
+           amp-soundcloud
           )
       end
 
@@ -36,6 +37,8 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
              'amp-twitter': 'https://cdn.ampproject.org/v0/amp-twitter-0.1.js',
              'amp-youtube': 'https://cdn.ampproject.org/v0/amp-youtube-0.1.js',
              'amp-vimeo': 'https://cdn.ampproject.org/v0/amp-vimeo-0.1.js',
+             'amp-soundcloud':
+                'https://cdn.ampproject.org/v0/amp-soundcloud-0.1.js',
              'amp-facebook': 'https://cdn.ampproject.org/v0/amp-facebook-0.1.js'
         )
       end

@@ -26,8 +26,8 @@ module ArticleJSON
         def script_tags
           sources.map do |custom_element_tag, src|
             <<-HTML.gsub(/\s+/, ' ').strip
-                <script async 
-                        custom-element="#{custom_element_tag}" 
+                <script async
+                        custom-element="#{custom_element_tag}"
                         src="#{src}"></script>
             HTML
           end
@@ -46,6 +46,8 @@ module ArticleJSON
             'amp-vimeo': 'https://cdn.ampproject.org/v0/amp-vimeo-0.1.js',
             'amp-facebook':
               'https://cdn.ampproject.org/v0/amp-facebook-0.1.js',
+            'amp-soundcloud':
+              'https://cdn.ampproject.org/v0/amp-soundcloud-0.1.js',
           }[custom_element_tag]
         end
       end

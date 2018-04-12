@@ -105,8 +105,8 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       let(:source_element_embed_type) { :soundcloud }
       let(:expected_html) do
         '<figure><div class="embed soundcloud">' \
-        '<amp-iframe src="https://w.soundcloud.com/player/?visual=true&amp;url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F392732244&amp;show_artwork=true" ' \
-        'width="560" height="400" frameborder="0"></amp-iframe></div>' \
+        '<amp-soundcloud layout="fixed-height" data-trackid="392732244" ' \
+        'data-visual="true" width="auto" height="315"></amp-soundcloud></div>' \
         '<figcaption>Foo Bar</figcaption></figure>'
       end
 
@@ -166,7 +166,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
 
     context 'with a soundcloud' do
       let(:source_element_embed_type) { :soundcloud }
-      it { should eq [:'amp-iframe'] }
+      it { should eq [:'amp-soundcloud'] }
     end
 
     context 'with an unknown type' do
