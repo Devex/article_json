@@ -1,4 +1,6 @@
 # Changelog
+## 0.3.3 2018/4/12
+- Support embedding SoundCloud
 
 ## 0.3.2 - 2017/12/06
 - Another **fix** to prevent `nil` elements when placing additional elements on articles that end with empty paragraphs
@@ -43,7 +45,7 @@ One potentially **breaking change** was added:
 
 ## 0.1.0 - 2017/09/20
 This is the very first release, with the following functionality:
-- article-json format that supports several basic elements; like headings, 
+- article-json format that supports several basic elements; like headings,
   paragraphs, images or lists
 - Resolving of embedded elements like videos or tweets via OEmbed standard
 - Conversion from and to JSON (or ruby hashes)
