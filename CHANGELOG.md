@@ -1,6 +1,6 @@
 # Changelog
 ## 0.3.4 - 2018/5/10
-- Only include slug from the soundcloud URL
+- **Fix:** Only include slug from the soundcloud URL in google doc parser
 
 ## 0.3.3 - 2018/4/12
 - Support embedding SoundCloud
