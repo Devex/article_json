@@ -9,6 +9,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedSoundcloudParser do
     let(:url_examples) do
       %W(
         https://soundcloud.com/#{expected_embed_id}
+        https://soundcloud.com/#{expected_embed_id}\u{a0}
+        https://soundcloud.com/#{expected_embed_id}?something=else
       )
     end
   end

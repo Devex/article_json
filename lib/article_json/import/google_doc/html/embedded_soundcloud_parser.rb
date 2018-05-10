@@ -17,7 +17,7 @@ module ArticleJSON
               %r{
                 ^\S*                    # all protocols & sub domains
                 soundcloud\.com/        # domain
-                (?<id>.+)               # the slug of the user / track
+                (?<id>[-/0-9a-z]+)      # the slug of the user / track
               }xi
             end
           end
