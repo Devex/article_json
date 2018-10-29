@@ -18,7 +18,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
   let(:css) { '' }
   let(:source_url) { 'foo/bar.jpg' }
   let(:image_fragment) { "<p><span><img src=\"#{source_url}\"></span></p>" }
-  let(:caption_text) { 'foo' }
+  let(:caption_text) { '[image-link-to: http://devex.com] foo' }
   let(:caption_fragment) { "<p><span>#{caption_text}</span></p>" }
 
   describe '#source_url' do
@@ -164,6 +164,14 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
         expect(subject).to be_empty
       end
     end
+
+    context 'when the caption is `[image-link-to]` and `[no-caption]`' do
+      let(:caption_text) { '[image-link-to: http://devex.com][no-caption]' }
+      it 'returns an empty list' do
+        expect(subject).to be_an Array
+        expect(subject).to be_empty
+      end
+    end
   end
 
   describe '#element' do
@@ -175,6 +183,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       expect(subject.source_url).to eq source_url
       expect(subject.float).to be nil
       expect(subject.caption).to all be_a ArticleJSON::Elements::Text
+      expect(subject.href).to eq 'http://devex.com'
+    end
+
+    context 'with an image-link-to tag and a no-caption tag' do
+      let(:caption_text) { '[image-link-to: http://devex.com][no-caption]' }
+
+      it 'returns a proper Hash' do
+        expect(subject).to be_a ArticleJSON::Elements::Image
+        expect(subject.type).to eq :image
+        expect(subject.source_url).to eq source_url
+        expect(subject.float).to be nil
+        expect(subject.caption).to be_empty
+        expect(subject.href).to eq 'http://devex.com'
+      end
     end
   end
 end
