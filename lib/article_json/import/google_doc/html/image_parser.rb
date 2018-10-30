@@ -12,6 +12,7 @@ module ArticleJSON
           def initialize(node:, caption_node:, css_analyzer:)
             @node = node
             @caption_node = caption_node
+            @href = href
             @css_analyzer = css_analyzer
 
             # Main node indicates the floating behavior
@@ -36,17 +37,42 @@ module ArticleJSON
             super if floatable_size?
           end
 
+          # Extracts an href from the tag [image-link-to: url]) if present
+          # in the caption node.
+          # @return [String]
+          def href
+            return if @caption_node.nil?
+            match = @caption_node.content.strip.match(href_regexp)
+            return if match.nil?
+            remove_image_link_tag
+            match[:url]
+          end
+
           # @return [ArticleJSON::Elements::Image]
           def element
             ArticleJSON::Elements::Image.new(
               source_url: source_url,
               float: float,
-              caption: caption
+              caption: caption,
+              href: @href
             )
           end
 
           private
 
+          # Removes the [image-link-to: url] tag from the caption node
+          def remove_image_link_tag
+            @caption_node
+              .children
+              .first
+              .content = @caption_node.content.sub(href_regexp, '').strip
+          end
+
+          # Regular expression to check if there's a [image-link-to: url] tag
+          # @return [Regexp]
+          def href_regexp
+            %r{\[image-link-to:\s+(?<url>.*?)\]}
+          end
           # Check if the image's width can be determined and is less than 500px
           # This is about 3/4 of the google document width...
           # @return [Boolean]
