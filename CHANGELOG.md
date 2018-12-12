@@ -1,4 +1,9 @@
 # Changelog
+## 0.3.5 - 2018/12/12
+- **Improvements** to import and export image links from Google Docs
+- Import image `href`` from caption text using a custom tag
+- Export the image element href attribute as a link
+
 ## 0.3.4 - 2018/5/10
 - **Fix:** Only include slug from the soundcloud URL in google doc parser
 
