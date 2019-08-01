@@ -83,7 +83,11 @@ module ArticleJSON
           # @return [ArticleJSON::Elements::TextBox]
           def parse_text_box
             TextBoxParser
-              .new(nodes: nodes_until_hr, css_analyzer: @css_analyzer)
+              .new(
+                type_node: @current_node.node,
+                nodes: nodes_until_hr,
+                css_analyzer: @css_analyzer
+              )
               .element
           end
 

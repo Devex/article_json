@@ -1,6 +1,10 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
   subject(:parser) do
-    described_class.new(nodes: node.children, css_analyzer: css_analyzer)
+    described_class.new(
+      type_node: node,
+      nodes: node.children,
+      css_analyzer: css_analyzer
+    )
   end
 
   let(:node) { Nokogiri::HTML.fragment(html.strip) }
@@ -68,6 +72,25 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
 
         expect(subject[1]).to be_a ArticleJSON::Elements::List
       end
+    end
+  end
+
+  describe '#.tags' do
+    subject { parser.tags }
+
+    context 'when there are tags' do
+      let(:html) do
+        <<-html 
+          <span>&nbsp;[foo bar]</span>
+          <h2 class="css_class"><span>Text box including a list!</span></h2>
+          <ol><li><span>foo bar</span></li></ol>
+        html
+      end
+      it { should match_array %w(foo bar) }
+    end
+
+    context 'when there are no tags' do
+      it { should match_array [] }
     end
   end
 
