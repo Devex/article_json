@@ -71,6 +71,25 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
     end
   end
 
+  describe '#.tags' do
+    subject { parser.tags }
+
+    context 'when there are tags' do
+      let(:html) do
+        <<-html 
+          <span>&nbsp;[foo bar]</span>
+          <h2 class="css_class"><span>Text box including a list!</span></h2>
+          <ol><li><span>foo bar</span></li></ol>
+        html
+      end
+      it { should match_array %w(foo bar) }
+    end
+
+    context 'when there are no tags' do
+      it { should match_array [] }
+    end
+  end
+
   describe '#element' do
     subject { parser.element }
 

@@ -1,14 +1,16 @@
 module ArticleJSON
   module Elements
     class TextBox < Base
-      attr_reader :content, :float
+      attr_reader :content, :float, :tags
 
       # @param [Array[Paragraph|Heading|List]] content
       # @param [Symbol] float
-      def initialize(content:, float: nil)
+      # @param [Array] tags
+      def initialize(content:, float: nil, tags: [])
         @type = :text_box
         @content = content
         @float = float
+        @tags = tags
       end
 
       # Hash representation of this text box element
@@ -18,6 +20,7 @@ module ArticleJSON
           type: type,
           float: float,
           content: content.map(&:to_h),
+          tags: tags,
         }
       end
 
@@ -27,7 +30,8 @@ module ArticleJSON
         def parse_hash(hash)
           new(
             content: parse_hash_list(hash[:content]),
-            float: hash[:float]&.to_sym
+            float: hash[:float]&.to_sym,
+            tags: []
           )
         end
       end

@@ -1,6 +1,6 @@
 describe ArticleJSON::Elements::TextBox do
   subject(:element) { described_class.new(**params) }
-  let(:params) { { content: [content], float: :right } }
+  let(:params) { { content: [content], float: :right, tags: [] } }
   let(:content) do
     ArticleJSON::Elements::Paragraph.new(
       content: [ArticleJSON::Elements::Text.new(content: 'Foo Bar')]
