@@ -19,7 +19,7 @@ module ArticleJSON
             # @return [Nokogiri::XML::NodeSet]
             def figure_node
               create_element(:figure, node_opts) do |figure|
-                node =  @element.href.present? ? href_node : image_node
+                node =  @element&.href ? href_node : image_node
                 figure.add_child(node)
                 if @element.caption&.any?
                   figure.add_child(caption_node(:figcaption))
