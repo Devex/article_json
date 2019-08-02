@@ -8,7 +8,7 @@
   "author_url": "https://vimeo.com/user1475632",
   "is_plus": "0",
   "account_type": "pro",
-  "html": "<iframe src=\"https://player.vimeo.com/video/42315417\" width=\"640\" height=\"360\" frameborder=\"0\" title=\"What We Do - Raj Kumar, President, Devex\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+  "html": "<iframe src=\"https://player.vimeo.com/video/42315417?app_id=122963\" width=\"640\" height=\"360\" frameborder=\"0\" title=\"What We Do - Raj Kumar, President, Devex\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>",
   "width": 640,
   "height": 360,
   "duration": 60,
