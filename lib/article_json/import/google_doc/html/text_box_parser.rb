@@ -26,7 +26,8 @@ module ArticleJSON
           # @return [Array[Symbol]]
           def tags
             match = /(.*?)[\s\u00A0]+\[(?<tags>.*)\]/.match(@float_node.inner_text)
-            (match ? match[:tags] : '').split(' ')
+            return [] unless match
+            match[:tags].split(' ')
           end
 
           # Hash representation of this text box
