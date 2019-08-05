@@ -22,7 +22,7 @@ module ArticleJSON
             @nodes.map { |node| parse_sub_node(node) }.compact
           end
 
-          # Extract any potential tags, specified in brackets after the URL
+          # Extract any potential tags, specified in brackets after the Textbox definition
           # @return [Array[Symbol]]
           def tags
             match = /(.*?)[\s\u00A0]+\[(?<tags>.*)\]/.match(@float_node.inner_text)
