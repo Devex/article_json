@@ -41,7 +41,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
                       }
                     ]
                   }
-                ]
+                ],
+                "tags": []
               }
             ]
           }

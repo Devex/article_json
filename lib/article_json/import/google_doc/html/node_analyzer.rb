@@ -17,6 +17,14 @@ module ArticleJSON
             node.inner_text.strip.downcase == text.strip.downcase
           end
 
+          # Check if the node text begins with a certain text
+          # @param [String]
+          # @return [Boolean]
+          def begins_with?(text)
+            first_word = node.inner_text.strip.downcase.split(' ').first
+            first_word == text.strip.downcase
+          end
+
           # Check if the node is empty, i.e. not containing any text
           # Given that images are the only nodes without text, we have to make
           # sure that it's not an image.
@@ -65,7 +73,7 @@ module ArticleJSON
           # @return [Boolean]
           def text_box?
             return @is_text_box if defined? @is_text_box
-            @is_text_box = has_text?('textbox:') || has_text?('highlight:')
+            @is_text_box = begins_with?('textbox:') || begins_with?('highlight:')
           end
 
           # Check if the node starts a quote

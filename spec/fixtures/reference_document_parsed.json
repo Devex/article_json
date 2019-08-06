@@ -791,7 +791,8 @@
             }
           ]
         }
-      ]
+      ],
+      "tags": []
     },
     {
       "type": "paragraph",
@@ -856,7 +857,8 @@
             }
           ]
         }
-      ]
+      ],
+      "tags": []
     },
     {
       "type": "paragraph",
@@ -868,6 +870,27 @@
           "italic": true,
           "href": null
         }
+      ]
+    },
+    {
+      "type": "text_box",
+      "float": "left",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "It will generate a textbox with the words inside the brackets as tags, which could be used later to generate css classes, for example",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "highlighted"
       ]
     }
   ]
