@@ -11,7 +11,7 @@ describe ArticleJSON::Utils::OEmbedResolver::Soundcloud do
       )
     end
     let(:expected_oembed_url) do
-      'http://soundcloud.com/oembed?' \
+      'https://soundcloud.com/oembed?' \
       "url=https://soundcloud.com/#{embed_id}&format=json"
     end
     let(:oembed_response) do

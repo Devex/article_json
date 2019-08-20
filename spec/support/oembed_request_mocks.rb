@@ -74,7 +74,7 @@ module OembedRequestStubs
   def stub_oembed_soundcloud_request(additional_headers = {}, custom_body: nil,
                                 error: false)
     stub_oembed_request(
-      'http://soundcloud.com/oembed?url=https://soundcloud.com/rich-the-kid/plug-walk-1&format=json',
+      'https://soundcloud.com/oembed?url=https://soundcloud.com/rich-the-kid/plug-walk-1&format=json',
       custom_body || File.read('spec/fixtures/soundcloud_oembed.json'),
       additional_headers,
       error: error
