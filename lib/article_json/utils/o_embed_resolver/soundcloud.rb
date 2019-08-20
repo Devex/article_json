@@ -11,7 +11,7 @@ module ArticleJSON
         # The URL for the oembed API call
         # @return [String]
         def oembed_url
-          "http://soundcloud.com/oembed?url=#{source_url}&format=json"
+          "https://soundcloud.com/oembed?url=#{source_url}&format=json"
         end
 
         # The URL of the element
