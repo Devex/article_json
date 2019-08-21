@@ -1,4 +1,7 @@
 # Changelog
+## 0.3.7 - 2019/8/21
+- **Fix:** Only use https for soundcloud oembed api
+
 ## 0.3.6 - 2019/8/6
 - **Improvement** Add tags support in text_box element.
 
