@@ -296,7 +296,8 @@
           "href": null
         }
       ],
-      "href": null
+      "href": null,
+      "alt": ""
     },
     {
       "type": "paragraph",
@@ -335,7 +336,8 @@
           "href": null
         }
       ],
-      "href": null
+      "href": null,
+      "alt": "The alt attribute provides alternative information for an image if a user for some reason cannot view it (because of slow connection, an error in the src attribute, or if the user uses a screen reader)."
     },
     {
       "type": "paragraph",
@@ -374,7 +376,8 @@
           "href": null
         }
       ],
-      "href": null
+      "href": null,
+      "alt": ""
     },
     {
       "type": "heading",

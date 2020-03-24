@@ -37,11 +37,12 @@ describe ArticleJSON::Export::HTML::Elements::Base do
       let(:source_element) do
         ArticleJSON::Elements::Image.new(
           source_url: '/foo/bar.jpg',
-          caption: [sample_text]
+          caption: [sample_text],
+          alt: 'Alt Text'
         )
       end
       let(:expected_html) do
-        '<figure><img src="/foo/bar.jpg">' \
+        '<figure><img src="/foo/bar.jpg" alt="Alt Text">' \
           '<figcaption>Foo Bar</figcaption></figure>'
       end
       it { should eq expected_html }

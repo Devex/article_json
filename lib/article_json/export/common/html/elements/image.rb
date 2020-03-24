@@ -29,7 +29,7 @@ module ArticleJSON
 
             # @return [Nokogiri::XML::NodeSet]
             def image_node
-              create_element(:img, src: @element.source_url)
+              create_element(:img, src: @element.source_url, alt: @element.alt)
             end
 
             # @return [Nokogiri::XML::NodeSet]

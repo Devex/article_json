@@ -1,8 +1,15 @@
 describe ArticleJSON::Elements::Image do
   subject(:element) { described_class.new(**params) }
   let(:url) { 'http://devex.com' }
+  let(:alt) { 'Text for the alt image attribute' }
   let(:params) do
-    { source_url: 'foo.jpg', caption: [caption], float: :left, href: url }
+    {
+      source_url: 'foo.jpg',
+      caption: [caption],
+      float: :left,
+      href: url,
+      alt: alt
+    }
   end
   let(:caption) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
   let(:hash) { params.merge(type: :image, caption: [caption.to_h], href: url) }
@@ -21,6 +28,7 @@ describe ArticleJSON::Elements::Image do
       expect(subject.float).to eq hash[:float]
       expect(subject.caption).to all be_a ArticleJSON::Elements::Text
       expect(subject.href).to eq hash[:href]
+      expect(subject.alt).to eq hash[:alt]
     end
   end
 end

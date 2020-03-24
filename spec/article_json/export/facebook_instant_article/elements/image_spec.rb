@@ -5,18 +5,20 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Image do
     ArticleJSON::Elements::Image.new(
       source_url: '/foo/bar.jpg',
       caption: caption,
-      float: float
+      float: float,
+      alt: alt
     )
   end
   let(:float) { nil }
   let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Foo Bar')] }
+  let(:alt) { 'Text description' }
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
 
     context 'when the image is not floating' do
       let(:expected_html) do
-        '<figure><img src="/foo/bar.jpg">' \
+        '<figure><img src="/foo/bar.jpg" alt="Text description">' \
           '<figcaption>Foo Bar</figcaption></figure>'
       end
       it { should eq expected_html }
@@ -25,7 +27,8 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Image do
     context 'when the image is floating on the left' do
       let(:float) { :left }
       let(:expected_html) do
-        '<figure class="float-left"><img src="/foo/bar.jpg">' \
+        '<figure class="float-left">' \
+        '<img src="/foo/bar.jpg" alt="Text description">' \
           '<figcaption>Foo Bar</figcaption></figure>'
       end
       it { should eq expected_html }
@@ -34,7 +37,8 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Image do
     context 'when the image is floating on the right' do
       let(:float) { :right }
       let(:expected_html) do
-        '<figure class="float-right"><img src="/foo/bar.jpg">' \
+        '<figure class="float-right">' \
+        '<img src="/foo/bar.jpg" alt="Text description">' \
           '<figcaption>Foo Bar</figcaption></figure>'
       end
       it { should eq expected_html }
@@ -42,7 +46,9 @@ describe ArticleJSON::Export::FacebookInstantArticle::Elements::Image do
 
     context 'when no caption is provided' do
       let(:caption) { [] }
-      let(:expected_html) { '<figure><img src="/foo/bar.jpg"></figure>' }
+      let(:expected_html) do
+        '<figure><img src="/foo/bar.jpg" alt="Text description"></figure>'
+      end
       it { should eq expected_html }
     end
   end
