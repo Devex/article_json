@@ -26,6 +26,23 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     it { should eq source_url }
   end
 
+  describe '#alt' do
+    subject { element.alt }
+
+    context 'whithout an alt attribute' do
+      it { should eq '' }
+    end
+
+    context 'with an alt attribute' do
+      let(:alt_text) { 'Alternative text' }
+      let(:image_fragment) do
+        "<p><span><img src=\"#{source_url}\" alt=\"#{alt_text}\"></span></p>"
+      end
+
+      it { should eq alt_text }
+    end
+  end
+
   describe '#float' do
     subject { element.float }
 

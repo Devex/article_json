@@ -96,7 +96,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
                       "href": null
                    }
                 ],
-                "href": "http://www.devex.com"
+                "href": "http://www.devex.com",
+                "alt": ""
               }
             ]
           }

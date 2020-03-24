@@ -19,6 +19,12 @@ module ArticleJSON
             @float_node = @node
           end
 
+          # The value of the image's `alt` attribute
+          # @return [String]
+          def alt
+            image_node.attribute('alt')&.value || ''
+          end
+
           # The value of the image's `src` attribute
           # @return [String]
           def source_url
@@ -54,7 +60,8 @@ module ArticleJSON
               source_url: source_url,
               float: float,
               caption: caption,
-              href: @href
+              href: @href,
+              alt: alt
             )
           end
 
