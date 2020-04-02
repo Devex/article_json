@@ -53,6 +53,21 @@ $ ./bin/article_json_export_google_doc.rb $DOC_ID \
     | ./bin/article_json_export_html.rb
 ```
 
+You can also update all the different exported versions of the reference
+document (html, json, amp, facebook instant article and plain txt) by
+running the following command:
+
+```
+$ ./bin/update_reference_document.sh
+```
+
+When running the tests, we use some fixtures to mock the responses for oembed
+request, but these may change over time. To update them, run:
+
+```
+$ ./bin/update_oembed_request-stubs.sh
+```
+
 ### Configuration
 There are some configuration options that allow a more tailored usage of the
 `article_json` gem. The following code snippet gives an example for every
