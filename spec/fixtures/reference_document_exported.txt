@@ -34,7 +34,7 @@ When an image is smaller than the medium width of the document, it will be displ
 The following paragraph is then normal content again. By aligning small images to the right they will later on be displayed on the right side of the article. Let’s first add some lorem ipsum text to flow around these small images.
 You can also add alt text to an image, by selecting the image and pressing CTRL+ALT+Y or right clicking, selecting the option and filling the “Description” input.
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Large images that are supposed to take up the full width within the the article format are also big ones within the Google Document.
+Large images that are supposed to take up the full width within the article format are also big ones within the Google Document.
 
 
 

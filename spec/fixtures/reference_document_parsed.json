@@ -290,13 +290,27 @@
       "caption": [
         {
           "type": "text",
-          "content": "The image’s caption resides in the paragraph following the image. So, if all goes well, this paragraph should be the caption...",
+          "content": "The image’s caption resides in the paragraph following the image. So, if all goes well, this paragraph should be the caption. Also, if the caption has the following tag  with a url inside, the image will have a link to that url (devex.com, in this case).",
+          "bold": false,
+          "italic": false,
+          "href": null
+        },
+        {
+          "type": "text",
+          "content": "http://devex.com",
+          "bold": false,
+          "italic": false,
+          "href": "http://devex.com"
+        },
+        {
+          "type": "text",
+          "content": "] with a url inside, the image will have a link to that url (devex.com, in this case).",
           "bold": false,
           "italic": false,
           "href": null
         }
       ],
-      "href": null,
+      "href": "http://devex.com",
       "alt": ""
     },
     {
@@ -356,7 +370,7 @@
       "content": [
         {
           "type": "text",
-          "content": "Large images that are supposed to take up the full width within the the article format are also big ones within the Google Document.",
+          "content": "Large images that are supposed to take up the full width within the article format are also big ones within the Google Document.",
           "bold": false,
           "italic": false,
           "href": null
