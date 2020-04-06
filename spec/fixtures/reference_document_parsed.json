@@ -290,21 +290,14 @@
       "caption": [
         {
           "type": "text",
-          "content": "The image’s caption resides in the paragraph following the image. So, if all goes well, this paragraph should be the caption. Also, if the caption has the following tag  with a url inside, the image will have a link to that url (devex.com, in this case).",
+          "content": "The image’s caption resides in the paragraph following the image. So, if all goes well, this paragraph should be the caption. Also, if the caption has the following tag  ",
           "bold": false,
           "italic": false,
           "href": null
         },
         {
           "type": "text",
-          "content": "http://devex.com",
-          "bold": false,
-          "italic": false,
-          "href": "http://devex.com"
-        },
-        {
-          "type": "text",
-          "content": "] with a url inside, the image will have a link to that url (devex.com, in this case).",
+          "content": "with a url inside, the image will have a link to that url (devex.com, in this case).",
           "bold": false,
           "italic": false,
           "href": null
