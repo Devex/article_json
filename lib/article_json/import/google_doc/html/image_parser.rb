@@ -88,9 +88,8 @@ module ArticleJSON
               .first
               .content = @caption_node.children.first.content.gsub('[image-link-to:', '')
             @caption_node
-              .children
-              .last
-              .content = @caption_node.children.last.content.gsub('] ', '')
+              .children[2]
+              .content = @caption_node.children[2].content.gsub('] ', '')
             @caption_node.children.search('a').remove
           end
 
