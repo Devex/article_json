@@ -184,19 +184,17 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the caption is `[image-link-to]`' do
       let(:text) { 'Original caption text' }
-      let(:second_text) { 'second text' }
       let(:caption_fragment) do
         "<p><span> [image-link-to: </span>" \
         "<span><a href=\"http://devex.com\">http://devex.com</a></span>" \
-        "<span>] #{text}</span><span>#{second_text}</span></p>"
+        "<span>] #{text}</span></p>"
       end
 
       it 'returns an empty list' do
         expect(subject).to be_an Array
-        expect(subject.size).to eq 2
+        expect(subject.size).to eq 1
         expect(subject).to all be_a ArticleJSON::Elements::Text
         expect(subject.first.content).to eq text
-        expect(subject.last.content).to eq second_text
       end
     end
 
