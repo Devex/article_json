@@ -11,7 +11,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
       JSON.parse(json, symbolize_names: true)[:content].to_json
     end
 
-    it { should eq minified_json }
+    it do
+      # require 'byebug'; byebug
+      should eq minified_json 
+    end
 
     context 'when a text box is not closed' do
       let(:html) { File.read('spec/fixtures/google_doc_unclosed_textbox.html') }
@@ -85,8 +88,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
             "content": [
               {
                 "type": "image",
-                 "source_url": "https://lh4.googleusercontent.com/DjKv5wkG-CjXExV-RnBJwqicDQr3p5NNutK43eG5gS0SK1YzErJjiYwum1qkbR0JYFo-8wH3esPDBaZuq6wfRQx3aGVGkavWHjYA3YOzhAPhAjgOQ2h67DuvKSxQYau-2w",
-                 "float": null,
+                 "source_url": "https://lh6.googleusercontent.com/mddqDcb0cm8wTJCiXyllikOod1Ecsuyy1twC14rWwu41thuwrmQAYBkOmMPlC2a1mxB1ajaSew35FkoR_GOqXyj0lDWNpC45sapPfY1rzf9JihhMRV-G9MuSzMVkneMs4w",
+                 "float": "left",
                  "caption": [
                    {
                      "type": "text",
