@@ -68,30 +68,11 @@ module ArticleJSON
           private
 
           # Removes the [image-link-to: url] tag from the caption node
-          #
-          # When google docs exports a document to html, if the paragraph has
-          # an image link tag, it creates three different spans. For an
-          # original paragraph like this:
-          #
-          # `This is an example of [image-link-to: http://devex.com] tag`
-          #
-          # Google will export it as:
-          #
-          # `<span>This is an example of [image-link-to:</span>`
-          # `<span><a href=http://devex.com>http://devex.com</a></span>`
-          # `<span>] tag</span>`
-          #
-          # So we need to remove the image link tag from the three spans.
           def remove_image_link_tag
             @caption_node
               .children
               .first
-              .content = @caption_node.children.first.content.gsub('[image-link-to:', '')
-            @caption_node
-              .children
-              .last
-              .content = @caption_node.children.last.content.gsub('] ', '')
-            @caption_node.children.search('a').remove
+              .content = @caption_node.content.sub(href_regexp, '').strip
           end
 
           # Regular expression to check if there's a [image-link-to: url] tag

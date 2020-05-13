@@ -18,7 +18,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
   let(:css) { '' }
   let(:source_url) { 'foo/bar.jpg' }
   let(:image_fragment) { "<p><span><img src=\"#{source_url}\"></span></p>" }
-  let(:caption_text) { 'foo' }
+  let(:caption_text) { '[image-link-to: http://devex.com] foo' }
   let(:caption_fragment) { "<p><span>#{caption_text}</span></p>" }
 
   describe '#source_url' do
@@ -182,28 +182,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       end
     end
 
-    context 'when the caption is `[image-link-to]`' do
-      let(:text) { 'Original caption text' }
-      let(:caption_fragment) do
-        "<p><span> [image-link-to: </span>" \
-        "<span><a href=\"http://devex.com\">http://devex.com</a></span>" \
-        "<span>] #{text}</span></p>"
-      end
-
-      it 'returns an empty list' do
-        expect(subject).to be_an Array
-        expect(subject.size).to eq 1
-        expect(subject).to all be_a ArticleJSON::Elements::Text
-        expect(subject.first.content).to eq text
-      end
-    end
-
     context 'when the caption is `[image-link-to]` and `[no-caption]`' do
-      let(:caption_fragment) do
-        '<p><span> [image-link-to: </span>' \
-        '<span><a href="http://devex.com">http://devex.com</a></span>' \
-        '<span>][no-caption]</span></p>'
-      end
+      let(:caption_text) { '[image-link-to: http://devex.com][no-caption]' }
       it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty
@@ -213,12 +193,6 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
   describe '#element' do
     subject { element.element }
-
-    let(:caption_fragment) do
-      '<p><span> [image-link-to: </span>' \
-      '<span><a href="http://devex.com">http://devex.com</a></span>' \
-      '<span>] Foo</span></p>'
-    end
 
     it 'returns a proper Hash' do
       expect(subject).to be_a ArticleJSON::Elements::Image
@@ -230,11 +204,8 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     end
 
     context 'with an image-link-to tag and a no-caption tag' do
-      let(:caption_fragment) do
-        '<p><span> [image-link-to: </span>' \
-        '<span><a href="http://devex.com">http://devex.com</a></span>' \
-        '<span>][no-caption]</span></p>'
-      end
+      let(:caption_text) { '[image-link-to: http://devex.com][no-caption]' }
+
       it 'returns a proper Hash' do
         expect(subject).to be_a ArticleJSON::Elements::Image
         expect(subject.type).to eq :image

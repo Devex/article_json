@@ -18,7 +18,7 @@ module ArticleJSON
 
             def no_caption?
               @caption_node.nil? ||
-                @caption_node.content =~ /\[no-caption\]/
+                @caption_node.inner_text.strip == '[no-caption]'
             end
           end
         end
