@@ -84,30 +84,23 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
             "article_json_version": "#{ArticleJSON::VERSION}",
             "content": [
               {
-                "type":"image",
-                "source_url": "https://lh4.googleusercontent.com/84eMcvSsNvvD4Io35I1vs6LaWp8TRY4_5scW8vmKz9recX7QrX59a6FVeW23bXSbaxJjaOuicHwOd2QfO4dzinrpVeVn4HV6Xh9ijub8zAtQjwGt5TrrQ_tAMMMbUVREIA",
-                   "float":null,
-                     "caption": [
-                       {
-                         "type":"text",
-                         "content":"Image with caption  ",
-                         "bold":false,
-                         "italic":false,
-                         "href":null
-                       },
-                       {
-                         "type":"text",
-                         "content":"]",
-                         "bold":false,
-                         "italic":false,
-                         "href":null
-                       }
-                     ],
-                "href":"http://www.devex.com",
-                "alt":"Some idilic place."
+                "type": "image",
+                 "source_url": "https://lh4.googleusercontent.com/DjKv5wkG-CjXExV-RnBJwqicDQr3p5NNutK43eG5gS0SK1YzErJjiYwum1qkbR0JYFo-8wH3esPDBaZuq6wfRQx3aGVGkavWHjYA3YOzhAPhAjgOQ2h67DuvKSxQYau-2w",
+                 "float": null,
+                 "caption": [
+                   {
+                     "type": "text",
+                     "content": "This is the caption of the image",
+                     "bold": false,
+                     "italic": false,
+                      "href": null
+                   }
+                ],
+                "href": "http://www.devex.com",
+                "alt": ""
               }
             ]
-          } 
+          }
         JSON
       end
       it { should eq minified_json }
