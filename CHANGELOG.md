@@ -1,4 +1,11 @@
 # Changelog
+## 0.3.8 - 2020/7/31
+- **Improvements:**
+- Add a script to update oembed stubs fixtures.
+- Support for `alt` attribute in images.
+
+- **Fix:** Fix a bug when using the `[image-link-to: ]` tag.
+
 ## 0.3.7 - 2019/8/21
 - **Fix:** Only use https for soundcloud oembed api
 
