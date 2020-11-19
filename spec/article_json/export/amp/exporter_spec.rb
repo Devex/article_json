@@ -6,7 +6,12 @@ describe ArticleJSON::Export::AMP::Exporter do
   describe 'reference document test' do
     subject { exporter.html }
     let(:html) { File.read('spec/fixtures/reference_document_exported.amp.html') }
-    before { stub_oembed_requests }
+
+    before do
+      ArticleJSON.configure { |c| c.facebook_token = 'fake_facebook_token' }
+      stub_oembed_requests
+    end
+    
     it { should eq html.strip }
   end
 
@@ -16,7 +21,6 @@ describe ArticleJSON::Export::AMP::Exporter do
     it 'should return the right tags' do
       expect(subject).to contain_exactly :'amp-vimeo',
                                          :'amp-youtube',
-                                         :'amp-facebook',
                                          :'amp-iframe',
                                          :'amp-twitter'
     end
@@ -31,8 +35,6 @@ describe ArticleJSON::Export::AMP::Exporter do
         'src="https://cdn.ampproject.org/v0/amp-vimeo-0.1.js"></script>',
         '<script async custom-element="amp-youtube" ' \
         'src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>',
-        '<script async custom-element="amp-facebook" ' \
-        'src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>',
         '<script async custom-element="amp-iframe" ' \
         'src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>',
         '<script async custom-element="amp-twitter" ' \

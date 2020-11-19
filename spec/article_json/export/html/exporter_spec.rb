@@ -2,6 +2,10 @@ describe ArticleJSON::Export::HTML::Exporter do
   subject(:exporter) { described_class.new(elements) }
 
   describe 'reference document test' do
+    before do
+      ArticleJSON.configure { |c| c.facebook_token = 'fake_facebook_token' }
+    end
+    
     subject { exporter.html }
     let(:html) { File.read('spec/fixtures/reference_document_exported.html') }
     let(:json) { File.read('spec/fixtures/reference_document_parsed.json') }

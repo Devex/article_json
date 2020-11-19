@@ -24,7 +24,7 @@ module OembedRequestStubs
   def stub_oembed_facebook_request(additional_headers = {}, custom_body: nil,
                                    error: false)
     stub_oembed_request(
-      'https://www.facebook.com/plugins/video/oembed.json?url=https://www.facebook.com/facebook/videos/1814600831891266',
+      'https://graph.facebook.com/v9.0/oembed_video?url=https://www.facebook.com/facebook/videos/1814600831891266&access_token=fake_facebook_token',
       custom_body || File.read('spec/fixtures/facebook_video_oembed.json'),
       additional_headers,
       error: error

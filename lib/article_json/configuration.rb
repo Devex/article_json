@@ -14,10 +14,11 @@ module ArticleJSON
   end
 
   class Configuration
-    attr_accessor :oembed_user_agent
+    attr_accessor :oembed_user_agent, :facebook_token
 
     def initialize
       @oembed_user_agent = nil
+      @facebook_token = nil
       @custom_element_exporters = {}
     end
 
