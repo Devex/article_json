@@ -479,40 +479,6 @@
     {
       "type": "heading",
       "level": 2,
-      "content": "Videos: Facebook"
-    },
-    {
-      "type": "embed",
-      "embed_type": "facebook_video",
-      "embed_id": "1814600831891266",
-      "tags": [
-        "devex"
-      ],
-      "caption": [
-        {
-          "type": "text",
-          "content": "The paragraph following the URL is the video’s caption.",
-          "bold": false,
-          "italic": false,
-          "href": null
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "bold": false,
-          "italic": true,
-          "href": null
-        }
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 2,
       "content": "Slideshows"
     },
     {
