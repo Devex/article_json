@@ -107,6 +107,22 @@ ArticleJSON.configure do |config|
 end
 ``` 
 
+### Facebook Oembed
+Facebook deprecated it's public endpoints for embeddable Facebook content on
+October 14, 2020 (See https://developers.facebook.com/docs/plugins/oembed-legacy
+for more info). Since then, you need to use a facebook token to access the new
+oembed endpoints. You can configure the gem to use this token so:
+
+``` ruby
+ArticleJSON.configure do |config|
+  config.facebook_token = 'token'
+end
+```
+
+Where token would be the combination of the app-id and the access token
+joined with the pipe symbol (`|`). More info about the access token
+[here](https://developers.facebook.com/docs/plugins/oembed#access-tokens)
+
 ## Format
 A full example of the format can be found in the test fixtures:
 [Parsed Reference Document](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_parsed.json)
