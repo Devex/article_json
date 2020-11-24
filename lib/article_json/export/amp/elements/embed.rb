@@ -69,7 +69,7 @@ module ArticleJSON
 
           # @return [Nokogiri::XML::Element]
           def facebook_node
-            url = "#{@element.oembed_data[:author_url]}videos/#{@element.embed_id}"
+            url = "#{@element.oembed_data[:author_url]}/videos/#{@element.embed_id}"
             create_element('amp-facebook',
                            'data-embedded-as' => 'video',
                            'data-href' => url,
