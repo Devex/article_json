@@ -6,7 +6,12 @@ module ArticleJSON
           # @param [String] html
           def initialize(html)
             doc = Nokogiri::HTML(html)
-            @body_enumerator = doc.xpath('//body/div').last.children.to_enum
+            selection = if doc.xpath('//body/div').empty?
+                          doc.xpath('//body')
+                        else
+                          doc.xpath('//body/div')
+                        end
+            @body_enumerator = selection.last.children.to_enum
 
             css_node = doc.xpath('//head/style').last
             @css_analyzer = CSSAnalyzer.new(css_node&.inner_text)

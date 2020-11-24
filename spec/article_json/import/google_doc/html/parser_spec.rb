@@ -11,10 +11,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
       JSON.parse(json, symbolize_names: true)[:content].to_json
     end
 
-    it do
-      # require 'byebug'; byebug
-      should eq minified_json 
-    end
+    it { should eq minified_json }
 
     context 'when a text box is not closed' do
       let(:html) { File.read('spec/fixtures/google_doc_unclosed_textbox.html') }
@@ -79,6 +76,33 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
       end
       it { should eq minified_json }
     end
+
+    context 'when the content is not nested under a div' do
+      let(:html) { File.read('spec/fixtures/google_doc_no_div.html') }
+      let(:json) do
+        <<~JSON
+          {
+            "article_json_version": "#{ArticleJSON::VERSION}",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "content": "Not nested under a div tag",
+                    "bold": false,
+                    "italic": false,
+                    "href": null
+                  }
+                ]
+              }
+            ]
+          }
+        JSON
+      end
+      it { should eq minified_json }
+    end
+
     context 'when an image has a caption an a link' do
       let(:html) { File.read('spec/fixtures/google_doc_image_with_link.html') }
       let(:json) do
