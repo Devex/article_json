@@ -44,7 +44,7 @@ module OembedRequestStubs
   def stub_oembed_youtube_request(additional_headers = {}, custom_body: nil,
                                   error: false)
     stub_oembed_request(
-      'http://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=_ZG8HBuDjgc',
+      'https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=_ZG8HBuDjgc',
       custom_body || File.read('spec/fixtures/youtube_video_oembed.json'),
       additional_headers,
       error: error

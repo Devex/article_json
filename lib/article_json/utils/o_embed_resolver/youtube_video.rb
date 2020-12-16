@@ -11,7 +11,7 @@ module ArticleJSON
         # The URL for the oembed API call
         # @return [String]
         def oembed_url
-          "http://www.youtube.com/oembed?format=json&url=#{source_url}"
+          "https://www.youtube.com/oembed?format=json&url=#{source_url}"
         end
 
         # The video URL of the element

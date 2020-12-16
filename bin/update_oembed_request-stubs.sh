@@ -2,7 +2,7 @@
 
 curl -X GET "https://vimeo.com/api/oembed.json?url=https://vimeo.com/42315417" | jq > spec/fixtures/vimeo_video_oembed.json
 
-curl -X GET "http://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=_ZG8HBuDjgc" | jq > spec/fixtures/youtube_video_oembed.json
+curl -X GET "https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=_ZG8HBuDjgc" | jq > spec/fixtures/youtube_video_oembed.json
 
 curl -X GET "https://www.slideshare.net/api/oembed/2?format=json&url=https://www.slideshare.net/Devex/the-best-global-development-quotes-of-2012" |  jq > spec/fixtures/slideshare_oembed.json
 
