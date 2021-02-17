@@ -5,10 +5,10 @@
 # This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
-name: Ruby
+name: Check Google Doc
 on:
   schedule:
-  - cron: "0 6 * * *"
+    - cron: "0 6 * * *"
   workflow_dispatch:
 
 jobs:

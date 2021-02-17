@@ -3,7 +3,8 @@ JSON Format for News Articles & Ruby Gem.
 
 ## Status
 [![Gem Version](https://badge.fury.io/rb/article_json.svg)](https://badge.fury.io/rb/article_json)
-[![Build Status](https://travis-ci.org/Devex/article_json.svg)](https://travis-ci.org/Devex/article_json)
+![Check Google Doc](https://github.com/Devex/article_json/workflows/Check+Google+Doc/badge.svg)
+![rspec](https://github.com/Devex/article_json/workflows/rspec/badge.svg)
 [![Code Climate](https://codeclimate.com/github/Devex/article_json/badges/gpa.svg)](https://codeclimate.com/github/Devex/article_json)
 [![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
 
@@ -71,7 +72,7 @@ $ ./bin/update_oembed_request-stubs.sh
 ### Configuration
 There are some configuration options that allow a more tailored usage of the
 `article_json` gem. The following code snippet gives an example for every
-available setting: 
+available setting:
 
 ```ruby
 ArticleJSON.configure do |config|
@@ -84,28 +85,28 @@ ArticleJSON.configure do |config|
     :html,
     advertisement: ArticleJSON::Export::HTML::Elements::Advertisement
   )
-  
+
   # You can also overwrite existing exporters:
   config.register_element_exporters(
     :html,
     image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
-  
+
   # And you can define multiple custom exporters:
   config.register_element_exporters(
     :html,
     advertisement: ArticleJSON::Export::HTML::Elements::Advertisement,
     image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
-  
-  # It works the same way for custom AMP, FacebookInstantArticle, or 
+
+  # It works the same way for custom AMP, FacebookInstantArticle, or
   # PlainText exporters:
   config.register_element_exporters(
     :amp, # Or change this for `:facebook_instant_article` or `:plain_text`
     image: ArticleJSON::Export::AMP::Elements::ScaledImage
-  ) 
+  )
 end
-``` 
+```
 
 ### Facebook Oembed
 Facebook deprecated it's public endpoints for embeddable Facebook content on
@@ -133,14 +134,14 @@ This [Reference Document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDy
 lists contains all supported formatting along with some descriptions.
 
 ## Add custom elements
-Sometimes you might want to place additional elements into the article, like e.g. advertisements. 
-`article_json` supports this via `article.place_additional_elements` which accepts an array of elements that you can define in your own code. 
+Sometimes you might want to place additional elements into the article, like e.g. advertisements.
+`article_json` supports this via `article.place_additional_elements` which accepts an array of elements that you can define in your own code.
 Each element that is added this way will directly get placed in between paragraphs of the article.
 The method ensures that an additional element is never added before or after any node other than paragraphs (e.g. an image).
 The elements are added in the order you pass them into the method.
 If the article should not have enough spaces to place all the provided elements, they will be placed after the last element in the article.
 
-You can pass any type of element into this method. 
+You can pass any type of element into this method.
 If the objects you pass in are instances of elements defined within this gem (e.g. `ArticleJSON::Elements::Image`), you won't have to do anything else to get them rendered.
 If you pass in an instance of a custom class (e.g. `MyAdvertisement`), make sure to register an exporter for this type (check the _Configuration_ section for more details).
 
@@ -150,45 +151,45 @@ Example using only existing elements:
 article = ArticleJSON::Article.from_hash(parsed_json)
 
 # Within your code, create additional elements you would like to add
-image_advertisement = 
-  ArticleJSON::Elements::Image.new(source_url: 'https://robohash.org/great-ad', 
+image_advertisement =
+  ArticleJSON::Elements::Image.new(source_url: 'https://robohash.org/great-ad',
                                    caption: ArticleJSON::Elements::Text.new(
                                     content: 'Buy more robots!',
                                     href: '/robot-sale'
                                    ))
-text_box_similar_articles = 
+text_box_similar_articles =
   ArticleJSON::Elements::TextBox.new(content: [
-    ArticleJSON::Elements::Heading.new(level: 3, content: 'Read more...'),  
+    ArticleJSON::Elements::Heading.new(level: 3, content: 'Read more...'),
     ArticleJSON::Elements::List.new(content: [
       ArticleJSON::Elements::Paragraph(content: [
-        ArticleJSON::Elements::Text.new(content: 'Very similar article', 
+        ArticleJSON::Elements::Text.new(content: 'Very similar article',
                                         href: '/news/123'),
       ]),
       ArticleJSON::Elements::Paragraph(content: [
-        ArticleJSON::Elements::Text.new(content: 'Great article!', 
+        ArticleJSON::Elements::Text.new(content: 'Great article!',
                                         href: '/news/42'),
       ]),
-    ]),  
+    ]),
   ])
 
 # Add these elements to the article
-article.place_additional_elements([image_advertisement, 
+article.place_additional_elements([image_advertisement,
                                    text_box_similar_articles])
-               
-# Export the article to the different formats as you would normally do                    
+
+# Export the article to the different formats as you would normally do
 article.to_html # this will now include the custom elements
-``` 
+```
 
 Example with custom advertisement elements:
 ```ruby
 # Define your custom element class
 class MyAdvertisement
   attr_reader :url
-  
+
   def initialize(url:)
     @url = url
   end
-  
+
   def type
     :my_advertisement
   end
@@ -196,9 +197,9 @@ end
 
 # Define an exporter for your class, we only use HTML in this example but this
 # would work similarly for AMP or other formats
-class MyAdvertisementExporter < 
-  ArticleJSON::Export::HTML::Elements::Base 
-  
+class MyAdvertisementExporter <
+  ArticleJSON::Export::HTML::Elements::Base
+
   # Needs to implement the `#export` method
   def export
     create_element(:iframe, src: @element.url)
@@ -226,23 +227,23 @@ article.to_html
 ## Export
 ### HTML
 The HTML exporter generates a HTML string for a list of elements. An example of
-the HTML export for the parsed reference document can be found 
+the HTML export for the parsed reference document can be found
 [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
 
 ### AMP
-The AMP exporter generates an AMP HTML representation of the elements. 
+The AMP exporter generates an AMP HTML representation of the elements.
 
 AMP uses [custom HTML tags](https://www.ampproject.org/docs/reference/components), some of which require additional Javascript libraries.
-If you have an `article` (see code example in _Usage_ section), you can get a list of the custom tags required by this article by calling `article.amp_exporter.custom_element_tags` and by calling `article.amp_exporter.amp_libraries` you get a list of `<script>` tags that can directly be included on your page to render the AMP article. 
+If you have an `article` (see code example in _Usage_ section), you can get a list of the custom tags required by this article by calling `article.amp_exporter.custom_element_tags` and by calling `article.amp_exporter.amp_libraries` you get a list of `<script>` tags that can directly be included on your page to render the AMP article.
 
 An example of
-the AMP HTML export for the parsed reference document can be found 
+the AMP HTML export for the parsed reference document can be found
 [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
 
 ### Facebook Instant Articles
 The `FacebookInstantArticle` exporter generates a custom HTML string for a list
 of elements. An example of the Facebook Instant Article export for the parsed
-reference document can be found 
+reference document can be found
 [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
 
 To learn more about the Facebook Instant Article HTML format see have a look at
@@ -261,7 +262,7 @@ Usage:
 article = ArticleJSON::Article.from_hash(parsed_json)
 
 # Then simply call `#to_plain_text` on it
-article.to_plain_text 
+article.to_plain_text
 ```
 
 ## Contributing
@@ -273,7 +274,7 @@ article.to_plain_text
 
 Thank you!
 
-See the 
+See the
 [list of contributors](https://github.com/Devex/article_json/contributors).
 
 ### Tests
