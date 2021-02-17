@@ -3,7 +3,7 @@ JSON Format for News Articles & Ruby Gem.
 
 ## Status
 [![Gem Version](https://badge.fury.io/rb/article_json.svg)](https://badge.fury.io/rb/article_json)
-![Check Google Doc](https://github.com/Devex/article_json/workflows/Check+Google+Doc/badge.svg)
+![Check Google Doc](https://github.com/Devex/article_json/workflows/Check%20Google%20Doc/badge.svg)
 ![rspec](https://github.com/Devex/article_json/workflows/rspec/badge.svg)
 [![Code Climate](https://codeclimate.com/github/Devex/article_json/badges/gpa.svg)](https://codeclimate.com/github/Devex/article_json)
 [![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
