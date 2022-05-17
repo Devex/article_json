@@ -14,7 +14,7 @@ module ArticleJSON
     def elements
       @elements ||= begin
         if @additional_elements.any?
-          ArticleJSON::Utils::AdditionalElementPlacer
+          @additional_element_placer_class
             .new(@article_elements, @additional_elements)
             .merge_elements
         else
@@ -91,10 +91,18 @@ module ArticleJSON
     # article. If the method is called multiple times, the order of additional
     # elements is maintained.
     # @param [Object] additional_elements
-    def place_additional_elements(additional_elements)
+    # @param [Class<#merge_elements>] with - The passes class's `#initialize` method needs
+    #                                        to accept two lists of elements. See
+    #                                        `ArticleJSON::Utils::AdditionalElementPlacer`
+    #                                        for reference.
+    def place_additional_elements(
+      additional_elements,
+      with: ArticleJSON::Utils::AdditionalElementPlacer
+    )
       # Reset the `#elements` method memoization
       @elements = nil
       @additional_elements.concat(additional_elements)
+      @additional_element_placer_class = with
     end
 
     class << self
