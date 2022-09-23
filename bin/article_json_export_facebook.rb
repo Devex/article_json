@@ -11,5 +11,6 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+require 'bundler/setup'
 require_relative '../lib/article_json'
 puts ArticleJSON::Article.from_json(ARGF.read).to_facebook_instant_article

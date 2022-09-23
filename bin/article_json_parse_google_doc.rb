@@ -10,5 +10,6 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+require 'bundler/setup'
 require_relative '../lib/article_json'
 puts ArticleJSON::Article.from_google_doc_html((ARGF.read)).to_json
