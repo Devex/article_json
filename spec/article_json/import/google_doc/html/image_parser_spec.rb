@@ -16,14 +16,19 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer.new(css)
   end
   let(:css) { '' }
-  let(:source_url) { 'foo/bar.jpg' }
+  let(:source_url) { 'https://devex.com/images/bar.jpg' }
   let(:image_fragment) { "<p><span><img src=\"#{source_url}\"></span></p>" }
-  let(:caption_text) { '[image-link-to: http://devex.com] foo' }
+  let(:caption_text) { '[image-link-to: https://devex.com] foo' }
   let(:caption_fragment) { "<p><span>#{caption_text}</span></p>" }
 
   describe '#source_url' do
     subject { element.source_url }
     it { should eq source_url }
+
+    context 'when the image is specified via URL' do
+      let(:image_fragment) { "<p><span><a href=\"#{source_url}\">#{source_url}</a></span></p>" }
+      it { should eq source_url }
+    end
   end
 
   describe '#alt' do
@@ -41,6 +46,11 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
       it { should eq alt_text }
     end
+
+    context 'when the image is specified via URL' do
+      let(:image_fragment) { "<p><span><a href=\"#{source_url}\">#{source_url}</a></span></p>" }
+      it { should eq '' }
+    end
   end
 
   describe '#float' do
@@ -56,7 +66,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       "<p class=\"#{p_class}\"><span>#{img_tag}</span></p>"
     end
 
-    context 'for a image without width' do
+    context 'for an image without width' do
       let(:img_tag) { '<img src="foo/bar">' }
 
       context 'and without alignment' do
@@ -75,7 +85,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       end
     end
 
-    context 'for a image with a width-attribute' do
+    context 'for an image with a width-attribute' do
       context 'and not wider than 500px' do
         let(:img_tag) { '<img width="400" src="foo/bar">' }
 
@@ -115,7 +125,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       end
     end
 
-    context 'for a image with a style-attribute' do
+    context 'for an image with a style-attribute' do
       context 'and a width wider than 500px' do
         let(:img_tag) { '<img style="width: 400px;" src="foo/bar">' }
 
@@ -154,6 +164,25 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
         end
       end
     end
+
+    context 'for an image specified via URL' do
+      let(:img_tag) { "<a href=\"#{source_url}\">#{source_url}</a>" }
+
+      context 'and without alignment' do
+        let(:p_class) { '' }
+        it { should be :left }
+      end
+
+      context 'and with right-alignment' do
+        let(:p_class) { 'right' }
+        it { should be :right }
+      end
+
+      context 'and with left-alignment' do
+        let(:p_class) { 'center' }
+        it { should be nil }
+      end
+    end
   end
 
   describe '#caption' do
@@ -183,7 +212,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     end
 
     context 'when the caption is `[image-link-to]` and `[no-caption]`' do
-      let(:caption_text) { '[image-link-to: http://devex.com][no-caption]' }
+      let(:caption_text) { '[image-link-to: https://devex.com][no-caption]' }
       it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty
@@ -194,25 +223,37 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
   describe '#element' do
     subject { element.element }
 
-    it 'returns a proper Hash' do
+    it 'returns a proper Element' do
       expect(subject).to be_a ArticleJSON::Elements::Image
       expect(subject.type).to eq :image
       expect(subject.source_url).to eq source_url
       expect(subject.float).to be nil
       expect(subject.caption).to all be_a ArticleJSON::Elements::Text
-      expect(subject.href).to eq 'http://devex.com'
+      expect(subject.href).to eq 'https://devex.com'
     end
 
     context 'with an image-link-to tag and a no-caption tag' do
-      let(:caption_text) { '[image-link-to: http://devex.com][no-caption]' }
+      let(:caption_text) { '[image-link-to: https://devex.com][no-caption]' }
 
-      it 'returns a proper Hash' do
+      it 'returns a proper Element' do
         expect(subject).to be_a ArticleJSON::Elements::Image
         expect(subject.type).to eq :image
         expect(subject.source_url).to eq source_url
         expect(subject.float).to be nil
         expect(subject.caption).to be_empty
-        expect(subject.href).to eq 'http://devex.com'
+        expect(subject.href).to eq 'https://devex.com'
+      end
+    end
+
+    context 'when the image is specified via URL' do
+      let(:image_fragment) { "<p><span><a href=\"#{source_url}\">#{source_url}</a></span></p>" }
+      it 'returns a proper Element' do
+        expect(subject).to be_a ArticleJSON::Elements::Image
+        expect(subject.type).to eq :image
+        expect(subject.source_url).to eq source_url
+        expect(subject.float).to be nil
+        expect(subject.caption).to all be_a ArticleJSON::Elements::Text
+        expect(subject.href).to eq 'https://devex.com'
       end
     end
   end

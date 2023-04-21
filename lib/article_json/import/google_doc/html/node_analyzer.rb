@@ -88,7 +88,17 @@ module ArticleJSON
           # @return [Boolean]
           def image?
             return @is_image if defined? @is_image
-            @is_image = node.xpath('.//img').length > 0
+            @is_image = image_url? || node.xpath('.//img').length > 0
+          end
+
+          # Check if the node contains an image URL
+          # @return [Boolean]
+          def image_url?
+            return @is_image_url if defined? @is_image_url
+
+            text = node.inner_text.strip
+            url_regexp = %r{https?:\/\/\S+\.(?:jpg|jpeg|png|gif)}i
+            @is_image_url = !!(url_regexp =~ text)
           end
 
           # Check if the node contains an embedded element

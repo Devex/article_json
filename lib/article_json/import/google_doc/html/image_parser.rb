@@ -22,25 +22,31 @@ module ArticleJSON
           # The value of the image's `alt` attribute
           # @return [String]
           def alt
+            return '' if image_url?
+
             image_node.attribute('alt')&.value || ''
           end
 
           # The value of the image's `src` attribute
           # @return [String]
           def source_url
+            return @node.inner_text.strip if image_url?
+
             image_node.attribute('src').value
           end
 
           # The node of the actual image
           # @return [Nokogiri::HTML::Node]
           def image_node
-            @node.xpath('.//img').first
+            return @image_node if defined? @image_node
+
+            @image_node = @node.xpath('.//img').first
           end
 
           # Check if the image is floating (left, right or not at all)
           # @return [Symbol]
           def float
-            super if floatable_size?
+            super if image_url? || floatable_size?
           end
 
           # Extracts an href from the tag [image-link-to: url]) if present
@@ -80,6 +86,7 @@ module ArticleJSON
           def href_regexp
             %r{\[image-link-to:\s+(?<url>.*?)\]}
           end
+
           # Check if the image's width can be determined and is less than 500px
           # This is about 3/4 of the google document width...
           # @return [Boolean]
@@ -100,6 +107,13 @@ module ArticleJSON
                 match = image_node.attribute('style').value.match(regex)
                 match['px'].to_i if match && match['px']
               end
+          end
+
+          # When the current node doesn't contain an actual image tag,
+          # we're dealing with an image URL
+          # @return [Boolean]
+          def image_url?
+            image_node.nil?
           end
         end
       end
