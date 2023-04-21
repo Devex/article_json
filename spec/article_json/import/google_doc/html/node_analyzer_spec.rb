@@ -178,8 +178,54 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
       it { should be true }
     end
 
+    context 'when the node contains an image url' do
+      let(:image_url) { 'https://devex.com/images/foo.png' }
+      let(:xml_fragment) { "<p><span><a href=\"#{image_url}\">#{image_url}</a></span></p>" }
+      it { should be true }
+    end
+
     context 'when the node does *not* have a nested image tag' do
       let(:xml_fragment) { '<p><span>no image here</span></p>' }
+      it { should be false }
+    end
+  end
+
+  describe '#image_url?' do
+    subject { node.image_url? }
+
+    context 'when the node contains an image URL' do
+      image_url_list = %w[
+          https://devex.com/images/foo.jpeg
+          http://devex.com/images/foo.jpeg
+          https://devex.com/images/foo.jpg
+          http://devex.com/images/foo.jpg
+          https://devex.com/images/foo.png
+          http://devex.com/images/foo.png
+          https://devex.com/images/foo.gif
+          http://devex.com/images/foo.gif
+        ]
+      image_url_list.each do |image_url|
+        context("and the URL is '#{image_url}'") do
+          let(:xml_fragment) do
+            <<-html
+              <span><a href="https://www.google.com/url?q=#{image_url}">#{image_url}</a></span>
+            html
+          end
+
+          it { should be true }
+        end
+      end
+    end
+
+    context 'when the node contain a non-image URL' do
+      let(:xml_fragment) { '<span><a href="https://devex.com">foo bar</a></span>' }
+
+      it { should be false }
+    end
+
+    context 'when the node does not contain any URL' do
+      let(:xml_fragment) { '<span>nothing to see here</span>' }
+
       it { should be false }
     end
   end
