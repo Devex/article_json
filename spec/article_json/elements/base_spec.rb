@@ -25,7 +25,7 @@ describe ArticleJSON::Elements::Base do
       embed_type: :something,
       embed_id: '666',
       caption: [text_hash],
-      tags: %w(foo bar)
+      tags: %w[foo bar]
     }
   end
 

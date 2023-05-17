@@ -7,7 +7,7 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       embed_type: source_element_embed_type,
       embed_id: source_element_embed_id,
       caption: caption,
-      tags: %w(test)
+      tags: %w[test]
     )
   end
   let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Foo Bar')] }

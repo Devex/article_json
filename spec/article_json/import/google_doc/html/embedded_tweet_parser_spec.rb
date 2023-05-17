@@ -7,10 +7,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedTweetParser do
 
     let(:expected_embed_type) { :tweet }
     let(:expected_embed_id) { "#{twitter_handle}/#{tweet_id}" }
-    let(:expected_tags) { %w(twitter test) }
+    let(:expected_tags) { %w[twitter test] }
     let(:invalid_url_example) { 'https://www.devex.com/twitter-fun-123' }
     let(:url_examples) do
-      %W(
+      %W[
         twitter.com/#{twitter_handle}/status/#{tweet_id}
         http://twitter.com/#{twitter_handle}/status/#{tweet_id}
         https://twitter.com/#{twitter_handle}/status/#{tweet_id}
@@ -31,7 +31,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedTweetParser do
         www.twitter.com/#{twitter_handle}##{tweet_id}
         http://www.twitter.com/#{twitter_handle}##{tweet_id}
         https://www.twitter.com/#{twitter_handle}##{tweet_id}
-      )
+      ]
     end
   end
 end

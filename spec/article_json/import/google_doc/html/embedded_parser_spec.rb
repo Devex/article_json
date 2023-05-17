@@ -33,7 +33,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedParser do
           </p>
         html
       end
-      it { should match_array %w(foo bar) }
+      it { should match_array %w[foo bar] }
     end
 
     context 'when there are no tags' do

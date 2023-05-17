@@ -86,7 +86,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
           <ol><li><span>foo bar</span></li></ol>
         html
       end
-      it { should match_array %w(foo bar) }
+      it { should match_array %w[foo bar] }
     end
 
     context 'when there are no tags' do
