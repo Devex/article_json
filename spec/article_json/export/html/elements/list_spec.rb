@@ -12,7 +12,7 @@ describe ArticleJSON::Export::HTML::Elements::List do
     )
   end
   let(:content_factory) do
-    ->(text) do
+    lambda do |text|
       ArticleJSON::Elements::Paragraph.new(
         content: [
           ArticleJSON::Elements::Text.new(content: text)
