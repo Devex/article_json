@@ -121,7 +121,6 @@ describe ArticleJSON::Configuration do
     end
 
     context 'when it has a value' do
-
     end
   end
 end

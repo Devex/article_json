@@ -11,7 +11,7 @@ describe ArticleJSON::Export::AMP::Exporter do
       ArticleJSON.configure { |c| c.facebook_token = 'fake_facebook_token' }
       stub_oembed_requests
     end
-    
+
     it { should eq html.strip }
   end
 

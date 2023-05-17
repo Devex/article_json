@@ -132,6 +132,5 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
       end
       it { should eq minified_json }
     end
-
   end
 end
