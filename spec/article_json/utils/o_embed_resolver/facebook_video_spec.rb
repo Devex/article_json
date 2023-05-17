@@ -4,7 +4,7 @@ describe ArticleJSON::Utils::OEmbedResolver::FacebookVideo do
   let(:element) do
     ArticleJSON::Elements::Embed.new(
       embed_type: :facebook_video,
-      embed_id: 1814600831891266,
+      embed_id: 1_814_600_831_891_266,
       caption: []
     )
   end
