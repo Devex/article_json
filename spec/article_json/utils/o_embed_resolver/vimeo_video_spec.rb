@@ -5,7 +5,7 @@ describe ArticleJSON::Utils::OEmbedResolver::VimeoVideo do
     let(:element) do
       ArticleJSON::Elements::Embed.new(
         embed_type: :vimeo_video,
-        embed_id: 42315417,
+        embed_id: 42_315_417,
         caption: []
       )
     end
