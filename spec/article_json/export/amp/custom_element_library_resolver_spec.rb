@@ -1,6 +1,6 @@
 describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
   subject(:exporter) { described_class.new(tags) }
-  let(:tags) { %i(amp-iframe amp-youtube) }
+  let(:tags) { %i[amp-iframe amp-youtube] }
 
   describe '#sources' do
     subject { exporter.sources }
@@ -11,7 +11,7 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
     end
 
     context 'when initialized with single element' do
-      let(:tags) { %i(amp-vimeo) }
+      let(:tags) { %i[amp-vimeo] }
 
       it 'should return the right script source' do
         expect(subject)
@@ -21,14 +21,14 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
 
     context 'when initialized with multiple elements' do
       let(:tags) do
-        %i(
+        %i[
            amp-iframe
            amp-twitter
            amp-youtube
            amp-vimeo
            amp-facebook
            amp-soundcloud
-          )
+          ]
       end
 
       it 'should return the right script tag' do
@@ -55,7 +55,7 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
     end
 
     context 'when initialized with single element' do
-      let(:tags) { %i(amp-facebook) }
+      let(:tags) { %i[amp-facebook] }
 
       it 'should return the right script tag' do
         expect(subject).to be_an Array
@@ -70,7 +70,7 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
     end
 
     context 'when initialized with multiple elements' do
-      let(:tags) { %i(amp-facebook amp-iframe) }
+      let(:tags) { %i[amp-facebook amp-iframe] }
 
       it 'should return all the right script tags' do
         expect(subject).to be_an Array
