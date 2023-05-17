@@ -7,7 +7,7 @@ describe ArticleJSON::Export::AMP::CustomElementLibraryResolver do
 
     context 'when initialized with an empty array' do
       let(:tags) { [] }
-      it { should eq Hash.new }
+      it { should eq({}) }
     end
 
     context 'when initialized with single element' do

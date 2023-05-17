@@ -122,7 +122,7 @@ describe ArticleJSON::Elements::Paragraph do
           ArticleJSON::Elements::Text.new(content: 'Lorem ipsum'),
         ]
       end
-      it { should eq 11}
+      it { should eq 11 }
     end
 
     context 'when `content` is `nil`' do

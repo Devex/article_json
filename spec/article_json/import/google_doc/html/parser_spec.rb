@@ -67,7 +67,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
                     "bold": false,
                     "italic": false,
                     "href": null
-                  }  
+                  }
                 ]
               }
             ]
