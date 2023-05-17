@@ -1,5 +1,4 @@
 describe ArticleJSON::Export::FacebookInstantArticle::Elements::List do
-
   subject(:element) { described_class.new(source_element) }
 
   let(:source_element) do

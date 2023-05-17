@@ -80,7 +80,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
 
     context 'when there are tags' do
       let(:html) do
-        <<-html 
+        <<-html
           <span>&nbsp;[foo bar]</span>
           <h2 class="css_class"><span>Text box including a list!</span></h2>
           <ol><li><span>foo bar</span></li></ol>
