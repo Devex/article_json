@@ -7,7 +7,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
   describe '#heading?' do
     subject { node.heading? }
 
-    %w(h1 h2 h3 h4 h5).each do |header_tag|
+    %w[h1 h2 h3 h4 h5].each do |header_tag|
       context "when the node is a <#{header_tag}>" do
         context 'and it is neither a `Quote:` nor a `Textbox:` tag' do
           let(:xml_fragment) { "<#{header_tag}>foo</#{header_tag}>" }
@@ -26,7 +26,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
       end
     end
 
-    %w(h6 span strong em a).each do |other_tag|
+    %w[h6 span strong em a].each do |other_tag|
       context "when the node is a <#{other_tag}>" do
         let(:xml_fragment) { "<#{other_tag}>foo</#{other_tag}>" }
         it { should be false }
@@ -42,7 +42,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
       it { should be true }
     end
 
-    %w(h1 span strong em a).each do |other_tag|
+    %w[h1 span strong em a].each do |other_tag|
       context "when the node is a <#{other_tag}>" do
         let(:xml_fragment) { "<#{other_tag}>foo</#{other_tag}>" }
         it { should be false }
@@ -53,21 +53,21 @@ describe ArticleJSON::Import::GoogleDoc::HTML::NodeAnalyzer do
   describe '#has_text?' do
     subject { node.has_text?('foo bar') }
 
-    %w(h1 h2 p span strong em a).each do |tag|
+    %w[h1 h2 p span strong em a].each do |tag|
       context "when the node is a <#{tag}> and exactly includes the text" do
         let(:xml_fragment) { "<#{tag}>foo bar</#{tag}>" }
         it { should be true }
       end
     end
 
-    %w(h1 h2 p span strong em a).each do |tag|
+    %w[h1 h2 p span strong em a].each do |tag|
       context "when the node is a <#{tag}> and includes the text" do
         let(:xml_fragment) { "<#{tag}>bar baz</#{tag}>" }
         it { should be false }
       end
     end
 
-    %w(h1 h2 p span strong em a).each do |tag|
+    %w[h1 h2 p span strong em a].each do |tag|
       context "when the node is a <#{tag}> and partially includes the text" do
         let(:xml_fragment) { "<#{tag}>foo bar baz</#{tag}>" }
         it { should be false }

@@ -4,10 +4,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoParser do
   include_context 'for an embed parser' do
     let(:expected_embed_type) { :youtube_video }
     let(:expected_embed_id) { '_ZG8HBuDjgc' }
-    let(:expected_tags) { %w(youtube test) }
+    let(:expected_tags) { %w[youtube test] }
     let(:invalid_url_example) { 'https://www.devex.com/news/youtube-video-123' }
     let(:url_examples) do
-      %W(
+      %W[
         http://youtu.be/#{expected_embed_id}?hl=en_US
         http://www.youtube.com/embed/#{expected_embed_id}
         http://www.youtube.com/watch?v=#{expected_embed_id}&hl=en_US
@@ -47,7 +47,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::EmbeddedYoutubeVideoParser do
         youtube.com/sandalsResorts#p/c/54B8C800269D7C1B/0/#{expected_embed_id}
         youtube.com/watch?feature=player_embedded&v=#{expected_embed_id}
         youtube.com/?feature=player_embedded&v=#{expected_embed_id}
-      )
+      ]
     end
   end
 end

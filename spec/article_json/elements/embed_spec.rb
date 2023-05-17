@@ -5,7 +5,7 @@ describe ArticleJSON::Elements::Embed do
       embed_type: :something,
       embed_id: '12345',
       caption: [caption],
-      tags: %w(foo bar)
+      tags: %w[foo bar]
     }
   end
   let(:caption) { ArticleJSON::Elements::Text.new(content: 'Foo Bar') }
