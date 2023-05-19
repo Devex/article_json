@@ -62,6 +62,18 @@ module ArticleJSON
       amp_exporter.html
     end
 
+    # Exporter instance for AppleNews
+    # @return [ArticleJSON::Export::AppleNews::Exporter]
+    def apple_news_exporter
+      ArticleJSON::Export::AppleNews::Exporter.new(elements)
+    end
+
+    # AppleNews export of the article
+    # @return [String]
+    def to_apple_news
+      apple_news_exporter.to_json
+    end
+
     # Exporter instance for FacebookInstantArticle
     # @return [ArticleJSON::Export::FacebookInstantArticle::Exporter]
     def facebook_instant_article_exporter
