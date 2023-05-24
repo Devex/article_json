@@ -40,7 +40,7 @@ module ArticleJSON
                 heading: namespace::Heading,
                 list: nil,
                 quote: nil,
-                image: nil,
+                image: namespace::Image,
                 embed: nil,
                 text_box: nil
               }
