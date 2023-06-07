@@ -41,7 +41,7 @@ module ArticleJSON
                 list: nil,
                 quote: nil,
                 image: namespace::Image,
-                embed: nil,
+                embed: namespace::Embed,
                 text_box: nil
               }
             end
