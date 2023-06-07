@@ -82,6 +82,7 @@ require_relative 'article_json/export/apple_news/elements/text'
 require_relative 'article_json/export/apple_news/elements/heading'
 require_relative 'article_json/export/apple_news/elements/paragraph'
 require_relative 'article_json/export/apple_news/elements/image'
+require_relative 'article_json/export/apple_news/elements/embed'
 require_relative 'article_json/export/apple_news/exporter'
 
 require_relative 'article_json/export/amp/elements/base'

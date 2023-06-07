@@ -23,7 +23,7 @@ module ArticleJSON
               ArticleJSON::Export::AppleNews::Elements::Base
                 .build(element)
                 &.export
-            end
+            end.reject { |hash| hash.nil? || hash.empty? }
         end
       end
     end
