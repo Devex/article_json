@@ -23,7 +23,7 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
       let(:source_element) do
         ArticleJSON::Elements::Paragraph.new(content: [sample_text])
       end
-      let(:paragraph) { { role: 'body', text: 'Foo Bar' } }
+      let(:paragraph) { { role: 'body', text: 'Foo Bar', format: 'html' } }
       it { should eq paragraph }
     end
   end
