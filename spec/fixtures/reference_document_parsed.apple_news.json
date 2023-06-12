@@ -2,44 +2,28 @@
   "article_json_version": "0.3.8",
   "content": [
     {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "The main content of the article starts here.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
       "type": "heading",
-      "level": 1,
-      "content": "How To Succeed In Shanghai (And Have Some Fun, Too)"
+      "level": 2,
+      "content": "Headings"
     },
     {
       "type": "paragraph",
       "content": [
         {
           "type": "text",
-          "content": "But deciding to invest in a booming financial sector like Shanghai and actually carrying out that business plan are two very different scenarios. As international investors have noted for decades, the Chinese way of conducting business is substantially different from Western methods, and requires sensitivity to the country’s practices and policies. Before opening an office in Shanghai, investors are advised to examine China’s five-year plan, which details the country’s social and economic goals and specifies which industries will receive greater focus to achieve greater financial growth. Drafting your own five-year plan that details your company’s objectives will make government approval for your business more attainable, and establish connections with valuable local resources like the ",
-          "bold": false,
-          "italic": false,
-          "href": null
-        },
-        {
-          "type": "text",
-          "content": "U.S. Commercial Service",
-          "bold": true,
-          "italic": false,
-          "href": null
-        },
-        {
-          "type": "text",
-          "content": " or ",
-          "bold": false,
-          "italic": false,
-          "href": null
-        },
-        {
-          "type": "text",
-          "content": "U.S.-China Business Council",
-          "bold": true,
-          "italic": false,
-          "href": null
-        },
-        {
-          "type": "text",
-          "content": " to help you navigate the often dizzying array of local, provincial, and national government officials that are necessary to getting your business approved.",
+          "content": "Internal headings need to be in the formatting “Heading x”, just pick it from the toolbar above.",
           "bold": false,
           "italic": false,
           "href": null
@@ -51,7 +35,7 @@
       "content": [
         {
           "type": "text",
-          "content": "Be sure to register a trademark for any intellectual property with the Chinese government. Trademarks established in the U.S. do not always remain your property once you cross Chinese borders; in fact, trademarks are usually granted to the first person to register it, regardless of whether that individual actually owns the product or property in question. And do your research when considering a bank; it’s best to find one with a corresponding relationship to the United States to simplify transactions. Consider and develop a digital presence for promotional purposes instead of traditional outlets like newspapers, television, and/or billboards. Online stores are utilized to a greater degree than brick-and-mortar locations, and advertising through social media platforms or other web sites will allow for greater impact with less physical expansion.",
+          "content": "Note that horizontal lines will not show up in the converted article format but are used to terminate certain sections like quotes or text boxes. More on this later on...",
           "bold": false,
           "italic": false,
           "href": null
@@ -59,25 +43,44 @@
       ]
     },
     {
+      "type": "heading",
+      "level": 2,
+      "content": "Basic Text and a Link"
+    },
+    {
       "type": "paragraph",
       "content": [
         {
           "type": "text",
-          "content": "Most important of all: be conscious of customs in regard to meetings and hiring practices. There are a host of social etiquette values in Chinese culture that also carry weight in business interactions. Punctuality and formality are highly valued, while senior representatives require a greater degree of ceremony and respect, especially during introductions. Indirectness is also a significant element of any business transaction: to be respectful, avoid lengthy direct eye contact and too-firm handshakes, and refrain from asking direct questions. A firm ",
+          "content": "Text can include links and basic formatting. By using the toolbar you can define ",
           "bold": false,
           "italic": false,
           "href": null
         },
         {
           "type": "text",
-          "content": "“no”",
+          "content": "bold",
+          "bold": true,
+          "italic": false,
+          "href": null
+        },
+        {
+          "type": "text",
+          "content": " and ",
+          "bold": false,
+          "italic": false,
+          "href": null
+        },
+        {
+          "type": "text",
+          "content": "italic",
           "bold": false,
           "italic": true,
           "href": null
         },
         {
           "type": "text",
-          "content": " from a Shanghai business representative is less likely than a polite statement of careful consideration.",
+          "content": " text.",
           "bold": false,
           "italic": false,
           "href": null
@@ -89,7 +92,172 @@
       "content": [
         {
           "type": "text",
-          "content": "Delicacy and tact is also important when hiring staff, especially management. Contracts and employee manuals that detail every aspect of the business and expectations of certain positions are a must-have. Also, when considering a potential employee, weigh the value of their experience over their language skills. The ability to communicate effectively with staff and management is important, but the skills to properly run your business from overseas are far more crucial for your success in the Chinese market.",
+          "content": "To create a link just use the button within the toolbar: ",
+          "bold": false,
+          "italic": false,
+          "href": null
+        },
+        {
+          "type": "text",
+          "content": "Lorem ipsum",
+          "bold": false,
+          "italic": false,
+          "href": "http://en.wikipedia.org/wiki/Lorem_ipsum"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Lists"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "There is support for both ordered and unordered lists, just just the respective button from the toolbar and get started.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "list_type": "unordered",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "This is an unordered list...",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "… with ",
+              "bold": false,
+              "italic": false,
+              "href": null
+            },
+            {
+              "type": "text",
+              "content": "two",
+              "bold": false,
+              "italic": true,
+              "href": null
+            },
+            {
+              "type": "text",
+              "content": " entries",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "list_type": "ordered",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "And here we have a numbered list",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "This time, with ",
+              "bold": false,
+              "italic": false,
+              "href": null
+            },
+            {
+              "type": "text",
+              "content": "three",
+              "bold": true,
+              "italic": false,
+              "href": null
+            },
+            {
+              "type": "text",
+              "content": " entries.",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "Great, isn’t it?!",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Images"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Images can be inserted by using the insert image function of Google Docs. It allows you to upload any image from your computer or specify a URL.",
           "bold": false,
           "italic": false,
           "href": null
@@ -101,29 +269,16 @@
       "content": [
         {
           "type": "text",
-          "content": "At the close of the business day, visitors to Shanghai should also avail themselves of the city’s many attractions. First-timers should pay a visit to The Bund, the city’s lively waterfront and the subject of countless skyline photographs. Shanghai’s most impressive modern architecture, including the Oriental Pearl Tower and Shanghai World Financial Center, can be viewed from across the Huangpu River, while the riverbank itself features shopping and restaurants.",
+          "content": "When an image is smaller than the medium width of the document, it will be displayed as a small image with text floating around it.",
           "bold": false,
           "italic": false,
           "href": null
         }
       ]
     },
-    {
-      "type": "paragraph",
-      "content": [
-        {
-          "type": "text",
-          "content": "Nearby is Nanjing Road, the city’s sprawling shopping district with a wealth of international retailers. The Venetian-inspired Zhujiajiao, with its picturesque canals and bridges, is a short taxi ride from downtown Shanghai. For cultural sights, explore the five-acre, 16th century Yuyuan Garden or Longhua Temple, Shanghai’s oldest and largest place of worship. The Shanghai Museum, too, deserves exploring; its unique architecture contains priceless items and artifacts from all eras in Chinese history. More modern wonders include the Shanghai Maglev, one of the fastest passenger trains in the world, with a peak speed of 270 miles an hour. The twin wonders of the Shanghai skyline are the Shanghai World Financial Center—one of the world’s tallest standing structures at 1,555 feet—and the ornate and immediately identifiable Oriental Pearl Tower, which offers a revolving restaurant, 15 observatory levels, and the Space Module, an observation deck that provides one of the best birds’-eye views of Shanghai’s magnificent design.",
-          "bold": false,
-          "italic": false,
-          "href": null
-        }
-      ]
-    }
-    ,
     {
       "type": "image",
-      "source_url": "https://lh6.googleusercontent.com/mddqDcb0cm8wTJCiXyllikOod1Ecsuyy1twC14rWwu41thuwrmQAYBkOmMPlC2a1mxB1ajaSew35FkoR_GOqXyj0lDWNpC45sapPfY1rzf9JihhMRV-G9MuSzMVkneMs4w",
+      "source_url": "https://lh6.googleusercontent.com/HSQkJxwe65flBg4RN_JNUMO8scH6olrXMaftyWFq6OBuI4bzeRUVkk_kaKMKkXNgmn0y_oTQmNt-7etHf_rZXArNjXTCahVSuI3Sn0YBaRuGL6a4UtHTWQ7gYTiINdVVpLrnxqLDak94qWtj",
       "float": "left",
       "caption": [
         {
@@ -136,6 +291,582 @@
       ],
       "href": "http://devex.com",
       "alt": ""
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "The following paragraph is then normal content again. By aligning small images to the right they will later on be displayed on the right side of the article. Let’s first add some lorem ipsum text to flow around these small images.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "You can also add alt text to an image, by selecting the image and pressing CTRL+ALT+Y or right clicking, selecting the option and filling the “Description” input.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "source_url": "https://lh4.googleusercontent.com/xsSE3EOo3ZdDE7KCBObhEvxnufsjkrLhXbVCFuZwsq3hQTF6SOUl_zy2g7bOzfy2XLeC-3A-_9x75PeE3EdR0aKIqPTrSncVLcBBnpW67qbT8gYWsEMuP82vij5homXR0RmnyYOS1Kp9LhtT",
+      "float": "right",
+      "caption": [
+        {
+          "type": "text",
+          "content": "The caption will then also be on the right, even if it’s not properly aligned within this document.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ],
+      "href": null,
+      "alt": "The alt attribute provides alternative information for an image if a user for some reason cannot view it (because of slow connection, an error in the src attribute, or if the user uses a screen reader)."
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Large images that are supposed to take up the full width within the article format are also big ones within the Google Document.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "source_url": "https://lh6.googleusercontent.com/db_1LfR2AcB4MhVynfRCzp11movM_FIsSONilEP0wZ31qaIAObG9CjCDDwJcXH6vSqqns6V5lwpQe9G1-3raKhyIB5-t-4K4RTTDF59zP9JsPmgSqzOWJsn1bEM_tKGbx4m60bQT4ofFmM7_",
+      "float": null,
+      "caption": [
+        {
+          "type": "text",
+          "content": "And of course, also the big images have captions…",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ],
+      "href": null,
+      "alt": ""
+    },
+    {
+      "type": "image",
+      "source_url": "https://lh5.googleusercontent.com/jD_sr1y5ZbmTjGJ-36_MY_63OiLogZP3VjrK7aglgJa7prXRK7tbJy70vNJUifm4mpQLL7g8hXz8aXuhU6rM_A1-vYgD_SBAHCbB3FCVUqYFLCORz49k-l0Dtn9RaU2K38IBzFfNR8NqSOjW",
+      "float": null,
+      "caption": [],
+      "href": null,
+      "alt": ""
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Embedded Elements"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Different types of multimedia elements can be embedded in this document. It is enough to provide the URL of the element you want to embed. Embeddings can be tagged as well, just provide a space-separated list of tags in brackets, after the URL - we’ll see some examples further down.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Videos: Vimeo"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Videos are just referenced by the URL. It doesn’t matter if the URL is a hyperlink or just normal text. The important thing is that it has its own paragraph with nothing else in it. The alignment (centered  in this example) doesn’t really matter.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "embed",
+      "embed_type": "vimeo_video",
+      "embed_id": "42315417",
+      "tags": [
+        "devex"
+      ],
+      "caption": [
+        {
+          "type": "text",
+          "content": "The paragraph following the URL is the video’s caption.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Videos: YouTube"
+    },
+    {
+      "type": "embed",
+      "embed_type": "youtube_video",
+      "embed_id": "_ZG8HBuDjgc",
+      "tags": [
+        "comedy"
+      ],
+      "caption": [
+        {
+          "type": "text",
+          "content": "The paragraph following the URL is the video’s caption.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Videos"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Slideshows"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Slideshows are, like videos, referenced by an URL:",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "embed",
+      "embed_type": "slideshare",
+      "embed_id": "Devex/the-best-global-development-quotes-of-2012",
+      "tags": [],
+      "caption": [
+        {
+          "type": "text",
+          "content": "The paragraph following the URL is the slideshow’s caption.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Please note that currently only slideshows on slideshare are recognized.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Twitter Tweets"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Individual tweets can be embedded by providing the URL:",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "embed",
+      "embed_type": "tweet",
+      "embed_id": "d3v3x/554608639030599681",
+      "tags": [],
+      "caption": [
+        {
+          "type": "text",
+          "content": "A nice caption...",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Quotes"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "A subtitle named “Quote:” indicates the start of a quote which continues until the first occurring horizontal line. The last paragraph is formatted to be the quoted source. Quotes can be aligned to the left, right or center. Centered quotes will span the whole width of the article while left- and right-aligned are smaller and have text floating around it.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "float": "left",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "Operator! Give me the number for 911!",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ],
+      "caption": [
+        {
+          "type": "text",
+          "content": "Homer Simpson",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "float": null,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "Marge, don't discourage the boy! Weaseling out of things is important to learn. It's what separates us from the animals! Except the weasel.",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ],
+      "caption": [
+        {
+          "type": "text",
+          "content": "Homer Simpson",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "float": "right",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "Oh, so they have internet on computers now!",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ],
+      "caption": [
+        {
+          "type": "text",
+          "content": "Homer Simpson",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "Text Boxes"
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Text boxes include internal excerpts from the article (Story Highlights) or additional information related to the article and are displayed either on the left or on the right. A subtitle named “Textbox:” indicates the start of a text box which continues until the first occurring horizontal line. Text boxes can contain headers which have to be in the formatting “Heading 2”.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "text_box",
+      "float": "left",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "A nice title for our left-aligned text box"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "A first paragraph with some text",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "which continues here in the second paragraph",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "To make the text box appear on the right side of the article just align it’s text to the right.",
+          "bold": false,
+          "italic": false,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "text_box",
+      "float": "right",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "content": "Story Highlights"
+        },
+        {
+          "type": "list",
+          "list_type": "unordered",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "content": "Text boxes are reallyx awesome!",
+                  "bold": false,
+                  "italic": false,
+                  "href": null
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "content": "They also support lists!",
+                  "bold": false,
+                  "italic": false,
+                  "href": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tags": []
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        {
+          "type": "text",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "bold": false,
+          "italic": true,
+          "href": null
+        }
+      ]
+    },
+    {
+      "type": "text_box",
+      "float": "left",
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "content": "It will generate a textbox with the words inside the brackets as tags, which could be used later to generate css classes, for example",
+              "bold": false,
+              "italic": false,
+              "href": null
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "highlighted"
+      ]
     }
   ]
 }

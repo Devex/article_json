@@ -5,17 +5,21 @@ describe ArticleJSON::Export::AppleNews::Elements::Paragraph do
     ArticleJSON::Elements::Paragraph.new(content: [content_1, content_2])
   end
   let(:content_1) do
-    ArticleJSON::Elements::Text.new(content: 'Check this out: ', bold: true)
+    ArticleJSON::Elements::Text.new(content: "Check “this” out: ", bold: true)
   end
   let(:content_2) do
     ArticleJSON::Elements::Text.new(content: 'Foo Bar', href: '/foo/bar')
   end
-  let(:export) do
-    { role: 'body', text: '<strong>Check this out: </strong><a href="/foo/bar">Foo Bar</a>' }
+  let(:exported_text) do
+    {
+      role: 'body',
+      text: '<strong>Check \\"this\\" out: </strong><a href="/foo/bar">Foo Bar</a>',
+      format: 'html'
+    }
   end
 
   describe '#export' do
     subject { element.export }
-    it { should eq export }
+    it { should eq exported_text }
   end
 end

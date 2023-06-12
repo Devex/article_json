@@ -8,7 +8,8 @@ module ArticleJSON
           def export
             {
               role: 'body',
-              text: text
+              text: text,
+              format: 'html'
             }
           end
 
@@ -22,7 +23,9 @@ module ArticleJSON
 
           def text
             @element.content.map do |child_element|
-              text_exporter.new(child_element).export
+              text_exporter.new(child_element)
+                .export
+                .gsub(/[“”]/, '\\"')
             end.join
           end
         end
