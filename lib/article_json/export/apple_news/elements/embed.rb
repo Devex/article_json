@@ -73,12 +73,12 @@ module ArticleJSON
           end
 
           def build_facebook_video_url
-            username, id = embed_id.to_s.split("/")
+            username, id = embed_id.to_s.split("/", 2)
             "https://www.facebook.com/#{username}/videos/#{id}"
           end
 
           def build_twitter_url
-            username, id = embed_id.to_s.split("/")
+            username, id = embed_id.to_s.split("/", 2)
             "https://twitter.com/#{username}/status/#{id}"
           end
 
