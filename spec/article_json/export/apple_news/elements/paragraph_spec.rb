@@ -1,3 +1,4 @@
+# encoding: utf-8
 describe ArticleJSON::Export::AppleNews::Elements::Paragraph do
   subject(:element) { described_class.new(source_element) }
 
@@ -13,8 +14,8 @@ describe ArticleJSON::Export::AppleNews::Elements::Paragraph do
   let(:exported_text) do
     {
       role: 'body',
-      text: '<strong>Check \\"this\\" out: </strong><a href="/foo/bar">Foo Bar</a>',
-      format: 'html'
+      text: '<strong>Check “this” out: </strong><a href="/foo/bar">Foo Bar</a>',
+      format: 'html',
     }
   end
 
