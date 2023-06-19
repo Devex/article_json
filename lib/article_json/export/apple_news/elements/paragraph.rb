@@ -25,7 +25,6 @@ module ArticleJSON
             @element.content.map do |child_element|
               text_exporter.new(child_element)
                 .export
-                .gsub(/[“”]/, '\\"')
             end.join
           end
         end
