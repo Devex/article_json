@@ -15,7 +15,14 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
       let(:source_element) do
         ArticleJSON::Elements::Heading.new(content: 'Foo Bar', level: 1)
       end
-      let(:heading) { { role: 'heading1', text: 'Foo Bar' } }
+      let(:heading) do
+        {
+          role: 'heading1',
+          text: 'Foo Bar',
+          layout: 'titleLayout',
+          textStyle: 'defaultTitle',
+        }
+      end
       it { should eq heading }
     end
 
@@ -23,7 +30,15 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
       let(:source_element) do
         ArticleJSON::Elements::Paragraph.new(content: [sample_text])
       end
-      let(:paragraph) { { role: 'body', text: 'Foo Bar', format: 'html' } }
+      let(:paragraph) do
+        {
+          role: 'body',
+          text: 'Foo Bar',
+          format: 'html',
+          layout: 'bodyLayout',
+          textStyle: 'bodyStyle',
+        }
+      end
       it { should eq paragraph }
     end
   end

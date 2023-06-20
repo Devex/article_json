@@ -16,6 +16,8 @@ describe ArticleJSON::Export::AppleNews::Elements::Paragraph do
       role: 'body',
       text: '<strong>Check “this” out: </strong><a href="/foo/bar">Foo Bar</a>',
       format: 'html',
+      layout: 'bodyLayout',
+      textStyle: 'bodyStyle',
     }
   end
 

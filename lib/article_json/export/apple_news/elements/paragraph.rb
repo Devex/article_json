@@ -9,7 +9,9 @@ module ArticleJSON
             {
               role: 'body',
               text: text,
-              format: 'html'
+              format: 'html',
+              layout: 'bodyLayout',
+              textStyle: 'bodyStyle',
             }
           end
 
