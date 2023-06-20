@@ -9,7 +9,7 @@ module ArticleJSON
             {
               role: role,
               URL: source_url,
-              caption: caption
+              caption: caption,
             }.compact
           end
 
