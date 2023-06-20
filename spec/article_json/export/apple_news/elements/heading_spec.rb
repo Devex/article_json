@@ -11,7 +11,14 @@ describe ArticleJSON::Export::AppleNews::Elements::Heading do
     (1..6).each do |i|
       context "when the heading level is #{i}" do
         let(:level) { i }
-        let(:heading) { { role: "heading#{i}", text: 'Foo Bar' } }
+        let(:heading) do
+          {
+            role: "heading#{i}",
+            text: 'Foo Bar',
+            layout: 'titleLayout',
+            textStyle: 'defaultTitle',
+          }
+        end
         it { should eq heading }
       end
     end

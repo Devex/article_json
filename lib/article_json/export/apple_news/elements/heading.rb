@@ -8,7 +8,9 @@ module ArticleJSON
           def export
             {
               role: role,
-              text: @element.content
+              text: @element.content,
+              layout: 'titleLayout',
+              textStyle: 'defaultTitle',
             }
           end
 
