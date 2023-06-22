@@ -45,5 +45,17 @@ describe ArticleJSON::Export::AppleNews::Elements::Text do
       let(:output) { '<strong><em>Foo Bar</em></strong>' }
       it { should eq output }
     end
+
+    context 'when the source element has unsupported tags' do
+      let(:content) do
+        'Normal text<script async>Some Script here</script>' \
+        '<select><option>OPtion 1</option></select>' \
+        '<form>form content</form>' \
+        '<p><em>text</em></p>' \
+        '<form><a href="#">Link</a></form>'
+      end
+      let(:output) { 'Normal text<p><em>text</em></p>' }
+      it { should eq output }
+    end
   end
 end
