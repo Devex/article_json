@@ -8,15 +8,21 @@ module ArticleJSON
         end
 
         # Return the components section of an Apple News Article as JSON
+        #
+        # Images and EmbededVideos are nested in an array with the components
+        # array when they contain captions. As Apple News skips over these
+        # nested arrays, we must flatten the array.
+        #
         # @return [String]
         def to_json
-          { components: components }.to_json
+          { components: components.flatten }.to_json
         end
 
         private
 
-        # Generate a string with the plain text representation of all elements
-        # @return [String]
+        # Generate an array with the plain text representation of all elements
+        # 
+        # @return [Array]
         def components
           @components ||=
             @elements.map do |element|
