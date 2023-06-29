@@ -3,17 +3,42 @@ module ArticleJSON
     module AppleNews
       module Elements
         class Embed < Base
-          # Embed
-          # @return [Hash]
+          # Embed| Embed, Caption
+          # @return [Hash, Array<Hash>]
           def export
-            {
-              role: role,
-              URL: source_url,
-              caption: caption,
-            }.compact
+            caption_text.nil? ? embed : [embed, caption]
           end
 
           private
+
+          # Embed
+          # @return [Hash]
+          def embed
+            {
+              role: role,
+              URL: source_url,
+              caption: caption_text,
+            }.compact
+          end
+
+          # Caption
+          # @return [Hash]
+          def caption
+            {
+              role: 'caption',
+              text: caption_text,
+              layout: 'captionLayout',
+              textStyle: 'captionStyle',
+            }
+          end
+
+          # Caption Text
+          # @return [String]
+          def caption_text
+            return nil if role.nil?
+
+            @element.caption.first&.content
+          end
 
           def role
             @role ||=
@@ -52,12 +77,6 @@ module ArticleJSON
             else
               nil
             end
-          end
-
-          def caption
-            return nil if role.nil?
-
-            @element.caption.first&.content
           end
 
           def build_embeded_youtube_url

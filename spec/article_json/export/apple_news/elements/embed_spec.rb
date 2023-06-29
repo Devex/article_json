@@ -2,7 +2,8 @@ describe ArticleJSON::Export::AppleNews::Elements::Embed do
   subject(:element) { described_class.new(source_element) }
   let(:type) { :youtube_video }
   let(:embed_id) { '12345'}
-  let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Caption text')] }
+  let(:caption) { [ArticleJSON::Elements::Text.new(content: caption_text)] }
+  let(:caption_text) { 'Caption text' }
 
   let(:url) { "https://www.youtube.com/embed/#{embed_id}" }
 
@@ -27,12 +28,26 @@ describe ArticleJSON::Export::AppleNews::Elements::Embed do
     subject { element.export }
 
     context 'when passed an embeded youtube video with a caption' do
+      let(:expected_json) do
+        [
+          {
+            URL: url,
+            caption: caption_text,
+            role: :embedwebvideo,
+          },
+           {
+            layout: 'captionLayout',
+            role: 'caption',
+            text: caption_text,
+            textStyle: 'captionStyle',
+          },
+        ]
+      end
       it { should eq expected_json }
     end
 
     context 'when passed an embeded youtube video without a caption' do
       let(:caption) { [] }
-
       let(:expected_json) { {URL: url, role: :embedwebvideo} }
 
       it { should eq expected_json }
