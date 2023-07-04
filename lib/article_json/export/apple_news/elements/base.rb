@@ -39,7 +39,7 @@ module ArticleJSON
                 paragraph: namespace::Paragraph,
                 heading: namespace::Heading,
                 list: nil,
-                quote: nil,
+                quote: namespace::Quote,
                 image: namespace::Image,
                 embed: namespace::Embed,
                 text_box: nil
