@@ -38,8 +38,8 @@ module ArticleJSON
                 text: namespace::Text,
                 paragraph: namespace::Paragraph,
                 heading: namespace::Heading,
-                list: nil,
                 quote: namespace::Quote,
+                list: namespace::List,
                 image: namespace::Image,
                 embed: namespace::Embed,
                 text_box: nil
