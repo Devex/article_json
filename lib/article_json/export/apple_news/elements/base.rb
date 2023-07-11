@@ -42,7 +42,7 @@ module ArticleJSON
                 list: namespace::List,
                 image: namespace::Image,
                 embed: namespace::Embed,
-                text_box: nil
+                text_box: namespace::TextBox,
               }
             end
           end
