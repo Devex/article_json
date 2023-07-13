@@ -35,15 +35,26 @@ describe ArticleJSON::Export::AppleNews::Elements::Embed do
             caption: caption_text,
             role: :embedwebvideo,
           },
-           {
+          {
             layout: 'captionLayout',
             role: 'caption',
+            format: 'html',
             text: caption_text,
             textStyle: 'captionStyle',
           },
         ]
       end
-      it { should eq expected_json }
+
+      context 'and the caption has not got a link' do
+        it { should eq expected_json }
+      end
+
+      context 'and the caption has got a link' do
+        let(:caption_text) do
+          "This has a link: <a href=\"http://en.wikipedia.org/wiki/Lorem_ipsum\">Lorem ipsum</a>"
+        end
+        it { should eq expected_json }
+      end
     end
 
     context 'when passed an embeded youtube video without a caption' do
