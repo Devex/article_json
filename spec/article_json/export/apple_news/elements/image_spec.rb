@@ -10,7 +10,8 @@ describe ArticleJSON::Export::AppleNews::Elements::Image do
     )
   end
   let(:float) { nil }
-  let(:caption) { [ArticleJSON::Elements::Text.new(content: 'Foo Bar')] }
+  let(:caption) { [ArticleJSON::Elements::Text.new(content: caption_text)] }
+  let(:caption_text) { 'Caption text' }
   let(:alt) { 'Text description' }
 
   let(:expected_json) do
@@ -18,11 +19,12 @@ describe ArticleJSON::Export::AppleNews::Elements::Image do
       {
         role: 'image',
         URL: '/foo/bar.jpg',
-        caption: 'Foo Bar',
+        caption: caption_text,
       },
       {
         role: 'caption',
-        text: 'Foo Bar',
+        text: caption_text,
+        format: 'html',
         layout: 'captionLayout',
         textStyle: 'captionStyle',
       }
@@ -33,17 +35,29 @@ describe ArticleJSON::Export::AppleNews::Elements::Image do
     subject { element.export }
 
     context 'when there is a caption' do
-      context 'and when the image is not floating' do
+
+      context 'and the caption has not got a link' do
+        context 'and when the image is not floating' do
+          it { should eq expected_json }
+        end
+
+        context 'and when the image is floating on the left' do
+          let(:float) { :left }
+          it { should eq expected_json }
+        end
+
+        context 'and when the image is floating on the right' do
+          let(:float) { :right }
+          it { should eq expected_json }
+        end
+
         it { should eq expected_json }
       end
 
-      context 'and when the image is floating on the left' do
-        let(:float) { :left }
-        it { should eq expected_json }
-      end
-
-      context 'and when the image is floating on the right' do
-        let(:float) { :right }
+      context 'and the caption has got a link' do
+        let(:caption_text) do
+          "This has a link: <a href=\"http://en.wikipedia.org/wiki/Lorem_ipsum\">Lorem ipsum</a>"
+        end
         it { should eq expected_json }
       end
     end

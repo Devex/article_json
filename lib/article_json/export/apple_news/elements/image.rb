@@ -26,15 +26,30 @@ module ArticleJSON
             {
               role: 'caption',
               text: caption_text,
+              format: 'html',
               layout: 'captionLayout',
               textStyle: 'captionStyle',
             }
           end
 
+          # Get the exporter class for text elements
+          # @return [ArticleJSON::Export::Common::HTML::Elements::Base]
+          def text_exporter
+            self.class.exporter_by_type(:text)
+          end
+
           # Caption Text
           # @return [String]
           def caption_text
-            @element.caption.first&.content
+            text.empty? ? nil : text
+          end
+
+          # @return [String]
+          def text
+            @element.caption.map do |child_element|
+              text_exporter.new(child_element)
+                .export
+            end.join
           end
         end
       end
