@@ -41,7 +41,7 @@ module ArticleJSON
           # @return [Array]
           def map_styles(elements)
             elements.map do |child_element|
-              child_element.merge(layout: 'textBox' +  child_element[:layout].upcase_first)
+              child_element.merge(layout: 'textBox' +  child_element[:layout].sub(/\S/, &:upcase))
             end
           end
         end
