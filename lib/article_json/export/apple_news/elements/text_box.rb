@@ -11,11 +11,6 @@ module ArticleJSON
               role: 'container',
               layout: 'textBoxLayout',
               style: 'textBoxStyle',
-              animation: {
-                type: 'appear',
-                userControllable: true,
-                initialAlpha: 0.0,
-              },
               components: map_styles(elements),
             }
           end

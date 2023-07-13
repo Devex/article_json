@@ -3,7 +3,6 @@ describe ArticleJSON::Export::AppleNews::Elements::TextBox do
   let(:float) { nil }
   let(:output) do
     {
-      animation: { initialAlpha: 0.0, type: 'appear', userControllable: true },
       components: components,
       layout: 'textBoxLayout',
       role: 'container',
