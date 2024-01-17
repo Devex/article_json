@@ -60,6 +60,18 @@ describe ArticleJSON::Article do
     it_behaves_like 'an exporter that properly handles empty articles'
   end
 
+  describe  '#apple_news_exporter' do
+    subject { article.apple_news_exporter }
+    it { should be_a ArticleJSON::Export::AppleNews::Exporter }
+  end
+
+  describe '#to_apple_news' do
+    subject { article.to_apple_news }
+    it { should be_a String }
+    it { should eq '<p>Foo Bar</p>' }
+    it_behaves_like 'an exporter that properly handles empty articles'
+  end
+
   describe '#facebook_instant_article_exporter' do
     subject { article.facebook_instant_article_exporter }
     it { should be_a ArticleJSON::Export::FacebookInstantArticle::Exporter }
