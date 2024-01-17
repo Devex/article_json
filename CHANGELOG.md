@@ -1,4 +1,25 @@
 # Changelog
+## 0.4.0 - 2024/01/17
+In this fourth release we **added support for Apple News**:
+**New**:
+Support for Apple News Format, specifically the following elements:
+- text
+- text boxes
+- lists
+- pull quotes
+- image
+- embed objects (posts from X etc.)
+- image captions for images and embed objects
+- video
+Support for Ruby 3.2
+
+**Refactoring**:
+- Rubocop autocorrections
+
+**Fix:**
+- Fix failing rspec tests
+
+
 ## 0.3.8 - 2020/7/31
 - **Improvements:**
 - Add a script to update oembed stubs fixtures.
