@@ -1,5 +1,19 @@
 # article_json
-JSON Format for News Articles & Ruby Gem.
+The `article_json` gem is a Ruby library designed to simplify the conversion and manipulation of structured articles in various formats, allowing easy importing, manipulation and export of content across different platforms and environments.
+
+It takes an article from a Google Doc and creates a JSON version of it.
+
+From there it can export the article:
+- as HTML
+- as AMP
+- as Apple News Format (ANF)
+- as Facebook Instant Article HTML
+- as plain text
+- as JSON
+
+It also provides functionalities to parse content from Google Document HTML exports and initialize articles from JSON strings or already parsed JSON.
+
+---
 
 ## Status
 [![Gem Version](https://badge.fury.io/rb/article_json.svg)](https://badge.fury.io/rb/article_json)
@@ -33,6 +47,9 @@ puts article.to_amp
 # get javascript libraries needed for the AMP article
 puts article.amp_exporter.amp_libraries
 
+# export article as Apple News Format (ANF)
+puts article.to_apple_news
+
 # export article as Facebook Instant Article HTML
 puts article.to_facebook_instant_article
 
@@ -44,35 +61,47 @@ puts article.to_json
 ```
 
 ### CLI
-To load, parse and html-export the latest version of the reference document,
-run the following:
+To load, parse and export the latest (amp/ apple news/ facebook/ html) version of the reference document, run the following:
 
-```
+```bash
 $ export DOC_ID=1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8
 $ ./bin/article_json_export_google_doc.rb $DOC_ID \
     | ./bin/article_json_parse_google_doc.rb \
     | ./bin/article_json_export_html.rb
+    ## OR
+    # | ./bin/article_json_export_amp.rb
+    # | ./bin/article_json_export_apple_news.rb
+    # | ./bin/article_json_export_facebook.rb
+    # | ./bin/article_json_export_plain_text.rb
 ```
 
-You can also update all the different exported versions of the reference
-document (html, json, amp, facebook instant article and plain txt) by
-running the following command:
+Alternatively, you can concatenate your command line commands, like so:
+```bash
+$ ./bin/article_json_export_google_doc.rb $DOC_ID > test_ref_doc.html
+$ cat test_ref_doc.html | bin/article_json_parse_google_doc.rb > \
+    test_ref_doc_parsed_apple.json
+$ cat test_ref_doc_parsed_apple.json | bin/article_json_export_apple_news.rb > \
+    test_ref_doc_exported_apple.json
+```
+
+You can also update _all_ the different exported versions of the reference document _(amp, apple_news, facebook, google_doc, html and plain_text)_ by running the following command:
 
 ```
 $ ./bin/update_reference_document.sh
 ```
 
-When running the tests, we use some fixtures to mock the responses for oembed
-request, but these may change over time. To update them, run:
+When running the tests, we use some fixtures to mock the responses for oembed requests, but these may change over time.
+
+To update them, run:
 
 ```
 $ ./bin/update_oembed_request-stubs.sh
 ```
 
 ### Configuration
-There are some configuration options that allow a more tailored usage of the
-`article_json` gem. The following code snippet gives an example for every
-available setting:
+Some configuration options allow a more tailored usage of the `article_json` gem.
+
+The following code snippet gives an example for every available setting:
 
 ```ruby
 ArticleJSON.configure do |config|
@@ -99,8 +128,8 @@ ArticleJSON.configure do |config|
     image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
 
-  # It works the same way for custom AMP, FacebookInstantArticle, or
-  # PlainText exporters:
+  # It works the same way for custom AMP, FacebookInstantArticle, or PlainText
+  # exporters:
   config.register_element_exporters(
     :amp, # Or change this for `:facebook_instant_article` or `:plain_text`
     image: ArticleJSON::Export::AMP::Elements::ScaledImage
@@ -109,40 +138,39 @@ end
 ```
 
 ### Facebook Oembed
-Facebook deprecated it's public endpoints for embeddable Facebook content on
-October 14, 2020 (See https://developers.facebook.com/docs/plugins/oembed-legacy
-for more info). Since then, you need to use a facebook token to access the new
-oembed endpoints. You can configure the gem to use this token so:
+Facebook deprecated its public endpoints for embeddable Facebook content in 2020 (See https://developers.facebook.com/docs/plugins/oembed-legacy for more info).
+
+You now need to use a Facebook token to access the new oembed endpoints. You can configure the gem to use this token so:
 
 ``` ruby
 ArticleJSON.configure do |config|
+  # 'token' being the combination of the app-id and the access token joined
+  # with the pipe symbol (`|`)
   config.facebook_token = 'token'
 end
 ```
 
-Where token would be the combination of the app-id and the access token
-joined with the pipe symbol (`|`). More info about the access token
-[here](https://developers.facebook.com/docs/plugins/oembed#access-tokens)
+Find more info about the access token [here](https://developers.facebook.com/docs/plugins/oembed#access-tokens).
 
 ## Format
-A full example of the format can be found in the test fixtures:
-[Parsed Reference Document](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_parsed.json)
+A [full example of the format](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_parsed.json) can be found in the test fixtures.
 
 ## Import
 ### Google Document Parser
-This [Reference Document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8/edit?usp=sharing)
-lists contains all supported formatting along with some descriptions.
+This [reference document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8/editusp=sharing) contains all the supported formatting along with some descriptions.
 
 ## Add custom elements
-Sometimes you might want to place additional elements into the article, like e.g. advertisements.
-`article_json` supports this via `article.place_additional_elements` which accepts an array of elements that you can define in your own code.
-Each element that is added this way will directly get placed in between paragraphs of the article.
-The method ensures that an additional element is never added before or after any node other than paragraphs (e.g. an image).
-The elements are added in the order you pass them into the method.
-If the article should not have enough spaces to place all the provided elements, they will be placed after the last element in the article.
+Sometimes you might want to place additional elements into the article, like e.g. advertisements. `article_json` supports this via `article.place_additional_elements`, which accepts an array of elements that you can define in your code.
+
+Each element that is added this way will directly get placed in between paragraphs of the article. The method ensures that an additional element is never added before or after any node other than paragraphs (e.g. an image). The elements are added in the order you pass them into the method.
+
+If the article does not have enough space to place all the provided elements, they will be placed after the last
+element in the article.
 
 You can pass any type of element into this method.
-If the objects you pass in are instances of elements defined within this gem (e.g. `ArticleJSON::Elements::Image`), you won't have to do anything else to get them rendered.
+
+If the objects you pass in are instances of elements defined within this gem (e.g. `ArticleJSON::Elements::Image`), you won't have to do anything else to render them.
+
 If you pass in an instance of a custom class (e.g. `MyAdvertisement`), make sure to register an exporter for this type (check the _Configuration_ section for more details).
 
 Example using only existing elements:
@@ -226,35 +254,26 @@ article.to_html
 
 ## Export
 ### HTML
-The HTML exporter generates a HTML string for a list of elements. An example of
-the HTML export for the parsed reference document can be found
-[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
+The HTML exporter generates an HTML string for a list of elements. An example of the HTML export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
 
 ### AMP
 The AMP exporter generates an AMP HTML representation of the elements.
 
 AMP uses [custom HTML tags](https://www.ampproject.org/docs/reference/components), some of which require additional Javascript libraries.
-If you have an `article` (see code example in _Usage_ section), you can get a list of the custom tags required by this article by calling `article.amp_exporter.custom_element_tags` and by calling `article.amp_exporter.amp_libraries` you get a list of `<script>` tags that can directly be included on your page to render the AMP article.
 
-An example of
-the AMP HTML export for the parsed reference document can be found
-[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
+If you have an `article` (see code example in _Usage_ section), you can get a list of the custom tags required by this article by calling `article.amp_exporter.custom_element_tags` and calling `article.amp_exporter.amp_libraries` gives a list of `<script>` tags that can directly be included on your page to render the AMP article.
+
+An example of the AMP HTML export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
 
 ### Facebook Instant Articles
-The `FacebookInstantArticle` exporter generates a custom HTML string for a list
-of elements. An example of the Facebook Instant Article export for the parsed
-reference document can be found
-[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
+The `FacebookInstantArticle` exporter generates a custom HTML string for a list of elements. An example of the Facebook Instant Article export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
 
-To learn more about the Facebook Instant Article HTML format see have a look at
-the [Facebook Developer Documentation](https://developers.facebook.com/docs/instant-articles/guides/format-overview).
+To learn more about the Facebook Instant Article HTML format see have a look at the [Facebook Developer Documentation](https://developers.facebook.com/docs/instant-articles/guides/format-overview).
 
 ### Plain Text
-As the name suggests, this exporter generates a plain text version of the article.
-Rich text elements like images, embeds or even text boxes are not being rendered.
+As the name suggests, this exporter generates a plain text version of the article. Rich text elements like images, embeds or even text boxes are not being rendered.
 
-The reference document rendered as plain text can be found
-[here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.txt).
+The reference document rendered as plain text can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.txt).
 
 Usage:
 ```ruby
@@ -267,7 +286,7 @@ article.to_plain_text
 
 ## Contributing
 - Fork this repository
-- Implement your feature or fix including Tests
+- Implement your feature or fix including tests
 - Update the [change log](CHANGELOG.md)
 - Commit your changes with a meaningful commit message
 - Create a pull request
@@ -277,7 +296,7 @@ Thank you!
 See the
 [list of contributors](https://github.com/Devex/article_json/contributors).
 
-### Tests
+## Tests
 For the whole test suite, run `bundle exec rspec`.
 
 For individual tests, run `bundle exec rspec spec/article_json/version_spec.rb`.
