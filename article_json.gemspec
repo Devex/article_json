@@ -5,19 +5,24 @@ Gem::Specification.new do |s|
   s.version = ArticleJSON::VERSION
   s.platform = Gem::Platform::RUBY
 
-  s.authors = ['Daniel Sager', 'Manu Campos', 'Nicolas Fricke']
+  s.authors = ['Daniel Sager', 'Manu Campos', 'Nicolas Fricke', 'Damien Dillon']
   s.email = 'info@devex.com'
   s.homepage = 'https://github.com/Devex/article_json'
   s.license = 'MIT'
 
   s.summary = 'JSON Format for News Articles & Ruby Gem'
   s.description = <<-txt
-`article_json` is a format definition for news articles and a ruby gem that
-offers conversions from and to different formats:
-- Parser for Google Doc HTML exports
-- Converter to simple HTML format
-- Converter to AMP format
-txt
+    `article_json` is a format definition for news articles and a ruby gem that
+    offers conversions from and to different formats:
+    - Parser for Google Doc HTML exports
+    - Converter to:
+      - simple HTML format
+      - AMP format
+      - Apple News Format (ANF)
+      - Facebook Instant Article HTML
+      - plain text
+      - JSON
+  txt
 
   s.files = Dir['{lib}/**/*.rb', 'bin/*', 'LICENSE', '*.md']
   s.require_path = 'lib'
