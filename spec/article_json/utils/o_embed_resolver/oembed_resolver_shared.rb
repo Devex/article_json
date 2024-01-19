@@ -27,7 +27,7 @@ shared_context 'for a successful oembed resolution' do
       context 'with additional headers' do
         before do
           ArticleJSON.configure { |c| c.oembed_user_agent = 'foobar' }
-          stub_oembed_requests('User-Agent' => 'foobar')
+          stub_oembed_requests({'User-Agent' => 'foobar'})
         end
         it { should eq expected_response }
       end

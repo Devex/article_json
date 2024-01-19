@@ -8,33 +8,27 @@ describe ArticleJSON::Export::AppleNews::Elements::Quote do
       caption: caption,
     )
   end
-  let(:caption) do
-    [
-      ArticleJSON::Elements::Text.new(
-        {
-          content: author,
-          bold: false,
-          italic: false,
-          href: href,
-        }
-      )
-    ]
-  end
   let(:quote) do
     [
       ArticleJSON::Elements::Paragraph.new(
-        {
-          content: [
-            ArticleJSON::Elements::Text.new(
-              {
-                content: quote_text,
-                bold: bold,
-                italic: italic,
-                href: nil,
-              }
-            )
-          ]
-        }
+        content: [
+          ArticleJSON::Elements::Text.new(
+            content: quote_text,
+            bold: bold,
+            italic: italic,
+            href: nil,
+          )
+        ]
+      )
+    ]
+  end
+  let(:caption) do
+    [
+      ArticleJSON::Elements::Text.new(
+        content: author,
+        bold: false,
+        italic: false,
+        href: href,
       )
     ]
   end
