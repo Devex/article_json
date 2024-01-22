@@ -6,6 +6,7 @@ describe ArticleJSON::Article do
 
   describe '#to_h' do
     subject { article.to_h }
+
     it { should be_a Hash }
     it { should have_key :article_json_version }
     it { should have_key :content }
@@ -61,15 +62,36 @@ describe ArticleJSON::Article do
   end
 
   describe  '#apple_news_exporter' do
-    subject { article.apple_news_exporter }
+    subject(:apple_news_exporter) { article.apple_news_exporter }
+
     it { should be_a ArticleJSON::Export::AppleNews::Exporter }
   end
 
   describe '#to_apple_news' do
-    subject { article.to_apple_news }
+    subject(:to_apple_news) { article.to_apple_news }
+
     it { should be_a String }
-    it { should eq '<p>Foo Bar</p>' }
-    it_behaves_like 'an exporter that properly handles empty articles'
+
+    it 'matches the expected result' do
+      expected =
+        "{\"components\":[{
+            \"role\":\"body\",
+            \"text\":\"Foo Bar\",
+            \"format\":\"html\",
+            \"layout\":\"bodyLayout\",
+            \"textStyle\":\"bodyStyle\"
+          }]
+        }"
+      expect(JSON.parse(to_apple_news)).to eq(JSON.parse(expected))
+    end
+
+    context 'when the article is empty' do
+      let(:article) { described_class.new([]) }
+
+      it 'returns an empty components array' do
+        expect(to_apple_news).to eq "{\"components\":[]}"
+      end
+    end
   end
 
   describe '#facebook_instant_article_exporter' do
