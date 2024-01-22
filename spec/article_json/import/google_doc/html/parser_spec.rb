@@ -112,7 +112,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
             "content": [
               {
                 "type": "image",
-                 "source_url": "https://lh6.googleusercontent.com/mddqDcb0cm8wTJCiXyllikOod1Ecsuyy1twC14rWwu41thuwrmQAYBkOmMPlC2a1mxB1ajaSew35FkoR_GOqXyj0lDWNpC45sapPfY1rzf9JihhMRV-G9MuSzMVkneMs4w",
+                 "source_url": "https://lh7-us.googleusercontent.com/H28MfU2_fPpHJ2UP16JLs7nWHvRAN0fEguVpp9ZOmtLNvxp4oNgKNn_fycYVcb1ScgdQ-UPLjBdoKdl5hsmsPxhfOZ3RiheScNhIw68UAHYfmuzObdnfxidlph1o0rbxKzE1n6s3_wivLsU",
                  "float": "left",
                  "caption": [
                    {
