@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.test_files = s.files.grep(%r{^(spec)/})
 
-  s.required_ruby_version = '>= 2.3'
+  s.required_ruby_version = '>= 2.5'
 
   s.add_runtime_dependency 'nokogiri', '~> 1.8'
   s.add_runtime_dependency 'css_parser', '~> 1.5'
