@@ -22,6 +22,6 @@ expected_document = JSON.parse(File.read('spec/fixtures/reference_document_parse
 exported_doc = Net::HTTP.get(URI.parse(url))
 document = JSON.parse(ArticleJSON::Article.from_google_doc_html(exported_doc).to_json)
 
-raise Error, "Google doc export doesn't work as expected" if document != expected_document
+raise StandardError, "Google doc export doesn't work as expected" if document != expected_document
 
 puts 'Google doc export worked as expected'
