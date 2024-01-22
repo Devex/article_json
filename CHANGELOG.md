@@ -13,6 +13,9 @@ Support for Apple News Format, specifically the following elements:
 - video
 Support for Ruby 3.2
 
+**Removes**:
+Support for Ruby 2.3
+
 **Refactoring**:
 - Rubocop autocorrections
 
