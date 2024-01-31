@@ -16,12 +16,26 @@ require 'uri'
 require_relative '../lib/article_json'
 
 doc_id = '1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8'
-url = "https://docs.google.com/feeds/download/documents/export/Export?id=#{doc_id}&exportFormat=html"
-expected_document = JSON.parse(File.read('spec/fixtures/reference_document_parsed.json'))
+url =
+  "https://docs.google.com/feeds/download/documents/export/Export?id=#{doc_id}&exportFormat=html"
+parsed_exported_doc = JSON.parse(
+  ArticleJSON::Article
+    .from_google_doc_html(Net::HTTP.get(URI.parse(url)))
+    .to_json
+)
+parsed_expected_doc = JSON.parse(File.read('spec/fixtures/reference_document_parsed.json'))
 
-exported_doc = Net::HTTP.get(URI.parse(url))
-document = JSON.parse(ArticleJSON::Article.from_google_doc_html(exported_doc).to_json)
+# `source_url` (for hosted images) is dynamic, so we need to remove it from the comparison`
+def nullify_source_url(hash)
+  hash['content'].each { |element| element['source_url'] = nil if element['source_url'] }
+  hash
+end
 
-raise StandardError, "Google doc export doesn't work as expected" if document != expected_document
+parsed_exported_doc = nullify_source_url(parsed_exported_doc)
+parsed_expected_doc = nullify_source_url(parsed_expected_doc)
+
+if parsed_exported_doc != parsed_expected_doc
+  raise StandardError, "Google doc export doesn't work as expected"
+end
 
 puts 'Google doc export worked as expected'
