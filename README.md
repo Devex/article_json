@@ -17,8 +17,8 @@ It also provides functionalities to parse content from Google Document HTML expo
 
 ## Status
 [![Gem Version](https://badge.fury.io/rb/article_json.svg)](https://badge.fury.io/rb/article_json)
-[![Check Google Doc](https://github.com/Devex/article_json/workflows/Check%20Google%20Doc/badge.svg)]
-[![RSpec](https://github.com/Devex/article_json/workflows/rspec/badge.svg)]
+[![Check Google Doc](https://github.com/Devex/article_json/workflows/Check%20Google%20Doc/badge.svg)](https://github.com/Devex/article_json/actions/workflows/check-google-doc.yml)
+[![RSpec](https://github.com/Devex/article_json/workflows/rspec/badge.svg)](https://github.com/Devex/article_json/actions/workflows/rspec.yml)
 [![Code Climate](https://codeclimate.com/github/Devex/article_json/badges/gpa.svg)](https://codeclimate.com/github/Devex/article_json?event=push)
 [![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
 
