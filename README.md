@@ -1,9 +1,11 @@
 # article_json
+
 The `article_json` gem is a Ruby library designed to simplify the conversion and manipulation of structured articles in various formats, allowing easy importing, manipulation and export of content across different platforms and environments.
 
 It takes an article from a Google Doc and creates a JSON version of it.
 
 From there it can export the article:
+
 - as HTML
 - as AMP
 - as Apple News Format (ANF)
@@ -15,6 +17,7 @@ It also provides functionalities to parse content from Google Document HTML expo
 ---
 
 ## Status
+
 [![Gem Version](https://badge.fury.io/rb/article_json.svg)](https://badge.fury.io/rb/article_json)
 [![Check Google Doc](https://github.com/Devex/article_json/workflows/Check%20Google%20Doc/badge.svg)](https://github.com/Devex/article_json/actions/workflows/check-google-doc.yml)
 [![RSpec](https://github.com/Devex/article_json/workflows/rspec/badge.svg)](https://github.com/Devex/article_json/actions/workflows/rspec.yml)
@@ -22,10 +25,12 @@ It also provides functionalities to parse content from Google Document HTML expo
 [![Coverage Status](https://coveralls.io/repos/github/Devex/article_json/badge.svg?branch=master)](https://coveralls.io/github/Devex/article_json?branch=master)
 
 ## Usage
+
 First, install the gem with `gem install article_json` or add it to your Gemfile
 via `gem 'article_json'`.
 
 ### Ruby
+
 ```ruby
 require 'article_json'
 
@@ -57,6 +62,7 @@ puts article.to_json
 ```
 
 ### CLI
+
 To load, parse and export the latest (amp / apple news / html) version of the reference document, run the following:
 
 ```bash
@@ -71,6 +77,7 @@ $ ./bin/article_json_export_google_doc.rb $DOC_ID \
 ```
 
 Alternatively, you can concatenate your command line commands, like so:
+
 ```bash
 $ ./bin/article_json_export_google_doc.rb $DOC_ID > test_ref_doc.html
 $ cat test_ref_doc.html | bin/article_json_parse_google_doc.rb > \
@@ -82,7 +89,7 @@ $ cat test_ref_doc_parsed_apple.json | bin/article_json_export_apple_news.rb > \
 You can also update _all_ the different exported versions of the reference document _(amp, apple_news, google_doc, html and plain_text)_ by running the following command:
 
 ```
-$ ./bin/update_reference_document.sh
+./bin/update_reference_document.sh
 ```
 
 When running the tests, we use some fixtures to mock the responses for oembed requests, but these may change over time.
@@ -90,10 +97,11 @@ When running the tests, we use some fixtures to mock the responses for oembed re
 To update them, run:
 
 ```
-$ ./bin/update_oembed_request-stubs.sh
+./bin/update_oembed_request-stubs.sh
 ```
 
 ### Configuration
+
 Some configuration options allow a more tailored usage of the `article_json` gem.
 
 The following code snippet gives an example for every available setting:
@@ -132,7 +140,8 @@ end
 ```
 
 ### Facebook Oembed
-Facebook deprecated its public endpoints for embeddable Facebook content in 2020 (See https://developers.facebook.com/docs/plugins/oembed-legacy for more info).
+
+Facebook deprecated its public endpoints for embeddable Facebook content in 2020 (See <https://developers.facebook.com/docs/plugins/oembed-legacy> for more info).
 
 You now need to use a Facebook token to access the new oembed endpoints. You can configure the gem to use this token so:
 
@@ -147,13 +156,17 @@ end
 Find more info about the access token [here](https://developers.facebook.com/docs/plugins/oembed#access-tokens).
 
 ## Format
+
 A [full example of the format](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_parsed.json) can be found in the test fixtures.
 
 ## Import
+
 ### Google Document Parser
+
 This [reference document](https://docs.google.com/document/d/1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8/editusp=sharing) contains all the supported formatting along with some descriptions.
 
 ## Add custom elements
+
 Sometimes you might want to place additional elements into the article, like e.g. advertisements. `article_json` supports this via `article.place_additional_elements`, which accepts an array of elements that you can define in your code.
 
 Each element that is added this way will directly get placed in between paragraphs of the article. The method ensures that an additional element is never added before or after any node other than paragraphs (e.g. an image). The elements are added in the order you pass them into the method.
@@ -168,6 +181,7 @@ If the objects you pass in are instances of elements defined within this gem (e.
 If you pass in an instance of a custom class (e.g. `MyAdvertisement`), make sure to register an exporter for this type (check the _Configuration_ section for more details).
 
 Example using only existing elements:
+
 ```ruby
 # Create your article instance as you normally do
 article = ArticleJSON::Article.from_hash(parsed_json)
@@ -203,6 +217,7 @@ article.to_html # this will now include the custom elements
 ```
 
 Example with custom advertisement elements:
+
 ```ruby
 # Define your custom element class
 class MyAdvertisement
@@ -247,10 +262,13 @@ article.to_html
 ```
 
 ## Export
+
 ### HTML
+
 The HTML exporter generates an HTML string for a list of elements. An example of the HTML export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
 
 ### AMP
+
 The AMP exporter generates an AMP HTML representation of the elements.
 
 AMP uses [custom HTML tags](https://www.ampproject.org/docs/reference/components), some of which require additional Javascript libraries.
@@ -260,11 +278,13 @@ If you have an `article` (see code example in _Usage_ section), you can get a li
 An example of the AMP HTML export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
 
 ### Plain Text
+
 As the name suggests, this exporter generates a plain text version of the article. Rich text elements like images, embeds or even text boxes are not being rendered.
 
 The reference document rendered as plain text can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.txt).
 
 Usage:
+
 ```ruby
 # Create your article instance as you normally do
 article = ArticleJSON::Article.from_hash(parsed_json)
@@ -274,6 +294,7 @@ article.to_plain_text
 ```
 
 ## Contributing
+
 - Fork this repository
 - Implement your feature or fix including tests
 - Update the [change log](CHANGELOG.md)
@@ -286,9 +307,11 @@ See the
 [list of contributors](https://github.com/Devex/article_json/contributors).
 
 ## Tests
+
 For the whole test suite, run `bundle exec rspec`.
 
 For individual tests, run `bundle exec rspec spec/article_json/version_spec.rb`.
 
 ## License
+
 MIT License, see the [license file](LICENSE).
