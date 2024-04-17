@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
       - simple HTML format
       - AMP format
       - Apple News Format (ANF)
-      - Facebook Instant Article HTML
       - plain text
       - JSON
   txt

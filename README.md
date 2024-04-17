@@ -7,7 +7,6 @@ From there it can export the article:
 - as HTML
 - as AMP
 - as Apple News Format (ANF)
-- as Facebook Instant Article HTML
 - as plain text
 - as JSON
 
@@ -50,9 +49,6 @@ puts article.amp_exporter.amp_libraries
 # export article as Apple News Format (ANF)
 puts article.to_apple_news
 
-# export article as Facebook Instant Article HTML
-puts article.to_facebook_instant_article
-
 # export article as plain text
 puts article.to_plain_text
 
@@ -61,7 +57,7 @@ puts article.to_json
 ```
 
 ### CLI
-To load, parse and export the latest (amp/ apple news/ facebook/ html) version of the reference document, run the following:
+To load, parse and export the latest (amp / apple news / html) version of the reference document, run the following:
 
 ```bash
 $ export DOC_ID=1E4lncZE2jDkbE34eDyYQmXKA9O26BHUiwguz4S9qyE8
@@ -71,7 +67,6 @@ $ ./bin/article_json_export_google_doc.rb $DOC_ID \
     ## OR
     # | ./bin/article_json_export_amp.rb
     # | ./bin/article_json_export_apple_news.rb
-    # | ./bin/article_json_export_facebook.rb
     # | ./bin/article_json_export_plain_text.rb
 ```
 
@@ -84,7 +79,7 @@ $ cat test_ref_doc_parsed_apple.json | bin/article_json_export_apple_news.rb > \
     test_ref_doc_exported_apple.json
 ```
 
-You can also update _all_ the different exported versions of the reference document _(amp, apple_news, facebook, google_doc, html and plain_text)_ by running the following command:
+You can also update _all_ the different exported versions of the reference document _(amp, apple_news, google_doc, html and plain_text)_ by running the following command:
 
 ```
 $ ./bin/update_reference_document.sh
@@ -128,10 +123,9 @@ ArticleJSON.configure do |config|
     image: ArticleJSON::Export::HTML::Elements::ScaledImage
   )
 
-  # It works the same way for custom AMP, FacebookInstantArticle, or PlainText
-  # exporters:
+  # It works the same way for custom AMP, Apple News, or PlainText exporters:
   config.register_element_exporters(
-    :amp, # Or change this for `:facebook_instant_article` or `:plain_text`
+    :amp, # Or change this for `:apple_news` or `:plain_text`
     image: ArticleJSON::Export::AMP::Elements::ScaledImage
   )
 end
@@ -264,11 +258,6 @@ AMP uses [custom HTML tags](https://www.ampproject.org/docs/reference/components
 If you have an `article` (see code example in _Usage_ section), you can get a list of the custom tags required by this article by calling `article.amp_exporter.custom_element_tags` and calling `article.amp_exporter.amp_libraries` gives a list of `<script>` tags that can directly be included on your page to render the AMP article.
 
 An example of the AMP HTML export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.amp.html).
-
-### Facebook Instant Articles
-The `FacebookInstantArticle` exporter generates a custom HTML string for a list of elements. An example of the Facebook Instant Article export for the parsed reference document can be found [here](https://github.com/Devex/article_json/blob/master/spec/fixtures/reference_document_exported.html).
-
-To learn more about the Facebook Instant Article HTML format see have a look at the [Facebook Developer Documentation](https://developers.facebook.com/docs/instant-articles/guides/format-overview).
 
 ### Plain Text
 As the name suggests, this exporter generates a plain text version of the article. Rich text elements like images, embeds or even text boxes are not being rendered.

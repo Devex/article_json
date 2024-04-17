@@ -8,7 +8,6 @@ SOURCE_HTML_FILE="spec/fixtures/reference_document.html"
 JSON_FILE="spec/fixtures/reference_document_parsed.json"
 HTML_EXPORT_FILE="spec/fixtures/reference_document_exported.html"
 AMP_EXPORT_FILE="spec/fixtures/reference_document_exported.amp.html"
-FACEBOOK_EXPORT_FILE="spec/fixtures/reference_document_exported.facebook.html"
 APPLE_NEWS_EXPORT_FILE="spec/fixtures/reference_document_exported.apple_news.json"
 PLAIN_TEXT_EXPORT_FILE="spec/fixtures/reference_document_exported.txt"
 
@@ -23,9 +22,6 @@ PLAIN_TEXT_EXPORT_FILE="spec/fixtures/reference_document_exported.txt"
 
 # convert the JSON export to AMP
 ./bin/article_json_export_amp.rb < ${JSON_FILE} > ${AMP_EXPORT_FILE}
-
-# convert the JSON export to Facebook Instant Article
-./bin/article_json_export_facebook.rb < ${JSON_FILE} > ${FACEBOOK_EXPORT_FILE}
 
 # convert the JSON export to Apple News
 ./bin/article_json_export_apple_news.rb < ${JSON_FILE} > ${APPLE_NEWS_EXPORT_FILE}
