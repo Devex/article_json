@@ -74,18 +74,6 @@ module ArticleJSON
       apple_news_exporter.to_json
     end
 
-    # Exporter instance for FacebookInstantArticle
-    # @return [ArticleJSON::Export::FacebookInstantArticle::Exporter]
-    def facebook_instant_article_exporter
-      ArticleJSON::Export::FacebookInstantArticle::Exporter.new(elements)
-    end
-
-    # FacebookInstantArticle export of the article
-    # @return [String]
-    def to_facebook_instant_article
-      facebook_instant_article_exporter.html
-    end
-
     # Exporter instance for plain text
     # @return [ArticleJSON::Export::PlainText::Exporter]
     def plain_text_exporter

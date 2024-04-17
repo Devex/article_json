@@ -1,4 +1,10 @@
 # Changelog
+
+## 0.5.0 - WIP
+
+**Removes**:
+Support for Facebook Instant Articles, as they are no longer supported by Facebook.
+
 ## 0.4.0 - 2024/01/17
 In this fourth release we **added support for Apple News**:
 **New**:
