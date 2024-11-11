@@ -23,22 +23,26 @@ describe ArticleJSON::Export::PlainText::Elements::Text do
 
     context 'when the source element contains a newline character' do
       let(:content) { "Foo\nBar" }
+
       it { should eq content }
     end
 
     context 'when the source element is bold text' do
       let(:bold) { true }
+
       it { should eq content }
     end
 
     context 'when the source element is italic text' do
       let(:italic) { true }
+
       it { should eq content }
     end
 
     context 'when the source element is italic and bold text' do
       let(:bold) { true }
       let(:italic) { true }
+
       it { should eq content }
     end
 
@@ -52,17 +56,20 @@ describe ArticleJSON::Export::PlainText::Elements::Text do
 
       context 'with bold text' do
         let(:bold) { true }
+
         it { should eq content }
       end
 
       context 'with italic text' do
         let(:italic) { true }
+
         it { should eq content }
       end
 
       context 'with italic and bold text' do
         let(:bold) { true }
         let(:italic) { true }
+
         it { should eq content }
       end
     end

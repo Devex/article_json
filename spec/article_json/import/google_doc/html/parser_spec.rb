@@ -1,5 +1,6 @@
 describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
   subject(:parser) { described_class.new(html) }
+
   let(:html) { '' }
 
   context 'reference document test' do
@@ -48,6 +49,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
           }
         JSON
       end
+
       it { should eq minified_json }
     end
 
@@ -74,6 +76,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
           }
         JSON
       end
+
       it { should eq minified_json }
     end
 
@@ -100,6 +103,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
           }
         JSON
       end
+
       it { should eq minified_json }
     end
 
@@ -130,6 +134,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::Parser do
           }
         JSON
       end
+
       it { should eq minified_json }
     end
   end

@@ -19,6 +19,7 @@ describe ArticleJSON::Export::AppleNews::Elements::Heading do
             textStyle: 'defaultTitle',
           }
         end
+
         it { should eq heading }
       end
     end

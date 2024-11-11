@@ -13,6 +13,7 @@ describe ArticleJSON::Export::PlainText::Elements::Paragraph do
 
   describe '#export' do
     subject { element.export }
+
     it { should eq "Check this out: Foo Bar\n" }
   end
 end

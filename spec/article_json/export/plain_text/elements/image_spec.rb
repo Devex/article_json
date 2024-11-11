@@ -20,17 +20,20 @@ describe ArticleJSON::Export::PlainText::Elements::Image do
 
     context 'when the image is floating on the left' do
       let(:float) { :left }
+
       it { should eq '' }
     end
 
     context 'when the image is floating on the right' do
       let(:float) { :right }
+
       it { should eq '' }
     end
 
     context 'when no caption is provided' do
       let(:caption) { [] }
       let(:expected_text) { '<figure><img src="/foo/bar.jpg"></figure>' }
+
       it { should eq '' }
     end
   end

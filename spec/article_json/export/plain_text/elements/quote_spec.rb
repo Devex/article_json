@@ -24,16 +24,19 @@ describe ArticleJSON::Export::PlainText::Elements::Quote do
 
     context 'when the quote is floating on the left' do
       let(:float) { :left }
+
       it { should eq "\nFoo Bar\n --Baz\n\n" }
     end
 
     context 'when the quote is floating on the right' do
       let(:float) { :right }
+
       it { should eq "\nFoo Bar\n --Baz\n\n" }
     end
 
     context 'when no caption is present' do
       let(:caption) { [] }
+
       it { should eq "\nFoo Bar\n\n" }
     end
   end

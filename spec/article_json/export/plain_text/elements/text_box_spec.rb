@@ -17,16 +17,19 @@ describe ArticleJSON::Export::PlainText::Elements::TextBox do
 
     context 'when the box is not floating' do
       let(:float) { nil }
+
       it { should eq '' }
     end
 
     context 'when the box is floating left' do
       let(:float) { :left }
+
       it { should eq '' }
     end
 
     context 'when the box is floating right' do
       let(:float) { :right }
+
       it { should eq '' }
     end
   end

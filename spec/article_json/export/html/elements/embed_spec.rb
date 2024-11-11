@@ -14,7 +14,9 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
+
     let(:oembed_data) { { html: 'Embedded Object: something-666' } }
+
     before do
       allow(source_element).to receive(:oembed_data).and_return(oembed_data)
     end
@@ -23,9 +25,10 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
       context 'with a proper caption' do
         let(:expected_html) do
           '<figure><div class="embed something">' \
-          'Embedded Object: something-666</div>' \
-          '<figcaption>Foo Bar</figcaption></figure>'
+            'Embedded Object: something-666</div>' \
+            '<figcaption>Foo Bar</figcaption></figure>'
         end
+
         it { should eq expected_html }
       end
 
@@ -33,9 +36,10 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
         let(:caption) { [] }
         let(:expected_html) do
           '<figure><div class="embed something">' \
-          'Embedded Object: something-666</div>' \
-          '</figure>'
+            'Embedded Object: something-666</div>' \
+            '</figure>'
         end
+
         it { should eq expected_html }
       end
 
@@ -44,9 +48,10 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
         let(:caption) { [] }
         let(:expected_html) do
           '<figure><div class="embed facebook-video">' \
-          'Embedded Object: something-666</div>' \
-          '</figure>'
+            'Embedded Object: something-666</div>' \
+            '</figure>'
         end
+
         it { should eq expected_html }
       end
 
@@ -55,9 +60,10 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
         let(:caption) { [] }
         let(:expected_html) do
           '<figure><div class="embed vimeo-video">' \
-          'Embedded Object: something-666</div>' \
-          '</figure>'
+            'Embedded Object: something-666</div>' \
+            '</figure>'
         end
+
         it { should eq expected_html }
       end
     end
@@ -66,12 +72,13 @@ describe ArticleJSON::Export::HTML::Elements::Embed do
       let(:embed_type) { :youtube_video }
       let(:expected_html) do
         '<figure><div class="embed youtube-video">' \
-        '<span class="unavailable-embed">'\
-        'The Youtube video <a href="https://www.youtube.com/watch?v=666">'\
-        'https://www.youtube.com/watch?v=666</a> is not available.</span>'\
-        '</div><figcaption>Foo Bar</figcaption></figure>'
+          '<span class="unavailable-embed">' \
+          'The Youtube video <a href="https://www.youtube.com/watch?v=666">' \
+          'https://www.youtube.com/watch?v=666</a> is not available.</span>' \
+          '</div><figcaption>Foo Bar</figcaption></figure>'
       end
       let(:oembed_data) { nil }
+
       it { should eq expected_html }
     end
   end

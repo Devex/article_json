@@ -2,33 +2,38 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
   subject(:element) do
     described_class.new(node: node, css_analyzer: css_analyzer)
   end
+
   let(:node) do
     Nokogiri::HTML.fragment(xml_fragment.strip).children.first
   end
   let(:css_analyzer) do
     ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer.new(
-      <<-css
+      <<-CSS
         .bold { font-weight: bold }
         .italic { font-style: italic }
         .bold-italic { font-weight: bold; font-style: italic }
-      css
+      CSS
     )
   end
 
   describe '#content' do
     subject { element.content }
+
     context 'when it only includes text' do
       let(:xml_fragment) { '<span>foo bar</span>' }
+
       it { should eq 'foo bar' }
     end
 
     context 'when it includes a line break' do
       let(:xml_fragment) { '<span>foo<br>bar</span>' }
+
       it { should eq "foo\nbar" }
     end
 
     context 'when it includes multiple consecutive line breaks' do
       let(:xml_fragment) { '<span>foo  <br> <br>  <br>bar</span>' }
+
       it { should eq "foo\nbar" }
     end
   end
@@ -38,21 +43,25 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
 
     context 'when the node has a bold class attribute only' do
       let(:xml_fragment) { '<span class="bold">foo bar</span>' }
+
       it { should be true }
     end
 
     context 'when the node has a bold & italic class attribute' do
       let(:xml_fragment) { '<span class="bold-italic">foo bar</span>' }
+
       it { should be true }
     end
 
     context 'when the node has a non-bold class attribute' do
       let(:xml_fragment) { '<span class="italic">foo bar</span>' }
+
       it { should be false }
     end
 
     context 'when the node has no class attribute' do
       let(:xml_fragment) { '<span>foo bar</span>' }
+
       it { should be false }
     end
   end
@@ -62,21 +71,25 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
 
     context 'when the node has a italic class attribute only' do
       let(:xml_fragment) { '<span class="italic">foo bar</span>' }
+
       it { should be true }
     end
 
     context 'when the node has a bold & italic class attribute' do
       let(:xml_fragment) { '<span class="bold-italic">foo bar</span>' }
+
       it { should be true }
     end
 
     context 'when the node has a non-italic class attribute' do
       let(:xml_fragment) { '<span class="bold">foo bar</span>' }
+
       it { should be false }
     end
 
     context 'when the node has no class attribute' do
       let(:xml_fragment) { '<span>foo bar</span>' }
+
       it { should be false }
     end
   end
@@ -86,24 +99,27 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
 
     context 'when the text includes no link' do
       let(:xml_fragment) { '<span>foo bar</span>' }
-      it { should be nil }
+
+      it { should be_nil }
     end
 
     context 'when the text includes a simple link' do
       let(:xml_fragment) do
-        <<-html
+        <<-HTML
           <span><a href="https://devex.com">foo bar</a></span>
-        html
+        HTML
       end
+
       it { should eq 'https://devex.com' }
     end
 
     context 'when the text includes a link with a google redirect' do
       let(:xml_fragment) do
-        <<-html
+        <<-HTML
           <span><a href="https://www.google.com/url?q=https://devex.com">foo bar</a></span>
-        html
+        HTML
       end
+
       it { should eq 'https://devex.com' }
     end
   end
@@ -113,22 +129,24 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
 
     context 'when having a simple text' do
       let(:xml_fragment) { '<span>foo bar</span>' }
+
       it 'returns a proper Hash' do
         expect(subject).to be_a ArticleJSON::Elements::Text
         expect(subject.type).to eq :text
         expect(subject.content).to eq 'foo bar'
         expect(subject.bold).to be false
         expect(subject.italic).to be false
-        expect(subject.href).to be nil
+        expect(subject.href).to be_nil
       end
     end
 
     context 'when having a styles text and a link' do
       let(:xml_fragment) do
-        <<-html
+        <<-HTML
           <span class="bold-italic"><a href="https://devex.com">foo bar</a></span>
-        html
+        HTML
       end
+
       it 'returns a proper Hash' do
         expect(subject).to be_a ArticleJSON::Elements::Text
         expect(subject.type).to eq :text
@@ -144,7 +162,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
     subject { described_class.extract(node: node, css_analyzer: css_analyzer) }
 
     let(:xml_fragment) do
-      <<-html
+      <<-HTML
         <p>
           <span class="bold">A </span>
           <span><a href="https://devex.com">link</a></span>
@@ -152,7 +170,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
           <span> with some <br>line breaks</span>
           <span><br></span>
         </p>
-      html
+      HTML
     end
 
     it 'parses all text sub-nodes' do
@@ -162,7 +180,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
       expect(subject[0].content).to eq 'A '
       expect(subject[0].bold).to be true
       expect(subject[0].italic).to be false
-      expect(subject[0].href).to be nil
+      expect(subject[0].href).to be_nil
 
       expect(subject[1].content).to eq 'link'
       expect(subject[1].bold).to be false
@@ -172,17 +190,17 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextParser do
       expect(subject[2].content).to eq ' and styling'
       expect(subject[2].bold).to be false
       expect(subject[2].italic).to be true
-      expect(subject[2].href).to be nil
+      expect(subject[2].href).to be_nil
 
       expect(subject[3].content).to eq " with some\nline breaks"
       expect(subject[3].bold).to be false
       expect(subject[3].italic).to be false
-      expect(subject[3].href).to be nil
+      expect(subject[3].href).to be_nil
 
       expect(subject[4].content).to eq "\n"
       expect(subject[4].bold).to be false
       expect(subject[4].italic).to be false
-      expect(subject[4].href).to be nil
+      expect(subject[4].href).to be_nil
     end
   end
 end

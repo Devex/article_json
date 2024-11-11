@@ -59,7 +59,7 @@ describe ArticleJSON::Export::AppleNews::Elements::List do
         ]
       end
       let(:output_text) do
-        "<ul><li>This is an unordered list...</li><li>... with <em>two</em> entries</li></ul>"
+        '<ul><li>This is an unordered list...</li><li>... with <em>two</em> entries</li></ul>'
       end
 
       it { should eq output }
@@ -78,8 +78,8 @@ describe ArticleJSON::Export::AppleNews::Elements::List do
                 href: nil
               ),
             ]
-        ),
-        ArticleJSON::Elements::Paragraph.new(
+          ),
+          ArticleJSON::Elements::Paragraph.new(
             content: [
               ArticleJSON::Elements::Text.new(
                 content: 'This time, with ',
@@ -100,8 +100,8 @@ describe ArticleJSON::Export::AppleNews::Elements::List do
                 href: nil
               ),
             ]
-        ),
-        ArticleJSON::Elements::Paragraph.new(
+          ),
+          ArticleJSON::Elements::Paragraph.new(
             content: [
               ArticleJSON::Elements::Text.new(
                 content: 'Great, innit?!',
@@ -110,11 +110,11 @@ describe ArticleJSON::Export::AppleNews::Elements::List do
                 href: nil
               ),
             ]
-        ),
-      ]
+          ),
+        ]
       end
       let(:output_text) do
-        "<ol><li>And here we have a numbered list</li><li>This time, with <em>three</em> entries.</li><li>Great, innit?!</li></ol>"
+        '<ol><li>And here we have a numbered list</li><li>This time, with <em>three</em> entries.</li><li>Great, innit?!</li></ol>'
       end
 
       it { should eq output }
