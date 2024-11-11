@@ -22,6 +22,7 @@ describe ArticleJSON::Export::HTML::Elements::Quote do
       let(:expected_html) do
         '<div class="quote"><p>Foo Bar</p><small>Baz</small></div>'
       end
+
       it { should eq expected_html }
     end
 
@@ -30,6 +31,7 @@ describe ArticleJSON::Export::HTML::Elements::Quote do
       let(:expected_html) do
         '<div class="quote float-left"><p>Foo Bar</p><small>Baz</small></div>'
       end
+
       it { should eq expected_html }
     end
 
@@ -38,11 +40,13 @@ describe ArticleJSON::Export::HTML::Elements::Quote do
       let(:expected_html) do
         '<div class="quote float-right"><p>Foo Bar</p><small>Baz</small></div>'
       end
+
       it { should eq expected_html }
     end
 
     context 'when no caption is present' do
       let(:caption) { [] }
+
       it { should eq '<div class="quote"><p>Foo Bar</p></div>' }
     end
   end

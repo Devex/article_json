@@ -5,12 +5,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListParser do
 
   let(:node) { Nokogiri::HTML.fragment(html.strip).first_element_child }
   let(:html) do
-    <<-html
+    <<-HTML
       <#{list_tag}>
         <li><span>foo</span></li>
         <li><span>bar</span></li>
       </#{list_tag}>
-    html
+    HTML
   end
 
   let(:css_analyzer) do
@@ -22,22 +22,26 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListParser do
 
     context 'when it is a ordered list' do
       let(:list_tag) { 'ol' }
+
       it { should be :ordered }
     end
 
     context 'when it is a unordered list' do
       let(:list_tag) { 'ul' }
+
       it { should be :unordered }
     end
 
     context 'when it is an invalid list' do
       let(:list_tag) { 'list' }
-      it { should be nil }
+
+      it { should be_nil }
     end
   end
 
   describe '#content' do
     subject { element.content }
+
     let(:list_tag) { 'ul' }
 
     it 'returns a list of text elements' do
@@ -53,6 +57,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ListParser do
 
   describe '#element' do
     subject { element.element }
+
     let(:list_tag) { 'ol' }
 
     it 'returns a proper list element' do

@@ -5,10 +5,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
 
   let(:node) { Nokogiri::HTML.fragment(html.strip) }
   let(:html) do
-    <<-html
+    <<-HTML
       <p class="css_class"><span>#{quote}</span></p>
       <p class="css_class"><span>#{caption}</span></p>
-    html
+    HTML
   end
   let(:quote) { 'Operator! Give me the number for 911!' }
   let(:caption) { 'Homer Simpson' }
@@ -20,13 +20,16 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
 
   describe '#float' do
     subject { parser.float }
+
     context 'when the first node is centered' do
       let(:css) { '.css_class { text-align: center }' }
-      it { should be nil }
+
+      it { should be_nil }
     end
 
     context 'when the first node is right aligned' do
       let(:css) { '.css_class { text-align: right }' }
+
       it { should be :right }
     end
 
@@ -63,6 +66,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::QuoteParser do
 
     context 'if the caption is `[no-caption]`' do
       let(:caption) { '[no-caption]' }
+
       it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty

@@ -10,7 +10,8 @@ describe ArticleJSON::Article do
     it { should be_a Hash }
     it { should have_key :article_json_version }
     it { should have_key :content }
-    it 'should contain the right content' do
+
+    it 'contains the right content' do
       expect(subject[:content]).to contain_exactly paragraph.to_h
     end
   end
@@ -24,7 +25,8 @@ describe ArticleJSON::Article do
     end
 
     it { should be_a String }
-    it 'should contain the right content' do
+
+    it 'contains the right content' do
       expect(parsed_json).to be_a Hash
       expect(parsed_json).to have_key :article_json_version
       expect(parsed_json).to have_key :content
@@ -39,29 +41,35 @@ describe ArticleJSON::Article do
 
   describe '#html_exporter' do
     subject { article.html_exporter }
+
     it { should be_a ArticleJSON::Export::HTML::Exporter }
   end
 
   describe '#to_html' do
     subject { article.to_html }
+
     it { should be_a String }
     it { should eq '<p>Foo Bar</p>' }
+
     it_behaves_like 'an exporter that properly handles empty articles'
   end
 
   describe '#amp_exporter' do
     subject { article.amp_exporter }
+
     it { should be_a ArticleJSON::Export::AMP::Exporter }
   end
 
   describe '#to_amp' do
     subject { article.to_amp }
+
     it { should be_a String }
     it { should eq '<p>Foo Bar</p>' }
+
     it_behaves_like 'an exporter that properly handles empty articles'
   end
 
-  describe  '#apple_news_exporter' do
+  describe '#apple_news_exporter' do
     subject(:apple_news_exporter) { article.apple_news_exporter }
 
     it { should be_a ArticleJSON::Export::AppleNews::Exporter }
@@ -89,18 +97,20 @@ describe ArticleJSON::Article do
       let(:article) { described_class.new([]) }
 
       it 'returns an empty components array' do
-        expect(to_apple_news).to eq "{\"components\":[]}"
+        expect(to_apple_news).to eq '{"components":[]}'
       end
     end
   end
 
   describe '#plain_text_exporter' do
     subject { article.plain_text_exporter }
+
     it { should be_a ArticleJSON::Export::PlainText::Exporter }
   end
 
   describe '#to_plain_text' do
     subject { article.to_plain_text }
+
     it { should be_a String }
     it { should eq 'Foo Bar' }
   end
@@ -113,21 +123,24 @@ describe ArticleJSON::Article do
 
     context 'when additional elements have been added' do
       before { article.place_additional_elements(additional_elements) }
+
       let(:additional_element) do
         double('additional_element', type: :additional_element)
       end
       let(:additional_elements) { [additional_element] }
 
-      it 'should return the merged elements' do
+      it 'returns the merged elements' do
         expect(subject).to be_an Array
-        expect(subject.map(&:type)).to eq [:paragraph,
-                                           additional_element.type,
-                                           :paragraph]
+        expect(subject.map(&:type)).to eq [
+          :paragraph,
+          additional_element.type,
+          :paragraph,
+        ]
       end
     end
 
     context 'when no additional elements have been added' do
-      it 'should return the original elements' do
+      it 'returns the original elements' do
         expect(subject).to be_an Array
         expect(subject).to eq article_elements
       end
@@ -144,27 +157,30 @@ describe ArticleJSON::Article do
     end
     let(:additional_elements) { [additional_element] }
 
-    it 'should reset the `#elements` memoization' do
+    it 'resets the `#elements` memoization' do
       article.elements
       expect { subject }
         .to change { article.instance_variable_get(:@elements) }.to(nil)
     end
 
-    it 'should register the additional elements' do
+    it 'registers the additional elements' do
       expect { subject }.to change { article.additional_elements }
-                              .from([])
-                              .to(additional_elements)
+        .from([])
+        .to(additional_elements)
     end
 
     context 'when there are already additional elements defined' do
       let(:old_additional_element) { double('old_element', type: :old_element) }
+
       before { article.place_additional_elements([old_additional_element]) }
 
-      it 'should add new additional to the end' do
+      it 'adds new additional to the end' do
         expect { subject }.to change { article.additional_elements }
-                                .from([old_additional_element])
-                                .to([old_additional_element,
-                                     additional_element])
+          .from([old_additional_element])
+          .to([
+                old_additional_element,
+                additional_element,
+              ])
       end
     end
   end
@@ -182,7 +198,7 @@ describe ArticleJSON::Article do
                 content: 'Foo Bar',
                 bold: nil,
                 italic: nil,
-                href: nil
+                href: nil,
               },
             ],
           },
@@ -190,9 +206,11 @@ describe ArticleJSON::Article do
       }
     end
     it { should be_a described_class }
+
     it 'contains the right content' do
       expect(subject.elements).to all be_a ArticleJSON::Elements::Paragraph
     end
+
     it('is reversible') { expect(subject.to_h).to eq example_hash }
   end
 
@@ -207,10 +225,12 @@ describe ArticleJSON::Article do
 
   describe '.from_hash' do
     subject { described_class.from_hash(example_hash) }
+
     it_behaves_like 'a correctly parsed Hash'
 
     context 'when passed a list of elements instead of a hash' do
       subject { described_class.from_hash(example_hash[:content]) }
+
       it_behaves_like 'a correctly parsed Hash'
     end
 
@@ -219,14 +239,18 @@ describe ArticleJSON::Article do
 
   describe '.from_json' do
     subject { described_class.from_json(example_hash.to_json) }
+
     it_behaves_like 'a correctly parsed Hash'
     it_behaves_like 'a correctly parsed empty Hash'
   end
 
   describe '.from_google_doc_html' do
     subject { described_class.from_google_doc_html(html) }
+
     let(:html) { File.read('spec/fixtures/reference_document.html') }
+
     it { should be_a described_class }
+
     it 'contains the right content' do
       expect(subject.elements).to all be_a ArticleJSON::Elements::Base
     end

@@ -206,7 +206,8 @@ Style/DisableCopsWithinSourceCodeDirective:
 Style/Documentation:
   # do not require top level docs for classes/modules
   Enabled: false
-
+Style/DocumentationMethod:
+  Exclude:
     # restore default exlusions, as editing the default overwrites it
     - 'spec/**/*'
     - 'test/**/*'

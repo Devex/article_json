@@ -17,8 +17,8 @@ describe ArticleJSON::Utils::OEmbedResolver::FacebookVideo do
     include_context 'for a successful oembed resolution' do
       let(:expected_oembed_url) do
         'https://graph.facebook.com/v9.0/oembed_video?url=' \
-        'https://www.facebook.com/facebook/videos/1814600831891266' \
-        '&access_token=fake_facebook_token'
+          'https://www.facebook.com/facebook/videos/1814600831891266' \
+          '&access_token=fake_facebook_token'
       end
       let(:oembed_response) do
         File.read('spec/fixtures/facebook_video_oembed.json')

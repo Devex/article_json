@@ -16,10 +16,11 @@ describe ArticleJSON::Export::AMP::Elements::Image do
 
     context 'when the image is not floating' do
       let(:expected_html) do
-        '<figure><amp-img src="/foo/bar.jpg" width="640" height="480" '\
-        'layout="responsive"></amp-img><figcaption>Foo Bar</figcaption>'\
-        '</figure>'
+        '<figure><amp-img src="/foo/bar.jpg" width="640" height="480" ' \
+          'layout="responsive"></amp-img><figcaption>Foo Bar</figcaption>' \
+          '</figure>'
       end
+
       it { should eq expected_html }
     end
 
@@ -27,9 +28,10 @@ describe ArticleJSON::Export::AMP::Elements::Image do
       let(:float) { :left }
       let(:expected_html) do
         '<figure class="float-left"><amp-img src="/foo/bar.jpg" ' \
-        'width="640" height="480" layout="responsive">' \
-        '</amp-img><figcaption>Foo Bar</figcaption></figure>'
+          'width="640" height="480" layout="responsive">' \
+          '</amp-img><figcaption>Foo Bar</figcaption></figure>'
       end
+
       it { should eq expected_html }
     end
 
@@ -37,18 +39,20 @@ describe ArticleJSON::Export::AMP::Elements::Image do
       let(:float) { :right }
       let(:expected_html) do
         '<figure class="float-right"><amp-img src="/foo/bar.jpg" ' \
-        'width="640" height="480" layout="responsive">' \
-        '</amp-img><figcaption>Foo Bar</figcaption></figure>'
+          'width="640" height="480" layout="responsive">' \
+          '</amp-img><figcaption>Foo Bar</figcaption></figure>'
       end
+
       it { should eq expected_html }
     end
 
     context 'when no caption is provided' do
       let(:caption) { [] }
       let(:expected_html) do
-        '<figure><amp-img src="/foo/bar.jpg" width="640" height="480" '\
-        'layout="responsive"></amp-img></figure>'
+        '<figure><amp-img src="/foo/bar.jpg" width="640" height="480" ' \
+          'layout="responsive"></amp-img></figure>'
       end
+
       it { should eq expected_html }
     end
   end

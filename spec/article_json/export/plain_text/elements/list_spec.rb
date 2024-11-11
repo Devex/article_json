@@ -15,7 +15,7 @@ describe ArticleJSON::Export::PlainText::Elements::List do
     lambda do |text|
       ArticleJSON::Elements::Paragraph.new(
         content: [
-          ArticleJSON::Elements::Text.new(content: text)
+          ArticleJSON::Elements::Text.new(content: text),
         ]
       )
     end
@@ -26,11 +26,13 @@ describe ArticleJSON::Export::PlainText::Elements::List do
 
     context 'when it is an ordered list' do
       let(:list_type) { :ordered }
+
       it { should eq "1. Foo\n2. Bar\n   Bar\n3. Baz\n\n" }
     end
 
     context 'when it is an unordered list' do
       let(:list_type) { :unordered }
+
       it { should eq "- Foo\n- Bar\n  Bar\n- Baz\n\n" }
     end
   end

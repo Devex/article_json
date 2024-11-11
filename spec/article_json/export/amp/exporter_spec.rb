@@ -1,10 +1,12 @@
 describe ArticleJSON::Export::AMP::Exporter do
   subject(:exporter) { described_class.new(elements) }
+
   let(:json) { File.read('spec/fixtures/reference_document_parsed.json') }
   let(:elements) { ArticleJSON::Article.from_json(json).elements }
 
   describe 'reference document test' do
     subject { exporter.html }
+
     let(:html) { File.read('spec/fixtures/reference_document_exported.amp.html') }
 
     before do
@@ -18,7 +20,7 @@ describe ArticleJSON::Export::AMP::Exporter do
   describe '.custom_element_tags' do
     subject { exporter.custom_element_tags }
 
-    it 'should return the right tags' do
+    it 'returns the right tags' do
       expect(subject).to contain_exactly :'amp-vimeo',
                                          :'amp-youtube',
                                          :'amp-iframe',
@@ -38,7 +40,7 @@ describe ArticleJSON::Export::AMP::Exporter do
         '<script async custom-element="amp-iframe" ' \
         'src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>',
         '<script async custom-element="amp-twitter" ' \
-        'src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>'
+        'src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>',
       ]
     end
 
@@ -47,6 +49,7 @@ describe ArticleJSON::Export::AMP::Exporter do
 
   describe '.namespace' do
     subject { described_class.namespace }
+
     it { should be_a Module }
     it { should eq ArticleJSON::Export::AMP }
   end

@@ -8,6 +8,7 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
 
     context 'when the source element is a text' do
       let(:source_element) { sample_text }
+
       it { should eq 'Foo Bar' }
     end
 
@@ -23,6 +24,7 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
           textStyle: 'defaultTitle',
         }
       end
+
       it { should eq heading }
     end
 
@@ -39,6 +41,7 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
           textStyle: 'bodyStyle',
         }
       end
+
       it { should eq paragraph }
     end
   end
@@ -48,16 +51,19 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
 
     context 'when the element type is text' do
       let(:element) { ArticleJSON::Elements::Text.new(content: '') }
+
       it { should be_a ArticleJSON::Export::AppleNews::Elements::Text }
     end
 
     context 'when the element type is heading' do
       let(:element) { ArticleJSON::Elements::Heading.new(content: 1, level: 1) }
+
       it { should be_a ArticleJSON::Export::AppleNews::Elements::Heading }
     end
 
     context 'when the element type is paragraph' do
       let(:element) { ArticleJSON::Elements::Paragraph.new(content: []) }
+
       it { should be_a ArticleJSON::Export::AppleNews::Elements::Paragraph }
     end
   end
@@ -67,22 +73,26 @@ describe ArticleJSON::Export::AppleNews::Elements::Base do
 
     context 'when the element type is text' do
       let(:element_type) { :text }
+
       it { should be ArticleJSON::Export::AppleNews::Elements::Text }
     end
 
     context 'when the element type is heading' do
       let(:element_type) { :heading }
+
       it { should be ArticleJSON::Export::AppleNews::Elements::Heading }
     end
 
     context 'when the element type is paragraph' do
       let(:element_type) { :paragraph }
+
       it { should be ArticleJSON::Export::AppleNews::Elements::Paragraph }
     end
   end
 
   describe '.namespace' do
     subject { described_class.namespace }
+
     it { should be_a Module }
     it { should eq ArticleJSON::Export::AppleNews::Elements }
   end

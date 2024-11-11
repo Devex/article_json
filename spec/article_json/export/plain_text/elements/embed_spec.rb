@@ -14,6 +14,7 @@ describe ArticleJSON::Export::PlainText::Elements::Embed do
 
   describe '#export' do
     subject { element.export }
+
     let(:oembed_data) { { html: 'Embedded Object: something-666' } }
 
     context 'when the endpoint successfully returns OEmbed data' do
@@ -23,6 +24,7 @@ describe ArticleJSON::Export::PlainText::Elements::Embed do
 
       context 'without a proper caption' do
         let(:caption) { [] }
+
         it { should eq '' }
       end
     end
@@ -30,6 +32,7 @@ describe ArticleJSON::Export::PlainText::Elements::Embed do
     context 'when the endpoint does not return OEmbed data' do
       let(:embed_type) { :youtube_video }
       let(:oembed_data) { nil }
+
       it { should eq '' }
     end
   end

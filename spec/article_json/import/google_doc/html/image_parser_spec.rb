@@ -6,6 +6,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       css_analyzer: css_analyzer
     )
   end
+
   let(:node) do
     Nokogiri::HTML.fragment(image_fragment.strip).first_element_child
   end
@@ -23,10 +24,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
   describe '#source_url' do
     subject { element.source_url }
+
     it { should eq source_url }
 
     context 'when the image is specified via URL' do
       let(:image_fragment) { "<p><span><a href=\"#{source_url}\">#{source_url}</a></span></p>" }
+
       it { should eq source_url }
     end
   end
@@ -49,6 +52,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the image is specified via URL' do
       let(:image_fragment) { "<p><span><a href=\"#{source_url}\">#{source_url}</a></span></p>" }
+
       it { should eq '' }
     end
   end
@@ -57,10 +61,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
     subject { element.float }
 
     let(:css) do
-      <<-css
+      <<-CSS
         .center { text-align: center }
         .right { text-align: right }
-      css
+      CSS
     end
     let(:image_fragment) do
       "<p class=\"#{p_class}\"><span>#{img_tag}</span></p>"
@@ -71,17 +75,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
       context 'and without alignment' do
         let(:p_class) { '' }
-        it { should be nil }
+
+        it { should be_nil }
       end
 
       context 'and with right-alignment' do
         let(:p_class) { 'right' }
-        it { should be nil }
+
+        it { should be_nil }
       end
 
       context 'and with left-alignment' do
         let(:p_class) { 'center' }
-        it { should be nil }
+
+        it { should be_nil }
       end
     end
 
@@ -91,17 +98,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
         context 'and without alignment' do
           let(:p_class) { '' }
+
           it { should be :left }
         end
 
         context 'and with right-alignment' do
           let(:p_class) { 'right' }
+
           it { should be :right }
         end
 
         context 'and with left-alignment' do
           let(:p_class) { 'center' }
-          it { should be nil }
+
+          it { should be_nil }
         end
       end
 
@@ -110,17 +120,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
         context 'and without alignment' do
           let(:p_class) { '' }
-          it { should be nil }
+
+          it { should be_nil }
         end
 
         context 'and with right-alignment' do
           let(:p_class) { 'right' }
-          it { should be nil }
+
+          it { should be_nil }
         end
 
         context 'and with left-alignment' do
           let(:p_class) { 'center' }
-          it { should be nil }
+
+          it { should be_nil }
         end
       end
     end
@@ -131,17 +144,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
         context 'and without alignment' do
           let(:p_class) { '' }
+
           it { should be :left }
         end
 
         context 'and with right-alignment' do
           let(:p_class) { 'right' }
+
           it { should be :right }
         end
 
         context 'and with left-alignment' do
           let(:p_class) { 'center' }
-          it { should be nil }
+
+          it { should be_nil }
         end
       end
 
@@ -150,17 +166,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
         context 'and without alignment' do
           let(:p_class) { '' }
-          it { should be nil }
+
+          it { should be_nil }
         end
 
         context 'and with right-alignment' do
           let(:p_class) { 'right' }
-          it { should be nil }
+
+          it { should be_nil }
         end
 
         context 'and with left-alignment' do
           let(:p_class) { 'center' }
-          it { should be nil }
+
+          it { should be_nil }
         end
       end
     end
@@ -170,17 +189,20 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
       context 'and without alignment' do
         let(:p_class) { '' }
+
         it { should be :left }
       end
 
       context 'and with right-alignment' do
         let(:p_class) { 'right' }
+
         it { should be :right }
       end
 
       context 'and with left-alignment' do
         let(:p_class) { 'center' }
-        it { should be nil }
+
+        it { should be_nil }
       end
     end
   end
@@ -197,6 +219,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the caption nil' do
       let(:caption_node) { nil }
+
       it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty
@@ -205,6 +228,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the caption is `[no-caption]`' do
       let(:caption_text) { '[no-caption]' }
+
       it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty
@@ -213,6 +237,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the caption is `[image-link-to]` and `[no-caption]`' do
       let(:caption_text) { '[image-link-to: https://devex.com][no-caption]' }
+
       it 'returns an empty list' do
         expect(subject).to be_an Array
         expect(subject).to be_empty
@@ -227,7 +252,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
       expect(subject).to be_a ArticleJSON::Elements::Image
       expect(subject.type).to eq :image
       expect(subject.source_url).to eq source_url
-      expect(subject.float).to be nil
+      expect(subject.float).to be_nil
       expect(subject.caption).to all be_a ArticleJSON::Elements::Text
       expect(subject.href).to eq 'https://devex.com'
     end
@@ -239,7 +264,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
         expect(subject).to be_a ArticleJSON::Elements::Image
         expect(subject.type).to eq :image
         expect(subject.source_url).to eq source_url
-        expect(subject.float).to be nil
+        expect(subject.float).to be_nil
         expect(subject.caption).to be_empty
         expect(subject.href).to eq 'https://devex.com'
       end
@@ -247,11 +272,12 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ImageParser do
 
     context 'when the image is specified via URL' do
       let(:image_fragment) { "<p><span><a href=\"#{source_url}\">#{source_url}</a></span></p>" }
+
       it 'returns a proper Element' do
         expect(subject).to be_a ArticleJSON::Elements::Image
         expect(subject.type).to eq :image
         expect(subject.source_url).to eq source_url
-        expect(subject.float).to be nil
+        expect(subject.float).to be_nil
         expect(subject.caption).to all be_a ArticleJSON::Elements::Text
         expect(subject.href).to eq 'https://devex.com'
       end

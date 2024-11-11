@@ -13,9 +13,11 @@ describe ArticleJSON::Export::HTML::Elements::Paragraph do
 
   describe '#export' do
     subject { element.export.to_html(save_with: 0) }
+
     let(:expected_html) do
       '<p><strong>Check this out: </strong><a href="/foo/bar">Foo Bar</a></p>'
     end
+
     it { should eq expected_html }
   end
 end

@@ -15,7 +15,7 @@ describe ArticleJSON::Export::HTML::Elements::List do
     lambda do |text|
       ArticleJSON::Elements::Paragraph.new(
         content: [
-          ArticleJSON::Elements::Text.new(content: text)
+          ArticleJSON::Elements::Text.new(content: text),
         ]
       )
     end
@@ -29,6 +29,7 @@ describe ArticleJSON::Export::HTML::Elements::List do
       let(:expected_html) do
         '<ol><li><p>Foo</p></li><li><p>Bar</p></li><li><p>Baz</p></li></ol>'
       end
+
       it { should eq expected_html }
     end
 
@@ -37,6 +38,7 @@ describe ArticleJSON::Export::HTML::Elements::List do
       let(:expected_html) do
         '<ul><li><p>Foo</p></li><li><p>Bar</p></li><li><p>Baz</p></li></ul>'
       end
+
       it { should eq expected_html }
     end
   end

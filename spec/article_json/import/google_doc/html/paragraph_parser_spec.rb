@@ -2,6 +2,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::ParagraphParser do
   subject(:element) do
     described_class.new(node: nokogiri_node, css_analyzer: css_analyzer)
   end
+
   let(:nokogiri_node) do
     Nokogiri::HTML.fragment(xml_fragment.strip).children.first
   end

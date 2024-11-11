@@ -3,6 +3,7 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
     subject do
       described_class.new(article_elements, additional_elements).merge_elements
     end
+
     let(:text) { ArticleJSON::Elements::Text.new(content: 'Lorem Ipsum ') }
     let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: [text]) }
     let(:image) do
@@ -13,9 +14,11 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
     end
     let(:list) { ArticleJSON::Elements::List.new(content: [paragraph]) }
     let(:embed) do
-      ArticleJSON::Elements::Embed.new(embed_type: 'youtube',
-                                       embed_id: 'qwe123',
-                                       caption: [text])
+      ArticleJSON::Elements::Embed.new(
+        embed_type: 'youtube',
+        embed_id: 'qwe123',
+        caption: [text]
+      )
     end
 
     let(:article_elements) do
@@ -44,7 +47,7 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
     end
 
     shared_examples 'for properly added additional elements' do
-      it 'should place the elements in the right position' do
+      it 'places the elements in the right position' do
         expect(subject.map(&:type)).to eq expected_article_elements.map(&:type)
       end
     end
@@ -166,8 +169,17 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       let(:element_8) { double('additional_element_8', type: :element_8) }
       let(:element_9) { double('additional_element_9', type: :element_9) }
       let(:additional_elements) do
-        [element_1, element_2, element_3, element_4, element_5, element_6,
-         element_7, element_8, element_9]
+        [
+          element_1,
+          element_2,
+          element_3,
+          element_4,
+          element_5,
+          element_6,
+          element_7,
+          element_8,
+          element_9,
+        ]
       end
 
       include_examples 'for properly added additional elements' do
@@ -221,7 +233,6 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       end
     end
 
-
     context 'when the original article only contains one element' do
       let(:text) { ArticleJSON::Elements::Text.new(content: 'Lorem Ipsum ') }
       let(:paragraph) { ArticleJSON::Elements::Paragraph.new(content: [text]) }
@@ -229,6 +240,7 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       let(:element_1) { double('additional_element_1', type: :element_1) }
       let(:element_2) { double('additional_element_2', type: :element_2) }
       let(:additional_elements) { [element_1, element_2] }
+
       it { should eq [*article_elements, *additional_elements] }
     end
 
@@ -237,6 +249,7 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       let(:element_1) { double('additional_element_1', type: :element_1) }
       let(:element_2) { double('additional_element_2', type: :element_2) }
       let(:additional_elements) { [element_1, element_2] }
+
       it { should eq additional_elements }
     end
 
@@ -245,6 +258,7 @@ describe ArticleJSON::Utils::AdditionalElementPlacer do
       let(:element_1) { double('additional_element_1', type: :element_1) }
       let(:element_2) { double('additional_element_2', type: :element_2) }
       let(:additional_elements) { [element_1, element_2] }
+
       it { should eq additional_elements }
     end
   end

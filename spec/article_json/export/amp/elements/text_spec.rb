@@ -23,22 +23,26 @@ describe ArticleJSON::Export::AMP::Elements::Text do
 
     context 'when the source element contains a newline character' do
       let(:content) { "Foo\nBar" }
+
       it { should eq 'Foo<br>Bar' }
     end
 
     context 'when the source element is bold text' do
       let(:bold) { true }
+
       it { should eq '<strong>Foo Bar</strong>' }
     end
 
     context 'when the source element is italic text' do
       let(:italic) { true }
+
       it { should eq '<em>Foo Bar</em>' }
     end
 
     context 'when the source element is italic and bold text' do
       let(:bold) { true }
       let(:italic) { true }
+
       it { should eq '<strong><em>Foo Bar</em></strong>' }
     end
 
@@ -52,17 +56,20 @@ describe ArticleJSON::Export::AMP::Elements::Text do
 
       context 'with bold text' do
         let(:bold) { true }
+
         it { should eq "<strong>#{expected_link}</strong>" }
       end
 
       context 'with italic text' do
         let(:italic) { true }
+
         it { should eq "<em>#{expected_link}</em>" }
       end
 
       context 'with italic and bold text' do
         let(:bold) { true }
         let(:italic) { true }
+
         it { should eq "<strong><em>#{expected_link}</em></strong>" }
       end
     end

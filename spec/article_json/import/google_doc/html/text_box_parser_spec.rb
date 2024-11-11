@@ -9,11 +9,11 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
 
   let(:node) { Nokogiri::HTML.fragment(html.strip) }
   let(:html) do
-    <<-html
+    <<-HTML
       <h2 class="css_class"><span>This is a text box!</span></h2>
       <p><span>With a paragraph.</span></p>
       <p><span>And another one...</span></p>
-    html
+    HTML
   end
 
   let(:css_analyzer) do
@@ -23,13 +23,16 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
 
   describe '#float' do
     subject { parser.float }
+
     context 'when the first node is centered' do
       let(:css) { '.css_class { text-align: center }' }
-      it { should be nil }
+
+      it { should be_nil }
     end
 
     context 'when the first node is right aligned' do
       let(:css) { '.css_class { text-align: right }' }
+
       it { should be :right }
     end
 
@@ -57,10 +60,10 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
 
     context 'when the text box contains a list' do
       let(:html) do
-        <<-html
+        <<-HTML
           <h2 class="css_class"><span>Text box including a list!</span></h2>
           <ol><li><span>foo bar</span></li></ol>
-        html
+        HTML
       end
 
       it 'returns a heading and a list element' do
@@ -80,12 +83,13 @@ describe ArticleJSON::Import::GoogleDoc::HTML::TextBoxParser do
 
     context 'when there are tags' do
       let(:html) do
-        <<-html
+        <<-HTML
           <span>&nbsp;[foo bar]</span>
           <h2 class="css_class"><span>Text box including a list!</span></h2>
           <ol><li><span>foo bar</span></li></ol>
-        html
+        HTML
       end
+
       it { should match_array %w[foo bar] }
     end
 

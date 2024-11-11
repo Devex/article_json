@@ -6,6 +6,7 @@ describe ArticleJSON::Import::GoogleDoc::HTML::HeadingParser do
 
   describe '#content' do
     subject { parser.content }
+
     it { should eq 'Foo Bar' }
   end
 
@@ -14,26 +15,31 @@ describe ArticleJSON::Import::GoogleDoc::HTML::HeadingParser do
 
     context 'when it is a <h1> tag' do
       let(:html) { '<h1>Foo Bar</h3>' }
+
       it { should eq 1 }
     end
 
     context 'when it is a <h2> tag' do
       let(:html) { '<h2>Foo Bar</h3>' }
+
       it { should eq 2 }
     end
 
     context 'when it is a <h3> tag' do
       let(:html) { '<h3>Foo Bar</h3>' }
+
       it { should eq 3 }
     end
 
     context 'when it is a <h4> tag' do
       let(:html) { '<h4>Foo Bar</h3>' }
+
       it { should eq 4 }
     end
 
     context 'when it is a <h5> tag' do
       let(:html) { '<h5>Foo Bar</h3>' }
+
       it { should eq 5 }
     end
   end

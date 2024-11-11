@@ -11,6 +11,7 @@ describe ArticleJSON::Export::HTML::Elements::Heading do
     (1..6).each do |i|
       context "when the heading level is #{i}" do
         let(:level) { i }
+
         it { should eq "<h#{level}>Foo Bar</h#{level}>" }
       end
     end

@@ -17,16 +17,19 @@ describe ArticleJSON::Export::AMP::Elements::TextBox do
 
     context 'when the box is not floating' do
       let(:float) { nil }
+
       it { should eq '<div class="text-box"><p>Foo Bar</p></div>' }
     end
 
     context 'when the box is floating left' do
       let(:float) { :left }
+
       it { should eq '<div class="text-box float-left"><p>Foo Bar</p></div>' }
     end
 
     context 'when the box is floating right' do
       let(:float) { :right }
+
       it { should eq '<div class="text-box float-right"><p>Foo Bar</p></div>' }
     end
   end
