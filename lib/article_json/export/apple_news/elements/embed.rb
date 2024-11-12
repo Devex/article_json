@@ -51,7 +51,7 @@ module ArticleJSON
           def text
             @element.caption.map do |child_element|
               text_exporter.new(child_element)
-                .export
+                           .export
             end.join
           end
 

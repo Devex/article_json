@@ -54,8 +54,10 @@ module ArticleJSON
           # @return [String]
           def href
             return if @caption_node.nil?
+
             match = @caption_node.content.strip.match(href_regexp)
             return if match.nil?
+
             remove_image_link_tag
             match[:url]
           end

@@ -20,7 +20,7 @@ module ArticleJSON
             private
 
             def embed_node
-              type = @element.embed_type.to_s.tr('_','-')
+              type = @element.embed_type.to_s.tr('_', '-')
               create_element(:div, class: "embed #{type}") do |div|
                 div.add_child(embedded_object)
               end
@@ -28,6 +28,7 @@ module ArticleJSON
 
             def embedded_object
               return unavailable_node unless @element.oembed_data
+
               Nokogiri::HTML.fragment(@element.oembed_data[:html])
             end
 

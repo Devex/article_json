@@ -104,6 +104,7 @@ module ArticleJSON
             def find_parser(text)
               text = text.strip.downcase
               return nil if text.empty?
+
               parsers.find { |klass| klass.matches?(text) }
             end
           end

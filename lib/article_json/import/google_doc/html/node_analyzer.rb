@@ -31,6 +31,7 @@ module ArticleJSON
           # @return [Boolean]
           def empty?
             return @is_empty if defined? @is_empty
+
             @is_empty = node.inner_text.strip.empty? && !image? && !hr? && !br?
           end
 
@@ -38,6 +39,7 @@ module ArticleJSON
           # @return [Boolean]
           def heading?
             return @is_heading if defined? @is_heading
+
             @is_heading =
               !quote? && !text_box? && %w(h1 h2 h3 h4 h5).include?(node.name)
           end
@@ -52,6 +54,7 @@ module ArticleJSON
           # @return [Boolean]
           def paragraph?
             return @is_paragraph if defined? @is_paragraph
+
             @is_paragraph =
               node.name == 'p' &&
                 !empty? &&
@@ -65,7 +68,8 @@ module ArticleJSON
           # @return [Boolean]
           def list?
             return @is_list if defined? @is_list
-            @is_list = %w(ul ol).include?(node.name)
+
+            @is_list = %w[ul ol].include?(node.name)
           end
 
           # Check if the node starts a text box
@@ -73,6 +77,7 @@ module ArticleJSON
           # @return [Boolean]
           def text_box?
             return @is_text_box if defined? @is_text_box
+
             @is_text_box = begins_with?('textbox:') || begins_with?('highlight:')
           end
 
@@ -81,6 +86,7 @@ module ArticleJSON
           # @return [Boolean]
           def quote?
             return @is_quote if defined? @is_quote
+
             @is_quote = has_text?('quote:')
           end
 
@@ -88,6 +94,7 @@ module ArticleJSON
           # @return [Boolean]
           def image?
             return @is_image if defined? @is_image
+
             @is_image = image_url? || node.xpath('.//img').length > 0
           end
 
@@ -105,6 +112,7 @@ module ArticleJSON
           # @return [Boolean]
           def embed?
             return @is_embed if defined? @is_embed
+
             @is_embed = EmbeddedParser.supported?(node)
           end
 
@@ -113,6 +121,7 @@ module ArticleJSON
           # @return [Boolean]
           def br?
             return @is_br if defined? @is_br
+
             @is_br = node.name == 'br' || only_includes_brs?
           end
 
@@ -129,6 +138,7 @@ module ArticleJSON
             return :quote if quote?
             return :image if image?
             return :embed if embed?
+
             :unknown
           end
 
@@ -138,9 +148,11 @@ module ArticleJSON
           # @return [Boolean]
           def only_includes_brs?
             return false unless node.inner_text.strip.empty?
+
             tags = node.children.map(&:name)
             # Check if it only contains <br> and text nodes
-            return false unless tags.all? { |tag| %w(br text).include? tag }
+            return false unless tags.all? { |tag| %w[br text].include? tag }
+
             # Check if at least one is a `<br>` node
             tags.include?('br')
           end

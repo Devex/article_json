@@ -19,11 +19,11 @@ module ArticleJSON
           # @return [Integer]
           def level
             case @node.name
-              when 'h1' then 1
-              when 'h2' then 2
-              when 'h3' then 3
-              when 'h4' then 4
-              when 'h5' then 5
+            when 'h1' then 1
+            when 'h2' then 2
+            when 'h3' then 3
+            when 'h4' then 4
+            when 'h5' then 5
             end
           end
 

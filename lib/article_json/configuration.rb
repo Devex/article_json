@@ -39,8 +39,9 @@ module ArticleJSON
       if !type_class_mapping.is_a?(Hash) ||
           type_class_mapping.keys.any? { |key| !key.is_a? Symbol } ||
           type_class_mapping.values.any? { |value| !value.is_a? Class }
-        raise ArgumentError, '`type_class_mapping` has to be a Hash with '\
-                             'symbolized keys and classes as values but is '\
+
+        raise ArgumentError, '`type_class_mapping` has to be a Hash with ' \
+                             'symbolized keys and classes as values but is ' \
                              "`#{type_class_mapping.inspect}`"
       end
 

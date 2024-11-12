@@ -12,7 +12,7 @@ module ArticleJSON
         # @return [String]
         def oembed_url
           "https://graph.facebook.com/v9.0/oembed_video?url=#{source_url}" \
-          "&access_token=#{access_token}"
+            "&access_token=#{access_token}"
         end
 
         # The video URL of the element

@@ -8,6 +8,7 @@ module ArticleJSON
             # @return [Array[ArticleJSON::Elements::Text]]
             def caption
               return [] if no_caption?
+
               ArticleJSON::Import::GoogleDoc::HTML::TextParser.extract(
                 node: @caption_node,
                 css_analyzer: @css_analyzer

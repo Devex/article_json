@@ -8,10 +8,11 @@ module ArticleJSON
         # @return [Array[Symbol]]
         def custom_element_tags
           return @custom_element_tags if defined? @custom_element_tags
+
           @custom_element_tags =
             element_exporters
-              .flat_map { |element| element.custom_element_tags }
-              .uniq
+            .flat_map { |element| element.custom_element_tags }
+            .uniq
         end
 
         # Return an array with all the javascript libraries needed for some
@@ -19,6 +20,7 @@ module ArticleJSON
         # @return [Array<String>]
         def amp_libraries
           return @amp_libraries if defined? @amp_libraries
+
           @amp_libraries =
             CustomElementLibraryResolver.new(custom_element_tags).script_tags
         end
