@@ -23,8 +23,10 @@ module ArticleJSON
         def unavailable_message
           [
             ArticleJSON::Elements::Text.new(content: "The #{name} "),
-            ArticleJSON::Elements::Text.new(content: source_url,
-                                            href: source_url),
+            ArticleJSON::Elements::Text.new(
+              content: source_url,
+              href: source_url
+            ),
             ArticleJSON::Elements::Text.new(content: ' is not available.'),
           ]
         end
@@ -44,14 +46,13 @@ module ArticleJSON
         # @return [Hash|nil]
         def parsed_api_response
           return @api_response if defined? @api_response
+
           @api_response = begin
             uri = URI.parse(oembed_url)
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = (uri.scheme == 'https')
             response = http.request(Net::HTTP::Get.new(uri, http_headers))
-            if response.kind_of? Net::HTTPSuccess
-              JSON.parse(response.body, symbolize_names: true)
-            end
+            JSON.parse(response.body, symbolize_names: true) if response.is_a? Net::HTTPSuccess
           rescue Net::ProtocolError, JSON::ParserError
             nil
           end

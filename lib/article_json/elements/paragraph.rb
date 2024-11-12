@@ -36,6 +36,7 @@ module ArticleJSON
       # @return [Integer]
       def length
         return 0 if empty?
+
         @content.reduce(0) do |sum, element|
           sum + (element.respond_to?(:length) ? element.length : 0)
         end
@@ -52,4 +53,3 @@ module ArticleJSON
     end
   end
 end
-

@@ -43,6 +43,7 @@ module ArticleJSON
             if @node.name == 'span' &&
                 @node.first_element_child&.name == 'a' &&
                 @node.first_element_child&.has_attribute?('href')
+
               strip_google_redirect(
                 @node.first_element_child.attribute('href').value
               )
@@ -68,6 +69,7 @@ module ArticleJSON
             def extract(node:, css_analyzer:)
               node.children.map do |child_node|
                 next if NodeAnalyzer.new(child_node).empty?
+
                 new(node: child_node, css_analyzer: css_analyzer).element
               end.compact
             end

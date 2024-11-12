@@ -40,6 +40,7 @@ module ArticleJSON
       # @return [Array[ArticleJSON::Elements::Base|Object]]
       def merge_elements
         return @additional_elements if @elements.nil? || @elements.empty?
+
         remaining_elements = @additional_elements.dup
         next_in = insert_next_element_in(0, remaining_elements)
         characters_passed = 0
@@ -48,6 +49,7 @@ module ArticleJSON
           .each_with_object([]) do |(element, next_element), result|
             result << element
             next if remaining_elements.empty?
+
             if element.respond_to?(:length)
               characters_passed += element.length
               next_in -= element.length

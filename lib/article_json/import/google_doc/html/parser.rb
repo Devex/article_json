@@ -118,6 +118,7 @@ module ArticleJSON
             nodes = []
             until !body_has_more_nodes? ||
                 NodeAnalyzer.new(@body_enumerator.peek).hr?
+
               nodes << @body_enumerator.next
             end
             nodes

@@ -10,7 +10,7 @@ module ArticleJSON
           #                                         May contain tags, too.
           # @param [Array[Nokogiri::HTML::Node]] nodes
           # @param [ArticleJSON::Import::GoogleDoc::HTML::CSSAnalyzer] css_analyzer
-          def initialize(type_node: ,nodes:, css_analyzer:)
+          def initialize(type_node:, nodes:, css_analyzer:)
             @nodes = nodes.reject { |node| NodeAnalyzer.new(node).empty? }
             @css_analyzer = css_analyzer
 
@@ -32,6 +32,7 @@ module ArticleJSON
             match = /(.*?)[\s\u00A0]+\[(?<tags>.*)\]/
                       .match(@type_node.inner_text)
             return [] unless match
+
             match[:tags].split(' ')
           end
 

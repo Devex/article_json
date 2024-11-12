@@ -11,8 +11,8 @@ module ArticleJSON
         # The URL for the oembed API call
         # @return [String]
         def oembed_url
-          'https://www.slideshare.net/api/oembed/2?format=json&url='\
-          "#{source_url}"
+          'https://www.slideshare.net/api/oembed/2?format=json&url=' \
+            "#{source_url}"
         end
 
         # The URL of the slideshow

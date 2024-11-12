@@ -34,4 +34,3 @@ module ArticleJSON
     end
   end
 end
-

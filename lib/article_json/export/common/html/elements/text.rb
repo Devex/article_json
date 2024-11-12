@@ -11,6 +11,7 @@ module ArticleJSON
               return bold_and_italic_node if @element.bold && @element.italic
               return bold_node if @element.bold
               return italic_node if @element.italic
+
               content_node
             end
 
@@ -38,6 +39,7 @@ module ArticleJSON
             # @return [Nokogiri::XML::NodeSet]
             def content_node
               return create_text_nodes(@element.content) if @element.href.nil?
+
               create_element(:a, href: @element.href) do |a|
                 a.add_child(create_text_nodes(@element.content))
               end

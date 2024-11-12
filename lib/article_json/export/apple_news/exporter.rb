@@ -21,7 +21,7 @@ module ArticleJSON
         private
 
         # Generate an array with the plain text representation of all elements
-        # 
+        #
         # @return [Array]
         def components
           @components ||=

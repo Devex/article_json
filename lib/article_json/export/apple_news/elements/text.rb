@@ -6,8 +6,21 @@ module ArticleJSON
           include ArticleJSON::Export::Common::HTML::Elements::Base
           include ArticleJSON::Export::Common::HTML::Elements::Text
 
-          UNSUPPORTED_HTML_TAGS = %w[title meta script noscript style link applet object iframe
-            noframes form select option optgroup
+          UNSUPPORTED_HTML_TAGS = %w[
+            title
+            meta
+            script
+            noscript
+            style
+            link
+            applet
+            object
+            iframe
+            noframes
+            form
+            select
+            option
+            optgroup
           ].freeze
 
           # A Nokogiri object is returned with`super`, which is is then

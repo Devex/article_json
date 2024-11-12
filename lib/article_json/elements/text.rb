@@ -44,6 +44,7 @@ module ArticleJSON
       # @return [Integer]
       def length
         return 0 if blank?
+
         content.length
       end
       alias size length
@@ -63,4 +64,3 @@ module ArticleJSON
     end
   end
 end
-

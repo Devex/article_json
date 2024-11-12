@@ -14,8 +14,8 @@ module ArticleJSON
           # @return [Symbol]
           def list_type
             case @node.name
-              when 'ol' then :ordered
-              when 'ul' then :unordered
+            when 'ol' then :ordered
+            when 'ul' then :unordered
             end
           end
 
