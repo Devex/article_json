@@ -19,6 +19,19 @@ module ArticleJSON
         def source_url
           "https://www.youtube.com/watch?v=#{@element.embed_id}"
         end
+
+        protected
+
+        # @param [Hash] data
+        # @return [Hash]
+        def transform_api_response(data)
+          return data unless data&.dig(:thumbnail_url)
+          
+          # Replace the default YouTube thumbnail with the max resolution version
+          data.merge(
+            thumbnail_url: data[:thumbnail_url].sub(%r{hqdefault\.jpg$}, 'maxresdefault.jpg')
+          )
+        end
       end
     end
   end
