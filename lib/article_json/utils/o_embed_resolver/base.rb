@@ -52,10 +52,19 @@ module ArticleJSON
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = (uri.scheme == 'https')
             response = http.request(Net::HTTP::Get.new(uri, http_headers))
-            JSON.parse(response.body, symbolize_names: true) if response.is_a? Net::HTTPSuccess
+
+            if response.is_a? Net::HTTPSuccess
+              data = JSON.parse(response.body, symbolize_names: true)
+              transform_api_response(data)
+            end
           rescue Net::ProtocolError, JSON::ParserError
             nil
           end
+        end
+
+        # @return [Hash]
+        def transform_api_response(data)
+          data
         end
 
         # @return [Hash]
