@@ -5,6 +5,45 @@
 **Removes**:
 Support for Facebook Instant Articles, as they are no longer supported by Facebook.
 
+## 0.4.3 - 2026/11/24
+
+**Fixes**:
+
+- AMP export no longer fails the whole article when the oEmbed request for a
+  Facebook video, SlideShare or SoundCloud embed fails. It renders the same
+  "not available" message as the HTML exporter instead of raising
+  `NoMethodError`.
+- AMP SoundCloud embeds fall back to the same message when the oEmbed HTML has
+  no iframe or track ID.
+
+**Changes**:
+
+- Require Ruby >= 3.3 in the gemspec. This was already effectively required
+  since 0.4.2, because `css_parser` ~> 3.0 needs Ruby 3.3.
+- CI runs the specs on Ruby 3.3 and 3.4 (previously 3.2, 2.7 and 2.5).
+
+## 0.4.2 - 2026/10/01
+
+**Changes**:
+
+- Require `css_parser` ~> 3.0.
+
+## 0.4.1 - 2026/03/06
+
+**New**:
+
+- oEmbed resolvers support a response transformation hook to customize the
+  API data.
+- YouTube embeds use max-resolution thumbnails.
+
+**Removes**:
+
+- Support for Facebook Instant Articles, as they are no longer supported by Facebook.
+
+**Refactoring**:
+
+- Rubocop autocorrections
+
 ## 0.4.0 - 2024/01/17
 
 In this fourth release we **added support for Apple News**:
