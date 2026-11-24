@@ -126,6 +126,60 @@ describe ArticleJSON::Export::AMP::Elements::Embed do
       it { should eq expected_html }
     end
 
+    %i(facebook_video slideshare soundcloud).each do |embed_type|
+      context "with unavailable #{embed_type} oEmbed data" do
+        let(:source_element_embed_type) { embed_type }
+
+        before do
+          allow(source_element).to receive(:oembed_data).and_return(nil)
+        end
+
+        it 'uses the same unavailable message and caption as HTML' do
+          html = ArticleJSON::Export::HTML::Elements::Embed
+            .new(source_element).export.to_html(save_with: 0)
+
+          expect(subject).to eq html
+          expect(subject).to include('class="unavailable-embed"')
+          expect(subject).to include(' is not available.</span>')
+          expect(subject).to include('<figcaption>Foo Bar</figcaption>')
+        end
+
+        context 'without a caption' do
+          let(:caption) { [] }
+
+          it 'still renders the unavailable message' do
+            expect(subject).to include('class="unavailable-embed"')
+            expect(subject).not_to include('<figcaption>')
+          end
+        end
+      end
+    end
+
+    %i(youtube_video vimeo_video tweet).each do |embed_type|
+      context "with an ID-based #{embed_type} embed" do
+        let(:source_element_embed_type) { embed_type }
+
+        it 'renders without requesting oEmbed data' do
+          expect(source_element).not_to receive(:oembed_data)
+          expect(subject).to include('<amp-')
+        end
+      end
+    end
+
+    context 'with soundcloud oEmbed HTML that has no track id' do
+      let(:source_element_embed_type) { :soundcloud }
+
+      before do
+        allow(source_element)
+          .to receive(:oembed_data).and_return(html: '<p>no iframe here</p>')
+        allow(source_element)
+          .to receive(:oembed_unavailable_message)
+          .and_return([ArticleJSON::Elements::Text.new(content: 'gone')])
+      end
+
+      it { should include('<span class="unavailable-embed">gone</span>') }
+    end
+
     context 'with no caption' do
       let(:source_element_embed_type) { :youtube_video }
       let(:caption) { [] }
